@@ -12,7 +12,7 @@ public class MicrophoneInput : MonoBehaviour {
 	void Start() {
 		audio_source = GetComponent<AudioSource> ();
 		audio_source.clip = Microphone.Start(Microphone.devices [0], true, 10, 44100);
-
+        Debug.Log(Microphone.devices);
 		audio_source.loop = true; // Set the AudioClip to loop
 //		audio_source.mute = true; // Mute the sound, we don't want the player to hear it
 		while (!(Microphone.GetPosition(Microphone.devices [0]) > 0)){} // Wait until the recording has started

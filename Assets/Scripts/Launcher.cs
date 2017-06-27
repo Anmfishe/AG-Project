@@ -71,7 +71,11 @@ namespace Com.MyCompany.MyGame
 			// #NotImportant
 			// Force LogLevel
 			PhotonNetwork.logLevel = Loglevel;
-		}
+
+            progressLabel.SetActive(false);
+            //controlPanel.SetActive(true);
+            Connect();
+        }
 
 
 		/// <summary>
@@ -82,8 +86,9 @@ namespace Com.MyCompany.MyGame
 			// This is commented because we are going to call Connect when we press the Play
 //			Connect();
 
-			progressLabel.SetActive(false);
-			controlPanel.SetActive(true);
+			//progressLabel.SetActive(false);
+            //controlPanel.SetActive(true);
+            //Connect();
 		}
 
 

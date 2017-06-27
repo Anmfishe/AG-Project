@@ -17,7 +17,7 @@ namespace Com.MyCompany.MyGame
 		public GameObject playerPrefab;
 
 
-		void Start()
+        void Start() 
 		{
 			Instance = this;
 

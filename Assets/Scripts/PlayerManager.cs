@@ -69,18 +69,18 @@ namespace Com.MyCompany.MyGame
 		/// </summary>
 		void Start()
 		{
-			CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
+			//CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
 
 
-			if (_cameraWork!=null )
-			{
-				if ( photonView.isMine)
-				{
-					_cameraWork.OnStartFollowing();
-				}
-			}else{
-				Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.",this);
-			}
+			//if (_cameraWork!=null )
+			//{
+			//	if ( photonView.isMine)
+			//	{
+			//		_cameraWork.OnStartFollowing();
+			//	}
+			//}else{
+			//	Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.",this);
+			//}
 
 			#if UNITY_MIN_5_4
 			// Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
@@ -187,7 +187,7 @@ namespace Com.MyCompany.MyGame
 			// check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
 			if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
 			{
-				transform.position = new Vector3(0f, 5f, 0f);
+				transform.position = new Vector3(0f, 0f, 0f);
 			}
 
 //			GameObject _uiGo = Instantiate(this.PlayerUiPrefab) as GameObject;
