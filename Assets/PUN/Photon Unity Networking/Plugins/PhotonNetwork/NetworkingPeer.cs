@@ -2209,17 +2209,17 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                 // this.mListener.clientErrorReturn(statusCode);
                 break;
 
-            //case StatusCode.QueueOutgoingReliableWarning:
-            //case StatusCode.QueueOutgoingUnreliableWarning:
-            //case StatusCode.QueueOutgoingAcksWarning:
-            //case StatusCode.QueueSentWarning:
-            //    // this.mListener.warningReturn(statusCode);
-            //    break;
+            case StatusCode.QueueOutgoingReliableWarning:
+            case StatusCode.QueueOutgoingUnreliableWarning:
+            case StatusCode.QueueOutgoingAcksWarning:
+            case StatusCode.QueueSentWarning:
+                // this.mListener.warningReturn(statusCode);
+                break;
 
-            //case StatusCode.QueueIncomingReliableWarning:
-            //case StatusCode.QueueIncomingUnreliableWarning:
-            //    Debug.Log(statusCode + ". This client buffers many incoming messages. This is OK temporarily. With lots of these warnings, check if you send too much or execute messages too slow. " + (PhotonNetwork.isMessageQueueRunning? "":"Your isMessageQueueRunning is false. This can cause the issue temporarily.") );
-            //    break;
+            case StatusCode.QueueIncomingReliableWarning:
+            case StatusCode.QueueIncomingUnreliableWarning:
+                Debug.Log(statusCode + ". This client buffers many incoming messages. This is OK temporarily. With lots of these warnings, check if you send too much or execute messages too slow. " + (PhotonNetwork.isMessageQueueRunning? "":"Your isMessageQueueRunning is false. This can cause the issue temporarily.") );
+                break;
 
                 // // TCP "routing" is an option of Photon that's not currently needed (or supported) by PUN
                 //case StatusCode.TcpRouterResponseOk:
