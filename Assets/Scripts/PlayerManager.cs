@@ -26,6 +26,8 @@ namespace Com.MyCompany.MyGame
 		[Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
 		public static GameObject LocalPlayerInstance;
 
+        public Camera cam;
+
 //		[Tooltip("The Player's UI GameObject Prefab")]
 //		public GameObject PlayerUiPrefab;
 
@@ -88,7 +90,10 @@ namespace Com.MyCompany.MyGame
 			{
 				this.CalledOnLevelWasLoaded(scene.buildIndex);
 			};
-			#endif
+#endif
+
+            if (photonView.isMine) return;
+            cam.enabled = false;
 
 //			if (PlayerUiPrefab!=null)
 //			{
@@ -108,17 +113,20 @@ namespace Com.MyCompany.MyGame
 			if (photonView.isMine) {
 				ProcessInputs ();
 			}
+            if (photonView.isMine)
+            {
+                cam.enabled = true;
+            }
+            //			if ( Health <= 0f)
+            //			{
+            //				GameManager.Instance.LeaveRoom();
+            //			}
 
-//			if ( Health <= 0f)
-//			{
-//				GameManager.Instance.LeaveRoom();
-//			}
-
-//			// trigger Beams active state 
-//			if (Beams!=null && IsFiring != Beams.GetActive ()) {
-//				Beams.SetActive(IsFiring);
-//			}
-		}
+            //			// trigger Beams active state 
+            //			if (Beams!=null && IsFiring != Beams.GetActive ()) {
+            //				Beams.SetActive(IsFiring);
+            //			}
+        }
 
 
 		/// <summary>
