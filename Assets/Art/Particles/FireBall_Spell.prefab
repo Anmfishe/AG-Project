@@ -47,8 +47,9 @@ GameObject:
   - component: {fileID: 11491480}
   - component: {fileID: 5410430}
   - component: {fileID: 13502446}
+  - component: {fileID: 114549581036780058}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: FireBall_Spell
   m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22381,3 +22382,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130144}
   m_IsPrefabParent: 1
+--- !u!114 &114549581036780058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe444030e0f8d8a47998a62e16e34eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
