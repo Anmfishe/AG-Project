@@ -43,7 +43,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
             case "Fire":
-                GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
+               GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.2f, 0), mainCam.transform.rotation, 0);
+               // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
                 
             break;
             case "Shield":
@@ -51,10 +52,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "Heal":
                 break;
             case "SwipeLeft":
-                GameObject fb2 = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
+                GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .2f, 0), mainCam.transform.rotation, 0);
                 break;
             case "SwipeRight":
-                GameObject fb3 = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
+                GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .2f, 0), mainCam.transform.rotation, 0);
                 break;
         }
     }
