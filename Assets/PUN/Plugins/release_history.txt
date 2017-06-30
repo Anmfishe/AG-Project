@@ -8,11 +8,6 @@ https://doc.photonengine.com
 http://forum.photonengine.com
 
 
-*** Version 4.1.1.13 (2. June 2017 - rev4112)
-	Internal: Fixed StreamBuffer.Seek() which was throwing an exception when seeking position 0 in an empty stream.
-	Removed: The queue-length checks which were using OnStatusChanged to warn about the amount of data queued for sending. Several StatusCode values are now obsolete accordingly.
-	Removed: StatusCode InternalReceiveException = 1039 and TcpRouter* which were obsolete for a longer time.
-	
 *** Version 4.1.1.12 (24. May 2017 - rev4086)
 	Fixed: Peer.timeLastSendOutgoing was set in SendAcksOnly and ReceiveIncomingCommands. This should not happen. In PUN, this led to an issue with the fallback thread, which could not keep the connection.
 	Fixed: DNS resolution in the UDP socket is no longer inside a lock. Even if it takes longer (without network), the socket can now be closed before it's even opened properly, avoiding a freeze.

@@ -1,7 +1,3 @@
-v1.84.1 (2. June 2017)
-Fixed: A minor bug in the Photon3Unity3d.dll, which is now v4.1.1.13. The StreamBuffer.Seek() could fail to seek position 0 when length is 0.
-
-
 v1.84 (30. May 2017)
 Fixed: PlayerRoomIndexing can now be added at runtime even on non MasterClient instance. master player is now indicated in the inspector.
 Updated: NetworkingPeer.RunViewUpdate allocates less memory.
@@ -11,6 +7,7 @@ Added: Support for a Switch add-on. You need to be certified developer for the p
 Changed: SocketWebTcp to handle status changes for the used WebSocket. This fixes uncommon issues in WebGL exports.
 Changed: SocketUdp.cs to lock less parts of the DNS / connection setup, which avoids potential freezes.
 Updated: To Photon library v4.1.1.12 with various fixes. See plugins\release_history.txt.
+
 
 v1.83 (13. April 2017)
 Fixed: A bug in the Photon3Unity3D.dll which led to timeouts. The bug was in v4.1.1.10 (PUN v1.82) and is fixed in v4.1.1.11 (now used in PUN v1.83).
