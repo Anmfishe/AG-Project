@@ -30,7 +30,6 @@ public GameObject fireBall;
 
 		triggerL = Input.GetAxis("TriggerL");
 		triggerR = Input.GetAxis("TriggerR");
-		print(triggerL);
 		if ((triggerL > .3f)  || (triggerR > .3f))//Input.GetKeyDown("joystick button 14"))// && myTime > nextFire)
         {
         	//print("swag");

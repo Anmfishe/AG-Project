@@ -641,7 +641,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -672,10 +672,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerAttachPoint: {fileID: 0}
+  grabButton: 7
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachPoint: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
 --- !u!114 &114024420565808108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,6 +701,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useButton: 3
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
+  interactGrab: {fileID: 0}
 --- !u!114 &114059810169413326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,6 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83f5b98e6dc51b478938df43cc033de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!114 &114168274211666474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -775,7 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customRigidbodyObject: {fileID: 0}
+  customColliderContainer: {fileID: 0}
 --- !u!114 &114241293730368362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -787,11 +795,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377ced3493c4e1842a5b1c23f56519db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blinkToColor: {r: 0, g: 0, b: 0, a: 1}
   blinkTransitionSpeed: 0.6
   distanceBlinkDelay: 0
   headsetPositionCompensation: 1
   targetListPolicy: {fileID: 0}
   navMeshLimitDistance: 0
+  snapToNearestFloor: 1
+  customRaycast: {fileID: 0}
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
@@ -847,15 +858,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableTeleport: 1
+  targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 114790285011856392}
   activationButton: 10
   holdButtonToActivate: 1
+  activateOnEnable: 0
   activationDelay: 0
   selectionButton: 10
   selectOnPress: 0
+  selectionDelay: 0
+  selectAfterHoverDuration: 0
   interactWithObjects: 0
   grabToPointerTip: 0
   controller: {fileID: 0}
+  interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
 --- !u!114 &114477544053871094
 MonoBehaviour:
@@ -930,6 +946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useButton: 3
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
+  interactGrab: {fileID: 0}
 --- !u!114 &114564012525502632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -959,12 +979,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableTeleport: 1
+  targetListPolicy: {fileID: 0}
   enableBodyCollisions: 0
   ignoreGrabbedCollisions: 1
+  ignoreCollisionsWith: []
   headsetYOffset: 0.2
   movementThreshold: 0.0015
+  playAreaMovementThreshold: 0.00075
   standingHistorySamples: 5
   leanYThreshold: 0.5
+  stepUpYOffset: 0.15
+  stepThicknessMultiplier: 0.5
+  stepDropThreshold: 0.08
+  customRaycast: {fileID: 0}
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
@@ -972,6 +999,10 @@ MonoBehaviour:
   gravityFallYThreshold: 1
   blinkYThreshold: 0.15
   floorHeightTolerance: 0.001
+  fallCheckPrecision: 5
+  teleporter: {fileID: 0}
+  customBodyColliderContainer: {fileID: 0}
+  customFootColliderContainer: {fileID: 0}
 --- !u!114 &114634310102751988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,7 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customRigidbodyObject: {fileID: 0}
+  customColliderContainer: {fileID: 0}
 --- !u!114 &114680228099866038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1055,7 +1086,11 @@ MonoBehaviour:
   menuToggleButton: 14
   axisFidelity: 1
   triggerClickThreshold: 1
+  triggerForceZeroThreshold: 0.01
+  triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
+  gripForceZeroThreshold: 0.01
+  gripAxisZeroOnUntouch: 0
   triggerPressed: 0
   triggerTouched: 0
   triggerHairlinePressed: 0
@@ -1079,6 +1114,7 @@ MonoBehaviour:
   usePressed: 0
   uiClickPressed: 0
   menuPressed: 0
+  controllerVisible: 1
 --- !u!114 &114682182888049074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1112,7 +1148,11 @@ MonoBehaviour:
   menuToggleButton: 14
   axisFidelity: 1
   triggerClickThreshold: 1
+  triggerForceZeroThreshold: 0.01
+  triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
+  gripForceZeroThreshold: 0.01
+  gripAxisZeroOnUntouch: 0
   triggerPressed: 0
   triggerTouched: 0
   triggerHairlinePressed: 0
@@ -1136,6 +1176,7 @@ MonoBehaviour:
   usePressed: 0
   uiClickPressed: 0
   menuPressed: 0
+  controllerVisible: 1
 --- !u!114 &114723403423806992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1148,6 +1189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playareaCursor: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  customRaycast: {fileID: 0}
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
@@ -1165,6 +1208,7 @@ MonoBehaviour:
   cursorScaleMultiplier: 25
   cursorMatchTargetRotation: 0
   cursorDistanceRescale: 0
+  maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
 --- !u!114 &114740407433813132
@@ -1193,15 +1237,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableTeleport: 1
+  targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 114723403423806992}
   activationButton: 10
   holdButtonToActivate: 1
+  activateOnEnable: 0
   activationDelay: 0
   selectionButton: 10
   selectOnPress: 0
+  selectionDelay: 0
+  selectAfterHoverDuration: 0
   interactWithObjects: 0
   grabToPointerTip: 0
   controller: {fileID: 0}
+  interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
 --- !u!114 &114778037851816760
 MonoBehaviour:
@@ -1280,6 +1329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playareaCursor: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  customRaycast: {fileID: 0}
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
@@ -1292,7 +1343,7 @@ MonoBehaviour:
   invalidCollisionColor: {r: 0.8, g: 0, b: 0, a: 1}
   tracerVisibility: 0
   cursorVisibility: 0
-  maximumLength: 10
+  maximumLength: {x: 10, y: Infinity}
   tracerDensity: 10
   cursorRadius: 0.5
   heightLimitAngle: 100
@@ -1315,10 +1366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerAttachPoint: {fileID: 0}
+  grabButton: 7
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
+  controllerAttachPoint: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
 --- !u!114 &114878137891343046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1331,19 +1385,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistOnLoad: 0
-  systemSDK: 1
-  boundariesSDK: 1
-  headsetSDK: 1
-  controllerSDK: 1
   autoManageScriptDefines: 1
-  actualBoundaries: {fileID: 1148373677404648}
-  actualHeadset: {fileID: 1986477312739488}
-  actualLeftController: {fileID: 1165865786243818}
-  actualRightController: {fileID: 1526381137262462}
-  modelAliasLeftController: {fileID: 1678909816273236}
-  modelAliasRightController: {fileID: 1675295833349276}
+  activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 1561412442170642}
   scriptAliasRightController: {fileID: 1410218251868824}
+  autoManageVRSettings: 1
+  autoLoadSetup: 1
+  setups: []
 --- !u!124 &124996063664727886
 Behaviour:
   m_ObjectHideFlags: 1
