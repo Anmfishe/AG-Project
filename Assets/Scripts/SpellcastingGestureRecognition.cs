@@ -12,6 +12,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject swipeLeft;
     public GameObject swipeRight;
 
+    Camera mainCam;
+    float triggerL;
+    float triggerR;
+
+    bool triggerUsed = false;
+
+    private void Start()
+    {
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
     void OnEnable()
     {
         GestureRecognizer.GestureDetectedEvent += OnGestureDetected;
@@ -32,7 +43,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
             case "Fire":
-                GameObject fb = Instantiate(fireball);
+                GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
                 
             break;
             case "Shield":
@@ -40,8 +51,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "Heal":
                 break;
             case "SwipeLeft":
+                GameObject fb2 = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
                 break;
             case "SwipeRight":
+                GameObject fb3 = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
                 break;
         }
     }
