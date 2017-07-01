@@ -6,7 +6,7 @@ public class SpellLogic : MonoBehaviour
 {
     public Camera mainCam;
 
-    float deflectMinDist = 3;
+    float deflectMinDist = 10;
 
 	// Use this for initialization
 	void Start ()
@@ -17,11 +17,15 @@ public class SpellLogic : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
+        {
+            Deflect();
+        }
 	}
 
     public void Deflect()
     {
+        print("deflect");
         GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
 
         foreach (GameObject spell in spells)
@@ -45,7 +49,7 @@ public class SpellLogic : MonoBehaviour
                 Vector3 particlePos = spell.transform.position + emittedParticles[0].position;
                 GameObject spellType = spell;
                 spellType.GetComponent<ParticleSystem>().startSpeed = -10;
-                //Destroy(spell);
+                Destroy(spell);
                 //spellType.transform.rotation = new Quaternion(spellType.transform.rotation.x * -1.0f,
                 //                            spellType.transform.rotation.y,
                 //                            spellType.transform.rotation.z,

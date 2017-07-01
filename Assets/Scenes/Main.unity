@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 207178188}
   - component: {fileID: 207178187}
   - component: {fileID: 207178189}
+  - component: {fileID: 207178190}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -1144,7 +1145,8 @@ MonoBehaviour:
 --- !u!114 &207178187
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114746191658381320, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
   m_Enabled: 1
@@ -1155,7 +1157,8 @@ MonoBehaviour:
 --- !u!114 &207178188
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114355591108437400, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
   m_Enabled: 1
@@ -1182,7 +1185,8 @@ MonoBehaviour:
 --- !u!114 &207178189
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114991626796675054, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
   m_Enabled: 1
@@ -1195,6 +1199,19 @@ MonoBehaviour:
   heal: {fileID: 0}
   swipeLeft: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
   swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
+--- !u!114 &207178190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114332558731653652, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b142dce83961a640a5b3095408e049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
 --- !u!1 &210385729
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,7 +4965,8 @@ Transform:
 --- !u!114 &1061010183
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114643834849532560, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061010181}
   m_Enabled: 1
@@ -9532,7 +9550,8 @@ AudioListener:
 --- !u!114 &2043465148
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114613258545839874, guid: 41c0760bd81dd084283814f0c432b466,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2043465144}
   m_Enabled: 1
