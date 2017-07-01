@@ -163,9 +163,10 @@ GameObject:
   - component: {fileID: 114473738197043446}
   - component: {fileID: 114485207094041094}
   - component: {fileID: 114770819247228588}
+  - component: {fileID: 114529806380097736}
   m_Layer: 0
   m_Name: PlayerAvatar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,8 +213,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.9998471, z: -0, w: 0.017488465}
+  m_LocalPosition: {x: -2.448, y: 0.40199995, z: -0.913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4083235225380704}
@@ -222,7 +223,7 @@ Transform:
   - {fileID: 4659092921755490}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 177.996, z: 0}
 --- !u!4 &4083235225380704
 Transform:
   m_ObjectHideFlags: 1
@@ -897,6 +898,17 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114529806380097736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396155991360138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177abeea100b3e849a8455781168020c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114578242593311320
 MonoBehaviour:
   m_ObjectHideFlags: 1

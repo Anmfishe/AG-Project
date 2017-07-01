@@ -57,7 +57,9 @@ public class SphinxTest : MonoBehaviour {
             char[] delimChars = { ' ' };
             string[] cmd = str.Split(delimChars);
             //int numAnimals = interpretNum(cmd[0]);
-            GameObject animal = interpretAnimal(cmd[0]);
+            GameObject animal = interpretAnimal(str);
+            if (animal == null)
+                return;
             //for (int i = 0; i < numAnimals; i++)
             //{
                 Vector3 randPos =
@@ -72,12 +74,12 @@ public class SphinxTest : MonoBehaviour {
 
     GameObject interpretAnimal(string animal)
 	{
-		GameObject a = fire;
-        if (animal == "fire")
+		GameObject a = null;
+        if (animal == "fire blast")
             a = fire;
-        else if (animal == "shield")
+        else if (animal == "shield block")
             a = shield;
-        else if (animal == "heal")
+        else if (animal == "life heal")
             a = heal;
 		return a;
 	}
