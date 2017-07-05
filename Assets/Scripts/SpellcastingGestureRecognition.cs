@@ -58,7 +58,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
             case "SwipeRight":
-                spellLogic.Deflect();
+                GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                //spellLogic.Deflect();
                 //GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
         }

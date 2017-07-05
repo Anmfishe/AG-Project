@@ -17,10 +17,11 @@ public class SpellLogic : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
-        {
-            Deflect();
-        }
+        // Debug function
+        //if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
+        //{
+        //    Deflect();
+        //}
 	}
 
     public void Deflect()
