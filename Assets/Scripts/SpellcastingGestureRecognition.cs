@@ -15,12 +15,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     Camera mainCam;
     float triggerL;
     float triggerR;
+    SpellLogic spellLogic;
 
     bool triggerUsed = false;
 
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        spellLogic = GetComponent<SpellLogic>();
+        spellLogic.mainCam = mainCam;
     }
 
     void OnEnable()
@@ -56,6 +59,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "SwipeRight":
                 GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                //spellLogic.Deflect();
+                //GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
         }
     }
