@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireballSpawner : MonoBehaviour {
 
     public GameObject fireball;
-    float timeInt = 5f;
+    public float timeInt = 5f;
     float timeStack = 0f;
 
 	// Use this for initialization

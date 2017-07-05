@@ -7,6 +7,7 @@ public class SpellLogic : MonoBehaviour
     public Camera mainCam;
 
     float deflectMinDist = 10;
+    public GameObject fireball_Spell;
 
 	// Use this for initialization
 	void Start ()
@@ -18,11 +19,11 @@ public class SpellLogic : MonoBehaviour
 	void Update ()
     {
         // Debug function
-        //if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
-        //{
-        //    Deflect();
-        //}
-	}
+        if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
+        {
+            Deflect();
+        }
+    }
 
     public void Deflect()
     {
@@ -47,23 +48,32 @@ public class SpellLogic : MonoBehaviour
             {
                 //Vector3 particlePos = emittedParticles[0].position;
                 //Vector3 particleVel = emittedParticles[0].velocity;
-                Vector3 particlePos = spell.transform.position + emittedParticles[0].position;
+              //  Vector3 particlePos = spell.transform.position + emittedParticles[0].position;
+                Vector3 particlePos = emittedParticles[0].position;
+                Vector3 origPos = spell.transform.position;
+                print("Spell pos: " + spell.transform.position);
+                print("Particle pos: " + emittedParticles[0].position);
+                print("New pos: " + particlePos);
+
                 GameObject spellType = spell;
-                spellType.GetComponent<ParticleSystem>().startSpeed = -10;
-                Destroy(spell);
-                //spellType.transform.rotation = new Quaternion(spellType.transform.rotation.x * -1.0f,
-                //                            spellType.transform.rotation.y,
-                //                            spellType.transform.rotation.z,
+                //spellType.GetComponent<ParticleSystem>().startSpeed = -10;
+                PhotonNetwork.Destroy(spell);
+                //spellType.transform.rotation =
+                //    new Quaternion(spellType.transform.rotation.x * -1.0f,
+                //                            spellType.transform.rotation.y * -1.0f,
+                //                            spellType.transform.rotation.z * -1.0f,
                 //                            spellType.transform.rotation.w * -1.0f);
 
                 spellType.transform.position = particlePos;
+                spellType.transform.LookAt(origPos);
                 //spellType.GetComponent<ParticleSystem>().velocity
-               Instantiate(spellType);
-               // print(spellType.transform.position);
+               //Instantiate(spellType);
+                GameObject spellType2 = PhotonNetwork.Instantiate(fireball_Spell.name, spellType.transform.position, spellType.transform.rotation, 0);
+                // print(spellType.transform.position);
                 //, new Vector3(0,0,0));
                 //print(emittedParticles[0].velocity);
-               // emittedParticles[0].velocity = -emittedParticles[0].velocity;
-               // print(emittedParticles[0].velocity);
+                // emittedParticles[0].velocity = -emittedParticles[0].velocity;
+                // print(emittedParticles[0].velocity);
             }
         }
     }
