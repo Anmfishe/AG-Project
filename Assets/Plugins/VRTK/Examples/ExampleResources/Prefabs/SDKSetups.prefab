@@ -137,10 +137,10 @@ GameObject:
   - component: {fileID: 23000012659493238}
   - component: {fileID: 33000013070956526}
   - component: {fileID: 114000011497762404}
-  - component: {fileID: 114355591108437400}
-  - component: {fileID: 114746191658381320}
-  - component: {fileID: 114991626796675054}
-  - component: {fileID: 114332558731653652}
+  - component: {fileID: 114623171961916082}
+  - component: {fileID: 114980498932858516}
+  - component: {fileID: 114922388013973090}
+  - component: {fileID: 114900694984347934}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 4000013003015800}
   - component: {fileID: 81000010459235146}
   - component: {fileID: 114000013937090930}
-  - component: {fileID: 114613258545839874}
+  - component: {fileID: 114821726213745992}
   m_Layer: 0
   m_Name: Camera (ears)
   m_TagString: Untagged
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 4000012660741642}
   - component: {fileID: 20000011176388890}
   - component: {fileID: 124000012904963108}
-  - component: {fileID: 114643834849532560}
+  - component: {fileID: 114617341433432938}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -6421,45 +6421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0893f0c8a7712e8458dc3722eef95aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114332558731653652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b142dce83961a640a5b3095408e049b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
---- !u!114 &114355591108437400
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainHand: 1
-  gestureButton: 0
-  menuButton: 0
-  uiState: 0
-  uiStateLast: 0
-  displayGestureTrail: 1
-  playerID: 0
-  head: {fileID: 4000012660741642}
-  handLeft: {fileID: 4000010499113332}
-  handRight: {fileID: 4000013143429836}
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
-  spawnControllerModels: 0
-  useCustomControllerModels: 0
-  handLeftModel: {fileID: 0}
-  handRightModel: {fileID: 0}
 --- !u!114 &114386419681534186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6633,22 +6594,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114613258545839874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012573212154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e6a229aa1c2fb4191b284ac9e86caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fire: {fileID: 100010, guid: db76c8bb5f6ac401f9922a0618d60004, type: 2}
-  shield: {fileID: 100000, guid: 060f97f97435b45b69b4c23de1cd0378, type: 2}
-  heal: {fileID: 100002, guid: e4346959fc02f4657947aec94532eaba, type: 2}
-  spawn: {fileID: 0}
---- !u!114 &114643834849532560
+--- !u!114 &114617341433432938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6662,7 +6608,7 @@ MonoBehaviour:
   _head: {fileID: 4000010242415096}
   _ears: {fileID: 4000013003015800}
   wireframe: 0
---- !u!114 &114746191658381320
+--- !u!114 &114623171961916082
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6670,9 +6616,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010207334600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa1c47383169d04dacc6005a98967e8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainHand: 1
+  gestureButton: 0
+  menuButton: 0
+  uiState: 0
+  uiStateLast: 0
+  displayGestureTrail: 1
+  playerID: 0
+  head: {fileID: 4000012660741642}
+  handLeft: {fileID: 4000010499113332}
+  handRight: {fileID: 4000013143429836}
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
+  spawnControllerModels: 0
+  useCustomControllerModels: 0
+  handLeftModel: {fileID: 0}
+  handRightModel: {fileID: 0}
 --- !u!114 &114751689080497896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6696,6 +6658,35 @@ MonoBehaviour:
   smoothsScale: 0
   maxAllowedPerFrameSizeDifference: 0.003
   _moment: 2
+--- !u!114 &114821726213745992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012573212154}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e6a229aa1c2fb4191b284ac9e86caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 100010, guid: db76c8bb5f6ac401f9922a0618d60004, type: 2}
+  shield: {fileID: 100000, guid: 060f97f97435b45b69b4c23de1cd0378, type: 2}
+  heal: {fileID: 100002, guid: e4346959fc02f4657947aec94532eaba, type: 2}
+  spawn: {fileID: 0}
+--- !u!114 &114900694984347934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010207334600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b142dce83961a640a5b3095408e049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+  deflectMinDist: 5
+  fireball_Spell: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
 --- !u!114 &114906845372998938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6707,6 +6698,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e33623ec5372748b5703f61a4df82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114922388013973090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010207334600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba6cccb8c1e4cc479ea25bf5858d3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireball: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
+  shield: {fileID: 0}
+  heal: {fileID: 0}
+  swipeLeft: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
+  swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
 --- !u!114 &114937927333928090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6729,7 +6736,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
---- !u!114 &114991626796675054
+--- !u!114 &114980498932858516
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6737,14 +6744,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010207334600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba6cccb8c1e4cc479ea25bf5858d3a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9aa1c47383169d04dacc6005a98967e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
-  shield: {fileID: 0}
-  heal: {fileID: 0}
-  swipeLeft: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
-  swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
 --- !u!124 &124000010192091730
 Behaviour:
   m_ObjectHideFlags: 1

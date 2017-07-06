@@ -6,7 +6,7 @@ public class SpellLogic : MonoBehaviour
 {
     public Camera mainCam;
 
-    float deflectMinDist = 10;
+    public float deflectMinDist = 2;
     public GameObject fireball_Spell;
 
 	// Use this for initialization
@@ -19,10 +19,10 @@ public class SpellLogic : MonoBehaviour
 	void Update ()
     {
         // Debug function
-        if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
-        {
-            Deflect();
-        }
+        //if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
+        //{
+        //    Deflect();
+        //}
     }
 
     public void Deflect()
