@@ -11,11 +11,12 @@ public class SpellLogic : MonoBehaviour
     public float spellCooldown=1;
     public GameObject fireball_Spell;
     public bool debugKey = false;
-
+    public AudioClip spell_deflected;
+    private AudioSource audioSource;
 	// Use this for initialization
 	void Start ()
     {
-		
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -32,7 +33,7 @@ public class SpellLogic : MonoBehaviour
     {
         print("deflect");
         GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
-
+        bool deflected = false;
         foreach (GameObject spell in spells)
         {
             // Particle[] particles = spell.GetComponent<ParticleSystem>().particles;
@@ -43,6 +44,7 @@ public class SpellLogic : MonoBehaviour
 
             if ((emittedParticles.Length > 0) && Vector3.Distance(emittedParticles[0].position, mainCam.transform.position) < deflectMinDist && ((Time.time - lastDeflect > spellCooldown)))
             {
+                deflected = true;
                 Vector3 particlePos = emittedParticles[0].position;
                 Vector3 origPos = spell.transform.position;
 
@@ -54,6 +56,10 @@ public class SpellLogic : MonoBehaviour
                 GameObject spellType2 = PhotonNetwork.Instantiate(fireball_Spell.name, spellType.transform.position, spellType.transform.rotation, 0);
                 lastDeflect = Time.time;
             }
+        }
+        if (deflected)
+        {
+            audioSource.PlayOneShot(spell_deflected);
         }
     }
 }

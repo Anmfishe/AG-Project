@@ -11,19 +11,23 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject heal;
     public GameObject swipeLeft;
     public GameObject swipeRight;
-
+    public AudioClip cast_success;
+    public AudioClip cast_failure;
+    //public AudioClip spell_deflected;
+    //--->Private Vars<---//
     Camera mainCam;
     float triggerL;
     float triggerR;
     SpellLogic spellLogic;
-
     bool triggerUsed = false;
+    private AudioSource audioSource;
 
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -57,9 +61,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 spellLogic.Deflect();
+                //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
                 GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                audioSource.PlayOneShot(cast_success);
                 //spellLogic.Deflect();
                 //GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
@@ -68,6 +74,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
     {
+        audioSource.PlayOneShot(cast_failure);
     }
 }
 
