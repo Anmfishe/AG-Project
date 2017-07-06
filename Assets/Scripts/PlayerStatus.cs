@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
+      //  respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
     }
 
     // Update is called once per frame
