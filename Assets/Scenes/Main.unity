@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  deflectMinDist: 5
+  deflectMinDist: 7
   fireball_Spell: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
 --- !u!1 &210385729
 GameObject:
