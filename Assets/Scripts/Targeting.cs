@@ -57,10 +57,16 @@ public class Targeting : MonoBehaviour {
             }
         }
 
+      
+    }
+
+    private void LateUpdate()
+    {
         if (Input.GetKeyUp("joystick button 15"))
         {
             target = null;
             lockedon = false;
         }
     }
+
 }

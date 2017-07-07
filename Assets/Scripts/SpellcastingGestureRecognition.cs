@@ -74,6 +74,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Transform t = mainCam.transform;
                     GameObject fb3 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
                 }
+                audioSource.PlayOneShot(cast_success);
                 break;
             case "Heal":
                 break;
