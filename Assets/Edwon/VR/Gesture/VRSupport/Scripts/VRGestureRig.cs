@@ -352,7 +352,7 @@ namespace Edwon.VR
 
         public void CreateVRUI()
         {
-           // Instantiate(Resources.Load(Config.PARENT_PATH + "VRUI/VR Gesture UI"));
+          //  Instantiate(Resources.Load(Config.PARENT_PATH + "VRUI/VR Gesture UI"));
         }
 
         public void SpawnControllerModels ()

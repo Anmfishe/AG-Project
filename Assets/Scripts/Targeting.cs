@@ -38,7 +38,7 @@ public class Targeting : MonoBehaviour {
             if (hit.collider.tag == "Player" && !lockedon/*&& hit.collider.gameObject != transform.parent.gameObject*/)
             {
 
-                Debug.Log("testing");
+               // Debug.Log("testing");
                 //GameObject[] targets;
                 //targets = GameObject.FindGameObjectsWithTag("Target");
                 //foreach (GameObject t in targets)

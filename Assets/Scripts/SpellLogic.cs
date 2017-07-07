@@ -44,12 +44,14 @@ public class SpellLogic : MonoBehaviour
 
             if ((emittedParticles.Length > 0) && Vector3.Distance(emittedParticles[0].position, mainCam.transform.position) < deflectMinDist && ((Time.time - lastDeflect > spellCooldown)))
             {
+                //emittedParticles[0].velocity *= -1;
                 deflected = true;
                 Vector3 particlePos = emittedParticles[0].position;
                 Vector3 origPos = spell.transform.position;
 
                 GameObject spellType = spell;
                 PhotonNetwork.Destroy(spell);
+                Destroy(spell);
 
                 spellType.transform.position = particlePos;
                 spellType.transform.LookAt(origPos);
