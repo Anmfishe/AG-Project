@@ -7,8 +7,7 @@ TagManager:
   - Fire
   - RespawnDefault
   - Spell
-  - Enemy
-  - TeleportIgnore
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -24,7 +23,7 @@ TagManager:
   - MazeTurretBullet
   - Bg
   - FPSWeapon
-  - Book
+  - 
   - 
   - 
   - 
