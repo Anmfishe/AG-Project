@@ -13,6 +13,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject swipeRight;
     public AudioClip cast_success;
     public AudioClip cast_failure;
+
+    public Targeting target;
+
     //public AudioClip spell_deflected;
     //--->Private Vars<---//
     Camera mainCam;
@@ -50,11 +53,16 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
             case "Fire":
-               GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0), mainCam.transform.rotation, 0);
-               // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
-                
-            break;
+                //Transform t = null;
+                //t.position = mainCam.transform.position;
+                //t.LookAt(target.target);
+                 GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
+
+                // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
+
+                break;
             case "Shield":
+                GameObject fb2 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
             case "Heal":
                 break;
@@ -64,7 +72,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
-                GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                if (target.target != null)
+                { 
+                Transform t = mainCam.transform;
+                t.position = mainCam.transform.position;
+                t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
+                GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
+                }
+                else
+                {
+                    Transform t = mainCam.transform;
+                    GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
+                }
                 audioSource.PlayOneShot(cast_success);
                 //spellLogic.Deflect();
                 //GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
