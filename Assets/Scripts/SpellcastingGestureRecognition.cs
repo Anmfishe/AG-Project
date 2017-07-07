@@ -62,7 +62,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
                 break;
             case "Shield":
-                GameObject fb2 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                if (target.target != null)
+                {
+                    Transform t = mainCam.transform;
+                    t.position = mainCam.transform.position;
+                    t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
+                    GameObject fb2 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                }
+                else
+                {
+                    Transform t = mainCam.transform;
+                    GameObject fb3 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
+                }
                 break;
             case "Heal":
                 break;

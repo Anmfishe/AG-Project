@@ -34,7 +34,7 @@ public class Targeting : MonoBehaviour {
         Physics.queriesHitBackfaces = false;
         if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, 100))
         {
-            Debug.Log(hit.collider.gameObject.name);
+           // Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.tag == "Player" && !lockedon/*&& hit.collider.gameObject != transform.parent.gameObject*/)
             {
 
