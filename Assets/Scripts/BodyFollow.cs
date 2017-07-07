@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyFollow : MonoBehaviour {
     public Transform head;
     public float speed;
+    public bool snap_to_body = true;
     private float y_offset;
     private Transform myTrans;
 
@@ -17,8 +18,15 @@ public class BodyFollow : MonoBehaviour {
    
     void Update()
     {
-        
-        myTrans.position = Vector3.Lerp(myTrans.position, target_transform.position, speed * Time.deltaTime);
-        myTrans.rotation = Quaternion.Lerp(myTrans.rotation, target_transform.rotation, speed * Time.deltaTime);
+        if (!snap_to_body)
+        {
+            myTrans.position = Vector3.Lerp(myTrans.position, target_transform.position, speed * Time.deltaTime);
+            myTrans.rotation = Quaternion.Lerp(myTrans.rotation, target_transform.rotation, speed * Time.deltaTime);
+        }
+        else
+        {
+            myTrans.position = target_transform.position;
+            myTrans.rotation = target_transform.rotation;
+        }
     }
 }
