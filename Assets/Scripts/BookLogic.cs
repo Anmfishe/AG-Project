@@ -149,8 +149,8 @@
             {
                 index = pages.Length - 1;
             }
-
-            animator.SetTrigger("FlipRight");
+            if (animator)
+                animator.SetTrigger("FlipRight");
           //  UpdateUI();
         }
 
@@ -164,8 +164,8 @@
             {
                 index = 0;
             }
-
-            animator.SetTrigger("FlipLeft");
+            if(animator)
+                animator.SetTrigger("FlipLeft");
            // UpdateUI();
         }
 
