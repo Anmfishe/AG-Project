@@ -7,13 +7,14 @@ using Edwon.VR.Gesture;
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public GameObject fireball;
+    public Gradient fireballGradient;
     public GameObject shield;
+    public Gradient shieldGradient;
     public GameObject heal;
     public GameObject swipeLeft;
     public GameObject swipeRight;
     public AudioClip cast_success;
     public AudioClip cast_failure;
-    public bool hasFireball;
     public Transform wand;
     public Transform book;
     public Targeting target;
@@ -26,6 +27,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     SpellLogic spellLogic;
     bool triggerUsed = false;
     private AudioSource audioSource;
+
+
+    public bool hasSpell;
+    public GameObject currentSpell;
+    public Gradient currentSpellGradient;
+    public float spellCooldown = 3f;
+    private float spellTimer = 0;
+    private bool isCoolingDown = false;
 
     private void Start()
     {
@@ -51,14 +60,43 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
-        if(hasFireball && Input.GetKeyDown("joystick button 15"))
+        //Check if we're cooling down.
+        if (isCoolingDown)
         {
-            GameObject fireballGO = PhotonNetwork.Instantiate(fireball.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
-            hasFireball = false;
-            if (wand != null)
-                wand.Find("tip").Find("flames").gameObject.SetActive(false);
-            GetComponent<VRGestureRig>().enabled = true;
+            //If fireball timer is still active.
+            if (spellTimer > 0)
+            {
+                spellTimer -= Time.deltaTime;
+            }
+            else
+            {
+                isCoolingDown = false;
+                GetComponent<VRGestureRig>().enabled = true;
+                if (wand != null)
+                {
+                    wand.Find("tip").Find("spark").GetComponent<ParticleSystem>().Play();
+                    //wand.Find("tip").Find("spark").Find("dust").GetComponent<ParticleSystem>().Play();
+                }
 
+            }
+        }
+        if (hasSpell && Input.GetKeyDown("joystick button 15"))
+        {
+            spellTimer = spellCooldown;
+            GameObject fireballGO = PhotonNetwork.Instantiate(currentSpell.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
+            hasSpell = false;
+            currentSpell = null;
+
+            if (wand != null)
+            {
+                wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+                ParticleSystem ps = wand.Find("tip").Find("smoke").GetComponent<ParticleSystem>();
+                ps.Stop();
+                var main = ps.main;
+                main.duration = spellCooldown;
+                ps.Play();
+            }
+            isCoolingDown = true;
         }
     }
 
@@ -70,31 +108,52 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
             case "Fire":
-                hasFireball = true;
-                if (wand != null)
-                    wand.Find("tip").Find("flames").gameObject.SetActive(true);
+                currentSpell = fireball;
+                currentSpellGradient = fireballGradient;
+                hasSpell = true;
+                {
+                    ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
+                    wandParticle.Stop();
+                    var wandParticleModule = wandParticle.colorOverLifetime;
+                    wandParticleModule.color = currentSpellGradient;
+                    wandParticle.Play();
+                }
                 GetComponent<VRGestureRig>().enabled = false;
                 //Transform t = null;
                 //t.position = mainCam.transform.position;
                 //t.LookAt(target.target);
-                 //GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
+                //GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
 
                 // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
-
+                audioSource.PlayOneShot(cast_success);
                 break;
             case "Shield":
+                currentSpell = shield;
+                currentSpellGradient = shieldGradient;
+                hasSpell = true;
+                if (wand != null)
+                {
+                    ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
+                    wandParticle.Stop();
+                    var wandParticleModule = wandParticle.colorOverLifetime;
+                    wandParticleModule.color = currentSpellGradient;
+                    wandParticle.Play();
+                }
+                GetComponent<VRGestureRig>().enabled = false;
+                /*
                 if (target!=null && target.target != null)
                 {
                     Transform t = mainCam.transform;
                     t.position = mainCam.transform.position;
                     t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
-                    GameObject fb2 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
+                    GameObject fb2 = PhotonNetwork.Instantiate(shield.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
                 }
                 else
                 {
                     Transform t = mainCam.transform;
-                    GameObject fb3 = PhotonNetwork.Instantiate(shield.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
+                    GameObject fb3 = PhotonNetwork.Instantiate(shield.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
                 }
+                */
                 audioSource.PlayOneShot(cast_success);
                 break;
             case "Heal":
