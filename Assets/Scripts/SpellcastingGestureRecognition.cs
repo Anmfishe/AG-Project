@@ -17,7 +17,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public AudioClip cast_failure;
     public Transform wand;
     public Transform book;
+    [HideInInspector]
     public Targeting target;
+    public Transform avatar;
 
     //public AudioClip spell_deflected;
     //--->Private Vars<---//
@@ -27,7 +29,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     SpellLogic spellLogic;
     bool triggerUsed = false;
     private AudioSource audioSource;
-
 
     public bool hasSpell;
     public GameObject currentSpell;
@@ -186,6 +187,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
     {
         audioSource.PlayOneShot(cast_failure);
+    }
+
+    public void SetAvatar(Transform _avatar)
+    {
+        avatar = _avatar;
+        wand = avatar.Find("Right Hand").Find("MagicWand");
+        book = avatar.Find("Left Hand").Find("SpellBook");
     }
 }
 
