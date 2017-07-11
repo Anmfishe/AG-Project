@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour {
-
+    int times_hit = 0;
     int damage = 100;
     // Use this for initialization
     void Start() {
@@ -16,9 +16,10 @@ public class Fireball : MonoBehaviour {
     }
     void OnParticleCollision(GameObject other)
     {
+        times_hit++;
         //print("hit");
        // print(other);
-        if (other.transform.parent!=null && other.transform.parent.gameObject.tag == "Player")
+        if (other.transform.parent!=null && other.transform.parent.gameObject.tag == "Player" && times_hit > 1)
         {
             other.transform.parent.gameObject.GetComponent<PlayerStatus>().takeDamage(damage);
         }
