@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 namespace Edwon.VR.Gesture
 {
-    
+
     public class GestureTrail : MonoBehaviour
     {
         CaptureHand registeredHand;
         int lengthOfLineRenderer = 50;
         List<Vector3> displayLine;
         LineRenderer currentRenderer;
+        Color initialColor, finalColor;
 
         public bool listening = false;
 
@@ -19,14 +20,32 @@ namespace Edwon.VR.Gesture
         // Use this for initialization
         void Start()
         {
+            //Added to pass allow for passing of colors.
+            if (initialColor == null) initialColor = Color.red;
+            if (finalColor == null) finalColor = Color.blue;
+
             currentlyInUse = true;
             displayLine = new List<Vector3>();
-            currentRenderer = CreateLineRenderer(Color.magenta, Color.magenta);
+            currentRenderer = CreateLineRenderer(initialColor, finalColor);
+        }
+
+        public void UpdateRenderer(Color color1, Color color2)
+        {
+            print(color1 + " " + color2);
+            initialColor = color1;
+            finalColor = color2;
+            if (currentRenderer != null)
+            {
+                //currentRenderer.SetColors(initialColor, finalColor);
+                currentRenderer.startColor = initialColor;
+                currentRenderer.endColor = finalColor;
+                print("WTF" + currentRenderer.startColor);
+            }
         }
 
         void OnEnable()
         {
-            if(registeredHand != null)
+            if (registeredHand != null)
             {
                 SubscribeToEvents();
             }
@@ -56,7 +75,7 @@ namespace Edwon.VR.Gesture
 
         void UnsubscribeAll()
         {
-            
+
         }
 
         void OnDestroy()
@@ -71,7 +90,8 @@ namespace Edwon.VR.Gesture
             myGo.transform.localPosition = Vector3.zero;
 
             LineRenderer lineRenderer = myGo.AddComponent<LineRenderer>();
-            lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+            lineRenderer.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+            //lineRenderer.material = new Material(Shader.Find("VertexColor"));
             lineRenderer.SetColors(c1, c2);
             lineRenderer.SetWidth(0.01F, 0.05F);
             lineRenderer.SetVertexCount(0);
@@ -89,7 +109,7 @@ namespace Edwon.VR.Gesture
 
         public void StartTrail()
         {
-            currentRenderer.SetColors(Color.magenta, Color.magenta);
+            currentRenderer.SetColors(initialColor, finalColor);
             displayLine.Clear();
             listening = true;
         }
@@ -112,7 +132,11 @@ namespace Edwon.VR.Gesture
 
         public void StopTrail()
         {
-            currentRenderer.SetColors(Color.blue, Color.cyan);
+            Color start = currentRenderer.startColor;
+            Color end = currentRenderer.endColor;
+            start.a = 0.1f;
+            end.a = 0.1f;
+            currentRenderer.SetColors(start, end);
             listening = false;
         }
 

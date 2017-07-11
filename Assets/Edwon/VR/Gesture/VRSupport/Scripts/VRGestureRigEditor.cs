@@ -20,6 +20,8 @@ namespace Edwon.VR
         SerializedProperty displayGestureTrail;
         SerializedProperty useCustomControllerModels;
         SerializedProperty playerID;
+        SerializedProperty gestureInitialColor;
+        SerializedProperty gestureFinalColor;
 
         void OnEnable()
         {
@@ -40,6 +42,8 @@ namespace Edwon.VR
             menuButton = serializedObject.FindProperty("menuButton");
             displayGestureTrail = serializedObject.FindProperty("displayGestureTrail");
             useCustomControllerModels = serializedObject.FindProperty("useCustomControllerModels");
+            gestureInitialColor = serializedObject.FindProperty("gestureInitialColor");
+            gestureFinalColor = serializedObject.FindProperty("gestureFinalColor");
             //playerID = serializedObject.FindProperty("playerID");
 
             VRGestureRig vrGestureRig = (VRGestureRig)target;
@@ -71,6 +75,10 @@ namespace Edwon.VR
 
             EditorGUILayout.PropertyField(displayGestureTrail, new GUIContent("Display Gesture Trail",
                 "toggle this to turn off the default line that is drawn while recording/capturing gestures, see documentation for instructions on creating a custom trail"));
+
+            //Added Gesture colors.
+            EditorGUILayout.PropertyField(gestureInitialColor, new GUIContent("Select Gesture Initial Color", "Just pick the damn color already."));
+            EditorGUILayout.PropertyField(gestureFinalColor, new GUIContent("Select Gesture Final Color", "Just pick the damn color already."));
 
             vrGestureRig.spawnControllerModels = EditorGUILayout.Toggle(new GUIContent("Spawn Controller Models",
                 "spawns controllers models (included with this plugin) so players can see their controllers in VR, unecessary if you want to use custom controller models or the platform defaults"),

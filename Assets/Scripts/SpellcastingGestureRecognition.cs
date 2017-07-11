@@ -13,7 +13,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject swipeRight;
     public AudioClip cast_success;
     public AudioClip cast_failure;
-
+    public bool hasFireball;
+    public Transform wand;
+    public Transform book;
     public Targeting target;
 
     //public AudioClip spell_deflected;
@@ -31,6 +33,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();
+        target = GetComponentInChildren<Targeting>();
     }
 
     void OnEnable()
@@ -45,6 +48,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         GestureRecognizer.GestureRejectedEvent -= OnGestureRejected;
     }
 
+
+    private void Update()
+    {
+        if(hasFireball && Input.GetKeyDown("joystick button 15"))
+        {
+            GameObject fireballGO = PhotonNetwork.Instantiate(fireball.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
+            hasFireball = false;
+            if (wand != null)
+                wand.Find("tip").Find("flames").gameObject.SetActive(false);
+            GetComponent<VRGestureRig>().enabled = true;
+
+        }
+    }
+
     void OnGestureDetected(string gestureName, double confidence, Handedness hand, bool isDouble)
     {
         //string confidenceString = confidence.ToString().Substring(0, 4);
@@ -53,16 +70,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
             case "Fire":
+                hasFireball = true;
+                if (wand != null)
+                    wand.Find("tip").Find("flames").gameObject.SetActive(true);
+                GetComponent<VRGestureRig>().enabled = false;
                 //Transform t = null;
                 //t.position = mainCam.transform.position;
                 //t.LookAt(target.target);
-                 GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
+                 //GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
 
                 // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
 
                 break;
             case "Shield":
-                if (target.target != null)
+                if (target!=null && target.target != null)
                 {
                     Transform t = mainCam.transform;
                     t.position = mainCam.transform.position;
@@ -84,9 +105,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
-                if (target.target != null)
-                { 
-                Transform t = mainCam.transform;
+                if (target != null && target.target != null)
+                {
+                    Transform t = mainCam.transform;
                 t.position = mainCam.transform.position;
                 t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
                 GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
