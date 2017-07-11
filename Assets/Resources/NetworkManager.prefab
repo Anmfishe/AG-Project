@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPlayersPerRoom: 4
   avatar: {fileID: 1396155991360138, guid: 3de2fe02874a78943bbd530e0ae4ee13, type: 2}
+  localPlayer: {fileID: 0}
