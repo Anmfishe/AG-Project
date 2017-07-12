@@ -18,11 +18,19 @@ public class Fireball : MonoBehaviour {
     {
         times_hit++;
         //print("hit");
-       // print(other);
-        if (other.transform.parent!=null && other.transform.parent.gameObject.tag == "Player" && times_hit > 1)
+        // print(other);
+        if (other.transform.parent.gameObject.tag == "Player")// && times_hit > 1)
         {
             other.transform.parent.gameObject.GetComponent<PlayerStatus>().takeDamage(damage);
         }
+
+        else
+        {
+            print(other.tag);
+        }
+
+        //other.transform.parent!=null && 
+
         //if ((other) && (other.transform.parent.gameObject != null) && other.transform.parent.gameObject.tag == "Player")
         //{
         //    print("okie");

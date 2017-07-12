@@ -24,6 +24,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        print("damage dealt");
         current_health -= damage;
 
         if (current_health <= 0)
@@ -40,7 +41,7 @@ public class PlayerStatus : MonoBehaviour
     void Respawn()
     {
         print("dead");
-        current_health = max_health;
+      //  current_health = max_health;
 
         // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         // cube.transform.position = transform.position + new Vector3(0, 3, 0);

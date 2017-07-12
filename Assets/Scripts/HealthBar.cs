@@ -9,12 +9,18 @@ public class HealthBar : MonoBehaviour {
     public GameObject bar;
     private Transform camera;
 
+    public bool isADummy = false;
+    public Transform dummyCam;
+
     private Transform ownerTrans;
     public PlayerStatus ownerStat;
 	// Use this for initialization
 	void Start () {
-        
-        camera = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+
+        if (isADummy == false)
+            camera = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+        else
+            camera = dummyCam;
 
         
         ownerTrans = owner.GetComponent<Transform>();
@@ -23,13 +29,22 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+       
         //       myTrans.position = new Vector3(owner.position.x, owner.position.y+yOffset,owner.position.z);
 
         GetComponent<Transform>().position = new Vector3(ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
         GetComponent<Transform>().forward = camera.forward;
-        
-       // Debug.Log(camera);
-        setHealthbarScale((float)ownerStat.current_health / (float)ownerStat.max_health);
+
+        // Debug.Log(camera);
+        if ((float)ownerStat.current_health >= 0)
+        {
+            setHealthbarScale((float)ownerStat.current_health / (float)ownerStat.max_health);
+        }
+        else
+        {
+            setHealthbarScale(0f);
+        }
+
     }
 
     void setHealthbarScale(float maHealth)

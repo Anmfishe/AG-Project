@@ -507,7 +507,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830816385935948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.91, y: 171.06, z: -155.03}
+  m_LocalPosition: {x: 62.69, y: 170.95, z: -155.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4057933571701046}
@@ -1200,6 +1200,8 @@ MonoBehaviour:
   yOffset: 1.5
   owner: {fileID: 1646899589981128}
   bar: {fileID: 1433819279642538}
+  isADummy: 1
+  dummyCam: {fileID: 0}
   ownerStat: {fileID: 114945211088560236}
 --- !u!114 &114298397131442750
 MonoBehaviour:
