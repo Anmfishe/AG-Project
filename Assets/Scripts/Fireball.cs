@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour {
     int times_hit = 0;
-    int damage = 100;
+    public int damage = 20;
     // Use this for initialization
     void Start() {
         Destroy(gameObject, 10);
@@ -18,11 +18,19 @@ public class Fireball : MonoBehaviour {
     {
         times_hit++;
         //print("hit");
-       // print(other);
-        if (other.transform.parent!=null && other.transform.parent.gameObject.tag == "Player" && times_hit > 1)
+        // print(other);
+        if (other.transform.parent.gameObject.tag == "Player")// && times_hit > 1)
         {
             other.transform.parent.gameObject.GetComponent<PlayerStatus>().takeDamage(damage);
         }
+
+        else
+        {
+            print(other.tag);
+        }
+
+        //other.transform.parent!=null && 
+
         //if ((other) && (other.transform.parent.gameObject != null) && other.transform.parent.gameObject.tag == "Player")
         //{
         //    print("okie");

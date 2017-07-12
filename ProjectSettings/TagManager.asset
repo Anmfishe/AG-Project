@@ -10,6 +10,7 @@ TagManager:
   - Target
   - Enemy
   - TeleportIgnore
+  - TimeOut
   layers:
   - Default
   - TransparentFX
