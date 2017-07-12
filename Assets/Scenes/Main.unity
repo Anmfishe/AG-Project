@@ -1090,8 +1090,9 @@ MonoBehaviour:
   uiState: 0
   uiStateLast: 0
   displayGestureTrail: 1
-  gestureInitialColor: {r: 1, g: 0, b: 0, a: 1}
-  gestureFinalColor: {r: 0, g: 0.37931037, b: 1, a: 1}
+  gestureInitialColor: {r: 1, g: 0, b: 0.8896551, a: 1}
+  gestureFinalColor: {r: 0.034482718, g: 1, b: 0, a: 1}
+  gestureMaterial: {fileID: 2100000, guid: 898c168fc4f040d418ffe41bcb34559a, type: 2}
   playerID: 0
   head: {fileID: 1061010182}
   handLeft: {fileID: 417235212}

@@ -18,6 +18,10 @@ namespace Edwon.VR
         public VRGestureUIState uiState = VRGestureUIState.Idle;
         public VRGestureUIState uiStateLast;
         public bool displayGestureTrail = true;
+
+        public Color gestureInitialColor = Color.yellow;
+        public Color gestureFinalColor = Color.cyan;
+        public Material gestureMaterial;
         public int playerID = 0;
 
         VRGestureSettings gestureSettings;
@@ -55,6 +59,8 @@ namespace Edwon.VR
         public GameObject handLeftModel;
         [SerializeField]
         public GameObject handRightModel;
+
+
 
         IInput inputLeft = null;
         IInput inputRight = null;
@@ -145,10 +151,13 @@ namespace Edwon.VR
             if (displayGestureTrail)
             {
                 leftTrail = gameObject.AddComponent<GestureTrail>();
+                leftTrail.UpdateRenderer(gestureInitialColor, gestureFinalColor, gestureMaterial);
                 rightTrail = gameObject.AddComponent<GestureTrail>();
+                rightTrail.UpdateRenderer(gestureInitialColor, gestureFinalColor, gestureMaterial);
             }
+
             leftCapture = new CaptureHand(this, perpTransform, Handedness.Left, leftTrail);
-            rightCapture = new CaptureHand(this, perpTransform, Handedness.Right, rightTrail);
+            rightCapture = new CaptureHand(this, perpTransform, Handedness.Right,rightTrail);
 
             if (leftCapture != null && rightCapture != null)
             {

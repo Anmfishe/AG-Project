@@ -20,6 +20,9 @@ namespace Edwon.VR
         SerializedProperty displayGestureTrail;
         SerializedProperty useCustomControllerModels;
         SerializedProperty playerID;
+        SerializedProperty gestureInitialColor;
+        SerializedProperty gestureFinalColor;
+        SerializedProperty gestureMaterial;
 
         void OnEnable()
         {
@@ -40,19 +43,22 @@ namespace Edwon.VR
             menuButton = serializedObject.FindProperty("menuButton");
             displayGestureTrail = serializedObject.FindProperty("displayGestureTrail");
             useCustomControllerModels = serializedObject.FindProperty("useCustomControllerModels");
+            gestureInitialColor = serializedObject.FindProperty("gestureInitialColor");
+            gestureFinalColor = serializedObject.FindProperty("gestureFinalColor");
+            gestureMaterial = serializedObject.FindProperty("gestureMaterial");
             //playerID = serializedObject.FindProperty("playerID");
 
             VRGestureRig vrGestureRig = (VRGestureRig)target;
 
             EditorGUILayout.LabelField("HINT: Float over variable names for tooltips");
 
-            #if EDWON_VR_OCULUS || EDWON_VR_STEAM
+#if EDWON_VR_OCULUS || EDWON_VR_STEAM
             if (GUILayout.Button(new GUIContent("Auto Setup",
                 "Press Auto Setup to automatically fill in the needed variables from the camera rig")))
             {
                 vrGestureRig.AutoSetup();
             }
-            #endif
+#endif
 
             EditorGUILayout.PropertyField(head, new GUIContent("Head",
                 "the head transform on the VR camera rig"));
@@ -71,6 +77,11 @@ namespace Edwon.VR
 
             EditorGUILayout.PropertyField(displayGestureTrail, new GUIContent("Display Gesture Trail",
                 "toggle this to turn off the default line that is drawn while recording/capturing gestures, see documentation for instructions on creating a custom trail"));
+
+            //Added Gesture colors.
+            EditorGUILayout.PropertyField(gestureInitialColor, new GUIContent("Gesture Initial Color", "Just pick the damn color already."));
+            EditorGUILayout.PropertyField(gestureFinalColor, new GUIContent("Gesture Final Color", "Just pick the damn color already."));
+            EditorGUILayout.PropertyField(gestureMaterial, new GUIContent("Gesture Material", "Just pick the damn material already."));
 
             vrGestureRig.spawnControllerModels = EditorGUILayout.Toggle(new GUIContent("Spawn Controller Models",
                 "spawns controllers models (included with this plugin) so players can see their controllers in VR, unecessary if you want to use custom controller models or the platform defaults"),
