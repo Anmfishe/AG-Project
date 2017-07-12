@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour {
     int times_hit = 0;
-    int damage = 100;
+    public int damage = 20;
     // Use this for initialization
     void Start() {
         Destroy(gameObject, 10);
