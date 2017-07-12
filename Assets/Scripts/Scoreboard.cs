@@ -22,10 +22,10 @@ public class Scoreboard : MonoBehaviour {
 
 	public void Reset()
 	{
-		red_score_display [0].GetComponent<TextMesh> ().text = "1";
-		red_score_display [1].GetComponent<TextMesh> ().text = "1";
-		blue_score_display [0].GetComponent<TextMesh> ().text = "1";
-		blue_score_display [1].GetComponent<TextMesh> ().text = "1";
+		red_score_display [0].GetComponent<TextMesh> ().text = "0";
+		red_score_display [1].GetComponent<TextMesh> ().text = "0";
+		blue_score_display [0].GetComponent<TextMesh> ().text = "0";
+		blue_score_display [1].GetComponent<TextMesh> ().text = "0";
 
 		red_score = 0;
 		blue_score = 0;

@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - TeleportIgnore
   - TimeOut
+  - Scoreboard
   layers:
   - Default
   - TransparentFX

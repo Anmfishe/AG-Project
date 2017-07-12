@@ -9,6 +9,8 @@ public class PlayerStatus : MonoBehaviour
 
     GameObject cameraRig;
 
+    Scoreboard scoreboard;
+
     bool dead = false;
     float deathTime = 0f;
     float respawnLength = 2f;
@@ -26,6 +28,8 @@ public class PlayerStatus : MonoBehaviour
         {
             cameraRig = Camera.main.transform.parent.parent.gameObject;
         }
+
+        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
 
 
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
@@ -63,6 +67,7 @@ public class PlayerStatus : MonoBehaviour
         if (this.GetComponent<PhotonView>().isMine)
         {
            cameraRig.transform.position = timeOutPt.position;
+            scoreboard.IncrementRedScore();
         }
 
         deathTime = Time.time;
