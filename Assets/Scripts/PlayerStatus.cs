@@ -5,6 +5,15 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     Transform respawnPt;
+    Transform timeOutPt;
+
+    GameObject cameraRig;
+
+    bool dead = false;
+    float deathTime = 0f;
+    float respawnLength = 2f;
+
+
     [HideInInspector]
     public int max_health = 100;
     [HideInInspector]
@@ -13,19 +22,34 @@ public class PlayerStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //  respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            cameraRig = Camera.main.transform.parent.parent.gameObject;
+        }
+
+
+        timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
+        respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (dead == true)
+        {
+            if ((Time.time - deathTime) >  respawnLength)
+            {
+                Respawn();
+            }
+        }
     }
 
     public void takeDamage(int damage)
     {
-        print("damage dealt");
-        current_health -= damage;
+        if (dead == false)
+        {
+            current_health -= damage;
+        }
 
         if (current_health <= 0)
         {
@@ -33,23 +57,32 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    // On death, we warp the camera rig of the corresponding player
     void Die()
     {
-        Respawn();
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+           cameraRig.transform.position = timeOutPt.position;
+        }
+
+        deathTime = Time.time;
+        dead = true;
+      //  Respawn();
     }
 
     void Respawn()
     {
-        print("dead");
-      //  current_health = max_health;
+        dead = false;
+        current_health = max_health;
+
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            cameraRig.transform.position = respawnPt.position;
+        }
 
         // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         // cube.transform.position = transform.position + new Vector3(0, 3, 0);
         //  gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(255f, 0, 0, 0);
         // transform.position = respawnPt.position;
     }
-    //void OnParticleCollision(Collision collision)
-    //{
-    //  //  print("too swag");
-    //}
 }
