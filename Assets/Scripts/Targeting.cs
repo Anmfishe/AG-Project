@@ -8,11 +8,9 @@ public class Targeting : MonoBehaviour {
     [HideInInspector]
     public Transform target;
 
-    bool lockedon;
 
 	// Use this for initialization
 	void Start () {
-        lockedon = false;
 	}
 	
 	// Update is called once per frame
@@ -23,22 +21,22 @@ public class Targeting : MonoBehaviour {
         //    target = ;
         //}
 
-        if (targeted && ! lockedon)
+        if (targeted)
         {
             targeted.Find("Head/TargetIndicator").gameObject.SetActive(false);
         }
 
         RaycastHit hit;
-
+        target = null;
         Debug.DrawRay(this.transform.position, this.transform.forward * 100, Color.red, 0.01f);
         Physics.queriesHitBackfaces = false;
         if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, 100))
         {
            // Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.tag == "Player" && !lockedon/*&& hit.collider.gameObject != transform.parent.gameObject*/)
+            if (hit.collider.tag == "Player"/*&& hit.collider.gameObject != transform.parent.gameObject*/)
             {
 
-               // Debug.Log("testing");
+                Debug.Log("testing");
                 //GameObject[] targets;
                 //targets = GameObject.FindGameObjectsWithTag("Target");
                 //foreach (GameObject t in targets)
@@ -48,12 +46,7 @@ public class Targeting : MonoBehaviour {
                 hit.transform.parent.Find("Head/TargetIndicator").gameObject.SetActive(true);
                 
                 targeted = hit.transform.parent;
-
-                if (Input.GetKeyDown("joystick button 15"))
-                {
-                    target = hit.transform.parent.Find("Avatar_torso").transform;
-                    lockedon = true;
-                }
+                target = hit.transform.parent.Find("Avatar_torso").transform;
             }
         }
 
@@ -62,11 +55,7 @@ public class Targeting : MonoBehaviour {
 
     private void LateUpdate()
     {
-        if (Input.GetKeyUp("joystick button 15"))
-        {
-            target = null;
-            lockedon = false;
-        }
+        
     }
 
 }

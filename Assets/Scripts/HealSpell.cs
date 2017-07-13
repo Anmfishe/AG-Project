@@ -9,7 +9,7 @@ public class HealSpell: MonoBehaviour
 {
    // int times_hit = 0;
     public int healthAdded = 20;
-    GameObject target;
+    public GameObject target;
 
     // Use this for initialization
     void Start()

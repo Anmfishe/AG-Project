@@ -21,7 +21,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public AudioClip cast_failure;
     public Transform wand;
     public Transform book;
-    [HideInInspector]
+    //[HideInInspector]
     public Targeting target;
     public Transform avatar;
 
@@ -48,7 +48,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();
-        target = GetComponentInChildren<Targeting>();
+ //       target = GetComponentInChildren<Targeting>();
     }
 
     void OnEnable()
@@ -204,10 +204,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             case "fire":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                spellTimer = fireballCooldown;
+                if (target.target != null)
+                {
+                    spellInstance.transform.LookAt(target.target);
+                }
+                    spellTimer = fireballCooldown;
                 break;
             case "shield":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
+                //spellInstance.transform.LookAt(target.target);
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
                 spellTimer = shieldCooldown;
