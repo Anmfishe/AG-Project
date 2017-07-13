@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Targeting : MonoBehaviour {
 
-    Transform targeted;
     [HideInInspector]
-    public Transform target;
+    public Transform result;
+    private Targetable targetableScript;
 
+    public Transform pointer;
+    public float range;
 
 	// Use this for initialization
 	void Start () {
@@ -15,47 +17,42 @@ public class Targeting : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        //if (Input.GetKeyDown("joystick button 15"))
-        //{
-        //    target = ;
-        //}
-
-        if (targeted)
-        {
-            targeted.Find("Head/TargetIndicator").gameObject.SetActive(false);
-        }
-
+        Target();
+    }
+    private void Target()
+    {
         RaycastHit hit;
-        target = null;
-        Debug.DrawRay(this.transform.position, this.transform.forward * 100, Color.red, 0.01f);
-        Physics.queriesHitBackfaces = false;
-        if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, 100))
-        {
-           // Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.tag == "Player"/*&& hit.collider.gameObject != transform.parent.gameObject*/)
-            {
 
-                Debug.Log("testing");
-                //GameObject[] targets;
-                //targets = GameObject.FindGameObjectsWithTag("Target");
-                //foreach (GameObject t in targets)
-                //{
-                //    t.SetActive(false);
-                //}
-                hit.transform.parent.Find("Head/TargetIndicator").gameObject.SetActive(true);
-                
-                targeted = hit.transform.parent;
-                target = hit.transform.parent.Find("Avatar_torso").transform;
+        //Disable back faces so it doesn't collide with itself.
+        Physics.queriesHitBackfaces = false;
+
+        Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
+        //Get raycast results.
+        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
+        {
+            //Return if target is the same, and turn off the previous indicator if it's not.
+            if (result != null && result == hit.collider.transform)
+                return;
+            else
+            {
+                //Reset result.
+                result = null;
+
+                //Reset targetable script.
+                if (targetableScript != null) targetableScript.SetIndicator(false);
+                targetableScript = null;
+            }
+
+            //Check if it has a Player tag.
+            if (hit.collider.tag == "Player")
+            {
+                //Assign resulting collider to target.
+                result = hit.collider.transform;
+
+                //Try to get the targetable script. Turn it on if it's valid.
+                targetableScript = result.GetComponent<Targetable>();
+                if (targetableScript != null) targetableScript.SetIndicator(true);
             }
         }
-
-      
     }
-
-    private void LateUpdate()
-    {
-        
-    }
-
 }

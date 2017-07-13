@@ -15,7 +15,6 @@ public class AttachCameraRigSync : MonoBehaviour {
         SetUpTransformFollow(LeftHand, VRTK_DeviceFinder.Devices.LeftController);
         SetUpTransformFollow(RightHand, VRTK_DeviceFinder.Devices.RightController);
     }
-
     private static void SetUpTransformFollow(GameObject avatarComponent, VRTK_DeviceFinder.Devices device)
     {
         var photonView = avatarComponent.GetComponent<PhotonView>();

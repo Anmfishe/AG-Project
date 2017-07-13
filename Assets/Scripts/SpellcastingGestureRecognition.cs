@@ -48,7 +48,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();
- //       target = GetComponentInChildren<Targeting>();
+        target = GetComponent<Targeting>();
     }
 
     void OnEnable()
@@ -94,66 +94,38 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
     }
 
+    //Sets spell properties.
+    void SetSpell(GameObject spell, string spellName, Gradient spellGradient)
+    {
+        currentSpell = spell;
+        currentSpellName = spellName;
+        currentSpellGradient = spellGradient;
+
+        hasSpell = true;
+
+        if (wand != null)
+        {
+            ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
+            wandParticle.Stop();
+            var wandParticleModule = wandParticle.colorOverLifetime;
+            wandParticleModule.color = currentSpellGradient;
+            wandParticle.Play();
+        }
+
+        GetComponent<VRGestureRig>().enabled = false;
+        audioSource.PlayOneShot(cast_success);
+
+    }
+
     void OnGestureDetected(string gestureName, double confidence, Handedness hand, bool isDouble)
     {
-        //string confidenceString = confidence.ToString().Substring(0, 4);
-        //Debug.Log("detected gesture: " + gestureName + " with confidence: " + confidenceString);
-
         switch (gestureName)
         {
             case "Fire":
-                currentSpell = fireball;
-                currentSpellName = "fire";
-                currentSpellGradient = fireballGradient;
-                hasSpell = true;
-                {
-                    ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
-                    wandParticle.Stop();
-                    var wandParticleModule = wandParticle.colorOverLifetime;
-                    wandParticleModule.color = currentSpellGradient;
-                    wandParticle.Play();
-                }
-                GetComponent<VRGestureRig>().enabled = false;
-                //Transform t = null;
-                //t.position = mainCam.transform.position;
-                //t.LookAt(target.target);
-                //GameObject fb = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0,.3f, 0),mainCam.transform.rotation, 0);
-
-                // GameObject fb = Instantiate(fireball, mainCam.transform.position, mainCam.transform.rotation);
-                audioSource.PlayOneShot(cast_success);
+                SetSpell(fireball, "fire", fireballGradient);
                 break;
             case "Shield":
-                currentSpell = shield;
-                currentSpellName = "shield";
-                currentSpellGradient = shieldGradient;
-                hasSpell = true;
-
-                //Check if wand exists.
-                if (wand != null)
-                {
-                    //Update flame sparks with correct colors and play.
-                    ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
-                    wandParticle.Stop();
-                    var wandParticleModule = wandParticle.colorOverLifetime;
-                    wandParticleModule.color = currentSpellGradient;
-                    wandParticle.Play();
-                }
-                GetComponent<VRGestureRig>().enabled = false;
-                /*
-                if (target!=null && target.target != null)
-                {
-                    Transform t = mainCam.transform;
-                    t.position = mainCam.transform.position;
-                    t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
-                    GameObject fb2 = PhotonNetwork.Instantiate(shield.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
-                }
-                else
-                {
-                    Transform t = mainCam.transform;
-                    GameObject fb3 = PhotonNetwork.Instantiate(shield.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
-                }
-                */
-                audioSource.PlayOneShot(cast_success);
+                SetSpell(shield, "shield", shieldGradient);
                 break;
             case "Heal":
                 currentSpellName = "heal";
@@ -164,21 +136,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
-                if (target != null && target.target != null)
-                {
-                    Transform t = mainCam.transform;
-                t.position = mainCam.transform.position;
-                t.LookAt(target.target.position + new Vector3(0, 0.5f, 0));
-                GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
-                }
-                else
-                {
-                    Transform t = mainCam.transform;
-                    GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), t.rotation, 0);
-                }
-                audioSource.PlayOneShot(cast_success);
-                //spellLogic.Deflect();
-                //GameObject fb3 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
                 break;
         }
     }
@@ -188,6 +145,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         audioSource.PlayOneShot(cast_failure);
     }
 
+    //Get avatar's wand and book.
     public void SetAvatar(Transform _avatar)
     {
         avatar = _avatar;
@@ -195,6 +153,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         book = avatar.Find("Left Hand").Find("SpellBook");
     }
 
+    //Casts selected spell.
     private void CastSpell()
     {
         GameObject spellInstance;
@@ -204,15 +163,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             case "fire":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                if (target.target != null)
+                if (target.result != null)
                 {
-                    spellInstance.transform.LookAt(target.target);
+                    spellInstance.transform.LookAt(target.result);
                 }
-                    spellTimer = fireballCooldown;
+                spellTimer = fireballCooldown;
                 break;
             case "shield":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
-                //spellInstance.transform.LookAt(target.target);
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
                 spellTimer = shieldCooldown;

@@ -14,25 +14,33 @@ public class Fireball : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        print(GetComponent<ParticleSystem>().particleCount);
     }
     void OnParticleCollision(GameObject other)
     {
         times_hit++;
 
-        GameObject otherObject = other.transform.parent.gameObject;
-
         //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-        if (otherObject.tag == "Player")
+        if (other.tag == "Player")
         {
-            PlayerStatus statusScript = otherObject.GetComponent<PlayerStatus>();
+            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             if(statusScript != null) statusScript.takeDamage(damage);
         }
         //Apply damage to object if it has the Shield tag and implements the Damageable script.
-        else if (otherObject.tag == "Shield")
+        else if (other.tag == "Shield")
         {
-            Damageable damageScript = otherObject.GetComponent<Damageable>();
+            Damageable damageScript = other.GetComponent<Damageable>();
             if (damageScript != null) damageScript.TakeDamage(damage);
+        }
+        else if(other.tag == "SpellHitter")
+        {
+            if(other.GetComponent<Rigidbody>().velocity.magnitude > 4)
+            {
+                GameObject reflectedFireball = PhotonNetwork.Instantiate(this.name, this.GetComponent<ParticleSystem>().transform.position, this.transform.rotation, 0);
+                reflectedFireball.transform.LookAt(this.transform.position);
+
+                Destroy(this.gameObject);
+            }
         }
         else
         {

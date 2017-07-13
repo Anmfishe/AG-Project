@@ -18,12 +18,12 @@ public class HealthBar : MonoBehaviour {
 	void Start () {
 
         if (isADummy == false)
-            camera = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+            camera = Camera.main.transform;
         else
             camera = dummyCam;
 
         
-        ownerTrans = owner.GetComponent<Transform>();
+        ownerTrans = owner.transform;
 //        ownerStat = owner.GetComponent<PlayerStatus>();
     }
 	
@@ -32,8 +32,8 @@ public class HealthBar : MonoBehaviour {
        
         //       myTrans.position = new Vector3(owner.position.x, owner.position.y+yOffset,owner.position.z);
 
-        GetComponent<Transform>().position = new Vector3(ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
-        GetComponent<Transform>().forward = camera.forward;
+        this.transform.position = new Vector3(ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
+        this.transform.forward = camera.forward;
 
         // Debug.Log(camera);
         if ((float)ownerStat.current_health >= 0)

@@ -141,6 +141,8 @@ GameObject:
   - component: {fileID: 114597855281927430}
   - component: {fileID: 114273605593245876}
   - component: {fileID: 82571775678770644}
+  - component: {fileID: 114979175156980872}
+  - component: {fileID: 114631373893233950}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -816,6 +818,7 @@ GameObject:
   - component: {fileID: 20000012316479598}
   - component: {fileID: 114000011243730024}
   - component: {fileID: 92000014137301068}
+  - component: {fileID: 136052639779388376}
   m_Layer: 0
   m_Name: Camera (head)
   m_TagString: MainCamera
@@ -6624,8 +6627,9 @@ MonoBehaviour:
   uiState: 0
   uiStateLast: 0
   displayGestureTrail: 1
-  gestureInitialColor: {r: 1, g: 0, b: 0, a: 1}
-  gestureFinalColor: {r: 0, g: 0.37931037, b: 1, a: 1}
+  gestureInitialColor: {r: 1, g: 0, b: 0.8896551, a: 1}
+  gestureFinalColor: {r: 0.034482718, g: 1, b: 0, a: 1}
+  gestureMaterial: {fileID: 2100000, guid: 898c168fc4f040d418ffe41bcb34559a, type: 2}
   playerID: 0
   head: {fileID: 4000012660741642}
   handLeft: {fileID: 4000010499113332}
@@ -6761,7 +6765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a85bf096e09b744b9e7b7446c681a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  result: {fileID: 0}
+  pointer: {fileID: 0}
+  range: 0
 --- !u!114 &114597855281927430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6803,6 +6809,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
+  fireballCooldown: 2
   shield: {fileID: 100010, guid: 330800352e7bbe34e90b0886a0ff6fde, type: 2}
   shieldGradient:
     serializedVersion: 2
@@ -6833,17 +6840,19 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
-  heal: {fileID: 0}
+  shieldCooldown: 6
+  heal: {fileID: 100002, guid: f1d26e622e61ce048b9fbf2b731434fb, type: 2}
   swipeLeft: {fileID: 100010, guid: 330800352e7bbe34e90b0886a0ff6fde, type: 2}
   swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
   cast_success: {fileID: 8300000, guid: 63d323c7aafcf6a478c174089a3935d6, type: 3}
   cast_failure: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
   wand: {fileID: 0}
   book: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 114554582634888770}
   avatar: {fileID: 0}
   hasSpell: 0
   currentSpell: {fileID: 0}
+  currentSpellName: 
   currentSpellGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6888,6 +6897,20 @@ MonoBehaviour:
   _head: {fileID: 4000010242415096}
   _ears: {fileID: 4000013003015800}
   wireframe: 0
+--- !u!114 &114631373893233950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010207334600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a85bf096e09b744b9e7b7446c681a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: 0}
+  pointer: {fileID: 4905341922922828}
+  range: 100
 --- !u!114 &114751689080497896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6959,6 +6982,19 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &114979175156980872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010207334600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998521f2815c30e42bdb1abb072c4fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrtk_spr: {fileID: 0}
+  blue: 0
 --- !u!124 &124000010192091730
 Behaviour:
   m_ObjectHideFlags: 1
@@ -6980,6 +7016,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537013185507012}
   m_Enabled: 1
+--- !u!136 &136052639779388376
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011840228368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.38
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222000010090588156
 CanvasRenderer:
   m_ObjectHideFlags: 1
