@@ -14,6 +14,6 @@ public class PhysicalTracker : MonoBehaviour {
 	void Update () {
         this.GetComponent<Rigidbody>().MovePosition(guide.position);
         this.GetComponent<Rigidbody>().MoveRotation(guide.rotation);
-        print(this.GetComponent<Rigidbody>().velocity + " : " + this.GetComponent<Rigidbody>().velocity.magnitude);
+        //print(this.GetComponent<Rigidbody>().velocity + " : " + this.GetComponent<Rigidbody>().velocity.magnitude);
 	}
 }

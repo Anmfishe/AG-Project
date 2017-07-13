@@ -18,6 +18,7 @@ public class Fireball : MonoBehaviour {
     }
     void OnParticleCollision(GameObject other)
     {
+        print(other + " : " + other.tag);
         times_hit++;
 
         //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
@@ -36,8 +37,8 @@ public class Fireball : MonoBehaviour {
         {
             if(other.GetComponent<Rigidbody>().velocity.magnitude > 4)
             {
-                GameObject reflectedFireball = PhotonNetwork.Instantiate(this.name, this.GetComponent<ParticleSystem>().transform.position, this.transform.rotation, 0);
-                reflectedFireball.transform.LookAt(this.transform.position);
+                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball_Spell", this.GetComponent<ParticleSystem>().transform.position, this.transform.rotation, 0);
+                //reflectedFireball.transform.LookAt(this.transform.position);
 
                 Destroy(this.gameObject);
             }

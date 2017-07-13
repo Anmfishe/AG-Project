@@ -30,7 +30,7 @@ public class Targeting : MonoBehaviour {
         //Get raycast results.
         if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
         {
-            print(hit.collider);
+            //print(hit.collider);
             //Return if target is the same, and turn off the previous indicator if it's not.
             if (result != null && result == hit.collider.transform)
                 return;
