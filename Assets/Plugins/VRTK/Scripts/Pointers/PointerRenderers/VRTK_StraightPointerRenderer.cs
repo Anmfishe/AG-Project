@@ -42,7 +42,8 @@ namespace VRTK
         protected GameObject actualCursor;
 
         protected Vector3 cursorOriginalScale = Vector3.one;
-
+        [HideInInspector]
+        public bool blue;
         /// <summary>
         /// The UpdateRenderer method is used to run an Update routine on the pointer.
         /// </summary>
@@ -189,7 +190,11 @@ namespace VRTK
             Ray pointerRaycast = new Ray(origin.position, origin.forward);
             RaycastHit pointerCollidedWith;
 #pragma warning disable 0618
-            bool rayHit = VRTK_CustomRaycast.Raycast(customRaycast, pointerRaycast, out pointerCollidedWith, layersToIgnore, maximumLength);
+            bool rayHit;
+            if (blue)
+                rayHit = VRTK_CustomRaycast.Raycast(customRaycast, pointerRaycast, out pointerCollidedWith, bluelayersToIgnore, maximumLength);
+            else
+                rayHit = VRTK_CustomRaycast.Raycast(customRaycast, pointerRaycast, out pointerCollidedWith, redlayersToIgnore, maximumLength);
 #pragma warning restore 0618
 
             CheckRayMiss(rayHit, pointerCollidedWith);

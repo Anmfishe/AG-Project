@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -680,9 +680,9 @@ GameObject:
   - component: {fileID: 165866011}
   - component: {fileID: 165866010}
   - component: {fileID: 165866009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (13)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -997,6 +997,7 @@ GameObject:
   - component: {fileID: 207178190}
   - component: {fileID: 207178189}
   - component: {fileID: 207178188}
+  - component: {fileID: 207178191}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -1348,6 +1349,19 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   spellCooldown: 3
+--- !u!114 &207178191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998521f2815c30e42bdb1abb072c4fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrtk_spr: {fileID: 927287138}
+  blue: 0
 --- !u!1 &210385729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,9 +1541,9 @@ GameObject:
   - component: {fileID: 241956646}
   - component: {fileID: 241956645}
   - component: {fileID: 241956647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (2)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1801,9 +1815,9 @@ GameObject:
   - component: {fileID: 265540352}
   - component: {fileID: 265540351}
   - component: {fileID: 265540353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (3)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2432,9 +2446,9 @@ GameObject:
   - component: {fileID: 411180261}
   - component: {fileID: 411180260}
   - component: {fileID: 411180259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (8)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3383,9 +3397,9 @@ GameObject:
   - component: {fileID: 588535228}
   - component: {fileID: 588535227}
   - component: {fileID: 588535229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (6)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4380,6 +4394,12 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
+  bluelayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  redlayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
   pointerOriginSmoothingSettings:
     smoothsPosition: 0
     maxAllowedPerFrameDistanceDifference: 0.003
@@ -4397,6 +4417,7 @@ MonoBehaviour:
   maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
+  blue: 0
 --- !u!114 &807325091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4697,9 +4718,9 @@ GameObject:
   - component: {fileID: 839578754}
   - component: {fileID: 839578753}
   - component: {fileID: 839578755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5664,6 +5685,12 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 4
+  bluelayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 517
+  redlayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 261
   pointerOriginSmoothingSettings:
     smoothsPosition: 0
     maxAllowedPerFrameDistanceDifference: 0.003
@@ -5681,6 +5708,7 @@ MonoBehaviour:
   maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
+  blue: 0
 --- !u!1 &938403348
 GameObject:
   m_ObjectHideFlags: 0
@@ -6226,9 +6254,9 @@ GameObject:
   - component: {fileID: 1009747433}
   - component: {fileID: 1009747432}
   - component: {fileID: 1009747431}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (12)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6735,9 +6763,9 @@ GameObject:
   - component: {fileID: 1106725928}
   - component: {fileID: 1106725927}
   - component: {fileID: 1106725929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (5)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7890,9 +7918,9 @@ GameObject:
   - component: {fileID: 1181635133}
   - component: {fileID: 1181635132}
   - component: {fileID: 1181635131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (10)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8799,9 +8827,9 @@ GameObject:
   - component: {fileID: 1286022056}
   - component: {fileID: 1286022055}
   - component: {fileID: 1286022054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (11)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9600,9 +9628,9 @@ GameObject:
   - component: {fileID: 1489152693}
   - component: {fileID: 1489152692}
   - component: {fileID: 1489152691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (9)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11499,9 +11527,9 @@ GameObject:
   - component: {fileID: 1842198106}
   - component: {fileID: 1842198105}
   - component: {fileID: 1842198104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Red_platform1 (7)
-  m_TagString: Untagged
+  m_TagString: RedPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11725,9 +11753,9 @@ GameObject:
   - component: {fileID: 1864699352}
   - component: {fileID: 1864699351}
   - component: {fileID: 1864699353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (4)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12239,9 +12267,9 @@ GameObject:
   - component: {fileID: 1963328690}
   - component: {fileID: 1963328689}
   - component: {fileID: 1963328691}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_platform1 (1)
-  m_TagString: Untagged
+  m_TagString: BluePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

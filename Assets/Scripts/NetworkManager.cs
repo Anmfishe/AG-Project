@@ -12,7 +12,9 @@ public class NetworkManager : Photon.PunBehaviour
     public GameObject avatar;
     public Transform localPlayer;
     bool isConnecting;
-
+    private int blues = 0;
+    private int reds = 0;
+    private int temp = 0;
     string _gameVersion = "1";
 
     void Awake()
@@ -127,6 +129,19 @@ public class NetworkManager : Photon.PunBehaviour
         avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        int temp2 = GameObject.FindGameObjectsWithTag("PCP").Length;
+        Debug.Log(PhotonNetwork.countOfPlayers);
+        
+        if(PhotonNetwork.countOfPlayers % 2 == 0)
+        {
+            localPlayer.GetComponentInParent<TeamManager>().SetBlue();
+        }
+        else
+        {
+            localPlayer.GetComponentInParent<TeamManager>().SetRed();
+        }
+        //temp++;
+        //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
     }
 

@@ -12,6 +12,9 @@ TagManager:
   - TeleportIgnore
   - TimeOut
   - Scoreboard
+  - PCP
+  - RedPlatform
+  - BluePlatform
   layers:
   - Default
   - TransparentFX
@@ -21,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - Arena Floor
-  - MazeWalls
+  - BluePlatform
+  - RedPlatform
   - MazeTurret
   - MazeTurretBullet
   - Bg

@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 114529806380097736}
   m_Layer: 0
   m_Name: PlayerAvatar
-  m_TagString: Player
+  m_TagString: PCP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2549,6 +2549,8 @@ MonoBehaviour:
   yOffset: 1.8
   owner: {fileID: 1316983645817718}
   bar: {fileID: 1032663249212786}
+  isADummy: 0
+  dummyCam: {fileID: 0}
   ownerStat: {fileID: 114529806380097736}
 --- !u!114 &114920395557102846
 MonoBehaviour:
