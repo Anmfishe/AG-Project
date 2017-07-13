@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    Transform respawnPt;
-    Transform timeOutPt;
+    private Transform respawnPt;
+    private Transform timeOutPt;
+    public PhotonView photonView;
+    private GameObject cameraRig;
 
-    GameObject cameraRig;
+    private Scoreboard scoreboard;
 
-    Scoreboard scoreboard;
-
-    bool dead = false;
-    float deathTime = 0f;
-    float respawnLength = 2f;
+    private bool dead = false;
+    private float deathTime = 0f;
+    public float respawnLength = 2f;
 
 
     public int max_health = 100;
@@ -24,7 +24,7 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         //Get camera rig if this object belogns to the client.
-        if (this.GetComponent<PhotonView>().isMine)
+        if (photonView.isMine)
         {
             //Gets the Camera (eyes) and navigates to the Camera Rig object.
             cameraRig = Camera.main.transform.parent.parent.gameObject;
@@ -69,7 +69,7 @@ public class PlayerStatus : MonoBehaviour
     void Die()
     {
         //Move Player to the time out are if it belongs to the client.
-        if (this.GetComponent<PhotonView>().isMine)
+        if (photonView.isMine)
         {
            cameraRig.transform.position = timeOutPt.position;
             scoreboard.IncrementRedScore();
@@ -87,7 +87,7 @@ public class PlayerStatus : MonoBehaviour
         current_health = max_health;
 
         //Move Player to respawn area if it belongs to the client.
-        if (this.GetComponent<PhotonView>().isMine)
+        if (photonView.isMine)
         {
             cameraRig.transform.position = respawnPt.position;
         }
