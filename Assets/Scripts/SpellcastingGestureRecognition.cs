@@ -15,6 +15,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public float shieldCooldown = 6f;
 
     public GameObject heal;
+    public Gradient healGradient;
+    public float healCooldown = 1f;
+
     public GameObject swipeLeft;
     public GameObject swipeRight;
     public AudioClip cast_success;
@@ -66,6 +69,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown("joystick button 16") || Input.GetKeyDown("joystick button 17"))
+        {
+            SetSpell(heal, "heal", healGradient);
+        }
+
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -128,7 +136,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 SetSpell(shield, "shield", shieldGradient);
                 break;
             case "Heal":
-                currentSpellName = "heal";
+                SetSpell(heal, "heal", healGradient);
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
@@ -176,6 +184,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
+                if (target.result != null)
+                {
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position + new Vector3(-5,0,0), currentSpell.transform.rotation, 0);
+                    //  spellInstance.transform.LookAt(target.result);
+                    spellTimer = healCooldown;
+                }
+                spellTimer = fireballCooldown;
                 break;
             default:
                 spellTimer = spellCooldown;
