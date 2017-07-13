@@ -6,7 +6,7 @@ public class Targeting : MonoBehaviour {
 
     [HideInInspector]
     public Transform result;
-    private Targetable targetableScript;
+    private TargetablePlayer targetableScript;
 
     public Transform pointer;
     public float range;
@@ -50,7 +50,7 @@ public class Targeting : MonoBehaviour {
                 result = hit.collider.transform;
 
                 //Try to get the targetable script. Turn it on if it's valid.
-                targetableScript = result.GetComponent<Targetable>();
+                targetableScript = result.GetComponent<TargetablePlayer>();
                 if (targetableScript != null) targetableScript.SetIndicator(true);
             }
         }
