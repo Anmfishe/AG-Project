@@ -16,7 +16,6 @@ public class PlayerStatus : MonoBehaviour
     float respawnLength = 2f;
 
 
-    [HideInInspector]
     public int max_health = 100;
     [HideInInspector]
     public int current_health = 100;
@@ -24,14 +23,17 @@ public class PlayerStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Get camera rig if this object belogns to the client.
         if (this.GetComponent<PhotonView>().isMine)
         {
+            //Gets the Camera (eyes) and navigates to the Camera Rig object.
             cameraRig = Camera.main.transform.parent.parent.gameObject;
         }
 
+        //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
         scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
 
-
+        //What's Pt?
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
     }
@@ -39,6 +41,7 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Respawn Player when time out's done.
         if (dead == true)
         {
             if ((Time.time - deathTime) >  respawnLength)
@@ -48,6 +51,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    //Reduces the health by the damage received.
     public void takeDamage(int damage)
     {
         if (dead == false)
@@ -64,6 +68,7 @@ public class PlayerStatus : MonoBehaviour
     // On death, we warp the camera rig of the corresponding player
     void Die()
     {
+        //Move Player to the time out are if it belongs to the client.
         if (this.GetComponent<PhotonView>().isMine)
         {
            cameraRig.transform.position = timeOutPt.position;
@@ -75,19 +80,16 @@ public class PlayerStatus : MonoBehaviour
       //  Respawn();
     }
 
+    //Reset health and move Player to respawn area.
     void Respawn()
     {
         dead = false;
         current_health = max_health;
 
+        //Move Player to respawn area if it belongs to the client.
         if (this.GetComponent<PhotonView>().isMine)
         {
             cameraRig.transform.position = respawnPt.position;
         }
-
-        // GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        // cube.transform.position = transform.position + new Vector3(0, 3, 0);
-        //  gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(255f, 0, 0, 0);
-        // transform.position = respawnPt.position;
     }
 }
