@@ -21,7 +21,7 @@ MonoBehaviour:
   beginInDetectMode: 1
   vrGestureDetectType: 0
   currentNeuralNet: Spells
-  lastNeuralNet: Neural Net 4
+  lastNeuralNet: Spells
   neuralNets:
   - Example 1 - Basics
   - Example 2 - Powers
@@ -35,7 +35,7 @@ MonoBehaviour:
     hand: 1
     isSynchronous: 0
     exampleCount: 10
-  - name: Heal
+  - name: Square
     hand: 1
     isSynchronous: 0
     exampleCount: 12
@@ -51,6 +51,10 @@ MonoBehaviour:
     hand: 1
     isSynchronous: 0
     exampleCount: 11
+  - name: Heal
+    hand: 1
+    isSynchronous: 0
+    exampleCount: 13
   gestureBankPreEdit:
   - name: Fire
     hand: 1
@@ -60,7 +64,7 @@ MonoBehaviour:
     hand: 1
     isSynchronous: 0
     exampleCount: 10
-  - name: Heal
+  - name: Square
     hand: 1
     isSynchronous: 0
     exampleCount: 12
@@ -76,5 +80,9 @@ MonoBehaviour:
     hand: 1
     isSynchronous: 0
     exampleCount: 11
+  - name: Heal
+    hand: 1
+    isSynchronous: 0
+    exampleCount: 10
   state: 0
   stateInitial: 8

@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour
     private Transform timeOutPt;
     public PhotonView photonView;
     private GameObject cameraRig;
+    public GameObject healParticle;
 
     private Scoreboard scoreboard;
 
@@ -23,17 +24,18 @@ public class PlayerStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         //Get camera rig if this object belogns to the client.
         if (photonView.isMine)
         {
             //Gets the Camera (eyes) and navigates to the Camera Rig object.
-            cameraRig = Camera.main.transform.parent.parent.gameObject;
+            cameraRig = Camera.main.transform.parent.gameObject;
         }
 
         //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
         scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
 
-        //What's Pt?
+        //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
     }
@@ -48,6 +50,19 @@ public class PlayerStatus : MonoBehaviour
             {
                 Respawn();
             }
+        }
+    }
+
+    public void heal(int healthAdded)
+    {
+        if (dead == false)
+        {
+            current_health += healthAdded;
+        }
+
+        if (current_health >= max_health)
+        {
+            current_health = max_health;
         }
     }
 
@@ -71,8 +86,21 @@ public class PlayerStatus : MonoBehaviour
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
-           cameraRig.transform.position = timeOutPt.position;
-            scoreboard.IncrementRedScore();
+            cameraRig.transform.position = timeOutPt.position;
+
+            if (cameraRig.GetComponent<TeamManager>() == null)
+            {
+                Debug.Log("CANERA RIG IS NULLLLLLLLLLLLLLL");
+            }
+
+            if (cameraRig.GetComponent<TeamManager>().blue)
+            {
+                scoreboard.IncrementRedScore();
+            }
+            else
+            {
+                scoreboard.IncrementBlueScore();
+            }
         }
 
         deathTime = Time.time;

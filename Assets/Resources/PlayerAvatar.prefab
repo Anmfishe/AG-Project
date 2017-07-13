@@ -2303,12 +2303,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 177abeea100b3e849a8455781168020c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
+  photonView: {fileID: 114473738197043446}
   respawnLength: 2
   max_health: 100
   current_health: 100
@@ -2727,7 +2727,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1396155991360138}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 1
   m_Height: 5
   m_Direction: 1
@@ -2766,7 +2766,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1396155991360138}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.3
   m_Height: 1.25
   m_Direction: 1
