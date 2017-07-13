@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 19900002}
   - component: {fileID: 114363713498493862}
   - component: {fileID: 114243725288478094}
+  - component: {fileID: 114909731863776702}
   m_Layer: 0
   m_Name: Heal_Spell
   m_TagString: Untagged
@@ -6369,3 +6370,16 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114909731863776702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89af8605a48372049b392b0ffdceeae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAdded: 20
+  target: {fileID: 0}

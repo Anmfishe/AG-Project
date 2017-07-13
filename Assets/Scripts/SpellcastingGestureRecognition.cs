@@ -10,6 +10,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient fireballGradient;
     public GameObject shield;
     public Gradient shieldGradient;
+    public Gradient healGradient;
     public GameObject heal;
     public GameObject swipeLeft;
     public GameObject swipeRight;
@@ -17,7 +18,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public AudioClip cast_failure;
     public Transform wand;
     public Transform book;
-    [HideInInspector]
+   // [HideInInspector]
     public Targeting target;
     public Transform avatar;
 
@@ -43,7 +44,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();
-        target = GetComponentInChildren<Targeting>();
+        //target = GetComponentInChildren<Targeting>();
+        //if (target == null)
+        //{
+        //    Debug.Log("target is NULL");
+        //}
     }
 
     void OnEnable()
@@ -84,7 +89,25 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (hasSpell && Input.GetKeyDown("joystick button 15"))
         {
             spellTimer = spellCooldown;
+
+            if(currentSpell == heal)
+            {
+                print("heal");
+                //currentSpell.GetComponent<HealSpell>().target = target.target;
+            }
             GameObject fireballGO = PhotonNetwork.Instantiate(currentSpell.name, wand.Find("tip").position, wand.Find("tip").rotation, 0);
+
+            if (target != null && target.target != null)
+            {
+                fireballGO.transform.LookAt(target.target);
+                Debug.Log("target");
+            }
+            else
+            {
+                Debug.Log("no target");
+            }
+            
+
             hasSpell = false;
             currentSpell = null;
 
@@ -158,6 +181,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 audioSource.PlayOneShot(cast_success);
                 break;
             case "Heal":
+                currentSpell = heal;
+                currentSpellGradient = healGradient;
+                hasSpell = true;
+                if (wand != null)
+                {
+                    ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
+                    wandParticle.Stop();
+                    var wandParticleModule = wandParticle.colorOverLifetime;
+                    wandParticleModule.color = currentSpellGradient;
+                    wandParticle.Play();
+                }
+                GetComponent<VRGestureRig>().enabled = false;
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
