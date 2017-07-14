@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 19900002}
   - component: {fileID: 114125393874481448}
   - component: {fileID: 114278989066718082}
+  - component: {fileID: 114770245236811472}
   m_Layer: 0
   m_Name: Heal_ParticleEffect
   m_TagString: Untagged
@@ -19065,3 +19066,15 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114770245236811472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e438e0c3e2171234fbc9c8c4a8db59b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 5

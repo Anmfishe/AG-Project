@@ -27,6 +27,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //[HideInInspector]
     public Targeting target;
     public Transform avatar;
+    public Transform torso;
 
     public bool blue = false;
 
@@ -155,6 +156,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public void SetAvatar(Transform _avatar)
     {
         avatar = _avatar;
+        torso = avatar.Find("Torso");
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
     }
@@ -180,13 +182,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
+                // Heal others
                 if (target.result != null)
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position + new Vector3(-1,0,0), currentSpell.transform.rotation, 0);
-                    //  spellInstance.transform.LookAt(target.result);
-                    spellTimer = healCooldown;
                 }
-                spellTimer = fireballCooldown;
+
+                // Self heal
+                else
+                {
+                    print("self heal");
+                    print(avatar);
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
+                }
+                spellTimer = healCooldown;
                 break;
             default:
                 spellTimer = spellCooldown;

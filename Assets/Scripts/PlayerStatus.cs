@@ -15,7 +15,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float deathTime = 0f;
     public float respawnLength = 2f;
 
-    PhotonView test_photonview;
+    PhotonView self_photonview;
 
 
     public int max_health = 100;
@@ -101,16 +101,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
             bool blueScored = ! cameraRig.GetComponent<TeamManager>().blue;
             Debug.Log("ABOUT TO RPC: BLUE SCORED " + blueScored);
-            test_photonview = GetComponent<PhotonView>();
+            self_photonview = GetComponent<PhotonView>();
             if (blueScored)
             {
                 //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
-                test_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
+                self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
             }
             else
             {
                 //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
-                test_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
+                self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
             }
         }
 
@@ -153,12 +153,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        // If you own the game object
         if (stream.isWriting)
         {
+            // Sync all instances of health according to my health
             stream.SendNext(current_health);
         }
+        // If you dont own the game object
         else
         {
+            // Sync the avatar's health according to the owner of the avatar.
             current_health = (int)stream.ReceiveNext();
         }
     }
