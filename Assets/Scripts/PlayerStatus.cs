@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviour, IPunObservable
 {
     private Transform respawnPt;
     private Transform timeOutPt;
@@ -71,6 +72,12 @@ public class PlayerStatus : MonoBehaviour
     //Reduces the health by the damage received.
     public void takeDamage(int damage)
     {
+        // Ensure that this is the active player
+        if (!photonView.isMine)
+        {
+            return;
+        }
+
         if (dead == false)
         {
             current_health -= damage;
@@ -141,6 +148,18 @@ public class PlayerStatus : MonoBehaviour
         {
             // cameraRig.transform.position = respawnPt.position;
             cameraRig.GetComponent<TeamManager>().Respawn();
+        }
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(current_health);
+        }
+        else
+        {
+            current_health = (int)stream.ReceiveNext();
         }
     }
 }

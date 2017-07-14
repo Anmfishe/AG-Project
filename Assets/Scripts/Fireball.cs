@@ -14,7 +14,7 @@ public class Fireball : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-       // print(GetComponent<ParticleSystem>().particleCount);
+        print(GetComponent<ParticleSystem>().particleCount);
     }
     void OnParticleCollision(GameObject other)
     {
@@ -40,7 +40,7 @@ public class Fireball : MonoBehaviour {
             }
             else
             {
-                PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
+                PlayerStatus statusScript = other.transform.parent.Find("Torso").GetComponent<PlayerStatus>();
                 if (statusScript != null) statusScript.takeDamage(damage);
                 Destroy(this.gameObject);
             }
