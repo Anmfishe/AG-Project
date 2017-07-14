@@ -7,13 +7,14 @@ public class PlayerStatus : MonoBehaviour
     private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
+    public PlayerSoundManager playerSoundManager;
+    public float respawnLength = 2f;
     private GameObject cameraRig;
 
     private Scoreboard scoreboard;
-
     private bool dead = false;
     private float deathTime = 0f;
-    public float respawnLength = 2f;
+    
 
 
     public int max_health = 100;
@@ -57,6 +58,7 @@ public class PlayerStatus : MonoBehaviour
         if (dead == false)
         {
             current_health -= damage;
+            playerSoundManager.PlayerHurt();
         }
 
         if (current_health <= 0)
