@@ -22,7 +22,30 @@ public class Fireball : MonoBehaviour {
         times_hit++;
 
         //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-        if (other.tag == "Player")
+        if (other.tag == "SpellHitter")
+        {
+            print("VELOCITY: " + other.GetComponent<Rigidbody>().velocity.magnitude);
+            if (other.GetComponent<Rigidbody>().velocity.magnitude > 1)
+            {
+                //Get particles.
+                ParticleSystem.Particle[] emittedParticles = new ParticleSystem.Particle[this.GetComponent<ParticleSystem>().particleCount];
+                this.GetComponent<ParticleSystem>().GetParticles(emittedParticles);
+
+                //Get first particle's position. Get the rotation by looking at the original fireball's position.
+                Vector3 particlePosition = emittedParticles[0].position;
+                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball_Spell", particlePosition, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+                reflectedFireball.transform.localScale = new Vector3(2, 2, 2);
+                //Destroy original.
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
+                if (statusScript != null) statusScript.takeDamage(damage);
+                Destroy(this.gameObject);
+            }
+        }
+        else if (other.tag == "Player")
         {
             PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             if(statusScript != null) statusScript.takeDamage(damage);
@@ -33,19 +56,9 @@ public class Fireball : MonoBehaviour {
             Damageable damageScript = other.GetComponent<Damageable>();
             if (damageScript != null) damageScript.TakeDamage(damage);
         }
-        else if(other.tag == "SpellHitter")
-        {
-            if(other.GetComponent<Rigidbody>().velocity.magnitude > 4)
-            {
-                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball_Spell", this.GetComponent<ParticleSystem>().transform.position, this.transform.rotation, 0);
-                //reflectedFireball.transform.LookAt(this.transform.position);
-
-                Destroy(this.gameObject);
-            }
-        }
         else
         {
-            print(other.tag);
+           // print(other.tag);
         }
     }
 }
