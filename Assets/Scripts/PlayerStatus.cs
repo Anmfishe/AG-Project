@@ -7,6 +7,7 @@ public class PlayerStatus : MonoBehaviour
     private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
+    public PlayerSoundManager psm;
     private GameObject cameraRig;
 
     private Scoreboard scoreboard;
@@ -71,6 +72,7 @@ public class PlayerStatus : MonoBehaviour
         if (dead == false)
         {
             current_health -= damage;
+            psm.PlayerHurt();
         }
 
         if (current_health <= 0)
