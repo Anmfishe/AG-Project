@@ -4,7 +4,7 @@
             "name": "Fire",
             "hand": 1,
             "isSynchronous": false,
-            "exampleCount": 20
+            "exampleCount": 19
         },
         {
             "name": "Shield",
@@ -34,7 +34,7 @@
             "name": "Gesture 6",
             "hand": 1,
             "isSynchronous": false,
-            "exampleCount": 11
+            "exampleCount": 12
         },
         {
             "name": "Heal",

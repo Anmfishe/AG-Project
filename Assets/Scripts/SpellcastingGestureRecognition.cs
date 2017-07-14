@@ -28,6 +28,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Targeting target;
     public Transform avatar;
 
+    public bool blue = false;
+
     //public AudioClip spell_deflected;
     //--->Private Vars<---//
     Camera mainCam;

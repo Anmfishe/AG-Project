@@ -30,4 +30,16 @@ public class TeamManager : MonoBehaviour {
         transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
         vrtk_spr.blue = false;
     }
+
+    public void Respawn()
+    {
+        if (blue == false)
+        {
+            transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
+        }
+        else
+        {
+            transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
+        }
+    }
 }

@@ -1355,6 +1355,7 @@ MonoBehaviour:
   book: {fileID: 0}
   target: {fileID: 0}
   avatar: {fileID: 0}
+  blue: 0
   hasSpell: 0
   currentSpell: {fileID: 0}
   currentSpellName: 
@@ -9313,7 +9314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4221423857602016, guid: ab3eeddf243a6f24a998cba00394cd7c, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1830816385935948, guid: ab3eeddf243a6f24a998cba00394cd7c, type: 2}
       propertyPath: m_Name
@@ -9557,7 +9558,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1496561504 stripped
 Transform:

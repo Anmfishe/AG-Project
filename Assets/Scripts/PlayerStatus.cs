@@ -8,7 +8,6 @@ public class PlayerStatus : MonoBehaviour
     private Transform timeOutPt;
     public PhotonView photonView;
     private GameObject cameraRig;
-    public GameObject healParticle;
 
     private Scoreboard scoreboard;
 
@@ -90,7 +89,7 @@ public class PlayerStatus : MonoBehaviour
 
             if (cameraRig.GetComponent<TeamManager>() == null)
             {
-                Debug.Log("CANERA RIG IS NULLLLLLLLLLLLLLL");
+
             }
 
             if (cameraRig.GetComponent<TeamManager>().blue)
@@ -117,7 +116,8 @@ public class PlayerStatus : MonoBehaviour
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
         {
-            cameraRig.transform.position = respawnPt.position;
+            // cameraRig.transform.position = respawnPt.position;
+            cameraRig.GetComponent<TeamManager>().Respawn();
         }
     }
 }
