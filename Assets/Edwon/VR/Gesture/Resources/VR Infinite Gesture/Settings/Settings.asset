@@ -18,71 +18,39 @@ MonoBehaviour:
   confidenceThreshold: 0.800000011920929
   gestureSyncDelay: 500
   minimumGestureAxisLength: 0.1
-  beginInDetectMode: 1
+  beginInDetectMode: 0
   vrGestureDetectType: 0
-  currentNeuralNet: Spells
-  lastNeuralNet: Example 1 - Basics
+  currentNeuralNet: Spell Gestures
+  lastNeuralNet: Spell Gestures
   neuralNets:
   - Example 1 - Basics
   - Example 2 - Powers
-  - Spells
+  - Spell Gestures
   gestureBank:
   - name: Fire
     hand: 1
     isSynchronous: 0
-    exampleCount: 19
+    exampleCount: 8
   - name: Shield
     hand: 1
     isSynchronous: 0
-    exampleCount: 10
-  - name: Square
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 12
-  - name: SwipeRight
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 20
-  - name: SwipeLeft
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 20
-  - name: Gesture 6
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 12
+    exampleCount: 4
   - name: Heal
     hand: 1
     isSynchronous: 0
-    exampleCount: 13
+    exampleCount: 12
   gestureBankPreEdit:
   - name: Fire
     hand: 1
     isSynchronous: 0
-    exampleCount: 19
+    exampleCount: 0
   - name: Shield
     hand: 1
     isSynchronous: 0
-    exampleCount: 10
-  - name: Square
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 12
-  - name: SwipeRight
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 20
-  - name: SwipeLeft
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 20
-  - name: Gesture 6
-    hand: 1
-    isSynchronous: 0
-    exampleCount: 12
+    exampleCount: 0
   - name: Heal
     hand: 1
     isSynchronous: 0
-    exampleCount: 13
+    exampleCount: 0
   state: 0
-  stateInitial: 8
+  stateInitial: 0

@@ -1,0 +1,22 @@
+{
+    "gestures": [
+        {
+            "name": "Fire",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 8
+        },
+        {
+            "name": "Shield",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 4
+        },
+        {
+            "name": "Heal",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 7
+        }
+    ]
+}

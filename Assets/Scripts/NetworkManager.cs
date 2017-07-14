@@ -10,8 +10,8 @@ public class NetworkManager : Photon.PunBehaviour
     public byte maxPlayersPerRoom = 4;
 
     public GameObject avatar;
-    public Transform localPlayer;
     public GameObject scoreboard;
+    public Transform localPlayer;
 
     bool isConnecting;
     private int blues = 0;
@@ -129,7 +129,9 @@ public class NetworkManager : Photon.PunBehaviour
         Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+
         scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 10, 0), Quaternion.identity, 0);
+        
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         int temp2 = GameObject.FindGameObjectsWithTag("PCP").Length;
