@@ -9,6 +9,13 @@ public class AttachCameraRigSync : MonoBehaviour {
     public GameObject LeftHand;
     public GameObject RightHand;
 
+   
+
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
         SetUpTransformFollow(AvatarHead, VRTK_DeviceFinder.Devices.Headset);

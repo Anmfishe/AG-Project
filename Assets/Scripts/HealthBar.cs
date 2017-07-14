@@ -49,7 +49,7 @@ public class HealthBar : MonoBehaviour {
 
     void setHealthbarScale(float maHealth)
     {
-        print("updatedHealth");
+        //print("updatedHealth");
         // bar.transform.localScale = new Vector3(maHealth, bar.transform.localScale.y, bar.transform.localScale.z);
         bar.transform.localScale = new Vector3(Mathf.Lerp(bar.transform.localScale.x, maHealth, Time.deltaTime*5), bar.transform.localScale.y, bar.transform.localScale.z);
         

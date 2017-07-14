@@ -132,10 +132,10 @@ public class NetworkManager : Photon.PunBehaviour
         scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 10, 0), Quaternion.identity, 0);
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        avatar.GetComponent<TeamSetter>().SetTeam();
         int temp2 = GameObject.FindGameObjectsWithTag("PCP").Length;
-        Debug.Log(PhotonNetwork.countOfPlayers);
-        
-        if(PhotonNetwork.countOfPlayers % 2 == 0)
+        Debug.Log(PhotonNetwork.room.PlayerCount);
+        if(PhotonNetwork.room.PlayerCount % 2 == 0)
         {
             localPlayer.GetComponentInParent<TeamManager>().SetBlue();
         }
@@ -173,4 +173,5 @@ public class NetworkManager : Photon.PunBehaviour
     {
         
     }
+    
 }

@@ -17,6 +17,7 @@ TagManager:
   - BluePlatform
   - Shield
   - SpellHitter
+  - CameraRig
   layers:
   - Default
   - TransparentFX
