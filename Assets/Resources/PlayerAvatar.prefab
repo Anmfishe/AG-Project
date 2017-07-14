@@ -354,10 +354,6 @@ GameObject:
   - component: {fileID: 114473738197043446}
   - component: {fileID: 114485207094041094}
   - component: {fileID: 114770819247228588}
-  - component: {fileID: 114529806380097736}
-  - component: {fileID: 136978693183804004}
-  - component: {fileID: 136356140753237928}
-  - component: {fileID: 114997210614588058}
   m_Layer: 0
   m_Name: PlayerAvatar
   m_TagString: Untagged
@@ -452,7 +448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1647167761276460
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +638,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.963507, y: 1.2537189, z: -8.4592285}
+  m_LocalPosition: {x: -4.0369315, y: 0.6198617, z: -2.5387528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224121790981262040}
@@ -944,8 +940,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1704670948745794}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.075999975, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children: []
   m_Father: {fileID: 4032317369847516}
@@ -1328,7 +1324,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c21cae0ef750744bdb2479bdced7c7de, type: 2}
+  - {fileID: 2100000, guid: 2a0bc547473304023abae9e69e7506c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2297,21 +2293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1645847697515194}
---- !u!114 &114529806380097736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1396155991360138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177abeea100b3e849a8455781168020c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photonView: {fileID: 114473738197043446}
-  respawnLength: 2
-  max_health: 100
-  current_health: 100
 --- !u!114 &114578242593311320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2540,7 +2521,7 @@ MonoBehaviour:
   bar: {fileID: 1032663249212786}
   isADummy: 0
   dummyCam: {fileID: 0}
-  ownerStat: {fileID: 114529806380097736}
+  ownerStat: {fileID: 114590541061986310}
 --- !u!114 &114920395557102846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2593,18 +2574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc001952a941c2743a3739a35bf9c162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114997210614588058
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1396155991360138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec225b7d6188818489c53ec91384873f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 1645847697515194}
 --- !u!114 &114999018229916790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2719,19 +2688,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136356140753237928
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1396155991360138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136468182110814236
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2756,19 +2712,6 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.03
   m_Height: 0.16
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136978693183804004
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1396155991360138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.25
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198221155962877970

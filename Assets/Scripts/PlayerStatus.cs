@@ -17,7 +17,7 @@ public class PlayerStatus : MonoBehaviour
 
 
     public int max_health = 100;
-    [HideInInspector]
+  //  [HideInInspector]
     public int current_health = 100;
     //   public int hp = 100;
     // Use this for initialization

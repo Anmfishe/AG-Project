@@ -168,11 +168,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (currentSpellName)
         {
             case "fire":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                if (target.result != null)
-                {
-                    spellInstance.transform.LookAt(target.result);
-                }
+                Quaternion spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
             case "shield":
