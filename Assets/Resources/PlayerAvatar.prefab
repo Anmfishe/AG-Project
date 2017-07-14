@@ -354,9 +354,10 @@ GameObject:
   - component: {fileID: 114473738197043446}
   - component: {fileID: 114485207094041094}
   - component: {fileID: 114770819247228588}
+  - component: {fileID: 114111741839346218}
   m_Layer: 0
   m_Name: PlayerAvatar
-  m_TagString: Untagged
+  m_TagString: PCP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2040,6 +2041,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioClip: {fileID: 0}
   LoopAudioClip: 1
+--- !u!114 &114111741839346218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396155991360138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68d6e5c5479e5042a5ee40f4ac38a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114204369056823830
 MonoBehaviour:
   m_ObjectHideFlags: 1
