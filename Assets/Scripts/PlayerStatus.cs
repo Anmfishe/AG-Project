@@ -31,10 +31,7 @@ public class PlayerStatus : MonoBehaviour
             //Gets the Camera (eyes) and navigates to the Camera Rig object.
             cameraRig = Camera.main.transform.parent.gameObject;
         }
-
-        //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
-        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
-
+        
         //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
@@ -50,6 +47,11 @@ public class PlayerStatus : MonoBehaviour
             {
                 Respawn();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Die();
         }
     }
 
@@ -93,6 +95,9 @@ public class PlayerStatus : MonoBehaviour
             {
 
             }
+
+            //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
 
             if (cameraRig.GetComponent<TeamManager>().blue)
             {

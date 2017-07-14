@@ -8,7 +8,10 @@ public class Scoreboard : MonoBehaviour, IPunObservable {
 	public GameObject[] red_score_display;
 	public GameObject[] blue_score_display;
 
+    [SerializeField]
 	int red_score;
+
+    [SerializeField]
 	int blue_score;
 
 	// Use this for initialization

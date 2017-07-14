@@ -130,7 +130,10 @@ public class NetworkManager : Photon.PunBehaviour
 
         avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
-        scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 10, 0), Quaternion.identity, 0);
+        if (PhotonNetwork.isMasterClient)
+        {
+            scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 10, 0), Quaternion.identity, 0);
+        }
         
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
