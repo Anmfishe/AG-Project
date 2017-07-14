@@ -15,6 +15,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public float shieldCooldown = 6f;
 
     public GameObject heal;
+    public Gradient healGradient;
+    public float healCooldown = 1f;
+
     public GameObject swipeLeft;
     public GameObject swipeRight;
     public AudioClip cast_success;
@@ -24,6 +27,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //[HideInInspector]
     public Targeting target;
     public Transform avatar;
+
+    public bool blue = false;
 
     //public AudioClip spell_deflected;
     //--->Private Vars<---//
@@ -66,6 +71,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -128,7 +134,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 SetSpell(shield, "shield", shieldGradient);
                 break;
             case "Heal":
-                currentSpellName = "heal";
+                SetSpell(heal, "heal", healGradient);
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
@@ -162,11 +168,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (currentSpellName)
         {
             case "fire":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                if (target.result != null)
-                {
-                    spellInstance.transform.LookAt(target.result);
-                }
+                Quaternion spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
             case "shield":
@@ -176,6 +180,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
+                if (target.result != null)
+                {
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position + new Vector3(-1,0,0), currentSpell.transform.rotation, 0);
+                    //  spellInstance.transform.LookAt(target.result);
+                    spellTimer = healCooldown;
+                }
+                spellTimer = fireballCooldown;
                 break;
             default:
                 spellTimer = spellCooldown;
