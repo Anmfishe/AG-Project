@@ -10,6 +10,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public PhotonView photonView;
     public PlayerSoundManager psm;
     private GameObject cameraRig;
+    private TextMesh deadText;
 
     private bool dead = false;
     private float deathTime = 0f;
@@ -31,6 +32,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             //Gets the Camera (eyes) and navigates to the Camera Rig object.
             cameraRig = Camera.main.transform.parent.gameObject;
+            deadText = Camera.main.transform.GetChild(0).GetComponent<TextMesh>();
         }
         
         //Get's the location where the player will respawn.
@@ -46,7 +48,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             if ((Time.time - deathTime) >  respawnLength)
             {
+
                 Respawn();
+            }
+
+            else
+            {
+                if (photonView.isMine)
+                {
+                    deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
+                }
             }
         }
 
@@ -98,7 +109,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             cameraRig.transform.position = timeOutPt.position;
 
+            deadText.gameObject.SetActive(true);
 
+            // Increment scoreboard
             bool blueScored = ! cameraRig.GetComponent<TeamManager>().blue;
             Debug.Log("ABOUT TO RPC: BLUE SCORED " + blueScored);
             self_photonview = GetComponent<PhotonView>();
@@ -148,6 +161,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             // cameraRig.transform.position = respawnPt.position;
             cameraRig.GetComponent<TeamManager>().Respawn();
+            deadText.gameObject.SetActive(false);
         }
     }
 
