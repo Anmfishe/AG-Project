@@ -10,11 +10,11 @@ public class PlayerStatus : MonoBehaviour
     public PlayerSoundManager psm;
     private GameObject cameraRig;
 
-    private Scoreboard scoreboard;
-
     private bool dead = false;
     private float deathTime = 0f;
     public float respawnLength = 2f;
+
+    PhotonView test_photonview;
 
 
     public int max_health = 100;
@@ -91,27 +91,43 @@ public class PlayerStatus : MonoBehaviour
         {
             cameraRig.transform.position = timeOutPt.position;
 
-            if (cameraRig.GetComponent<TeamManager>() == null)
+
+            bool blueScored = ! cameraRig.GetComponent<TeamManager>().blue;
+            Debug.Log("ABOUT TO RPC: BLUE SCORED " + blueScored);
+            test_photonview = GetComponent<PhotonView>();
+            if (blueScored)
             {
-
-            }
-
-            //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
-            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
-
-            if (cameraRig.GetComponent<TeamManager>().blue)
-            {
-                scoreboard.IncrementRedScore();
+                //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
+                test_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
             }
             else
             {
-                scoreboard.IncrementBlueScore();
+                //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
+                test_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
             }
         }
 
         deathTime = Time.time;
         dead = true;
       //  Respawn();
+    }
+
+    [PunRPC]
+    void UpdateScoreboard(bool blueScored)
+    {
+        //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+        Scoreboard scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Scoreboard>();
+
+        Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
+
+        if (blueScored)
+        {
+            scoreboard.IncrementBlueScore();
+        }
+        else
+        {
+            scoreboard.IncrementRedScore();
+        }
     }
 
     //Reset health and move Player to respawn area.
