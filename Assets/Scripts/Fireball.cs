@@ -14,7 +14,7 @@ public class Fireball : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        print(GetComponent<ParticleSystem>().particleCount);
+       // print(GetComponent<ParticleSystem>().particleCount);
     }
     void OnParticleCollision(GameObject other)
     {
