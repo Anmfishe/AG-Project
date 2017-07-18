@@ -11,25 +11,43 @@ namespace Edwon.VR.Gesture
         int lengthOfLineRenderer = 50;
         List<Vector3> displayLine;
         LineRenderer currentRenderer;
-        Color initialColor, finalColor;
+        Color initialColor, initialTransColor, finalColor, finalTransColor;
         Material material;
         public bool listening = false;
-
         bool currentlyInUse = false;
-
+        float transitionTimer = 0f; //Used to fade out the latest trail.
         // Use this for initialization
         void Start()
         {
             //Added to pass allow for passing of colors and material.
+            //Set initial color and it's transparent version to be used in the fade out.
             if (initialColor == null) initialColor = Color.red;
+            initialTransColor = initialColor;
+            initialTransColor.a = 0;
+
+            //Set final color and it's transparent version to be used in the fade out.
             if (finalColor == null) finalColor = Color.blue;
+            finalTransColor = finalColor;
+            finalTransColor.a = 0;
+
+            //Find default material.
             if (material == null) material = new Material(Shader.Find("Particles/Additive"));
 
+            //Flag as currently in use.
             currentlyInUse = true;
             displayLine = new List<Vector3>();
             currentRenderer = CreateLineRenderer(initialColor, finalColor, material);
         }
+        private void Update()
+        {
+            //If stopped listening and transition timer is less than one, lerp the trail's colors to transparent.
+            if(!listening && transitionTimer <= 1)
+            {
+                currentRenderer.startColor = Color.Lerp(initialColor, initialTransColor, transitionTimer += Time.deltaTime);
+                currentRenderer.endColor = Color.Lerp(finalColor, initialTransColor, transitionTimer += Time.deltaTime);
+            }
 
+        }
         public void UpdateRenderer(Color color1, Color color2, Material material0 = null)
         {
             initialColor = color1;
@@ -139,8 +157,9 @@ namespace Edwon.VR.Gesture
             Color end = currentRenderer.endColor;
             start.a = 0.1f;
             end.a = 0.1f;
-            currentRenderer.SetColors(start, end);
             listening = false;
+            //Resets the timer so fade out is possible.
+            transitionTimer = 0;
         }
 
         public void ClearTrail()

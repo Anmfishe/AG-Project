@@ -6,6 +6,8 @@ using Edwon.VR.Gesture;
 
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
+    public Gradient baseGradient;
+
     public GameObject fireball;
     public Gradient fireballGradient;
     public float fireballCooldown = 2f;
@@ -95,9 +97,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
             }
         }
-        if (hasSpell && Input.GetKeyDown("joystick button 15"))
+        if (Input.GetKeyDown("joystick button 15"))
         {
-            CastSpell();
+            if (hasSpell)
+                CastSpell();
+            else if (!isCoolingDown)
+                IgniteFlame(baseGradient);
+        }
+        if(Input.GetKeyUp("joystick button 15"))
+        {
+            if(!hasSpell && !isCoolingDown && wand != null)
+                wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
         }
     }
 
@@ -110,20 +120,25 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         hasSpell = true;
 
-        if (wand != null)
-        {
-            ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
-            wandParticle.Stop();
-            var wandParticleModule = wandParticle.colorOverLifetime;
-            wandParticleModule.color = currentSpellGradient;
-            wandParticle.Play();
-        }
+        IgniteFlame(currentSpellGradient);
 
         GetComponent<VRGestureRig>().enabled = false;
         audioSource.PlayOneShot(cast_success);
 
     }
 
+    //Updates the color of the wand flame and restarts it.
+    void IgniteFlame(Gradient flameGradient)
+    {
+        if (wand != null)
+        {
+            ParticleSystem wandParticle = wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>();
+            wandParticle.Stop();
+            var wandParticleModule = wandParticle.colorOverLifetime;
+            wandParticleModule.color = flameGradient;
+            wandParticle.Play();
+        }
+    }
     void OnGestureDetected(string gestureName, double confidence, Handedness hand, bool isDouble)
     {
         switch (gestureName)
@@ -172,7 +187,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "fire":
                 Quaternion spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
 
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
                 spellTimer = fireballCooldown;
                 break;
             case "shield":

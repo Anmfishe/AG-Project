@@ -675,7 +675,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5074453, y: 0.8011494, z: -8.537794}
+  m_LocalPosition: {x: -7.1704917, y: 0.8011494, z: -8.376789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -754,7 +754,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582877605878186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.013099989}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4191432356118904}
@@ -847,7 +847,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028916985592924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4191432356118904}
@@ -1033,7 +1033,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823791023861702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4191432356118904}
@@ -2383,8 +2383,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114485207094041094}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114485207094041094
@@ -2486,8 +2486,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999018229916790}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114579494545927690
@@ -2512,8 +2512,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114344753946840322}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 4
+  instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114590541061986310
@@ -2554,8 +2554,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114590541061986310}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 3
+  instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114712731056247226
@@ -2699,8 +2699,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114832096951520706
@@ -2782,8 +2782,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114712731056247226}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114983368042875874
@@ -2905,7 +2905,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1075111351845630}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.3
   m_Height: 3
@@ -3007,7 +3007,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1278056411
+  randomSeed: 486036371
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5977,7 +5977,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 311175792
+  randomSeed: -1229015937
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8970,7 +8970,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 633090242
+  randomSeed: -2088424154
   InitialModule:
     serializedVersion: 3
     enabled: 1
