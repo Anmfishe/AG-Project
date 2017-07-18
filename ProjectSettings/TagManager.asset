@@ -18,6 +18,7 @@ TagManager:
   - Shield
   - SpellHitter
   - CameraRig
+  - Grabbable
   layers:
   - Default
   - TransparentFX
