@@ -11303,21 +11303,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1999117868739958, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
-      propertyPath: m_Name
-      value: NetworkManager
-      objectReference: {fileID: 0}
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
       propertyPath: localPlayer
       value: 
       objectReference: {fileID: 207178182}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: scoreboard
-      value: 
-      objectReference: {fileID: 1464206205574162, guid: fc004d206893f9f409ebb57a6a4236f8,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
   m_IsPrefabParent: 0
