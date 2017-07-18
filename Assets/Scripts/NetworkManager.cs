@@ -137,9 +137,9 @@ public class NetworkManager : Photon.PunBehaviour
         
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        localPlayer.GetComponentInParent<TeamManager>().SetAvatar(avatar.transform);
         avatar.GetComponent<TeamSetter>().SetTeam();
-        int temp2 = GameObject.FindGameObjectsWithTag("PCP").Length;
-        Debug.Log(PhotonNetwork.room.PlayerCount);
+        //Debug.Log(PhotonNetwork.room.PlayerCount);
         if(PhotonNetwork.room.PlayerCount % 2 == 0)
         {
             localPlayer.GetComponentInParent<TeamManager>().SetBlue();

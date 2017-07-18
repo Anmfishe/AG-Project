@@ -15,15 +15,15 @@ public class TeamSetter : MonoBehaviour {
 	}
     public void SetTeam()
     {
-        int numplayers = GameObject.FindGameObjectsWithTag("PCP").Length;
-        //Debug.Log(numplayers);
-        if(numplayers % 2 == 0)
-        {
-            Camera.main.gameObject.GetComponent<TeamManager>().SetBlue();
-        }
-        else
-        {
-            Camera.main.transform.parent.GetComponent<TeamManager>().SetRed();
-        }
+        //int numplayers = GameObject.FindGameObjectsWithTag("PCP").Length;
+        ////Debug.Log(numplayers);
+        //if(numplayers % 2 == 0)
+        //{
+        //    Camera.main.gameObject.GetComponent<TeamManager>().SetBlue();
+        //}
+        //else
+        //{
+        //    Camera.main.transform.parent.GetComponent<TeamManager>().SetRed();
+        //}
     }
 }
