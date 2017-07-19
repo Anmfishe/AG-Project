@@ -1332,6 +1332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrtk_spr: {fileID: 927287138}
+  blue_mat: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
+  red_mat: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   blue: 0
 --- !u!114 &207178192
 MonoBehaviour:
