@@ -74,14 +74,15 @@ public class TeamManager : MonoBehaviour {
     public void SetBlue()
     {
         Debug.Log("Set Blue + " + Time.time);
-        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-        vrtk_spr.blue = true;
+        
         blue = true;
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach(TeamSetter ts in children)
         {
             ts.SetBlue();
         }
+        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+        vrtk_spr.blue = true;
         //torso.GetComponent<Renderer>().material = blue_mat;
         //head.GetComponent<Renderer>().material = blue_mat;
         //hat.GetComponent<Renderer>().material = blue_mat;
@@ -89,14 +90,15 @@ public class TeamManager : MonoBehaviour {
     public void SetRed()
     {
         Debug.Log("Set Red + " + Time.time);
-        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-        vrtk_spr.blue = false;
+        
         blue = false;
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach (TeamSetter ts in children)
         {
             ts.SetRed();
         }
+        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+        vrtk_spr.blue = false;
         //torso.GetComponent<Renderer>().material = red_mat;
         //head.GetComponent<Renderer>().material = red_mat;
         //hat.GetComponent<Renderer>().material = red_mat;
