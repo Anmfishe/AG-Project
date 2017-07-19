@@ -6,6 +6,7 @@ using Edwon.VR.Gesture;
 
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
+    
     public GameObject fireball;
     public Gradient fireballGradient;
     public float fireballCooldown = 2f;
@@ -22,6 +23,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject swipeRight;
     public AudioClip cast_success;
     public AudioClip cast_failure;
+    public AudioClip ding;
     public Transform wand;
     public Transform book;
     //[HideInInspector]
@@ -47,7 +49,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public float spellCooldown = 3f;
     private float spellTimer = 0;
     private bool isCoolingDown = false;
-
+    
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -92,13 +94,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
                     //wand.Find("tip").Find("spark").Find("dust").GetComponent<ParticleSystem>().Play();
                 }
-
+                
+                GetComponent<AudioSource>().PlayOneShot(ding);
             }
         }
         if (hasSpell && Input.GetKeyDown("joystick button 15"))
         {
             CastSpell();
         }
+
+/*        if(Input.anyKeyDown)
+            GetComponent<AudioSource>().PlayOneShot(ding);
+*/        
     }
 
     //Sets spell properties.
