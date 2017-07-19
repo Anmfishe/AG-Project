@@ -14,10 +14,33 @@ public class TeamManager : MonoBehaviour {
     public Material red_mat;
     [HideInInspector]
     public bool blue = false;
-	// Use this for initialization
-	void Start () {
+    PhotonView photonView;
+
+
+    private void Awake()
+    {
+
+        photonView = GetComponent<PhotonView>();
+    }
+    // Use this for initialization
+    void Start () {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
+        
+        //if (blue)
+        //{
+
+        //    transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
+        //    //if (vrtk_spr != null)
+        //    //    vrtk_spr.blue = true;
+        //}
+        //else
+        //{
+
+        //    transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
+        //    //if (vrtk_spr != null)
+        //    //    vrtk_spr.blue = false;
+        //}
         //Debug.Log(num_players);
         //if(num_players % 2 == 0)
         //{
@@ -30,26 +53,53 @@ public class TeamManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        
+	void Update ()
+    {
+        if(vrtk_spr == null && photonView.isMine)
+        {
+            vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+            if(blue && vrtk_spr != null)
+            {
+                Debug.Log("Set Blue + " + Time.time);
+                vrtk_spr.blue = true;
+            }
+            else if(!blue && vrtk_spr != null)
+            {
+                Debug.Log("Set Red + " + Time.time);
+                vrtk_spr.blue = false;
+            }
+        }
     }
+    
     public void SetBlue()
     {
-        blue = true;
-        transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
+        Debug.Log("Set Blue + " + Time.time);
+        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
         vrtk_spr.blue = true;
-        torso.GetComponent<Renderer>().material = blue_mat;
-        head.GetComponent<Renderer>().material = blue_mat;
-        hat.GetComponent<Renderer>().material = blue_mat;
+        blue = true;
+        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+        foreach(TeamSetter ts in children)
+        {
+            ts.SetBlue();
+        }
+        //torso.GetComponent<Renderer>().material = blue_mat;
+        //head.GetComponent<Renderer>().material = blue_mat;
+        //hat.GetComponent<Renderer>().material = blue_mat;
     }
     public void SetRed()
     {
-        blue = false;
-        transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
+        Debug.Log("Set Red + " + Time.time);
+        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
         vrtk_spr.blue = false;
-        torso.GetComponent<Renderer>().material = red_mat;
-        head.GetComponent<Renderer>().material = red_mat;
-        hat.GetComponent<Renderer>().material = red_mat;
+        blue = false;
+        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+        foreach (TeamSetter ts in children)
+        {
+            ts.SetRed();
+        }
+        //torso.GetComponent<Renderer>().material = red_mat;
+        //head.GetComponent<Renderer>().material = red_mat;
+        //hat.GetComponent<Renderer>().material = red_mat;
     }
 
     public void Respawn()

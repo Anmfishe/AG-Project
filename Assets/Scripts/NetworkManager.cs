@@ -11,7 +11,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     public GameObject avatar;
     public GameObject scoreboard;
-    public Transform localPlayer;
+    private Transform localPlayer;
 
     bool isConnecting;
     private int blues = 0;
@@ -137,17 +137,23 @@ public class NetworkManager : Photon.PunBehaviour
         
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
-        localPlayer.GetComponentInParent<TeamManager>().SetAvatar(avatar.transform);
-        avatar.GetComponent<TeamSetter>().SetTeam();
+        avatar.GetComponentInParent<TeamManager>().SetAvatar(avatar.transform);
+        //avatar.GetComponent<TeamSetter>().SetTeam();
         //Debug.Log(PhotonNetwork.room.PlayerCount);
         if(PhotonNetwork.room.PlayerCount % 2 == 0)
         {
-            localPlayer.GetComponentInParent<TeamManager>().SetBlue();
+            //photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
+            //localPlayer.GetComponentInParent<TeamManager>().SetBlue();
+            avatar.GetComponent<TeamManager>().SetBlue();
         }
         else
         {
-            localPlayer.GetComponentInParent<TeamManager>().SetRed();
+            //photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
+            //localPlayer.GetComponentInParent<TeamManager>().SetRed();
+            avatar.GetComponent<TeamManager>().SetRed();
+
         }
+        
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
@@ -157,6 +163,7 @@ public class NetworkManager : Photon.PunBehaviour
     /// Called when a Photon Player got connected. We need to then load a bigger scene.
     /// </summary>
     /// <param name="other">Other.</param>
+   
     public override void OnPhotonPlayerConnected(PhotonPlayer other)
     {
         Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
