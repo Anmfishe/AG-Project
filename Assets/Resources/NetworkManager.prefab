@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419708561353736}
   - component: {fileID: 114843425570200210}
+  - component: {fileID: 114901388997306862}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -53,5 +54,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPlayersPerRoom: 4
   avatar: {fileID: 1396155991360138, guid: 3de2fe02874a78943bbd530e0ae4ee13, type: 2}
+  hat: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   scoreboard: {fileID: 1951878332566498, guid: f9018bea93465d042babf09b062218ae, type: 2}
-  localPlayer: {fileID: 0}
+  hatSpawn: {fileID: 0}
+--- !u!114 &114901388997306862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999117868739958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0

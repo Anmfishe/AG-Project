@@ -128,9 +128,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 10
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerClass: 0
+  onHead: 0
 --- !u!114 &114984566822774286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +235,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114243725288478094, guid: f1d26e622e61ce048b9fbf2b731434fb, type: 2}
+  - {fileID: 114225620880816228}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

@@ -6,7 +6,7 @@ public enum PlayerClass {none, attack, heal, support};
 
 public class HatLogic : MonoBehaviour {
 
-	public PlayerClass playerClass= PlayerClass.none;
+	public PlayerClass playerClass = PlayerClass.none;
 	private GameObject torso;
 	public bool onHead = false;
 

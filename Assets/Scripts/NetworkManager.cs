@@ -10,7 +10,9 @@ public class NetworkManager : Photon.PunBehaviour
     public byte maxPlayersPerRoom = 4;
 
     public GameObject avatar;
+	public GameObject hat;
     public GameObject scoreboard;
+	public Transform hatSpawn;
     private Transform localPlayer;
 
     bool isConnecting;
@@ -33,8 +35,8 @@ public class NetworkManager : Photon.PunBehaviour
     }
 
     // Use this for initialization
-    void Start () {
-        
+    void Start () 
+	{
     }
 	
 	// Update is called once per frame
@@ -125,13 +127,15 @@ public class NetworkManager : Photon.PunBehaviour
     /// enough players are in the room to start playing.
     /// </remarks>
     public override void OnJoinedRoom()
-    {
+    {    
+
         Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
         if (PhotonNetwork.isMasterClient)
         {
+			hat = PhotonNetwork.Instantiate(this.hat.name, hatSpawn.position, Quaternion.identity, 0);
             scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
         }
         
