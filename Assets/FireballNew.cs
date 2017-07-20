@@ -40,6 +40,7 @@ public class FireballNew : MonoBehaviour {
         {
 
         }
+		Destroy (this.gameObject);
     }
 
     private void OnTriggerEnter(Collider collider)
