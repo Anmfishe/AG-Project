@@ -31,7 +31,7 @@ public class SpellLogic : MonoBehaviour
 
     public void Deflect()
     {
-        print("deflect");
+        //print("deflect");
         GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
         bool deflected = false;
         foreach (GameObject spell in spells)

@@ -69,7 +69,6 @@
             if (Input.GetKeyDown("joystick button 16"))
             {
                 startPressPos = trackpadPos;
-                print(trackpadPos);
                 //if (trackpadPos < -0.05f)
                 //{
                 //    FlipLeft();
