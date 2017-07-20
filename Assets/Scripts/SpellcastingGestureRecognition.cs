@@ -31,6 +31,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Transform avatar;
     public Transform torso;
 
+	public PlayerStatus playerStatus;
+
     public bool blue = false;
 
     //public AudioClip spell_deflected;
@@ -174,6 +176,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         torso = avatar.Find("Torso");
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
+		playerStatus = torso.GetComponent<PlayerStatus>();
     }
 
     //Casts selected spell.
@@ -184,10 +187,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         switch (currentSpellName)
         {
-            case "fire":
-                Quaternion spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+		case "fire":
+			Quaternion spellRotation = target.result != null ? Quaternion.LookRotation (target.result.position - wandTip.transform.position) : wandTip.rotation;
 
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+			if (playerStatus.playerClass == PlayerClass.attack) {
+				spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
+			}
                 spellTimer = fireballCooldown;
                 break;
             case "shield":

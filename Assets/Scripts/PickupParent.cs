@@ -7,9 +7,6 @@ using System.Collections.Generic;
 
 public class PickupParent : MonoBehaviour
 {
-
-    SteamVR_TrackedObject trackedObj;
-    SteamVR_Controller.Device device;
     GameObject[] Grabbables;
     GameObject grabbables;
     GameObject grabbed;
@@ -49,20 +46,19 @@ public class PickupParent : MonoBehaviour
 
     void Update()
     {
+		// Drop object
         if (Input.GetKeyDown("joystick button 17") && ((Time.time - pickupTime)> .2f))
         {
-            if (grabbed != null)
-            {
-                grabbed.GetComponent<Rigidbody>().isKinematic = false;
-                grabbed.gameObject.transform.SetParent(null);
-                holdable.held = false;
-                holdable = null;
-                grabbed = null;
-            }
-
+			if (grabbed != null) 
+			{
+				tossObject (grabbed.GetComponent<Rigidbody>());
+			}
         }
     }
-        void OnTriggerStay(Collider col)
+
+
+	// Pickup logic
+    void OnTriggerStay(Collider col)
     {
 
             if (Input.GetKeyDown("joystick button 17"))
@@ -72,7 +68,6 @@ public class PickupParent : MonoBehaviour
                 if (col.GetComponent<Holdable>())
                 {
                     holdable = col.GetComponent<Holdable>();
-                    print("hold");
 
                     if (holdable.held == false)
                     {
@@ -82,6 +77,14 @@ public class PickupParent : MonoBehaviour
                         holdable = col.GetComponent<Holdable>();
                         holdable.held = true;
                         pickupTime = Time.time;
+
+						if (col.GetComponent<HatLogic> ()) 
+						{
+							if (col.GetComponent<HatLogic> ().onHead == true) 
+							{
+								col.GetComponent<HatLogic> ().takeOffHat();
+							}
+						}
                     }
                 }
             }
@@ -90,20 +93,11 @@ public class PickupParent : MonoBehaviour
 
      void tossObject(Rigidbody rigidBody)
     {
-        // If condition is true, first expression evaluated, result becomes return. If it evaluates as false, the second object is assigned.
-        // Short form of if/else
-        Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
-        if (origin != null)
-        {
-            rigidBody.velocity = origin.TransformVector(device.velocity);
-            rigidBody.angularVelocity = origin.TransformVector(device.angularVelocity);
-        }
-
-        else
-        {
-            rigidBody.velocity = device.velocity;
-            rigidBody.angularVelocity = device.angularVelocity;
-        }
+			grabbed.GetComponent<Rigidbody>().isKinematic = false;
+			grabbed.gameObject.transform.SetParent(null);
+			holdable.held = false;
+			holdable = null;
+			grabbed = null;
     }
 
 
