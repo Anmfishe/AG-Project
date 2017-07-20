@@ -5638,6 +5638,11 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114984566822774286, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
+        type: 2}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 1726188568}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_IsPrefabParent: 0
@@ -10288,6 +10293,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1694866349}
   m_Mesh: {fileID: 0}
+--- !u!114 &1726188568 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114225620880816228, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
+    type: 2}
+  m_PrefabInternal: {fileID: 934776342}
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
 --- !u!43 &1734673128
 Mesh:
   m_ObjectHideFlags: 0
