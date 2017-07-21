@@ -7,6 +7,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 {
 	public PlayerClass playerClass;
 
+	private BookLogic bookLogic;
 	private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
@@ -28,6 +29,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Use this for initialization
     void Start()
     {
+		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 
         //Get camera rig if this object belogns to the client.
         if (photonView.isMine)
@@ -174,7 +176,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
-	void SetClass(PlayerClass pc)
+	public void SetClass(PlayerClass pc)
 	{
 		playerClass = pc;
 
@@ -183,6 +185,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 			if (photonView.isMine) {
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
+				bookLogic.UpdateUI ();
 			}
 		} else 
 		{
@@ -190,6 +193,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 			{
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = true;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = true;
+				cameraRig.GetComponent<PlatformController> ().enabled = true;
+				bookLogic.UpdateUI ();
 			}
 		}
 	}

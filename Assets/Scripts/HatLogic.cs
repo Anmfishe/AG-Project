@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerClass {none, attack, heal, support}; 
+public enum PlayerClass {none, attack, heal, support, all}; 
 
 public class HatLogic : MonoBehaviour {
 
@@ -44,8 +44,7 @@ public class HatLogic : MonoBehaviour {
             this.transform.SetParent(other.gameObject.transform);
             this.GetComponent<Rigidbody>().isKinematic = true;
 			torso = other.transform.parent.Find ("Torso").gameObject;
-			torso.GetComponent<PlayerStatus>().playerClass = playerClass;
-
+			torso.GetComponent<PlayerStatus>().SetClass(playerClass);
 
             // Search for the child hat in player
             foreach (Transform child in other.transform) if (child.CompareTag("findHat"))
@@ -103,12 +102,8 @@ public class HatLogic : MonoBehaviour {
 	public void resetHat()
 	{
 		//print(onHead +" " + wand.inHand);
-		print("reset");
 		gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;
-
-		//print("recent position is: " + gameObject.transform.position);
-		//gameObject.transform.rotation = hatStart.transform.rotation;
 
 	}
 
@@ -117,9 +112,11 @@ public class HatLogic : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (GameObject.Find ("Controller (right)") == null)
+			return;
+		
 		wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
 		resettable = !onHead && !wand.inHand;
-		print("timer is " + timer + " " + resettable);
 
 		if (resettable && timer < 2)
 		{
