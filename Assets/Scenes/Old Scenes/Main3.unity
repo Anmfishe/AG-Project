@@ -324,8 +324,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 4
+  instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!4 &113322063 stripped
@@ -1432,6 +1432,7 @@ MonoBehaviour:
   target: {fileID: 0}
   avatar: {fileID: 0}
   torso: {fileID: 0}
+  playerStatus: {fileID: 0}
   blue: 0
   hasSpell: 0
   currentSpell: {fileID: 0}
@@ -11493,6 +11494,16 @@ Prefab:
       propertyPath: localPlayer
       value: 
       objectReference: {fileID: 207178182}
+    - target: {fileID: 114000597212048696, guid: 93b54a60eba568e44acad45e6495cd3b,
+        type: 2}
+      propertyPath: viewIdField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000597212048696, guid: 93b54a60eba568e44acad45e6495cd3b,
+        type: 2}
+      propertyPath: instantiationId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
   m_IsPrefabParent: 0

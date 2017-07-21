@@ -99,7 +99,6 @@ public class TeamManager : MonoBehaviour {
         blue = false;
 
         Respawn();
-
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach (TeamSetter ts in children)
         {
@@ -116,16 +115,13 @@ public class TeamManager : MonoBehaviour {
     {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
-        cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
-        print("CAMERA " + cameraRig);
-
-        if (blue == false)
+        if (blue)
         {
-            cameraRig.transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
+            GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PlatformController>().SetPlatform(blueSquares[Random.Range(0, blueSquares.Length - 1)].transform);
         }
         else
         {
-            cameraRig.transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
+            GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PlatformController>().SetPlatform(redSquares[Random.Range(0, redSquares.Length - 1)].transform);
         }
     }
 
