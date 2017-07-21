@@ -49,7 +49,7 @@ public class PickupParent : MonoBehaviour
 	void Update()
 	{
 		// Drop object
-		if (Input.GetKeyDown("joystick button 15") && ((Time.time - pickupTime)> .2f))
+		if (Input.GetKeyUp("joystick button 15"))
 		{
 			if (grabbed != null) 
 			{

@@ -147,17 +147,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
 		case "Fire":
-			if ((playerStatus.playerClass == PlayerClass.attack) || noHats == true) {
+			if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (fireball, "fire", fireballGradient);
 			}
                 break;
 		case "Shield":
-			if (playerStatus.playerClass == PlayerClass.support || noHats == true) {
+			if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (shield, "shield", shieldGradient);
 			}
                 break;
 		case "Heal":
-			if (playerStatus.playerClass == PlayerClass.heal || noHats == true) {
+			if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (heal, "heal", healGradient);
 			}
                 break;

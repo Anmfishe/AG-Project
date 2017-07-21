@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 114273605593245876}
   - component: {fileID: 82571775678770644}
   - component: {fileID: 114700496353723056}
+  - component: {fileID: 114353675334571242}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -5233,7 +5234,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5871,14 +5872,14 @@ MonoBehaviour:
   size: 0
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.0500004, y: 0.01, z: -0.90000033}
-  - {x: -1.0500004, y: 0.01, z: -0.90000033}
-  - {x: -1.0500004, y: 0.01, z: 0.90000033}
-  - {x: 1.0500004, y: 0.01, z: 0.90000033}
-  - {x: 1.2000004, y: 0.01, z: -1.0500003}
-  - {x: -1.2000004, y: 0.01, z: -1.0500003}
-  - {x: -1.2000004, y: 0.01, z: 1.0500003}
-  - {x: 1.2000004, y: 0.01, z: 1.0500003}
+  - {x: 1.25, y: 0.01, z: -0.95000017}
+  - {x: -1.25, y: 0.01, z: -0.95000017}
+  - {x: -1.25, y: 0.01, z: 0.95000017}
+  - {x: 1.25, y: 0.01, z: 0.95000017}
+  - {x: 1.4, y: 0.01, z: -1.1000001}
+  - {x: -1.4, y: 0.01, z: -1.1000001}
+  - {x: -1.4, y: 0.01, z: 1.1000001}
+  - {x: 1.4, y: 0.01, z: 1.1000001}
 --- !u!114 &114000011515022730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5890,7 +5891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: -1
+  index: 2
   origin: {fileID: 0}
   isValid: 0
 --- !u!114 &114000011534143366
@@ -6078,7 +6079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: -1
+  index: 1
   origin: {fileID: 0}
   isValid: 0
 --- !u!114 &114000012420405456
@@ -6696,6 +6697,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0893f0c8a7712e8458dc3722eef95aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114353675334571242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010207334600}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b751a2d4575ef3d4c9f7b4e09e602861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currPlatform: {fileID: 0}
+  avatar: {fileID: 0}
+  useRight: 1
+  useLeft: 1
+  CD: 1
+  cd_Sound: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
 --- !u!114 &114386419681534186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6731,6 +6749,7 @@ MonoBehaviour:
   button: {fileID: 0}
   buttonAnim: {fileID: 0}
   ball: {fileID: 0}
+  inHand: 0
 --- !u!114 &114429847305018198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6775,7 +6794,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
   m_Name: 
@@ -6919,7 +6938,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba6cccb8c1e4cc479ea25bf5858d3a5, type: 3}
   m_Name: 
@@ -7055,6 +7074,7 @@ MonoBehaviour:
   target: {fileID: 0}
   avatar: {fileID: 0}
   torso: {fileID: 0}
+  playerStatus: {fileID: 0}
   blue: 0
   hasSpell: 0
   currentSpell: {fileID: 0}
@@ -7219,7 +7239,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136052639779388376
 CapsuleCollider:

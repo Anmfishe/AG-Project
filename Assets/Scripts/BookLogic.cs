@@ -1,24 +1,13 @@
-﻿namespace VRTK
-{
+﻿
 
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
-    public struct PanelMenuItemControllerEventArgs
-    {
-        public GameObject interactableObject;
-    }
-
-    /// <summary>
-    /// Event Payload
-    /// </summary>
-    /// <param name="sender">this object</param>
-    /// <param name="e"><see cref="PanelMenuItemControllerEventArgs"/></param>
-    public delegate void PanelMenuItemControllerEventHandler(object sender, PanelMenuItemControllerEventArgs e);
-
     public class BookLogic : MonoBehaviour
     {
+		private PlayerStatus playerStatus; 
+		private PlayerClass playerClass;
         GameObject page;
         public Material[] pages;
         Renderer rend;
@@ -40,11 +29,17 @@
         // Use this for initialization
         void Start()
         {
+			playerStatus = transform.parent.parent.GetComponentInChildren<PlayerStatus> ();
+			print ("PLAYER" + playerStatus);
+
             if (transform.GetChild(1)!= null)
             {
+					
                 page = this.gameObject.transform.GetChild(1).gameObject;
                 rend = page.GetComponent<Renderer>();
-                rend.material = pages[index];
+                
+
+				rend.material = pages [pages.Length-1];
                 animator = GetComponent<Animator>();
             }
             //page.Set
@@ -53,12 +48,10 @@
 
         public void SwipeLeft()
         {
-            print("cool");
         }
 
         public virtual void SwipeLeft(GameObject interactableObject)
         {
-            print("ohboy");
             //OnPanelMenuItemSwipeLeft(SetPanelMenuItemEvent(interactableObject));
         }
 
@@ -146,7 +139,7 @@
             }
             else
             {
-                index = pages.Length - 1;
+                index = pages.Length - 2;
             }
             if (animator)
                 animator.SetTrigger("FlipRight");
@@ -155,7 +148,7 @@
 
         void FlipLeft()
         {
-            if (index < (pages.Length - 1))
+            if (index < (pages.Length - 2))
             {
                 index += 1;
             }
@@ -168,9 +161,33 @@
            // UpdateUI();
         }
 
-        void UpdateUI()
+        public void UpdateUI()
         {
-            rend.material = pages[index];
+			playerClass = playerStatus.playerClass;
+
+			if (playerClass == PlayerClass.all) 
+			{
+				rend.material = pages[index];	
+			}
+
+			else if (playerClass == PlayerClass.none) 
+			{
+				rend.material = pages[pages.Length-1];
+			}
+
+			else if (playerClass == PlayerClass.attack) 
+			{
+				rend.material = pages[0];
+			}
+
+			else if (playerClass == PlayerClass.support)
+			{
+				rend.material = pages[2];
+			}
+
+			else if (playerClass == PlayerClass.heal) 
+			{
+				rend.material = pages[1];
+			}
         }
     }
-}
