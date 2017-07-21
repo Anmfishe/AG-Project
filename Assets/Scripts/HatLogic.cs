@@ -9,6 +9,22 @@ public class HatLogic : MonoBehaviour {
 	public PlayerClass playerClass = PlayerClass.none;
 	private GameObject torso;
 	public bool onHead = false;
+    public bool resettable = false;
+    float timer;
+    Vector3 startPosition;
+    Quaternion startRotation;
+
+    PickupParent wand;
+
+    // Use this for initialization
+    public void Start()
+    {
+        timer = 0;
+        
+        startPosition = gameObject.transform.position;
+        startRotation = gameObject.transform.rotation;
+       // print("start position is: " + startPosition);
+    }
 
     // Detect the collision of hat and head
     void OnCollisionEnter(Collision other)
@@ -41,12 +57,51 @@ public class HatLogic : MonoBehaviour {
 		print ("yee");
 	}
 
-    // Use this for initialization
-    void Start () {
-	}
+    //public void lockHat()
+
+    //{
+    //    if(onHead)
+    //    {
+            
+    //    }
+    //}
+
+    public void resetHat()
+    {
+        //print(onHead +" " + wand.inHand);
+        print("reset");
+            gameObject.transform.position = startPosition;
+            gameObject.transform.rotation = startRotation;
+
+            //print("recent position is: " + gameObject.transform.position);
+            //gameObject.transform.rotation = hatStart.transform.rotation;
+            
+    }
+
+   
+   
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
+        resettable = !onHead && !wand.inHand;
+        print("timer is " + timer + " " + resettable);
+        
+        if (resettable && timer < 2)
+        {
+            timer += Time.deltaTime;
+        }
+        
+
+        if (resettable && timer >= 2)
+        {
+            resetHat();
+            resettable = false;
+        }
+
+        if (!resettable)
+        {
+            timer = 0;
+        }
+    }
 }

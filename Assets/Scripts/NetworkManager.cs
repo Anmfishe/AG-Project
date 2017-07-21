@@ -11,6 +11,8 @@ public class NetworkManager : Photon.PunBehaviour
 
     public GameObject avatar;
     public GameObject scoreboard;
+    public bool isOffline;
+
     private Transform localPlayer;
 
     bool isConnecting;
@@ -29,6 +31,8 @@ public class NetworkManager : Photon.PunBehaviour
         // #Critical
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.automaticallySyncScene = true;
+
+        PhotonNetwork.offlineMode = isOffline;
 
         Connect();
     }

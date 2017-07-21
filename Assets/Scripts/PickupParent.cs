@@ -39,6 +39,8 @@ public class PickupParent : MonoBehaviour
     public Transform ball;
     private bool endingPlayed;
 
+    public bool inHand = false;
+
     void Awake()
     {
     }
@@ -47,11 +49,12 @@ public class PickupParent : MonoBehaviour
     void Update()
     {
 		// Drop object
-        if (Input.GetKeyDown("joystick button 17") && ((Time.time - pickupTime)> .2f))
+        if (Input.GetKeyDown("joystick button 15") && ((Time.time - pickupTime)> .2f))
         {
 			if (grabbed != null) 
 			{
 				tossObject (grabbed.GetComponent<Rigidbody>());
+                inHand = false;
 			}
         }
     }
@@ -61,13 +64,18 @@ public class PickupParent : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
 
-            if (Input.GetKeyDown("joystick button 17"))
+            if (Input.GetKeyDown("joystick button 15"))
             {
             if (col.tag == "Grabbable" && grabbed == null)
             {
-                if (col.GetComponent<Holdable>())
+                if (col.GetComponent<HatLogic>())
+                {
+                    if (col.GetComponent<HatLogic>().onHead == false)
+                    {
+                        if (col.GetComponent<Holdable>())
                 {
                     holdable = col.GetComponent<Holdable>();
+                    inHand = true;
 
                     if (holdable.held == false)
                     {
@@ -76,12 +84,8 @@ public class PickupParent : MonoBehaviour
                         grabbed = col.gameObject;
                         holdable = col.GetComponent<Holdable>();
                         holdable.held = true;
-                        pickupTime = Time.time;
+                        pickupTime = Time.time;						
 
-						if (col.GetComponent<HatLogic> ()) 
-						{
-							if (col.GetComponent<HatLogic> ().onHead == true) 
-							{
 								col.GetComponent<HatLogic> ().takeOffHat();
 							}
 						}
