@@ -11,6 +11,8 @@ public class HatLogic : MonoBehaviour {
 	public Material healerMat;
 	public Material supportMat;
 
+	PhotonView photonView;
+
 	private Renderer rend;
 
 	public PlayerClass playerClass = PlayerClass.none;
@@ -62,6 +64,11 @@ public class HatLogic : MonoBehaviour {
 		onHead = false;
 		//torso.GetComponent<PlayerStatus> ().setClass(PlayerClass.none);
 	}
+		
+	public void callSetClass(PlayerClass pc)
+	{
+		photonView.RPC("setClass", PhotonTargets.AllBuffered, pc);
+	}
 
 	[PunRPC]
 	public void setClass(PlayerClass pc)
@@ -85,6 +92,7 @@ public class HatLogic : MonoBehaviour {
 		
 	void Awake()
 	{
+		photonView = GetComponent<PhotonView> ();
 		rend = GetComponent<Renderer> ();
 	}
 	
