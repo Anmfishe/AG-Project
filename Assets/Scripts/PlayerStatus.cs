@@ -112,6 +112,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (dead == false)
         {
             current_health -= damage;
+            print("took damage, health = " + current_health);
             psm.PlayerHurt();
         }
 

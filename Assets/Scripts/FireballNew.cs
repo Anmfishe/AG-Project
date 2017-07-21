@@ -19,17 +19,19 @@ public class FireballNew : MonoBehaviour
     [HideInInspector]
     public bool isSlave;
 
-    [SerializeField]
+//    [SerializeField]
     private float activeTimer = 0;
-    [SerializeField]
+//    [SerializeField]
     private SphereCollider fbCollider;
     // Use this for initialization
     void Start()
     {
         //Destroy(this.gameObject, duration);
         if (startup > 0) activeTimer = startup;
-        if(fbCollider == null) this.GetComponent<SphereCollider>();
-        if (audioSource == null) this.GetComponent<AudioSource>();
+        if(fbCollider == null) fbCollider = this.GetComponent<SphereCollider>();
+        if (audioSource == null) audioSource = this.GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame
@@ -140,7 +142,7 @@ public class FireballNew : MonoBehaviour
     private void DestroyFireball()
     {
         //Destroy game object.
-        PhotonNetwork.Destroy(this.gameObject);
+//        PhotonNetwork.Destroy(this.gameObject);
         Destroy(this.gameObject);
     }
 

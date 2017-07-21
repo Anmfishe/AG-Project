@@ -359,7 +359,6 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114248342134202918}
-  - {fileID: 114786413410599660}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -388,8 +387,6 @@ MonoBehaviour:
   deflectAudio: {fileID: 8300000, guid: 106c7955ff9e5de4d96f942a90c85c2b, type: 3}
   isMaster: 0
   isSlave: 0
-  activeTimer: 0
-  fbCollider: {fileID: 135854552206161194}
 --- !u!135 &135849509132663130
 SphereCollider:
   m_ObjectHideFlags: 1

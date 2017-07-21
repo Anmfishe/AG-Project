@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33748248316048046}
   - component: {fileID: 64875720677096558}
   - component: {fileID: 23425320005167620}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: PageFlip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 23935385408233406}
   - component: {fileID: 114603536987226672}
   - component: {fileID: 95257665515966538}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: SpellBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 33895405115670182}
   - component: {fileID: 64185880415850910}
   - component: {fileID: 23612026920815458}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: RightPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 33718376262244624}
   - component: {fileID: 64777140900077712}
   - component: {fileID: 23028897892111942}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: PageFlip (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 33038132478895668}
   - component: {fileID: 64949830691749630}
   - component: {fileID: 23815414661088790}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: LeftPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

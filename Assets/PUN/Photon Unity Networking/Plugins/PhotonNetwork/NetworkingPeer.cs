@@ -3310,7 +3310,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         {
             if (!viewZero.isMine)
             {
-                Debug.LogError("Failed to 'network-remove' GameObject. Client is neither owner nor masterClient taking over for owner who left: " + viewZero);
+
                 return;
             }
 
