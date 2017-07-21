@@ -12,6 +12,7 @@ public class NetworkManager : Photon.PunBehaviour
     public GameObject avatar;
     public GameObject scoreboard;
     public Transform localPlayer;
+    public GameObject roundMan;
 
     bool isConnecting;
     private int blues = 0;
@@ -110,9 +111,11 @@ public class NetworkManager : Photon.PunBehaviour
         Debug.LogError("DemoAnimator/Launcher:Disconnected");
 
         isConnecting = false;
+        
 
     }
 
+    
     /// <summary>
     /// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client).
     /// </summary>
@@ -151,6 +154,15 @@ public class NetworkManager : Photon.PunBehaviour
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        
+        
+        
+        // creating round manager
+        if (PhotonNetwork.isMasterClient)
+            roundMan = PhotonNetwork.Instantiate(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+
+        //subscribing to observer
+//        roundMan.GetComponent<RoundManager>().Subscribe(avatar);
     }
 
     /// <summary>
@@ -178,4 +190,6 @@ public class NetworkManager : Photon.PunBehaviour
     {
         
     }
+
+
 }

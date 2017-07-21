@@ -18,6 +18,8 @@ TagManager:
   - Shield
   - SpellHitter
   - CameraRig
+  - PenaltyBox
+  - HatRoom
   layers:
   - Default
   - TransparentFX
