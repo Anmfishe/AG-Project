@@ -237,14 +237,19 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             player.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
         }
+		print ("round restarted");
+		cameraRig = Camera.main.transform.parent.gameObject;
 
         cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
         cameraRig.GetComponent<PlatformController>().enabled = false;
         cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
 
-
         bookLogic.UpdateUI();
+
+		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
+		print ("Scoreboard " +  myScoreboard.roundOver);
+
     }
 
 	public void SetClass(PlayerClass pc)
