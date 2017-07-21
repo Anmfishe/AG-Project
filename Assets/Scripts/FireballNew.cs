@@ -111,6 +111,11 @@ public class FireballNew : MonoBehaviour
                 DestroyFireball();
                 if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
             }
+            else
+            {
+                //Hurt asshole player.
+                this.transform.parent.GetComponentInChildren<PlayerStatus>().takeDamage(damage);
+            }
         }
 
     }
