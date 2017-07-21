@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31773b00ca743478faeba0450d9bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
+  fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
+  timeInt: 3
