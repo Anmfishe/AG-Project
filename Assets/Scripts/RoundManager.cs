@@ -11,7 +11,7 @@ public class RoundManager : MonoBehaviour {
 	public int maxScore = 3;
 	public bool isScoreBased = true;
     private float timeElapsed;
-    private bool inBattlefield;
+    private bool inBattlefield = true;
     private bool hatsSelected = false;
     private GameObject[] playerRigs;
     private GameObject[] playerPCP;
@@ -45,6 +45,8 @@ public class RoundManager : MonoBehaviour {
 			}
 			if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
 			{
+				print (scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
+				print ("ROUND HAS ENDED");
                 EndRound();
 			}
         }
@@ -81,9 +83,10 @@ public class RoundManager : MonoBehaviour {
 //			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
         ChooseHats();
         ShowScoreboard();
-        inBattlefield = false;
+ //       inBattlefield = false;
 		scoreboard.Reset ();
 		timeElapsed = 0;
+		print ("END OF ENDROUND");
     }
 
     void StartRound()

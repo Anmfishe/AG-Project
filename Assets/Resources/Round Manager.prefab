@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df33a287b16e944d9060230d362af5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  penaltyBox: {fileID: 0}
+  hatRoom: {fileID: 0}
   roundTime: 120
-  maxScore: 0
+  isTimeBased: 0
+  maxScore: 3
+  isScoreBased: 1

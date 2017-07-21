@@ -48,4 +48,5 @@ MonoBehaviour:
   - SetRed2
   - setClass
   - SetMat
+  - ResetScoreboard
   DisableAutoOpenWizard: 1

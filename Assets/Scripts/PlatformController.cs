@@ -37,8 +37,9 @@ public class PlatformController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		
 
-        if ((device1.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)))
+        if ((device1 != null && device1.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)))
         {
             if (!canMove)
             {
@@ -98,7 +99,7 @@ public class PlatformController : MonoBehaviour {
                 }
             }
         }
-        else if (device2.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        else if (device2 != null && device2.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             if (!canMove)
             {

@@ -7,7 +7,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 {
 	public PlayerClass playerClass;
 
+	private GameObject[] hats;
+	private GameObject[] players;
+
 	private BookLogic bookLogic;
+
 	private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
@@ -19,6 +23,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float deathTime = 0f;
     public float respawnLength = 2f;
 
+	ScoreboardUpdater myScoreboard;
+
     PhotonView self_photonview;
 
 
@@ -29,6 +35,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Use this for initialization
     void Start()
     {
+		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
+		hats = GameObject.FindGameObjectsWithTag("Grabbable");
+
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 
         //Get camera rig if this object belogns to the client.
@@ -60,7 +69,13 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             {
                 if (photonView.isMine)
                 {
-                    deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
+					myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+
+					if (myScoreboard.roundOver == false)
+						deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
+
+					else
+						deadText.text = "The round is over.";
                 }
             }
         }
@@ -161,6 +176,22 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
+	[PunRPC]
+	void ResetScoreboard()
+	{
+		//Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+		ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+
+		//Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+
+		if (scoreboard == null)
+		{
+			Debug.Log("SCOREBOARD UPDATER IS NULL!");
+		}
+
+			scoreboard.Reset();
+	}
+
     //Reset health and move Player to respawn area.
     void Respawn()
     {
@@ -170,9 +201,40 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
         {
+			myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
-            this.transform.parent.GetComponent<TeamManager>().Respawn();
-            deadText.gameObject.SetActive(false);
+			if (myScoreboard.roundOver == false) {
+				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
+			} else 
+			{
+				self_photonview.RPC ("ResetScoreboard", PhotonTargets.All, null);
+
+				foreach (GameObject hat in hats)
+				{
+					hat.transform.SetParent (null);
+					hat.GetComponent<HatLogic> ().resetHat ();
+					hat.GetComponent<HatLogic> ().onHead = false;
+					hat.GetComponent<HatLogic> ().resettable = true;
+				}
+
+				players = GameObject.FindGameObjectsWithTag ("PCP");
+
+				foreach (GameObject player in players) 
+				{
+					player.GetComponentInChildren<PlayerStatus> ().playerClass = PlayerClass.none;
+				}
+
+				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
+				cameraRig.GetComponent<PlatformController> ().enabled = false;
+				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
+
+
+				bookLogic.UpdateUI ();
+				myScoreboard.roundOver = false;
+			}
+			
+			deadText.gameObject.SetActive (false);
+
         }
     }
 

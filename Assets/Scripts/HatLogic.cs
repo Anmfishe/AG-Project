@@ -101,6 +101,7 @@ public class HatLogic : MonoBehaviour {
 
 	public void resetHat()
 	{
+		this.GetComponent<Rigidbody>().isKinematic = false;
 		//print(onHead +" " + wand.inHand);
 		gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;

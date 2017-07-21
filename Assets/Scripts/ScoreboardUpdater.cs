@@ -28,9 +28,17 @@ public class ScoreboardUpdater : MonoBehaviour {
     public int red_score;
 	public int blue_score;
 
+	public bool roundOver = false;
+
 	// Use this for initialization
 	void Start () {
-		Reset ();
+		red_score_for_red_view.GetComponent<TextMesh> ().text = "0";
+		blue_score_for_red_view.GetComponent<TextMesh> ().text = "0";
+		red_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
+		blue_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
+
+		red_score = 0;
+		blue_score = 0;
 	}
 	
 	// Update is called once per frame
@@ -47,6 +55,7 @@ public class ScoreboardUpdater : MonoBehaviour {
 
 		red_score = 0;
 		blue_score = 0;
+		roundOver = true;
 	}
 
 	public void IncrementRedScore()
