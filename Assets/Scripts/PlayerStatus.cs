@@ -174,6 +174,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
+	void SetClass(PlayerClass pc)
+	{
+	
+		playerClass = pc;
+	}
+
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // If you own the game object
