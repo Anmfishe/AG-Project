@@ -22,4 +22,9 @@ public class PlayerSoundManager : MonoBehaviour {
         if(!GetComponent<AudioSource>().isPlaying)
             GetComponent<AudioSource>().PlayOneShot(hurt);
     }
+
+    public void PlayRechargeSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(recharge);
+    }
 }
