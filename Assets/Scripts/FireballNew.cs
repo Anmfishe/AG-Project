@@ -12,6 +12,8 @@ public class FireballNew : MonoBehaviour
     public float startup = 0.125f;
     public float minLinearVelocity = 5f;
     public float minAngularVelocity = 20f;
+    public AudioSource audioSource;
+    public AudioClip deflectAudio;
     [HideInInspector]
     public bool isMaster;
     [HideInInspector]
@@ -26,7 +28,8 @@ public class FireballNew : MonoBehaviour
     {
         //Destroy(this.gameObject, duration);
         if (startup > 0) activeTimer = startup;
-        fbCollider = this.GetComponent<SphereCollider>();
+        if(fbCollider == null) this.GetComponent<SphereCollider>();
+        if (audioSource == null) this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -104,8 +107,9 @@ public class FireballNew : MonoBehaviour
                 //StartRecovery();
                 //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
                 fbCollider.enabled = false;
-                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.position * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.forward * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
                 DestroyFireball();
+                if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
             }
         }
 
