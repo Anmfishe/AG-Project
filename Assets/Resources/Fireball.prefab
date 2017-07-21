@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 135854552206161194}
   - component: {fileID: 114775295234517056}
   - component: {fileID: 114248342134202918}
-  - component: {fileID: 54454870316393008}
+  - component: {fileID: 54491022256919336}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Spell
@@ -177,7 +177,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279177223335786}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54454870316393008
+--- !u!54 &54491022256919336
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -277,8 +277,8 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114786413410599660}
-  - {fileID: 0}
+  - {fileID: 114248342134202918}
+  - {fileID: 114248342134202918}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
-  damage: 50
+  damage: 20
   duration: 12
   direction: {x: 0, y: 0, z: 0}
   speed: 10
@@ -306,7 +306,7 @@ MonoBehaviour:
   isMaster: 0
   isSlave: 0
   activeTimer: 0
-  collider: {fileID: 135854552206161194}
+  fbCollider: {fileID: 135854552206161194}
 --- !u!135 &135849509132663130
 SphereCollider:
   m_ObjectHideFlags: 1

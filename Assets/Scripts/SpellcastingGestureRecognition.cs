@@ -35,6 +35,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public bool blue = false;
 
+    public bool noHats = true;
     //public AudioClip spell_deflected;
     //--->Private Vars<---//
     Camera mainCam;
@@ -146,17 +147,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
 		case "Fire":
-			if (playerStatus.playerClass == PlayerClass.attack) {
+			if ((playerStatus.playerClass == PlayerClass.attack) || noHats == true) {
 				SetSpell (fireball, "fire", fireballGradient);
 			}
                 break;
 		case "Shield":
-			if (playerStatus.playerClass == PlayerClass.support) {
+			if (playerStatus.playerClass == PlayerClass.support || noHats == true) {
 				SetSpell (shield, "shield", shieldGradient);
 			}
                 break;
 		case "Heal":
-			if (playerStatus.playerClass == PlayerClass.heal) {
+			if (playerStatus.playerClass == PlayerClass.heal || noHats == true) {
 				SetSpell (heal, "heal", healGradient);
 			}
                 break;

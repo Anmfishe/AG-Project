@@ -39,11 +39,13 @@ public class FireballNew : MonoBehaviour
         else if (!fbCollider.enabled)
             fbCollider.enabled = true;
 
-        this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
         //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * speed * Time.deltaTime, ForceMode);
         //this.GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
     }
-
+    private void FixedUpdate()
+    {
+        this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
@@ -102,7 +104,7 @@ public class FireballNew : MonoBehaviour
                 //StartRecovery();
                 //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
                 fbCollider.enabled = false;
-                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.position * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
                 DestroyFireball();
             }
         }
