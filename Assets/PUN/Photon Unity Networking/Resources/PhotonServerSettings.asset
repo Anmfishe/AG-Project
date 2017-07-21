@@ -49,4 +49,5 @@ MonoBehaviour:
   - setClass
   - SetMat
   - ResetScoreboard
+  - RestartRound
   DisableAutoOpenWizard: 1

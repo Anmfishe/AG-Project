@@ -178,7 +178,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
-	[PunRPC]
+//	[PunRPC]
 	void ResetScoreboard()
 	{
 		//Why are we assigning this on runtime? It could be assigned through the NetworkManager.
@@ -209,35 +209,42 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
 			} else 
 			{
-				self_photonview.RPC ("ResetScoreboard", PhotonTargets.All, null);
-
-				foreach (GameObject hat in hats)
-				{
-					hat.transform.SetParent (null);
-					hat.GetComponent<HatLogic> ().resetHat ();
-					hat.GetComponent<HatLogic> ().onHead = false;
-					hat.GetComponent<HatLogic> ().resettable = true;
-				}
-
-				players = GameObject.FindGameObjectsWithTag ("PCP");
-
-				foreach (GameObject player in players) 
-				{
-					player.GetComponentInChildren<PlayerStatus> ().playerClass = PlayerClass.none;
-				}
-
-				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
-				cameraRig.GetComponent<PlatformController> ().enabled = false;
-				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
-
-
-				bookLogic.UpdateUI ();
-				myScoreboard.roundOver = false;
+                self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
 			}
 			
 			deadText.gameObject.SetActive (false);
 
         }
+    }
+
+    [PunRPC]
+    public void RestartRound()
+    {
+        //        self_photonview.RPC("ResetScoreboard", PhotonTargets.All, null);
+        ResetScoreboard();
+
+        foreach (GameObject hat in hats)
+        {
+            hat.transform.SetParent(null);
+            hat.GetComponent<HatLogic>().resetHat();
+            hat.GetComponent<HatLogic>().onHead = false;
+            hat.GetComponent<HatLogic>().resettable = true;
+        }
+
+        players = GameObject.FindGameObjectsWithTag("PCP");
+
+        foreach (GameObject player in players)
+        {
+            player.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
+        }
+
+        cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+        cameraRig.GetComponent<PlatformController>().enabled = false;
+        cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+
+
+        bookLogic.UpdateUI();
+        myScoreboard.roundOver = false;
     }
 
 	public void SetClass(PlayerClass pc)

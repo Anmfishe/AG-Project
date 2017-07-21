@@ -107,7 +107,6 @@ public class FireballNew : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        /*
         GameObject other = collider.gameObject;
         print("Triggered (heh) by " + other.name);
         if (other.CompareTag("SpellHitter"))
@@ -131,8 +130,6 @@ public class FireballNew : MonoBehaviour
             }
 
         }
-        */
-
     }
     private void StartRecovery()
     {
