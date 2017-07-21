@@ -145,14 +145,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         switch (gestureName)
         {
-            case "Fire":
-                SetSpell(fireball, "fire", fireballGradient);
+		case "Fire":
+			if (playerStatus.playerClass == PlayerClass.attack) {
+				SetSpell (fireball, "fire", fireballGradient);
+			}
                 break;
-            case "Shield":
-                SetSpell(shield, "shield", shieldGradient);
+		case "Shield":
+			if (playerStatus.playerClass == PlayerClass.support) {
+				SetSpell (shield, "shield", shieldGradient);
+			}
                 break;
-            case "Heal":
-                SetSpell(heal, "heal", healGradient);
+		case "Heal":
+			if (playerStatus.playerClass == PlayerClass.heal) {
+				SetSpell (heal, "heal", healGradient);
+			}
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
@@ -189,10 +195,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
 		case "fire":
 			Quaternion spellRotation = target.result != null ? Quaternion.LookRotation (target.result.position - wandTip.transform.position) : wandTip.rotation;
-
-			if (playerStatus.playerClass == PlayerClass.attack) {
 				spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
-			}
                 spellTimer = fireballCooldown;
                 break;
             case "shield":

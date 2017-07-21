@@ -1046,7 +1046,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
   m_Name: 
@@ -1176,7 +1176,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba6cccb8c1e4cc479ea25bf5858d3a5, type: 3}
   m_Name: 
@@ -5505,6 +5505,7 @@ MonoBehaviour:
   button: {fileID: 0}
   buttonAnim: {fileID: 0}
   ball: {fileID: 0}
+  inHand: 0
 --- !u!135 &908663070
 SphereCollider:
   m_ObjectHideFlags: 0

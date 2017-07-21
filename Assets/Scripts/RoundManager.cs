@@ -17,6 +17,7 @@ public class RoundManager : MonoBehaviour {
     void Start () {
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
         FindPlayers();
+		ChooseHats ();
     }
 	
 	// Update is called once per frame
@@ -33,11 +34,11 @@ public class RoundManager : MonoBehaviour {
         {
             foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
             {
-                /*
-                if playerRCP.playerClass == none
+                
+				if (playerRCP.GetComponentInChildren<PlayerStatus>().playerClass == PlayerClass.none)
                     break;
                 hatsSelected = true;   
-             */
+             
             }
         }
         else if(hatsSelected && !inBattlefield)
@@ -79,7 +80,7 @@ public class RoundManager : MonoBehaviour {
         FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-            player.GetComponent<Transform>().SetPositionAndRotation(hatRoom.position, hatRoom.rotation);
+			player.GetComponent<Transform>().SetPositionAndRotation(hatRoom.position, player.GetComponent<Transform>().rotation );
          
         }
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
