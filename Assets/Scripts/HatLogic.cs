@@ -41,8 +41,8 @@ public class HatLogic : MonoBehaviour {
     {
         if (other.gameObject.tag == "put")
         {
-          gameObject.transform.SetParent(other.gameObject.transform);
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            this.transform.SetParent(other.gameObject.transform);
+            this.GetComponent<Rigidbody>().isKinematic = true;
 			torso = other.transform.parent.Find ("Torso").gameObject;
 			torso.GetComponent<PlayerStatus>().playerClass = playerClass;
 
@@ -50,9 +50,12 @@ public class HatLogic : MonoBehaviour {
             // Search for the child hat in player
             foreach (Transform child in other.transform) if (child.CompareTag("findHat"))
             {
-                    gameObject.transform.position = child.transform.position;
-                    gameObject.transform.rotation = child.transform.rotation;
+                    this.transform.position = child.transform.position;
+                    this.transform.rotation = child.transform.rotation;
 					onHead = true;
+
+                    //Move player to battlefield.
+                    torso.GetComponentInParent<TeamManager>().Respawn();
                     //gameObject.transform.scale = child.transform.scale;
                 }
 

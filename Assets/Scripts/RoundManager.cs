@@ -72,8 +72,8 @@ public class RoundManager : MonoBehaviour {
         timeElapsed = 0;
         FindPlayers();
         //TODO send players to the battlefield
-        foreach (GameObject pl in playerPCP)
-            pl.GetComponent<TeamManager>().Respawn();
+        /*foreach (GameObject pl in playerPCP)
+            pl.GetComponent<TeamManager>().Respawn();*/
         inBattlefield = true;
     }
 

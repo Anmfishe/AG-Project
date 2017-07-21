@@ -20,13 +20,13 @@ public class FireballNew : MonoBehaviour
     [SerializeField]
     private float activeTimer = 0;
     [SerializeField]
-    private SphereCollider collider;
+    private SphereCollider fbCollider;
     // Use this for initialization
     void Start()
     {
         //Destroy(this.gameObject, duration);
         if (startup > 0) activeTimer = startup;
-        collider = this.GetComponent<SphereCollider>();
+        fbCollider = this.GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -36,12 +36,12 @@ public class FireballNew : MonoBehaviour
         //Timer to activate collider.
         if (activeTimer > 0)
             activeTimer -= Time.deltaTime;
-        else if (!collider.enabled)
-            collider.enabled = true;
+        else if (!fbCollider.enabled)
+            fbCollider.enabled = true;
 
-        //this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
+        this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
         //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * speed * Time.deltaTime, ForceMode);
-        this.GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
+        //this.GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,6 +54,9 @@ public class FireballNew : MonoBehaviour
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             if (statusScript != null) statusScript.takeDamage(damage);
+            //Instantiate new explosion.
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
             DestroyFireball();
 
         }
@@ -62,15 +65,18 @@ public class FireballNew : MonoBehaviour
             //Apply damage to the shield.
             Damageable damageScript = other.GetComponent<Damageable>();
             if (damageScript != null) damageScript.TakeDamage(damage);
+            //Instantiate new explosion.
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
             DestroyFireball();
         }
         else if (other.CompareTag("Spell"))
         {
             //Get the point between the two fireballs.
-            Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
+            //Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
 
             //Instantiate new explosion.
-            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, midpoint, new Quaternion(), 0);
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
             //Delete this game object.
             DestroyFireball();
@@ -91,12 +97,13 @@ public class FireballNew : MonoBehaviour
             if (otherBody.velocity.magnitude > minLinearVelocity || otherBody.angularVelocity.magnitude > minAngularVelocity)
             {
                 print("Invert Fireball!");
-                this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up);
-                this.GetComponent<Rigidbody>().velocity *= -1;
-                StartRecovery();
+                //this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1);
+                //this.GetComponent<Rigidbody>().velocity *= -1;
+                //StartRecovery();
                 //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
-                //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(this.transform.forward, this.transform.up), 0);
-                //DestroyFireball();
+                fbCollider.enabled = false;
+                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+                DestroyFireball();
             }
         }
 
@@ -104,11 +111,11 @@ public class FireballNew : MonoBehaviour
     private void StartRecovery()
     {
         activeTimer = startup;
-        collider.enabled = false;
+        fbCollider.enabled = false;
     }
     private void DestroyFireball()
     {
-        this.GetComponent<SphereCollider>().enabled = false;
+        //Destroy game object.
         PhotonNetwork.Destroy(this.gameObject);
         Destroy(this.gameObject);
     }
