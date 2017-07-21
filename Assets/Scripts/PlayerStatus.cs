@@ -102,6 +102,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void takeDamage(int damage)
     {
+        print("TAKING DAMAGE!");
         // Ensure that this is the active player
         if (!photonView.isMine)
         {

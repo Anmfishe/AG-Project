@@ -381,7 +381,7 @@ MonoBehaviour:
   duration: 12
   direction: {x: 0, y: 0, z: 0}
   speed: 10
-  startup: 0.125
+  startup: 0.25
   minLinearVelocity: 5
   minAngularVelocity: 20
   audioSource: {fileID: 82321788481519190}
@@ -410,7 +410,7 @@ SphereCollider:
   m_GameObject: {fileID: 1973137855731400}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.175
   m_Center: {x: 0, y: 0, z: 0}

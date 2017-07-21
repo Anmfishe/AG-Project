@@ -9,7 +9,7 @@ public class FireballNew : MonoBehaviour
     public float duration = 12f;
     public Vector3 direction; //Sets the direction to where the fireball is traveling to.
     public float speed = 10f;
-    public float startup = 0.125f;
+    public float startup = 0.25f;
     public float minLinearVelocity = 5f;
     public float minAngularVelocity = 20f;
     public AudioSource audioSource;
@@ -52,10 +52,11 @@ public class FireballNew : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
-        print("Collided by " + other.tag);
+        print("Collided by " + other.name);
 
         if (other.CompareTag("Player"))
         {
+            print("hit the body");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             if (statusScript != null) statusScript.takeDamage(damage);
@@ -65,8 +66,20 @@ public class FireballNew : MonoBehaviour
             DestroyFireball();
 
         }
+        else if(other.CompareTag("put"))
+        {
+            print("hit on head");
+            //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
+            PlayerStatus statusScript = other.transform.parent.GetComponentInChildren<PlayerStatus>();
+            if (statusScript != null) statusScript.takeDamage(damage);
+            //Instantiate new explosion.
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+            DestroyFireball();
+        }
         else if (other.CompareTag("Shield"))
         {
+            print("hit on shield");
             //Apply damage to the shield.
             Damageable damageScript = other.GetComponent<Damageable>();
             if (damageScript != null) damageScript.TakeDamage(damage);
@@ -77,6 +90,7 @@ public class FireballNew : MonoBehaviour
         }
         else if (other.CompareTag("Spell"))
         {
+            print("hit on spell");
             //Get the point between the two fireballs.
             //Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
 
@@ -91,10 +105,12 @@ public class FireballNew : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        /*
         GameObject other = collider.gameObject;
-        print("Triggered (heh) by " + other.tag);
+        print("Triggered (heh) by " + other.name);
         if (other.CompareTag("SpellHitter"))
         {
+            print("triggered spellhitter");
             //Create reflected fireball if it was hit hard enough by the spell hitter.
             Rigidbody otherBody = other.GetComponent<Rigidbody>();
 
@@ -111,12 +127,9 @@ public class FireballNew : MonoBehaviour
                 DestroyFireball();
                 if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
             }
-            else
-            {
-                //Hurt asshole player.
-                this.transform.parent.GetComponentInChildren<PlayerStatus>().takeDamage(damage);
-            }
+
         }
+        */
 
     }
     private void StartRecovery()
