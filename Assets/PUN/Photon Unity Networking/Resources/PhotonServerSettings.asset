@@ -44,4 +44,6 @@ MonoBehaviour:
   - TaggedPlayer
   - UpdateScoreboard
   - Test
+  - SetBlue2
+  - SetRed2
   DisableAutoOpenWizard: 1

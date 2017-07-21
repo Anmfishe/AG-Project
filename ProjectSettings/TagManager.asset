@@ -18,8 +18,9 @@ TagManager:
   - Shield
   - SpellHitter
   - CameraRig
-  - PenaltyBox
-  - HatRoom
+  - Grabbable
+  - put
+  - findHat
   layers:
   - Default
   - TransparentFX

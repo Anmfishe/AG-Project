@@ -154,7 +154,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
-                spellLogic.Deflect();
+                //spellLogic.Deflect();
                 //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
@@ -187,7 +187,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "fire":
                 Quaternion spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
 
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
             case "shield":
