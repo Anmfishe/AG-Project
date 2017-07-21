@@ -115,7 +115,7 @@ public class HatLogic : MonoBehaviour {
 		}
 
 
-		if (resettable && timer >= 2)
+		if (resettable && timer >= .5f)
 		{
 			resetHat();
 			resettable = false;
