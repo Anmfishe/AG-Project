@@ -114,7 +114,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             deadText.gameObject.SetActive(true);
 
             // Increment scoreboard
-            bool blueScored = ! cameraRig.GetComponent<TeamManager>().blue;
+            bool blueScored = ! this.transform.parent.GetComponent<TeamManager>().blue;
             Debug.Log("ABOUT TO RPC: BLUE SCORED " + blueScored);
             self_photonview = GetComponent<PhotonView>();
             if (blueScored)
@@ -169,7 +169,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (photonView.isMine)
         {
             // cameraRig.transform.position = respawnPt.position;
-            cameraRig.GetComponent<TeamManager>().Respawn();
+            this.transform.parent.GetComponent<TeamManager>().Respawn();
             deadText.gameObject.SetActive(false);
         }
     }

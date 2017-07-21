@@ -10,9 +10,7 @@ public class NetworkManager : Photon.PunBehaviour
     public byte maxPlayersPerRoom = 4;
 
     public GameObject avatar;
-	public GameObject hat;
     public GameObject scoreboard;
-	public Transform hatSpawn;
     private Transform localPlayer;
 
     bool isConnecting;
@@ -20,6 +18,7 @@ public class NetworkManager : Photon.PunBehaviour
     private int reds = 0;
     private int temp = 0;
     string _gameVersion = "1";
+    public GameObject roundMan; 
 
     void Awake()
     {
@@ -35,14 +34,16 @@ public class NetworkManager : Photon.PunBehaviour
     }
 
     // Use this for initialization
-    void Start () 
-	{
-    }
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
 
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void Connect()
     {
@@ -127,24 +128,22 @@ public class NetworkManager : Photon.PunBehaviour
     /// enough players are in the room to start playing.
     /// </remarks>
     public override void OnJoinedRoom()
-    {    
-
+    {
         Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
         if (PhotonNetwork.isMasterClient)
         {
-			hat = PhotonNetwork.Instantiate(this.hat.name, hatSpawn.position, Quaternion.identity, 0);
             scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
         }
-        
+
         localPlayer = Camera.main.transform;
         localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
         //avatar.GetComponent<TeamSetter>().SetTeam();
         //Debug.Log(PhotonNetwork.room.PlayerCount);
-        if(PhotonNetwork.room.PlayerCount % 2 == 0)
+        if (PhotonNetwork.room.PlayerCount % 2 == 0)
         {
             //photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
             //localPlayer.GetComponentInParent<TeamManager>().SetBlue();
@@ -157,17 +156,19 @@ public class NetworkManager : Photon.PunBehaviour
             avatar.GetComponent<TeamManager>().SetRed();
 
         }
-        
+
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        if (PhotonNetwork.isMasterClient)
+            roundMan = PhotonNetwork.Instantiate(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
     }
 
     /// <summary>
     /// Called when a Photon Player got connected. We need to then load a bigger scene.
     /// </summary>
     /// <param name="other">Other.</param>
-   
+
     public override void OnPhotonPlayerConnected(PhotonPlayer other)
     {
         Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
@@ -187,6 +188,6 @@ public class NetworkManager : Photon.PunBehaviour
     /// </summary>
     public virtual void OnLeftRoom()
     {
-        
+
     }
 }

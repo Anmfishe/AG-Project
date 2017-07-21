@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4895433860051202}
   - component: {fileID: 114651856282357092}
-  - component: {fileID: 114800557927775656}
+  - component: {fileID: 114860418825796782}
   m_Layer: 0
   m_Name: Scoreboard
   m_TagString: Scoreboard
@@ -873,13 +873,13 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114800557927775656}
+  - {fileID: 114860418825796782}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114800557927775656
+--- !u!114 &114860418825796782
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951878332566498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5a8fd00d1db294d892d05fa0bab013, type: 3}
+  m_Script: {fileID: 11500000, guid: e912ff3d14adf1949ac676d97dd0f178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   red_score_for_red_view: {fileID: 1002742624631368}

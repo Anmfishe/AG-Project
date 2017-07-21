@@ -156,7 +156,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "SwipeLeft":
                 //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
-                spellLogic.Deflect();
+                //spellLogic.Deflect();
                 //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":

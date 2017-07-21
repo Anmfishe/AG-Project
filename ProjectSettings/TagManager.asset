@@ -21,6 +21,8 @@ TagManager:
   - Grabbable
   - put
   - findHat
+  - PenaltyBox
+  - HatRoom
   layers:
   - Default
   - TransparentFX

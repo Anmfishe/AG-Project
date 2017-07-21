@@ -16,6 +16,7 @@ public class TeamManager : MonoBehaviour {
     public bool blue = false;
     PhotonView photonView;
 
+    GameObject cameraRig;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class TeamManager : MonoBehaviour {
     void Start () {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
-        
+
         //if (blue)
         //{
 
@@ -50,6 +51,7 @@ public class TeamManager : MonoBehaviour {
         //{
         //    SetRed();
         //}
+
     }
 	
 	// Update is called once per frame
@@ -76,6 +78,9 @@ public class TeamManager : MonoBehaviour {
         Debug.Log("Set Blue + " + Time.time);
         
         blue = true;
+
+        Respawn();
+
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach(TeamSetter ts in children)
         {
@@ -92,6 +97,9 @@ public class TeamManager : MonoBehaviour {
         Debug.Log("Set Red + " + Time.time);
         
         blue = false;
+
+        Respawn();
+
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach (TeamSetter ts in children)
         {
@@ -106,15 +114,21 @@ public class TeamManager : MonoBehaviour {
 
     public void Respawn()
     {
+        redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
+        blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
+        cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
+        print("CAMERA " + cameraRig);
+
         if (blue == false)
         {
-            transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
+            cameraRig.transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
         }
         else
         {
-            transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
+            cameraRig.transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
         }
     }
+
     public void SetAvatar(Transform _avatar)
     {
         avatar = _avatar;

@@ -31,37 +31,37 @@ public class SpellLogic : MonoBehaviour
 
     public void Deflect()
     {
-        //print("deflect");
-        GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
-        bool deflected = false;
-        foreach (GameObject spell in spells)
-        {
-            // Particle[] particles = spell.GetComponent<ParticleSystem>().particles;
-            ParticleSystem.Particle[] emittedParticles = new ParticleSystem.Particle[spell.GetComponent<ParticleSystem>().particleCount];
-            spell.GetComponent<ParticleSystem>().GetParticles(emittedParticles);
-
-
-
-            if ((emittedParticles.Length > 0) && Vector3.Distance(emittedParticles[0].position, mainCam.transform.position) < deflectMinDist && ((Time.time - lastDeflect > spellCooldown)))
-            {
-                //emittedParticles[0].velocity *= -1;
-                deflected = true;
-                Vector3 particlePos = emittedParticles[0].position;
-                Vector3 origPos = spell.transform.position;
-
-                GameObject spellType = spell;
-                PhotonNetwork.Destroy(spell);
-                Destroy(spell);
-
-                spellType.transform.position = particlePos;
-                spellType.transform.LookAt(origPos);
-                GameObject spellType2 = PhotonNetwork.Instantiate(fireball_Spell.name, spellType.transform.position, spellType.transform.rotation, 0);
-                lastDeflect = Time.time;
-            }
-        }
-        if (deflected)
-        {
-            audioSource.PlayOneShot(spell_deflected);
-        }
-    }
+//        //print("deflect");
+//        GameObject[] spells = GameObject.FindGameObjectsWithTag("Spell");
+//        bool deflected = false;
+//        foreach (GameObject spell in spells)
+//        {
+//            // Particle[] particles = spell.GetComponent<ParticleSystem>().particles;
+//            ParticleSystem.Particle[] emittedParticles = new ParticleSystem.Particle[spell.GetComponent<ParticleSystem>().particleCount];
+//            spell.GetComponent<ParticleSystem>().GetParticles(emittedParticles);
+//
+//
+//
+//            if ((emittedParticles.Length > 0) && Vector3.Distance(emittedParticles[0].position, mainCam.transform.position) < deflectMinDist && ((Time.time - lastDeflect > spellCooldown)))
+//            {
+//                //emittedParticles[0].velocity *= -1;
+//                deflected = true;
+//                Vector3 particlePos = emittedParticles[0].position;
+//                Vector3 origPos = spell.transform.position;
+//
+//                GameObject spellType = spell;
+//                PhotonNetwork.Destroy(spell);
+//                Destroy(spell);
+//
+//                spellType.transform.position = particlePos;
+//                spellType.transform.LookAt(origPos);
+//                GameObject spellType2 = PhotonNetwork.Instantiate(fireball_Spell.name, spellType.transform.position, spellType.transform.rotation, 0);
+//                lastDeflect = Time.time;
+//            }
+//        }
+//        if (deflected)
+//        {
+//            audioSource.PlayOneShot(spell_deflected);
+//        }
+}
 }
