@@ -7,14 +7,26 @@ public class RoundManager : MonoBehaviour {
     
     public Transform hatRoom;
     public float roundTime;
+	public bool isTimeBased = false;
+	public int maxScore = 3;
+	public bool isScoreBased = true;
     private float timeElapsed;
     private bool inBattlefield;
     private bool hatsSelected = false;
     private GameObject[] playerRigs;
     private GameObject[] playerPCP;
+	ScoreboardUpdater scoreboard;
+
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
     void Start () {
+		if (GameObject.FindGameObjectWithTag ("Scoreboard")) {
+			scoreboard = GameObject.FindGameObjectWithTag ("Scoreboard").GetComponent<ScoreboardUpdater>();
+		} else {
+			print ("COULD NOT FIND SCOREBOARD");
+		}
+
+
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
         FindPlayers();
 		ChooseHats ();
@@ -26,9 +38,15 @@ public class RoundManager : MonoBehaviour {
         //           EndRound();
         if (inBattlefield)
         {
-            timeElapsed += Time.deltaTime;
-            if (timeElapsed >= roundTime)
+			timeElapsed += Time.deltaTime;
+
+			if (scoreboard == null) {
+				scoreboard = GameObject.FindGameObjectWithTag ("Scoreboard").GetComponent<ScoreboardUpdater>();
+			}
+			if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
+			{
                 EndRound();
+			}
         }
         if (!hatsSelected)
         {
@@ -43,7 +61,7 @@ public class RoundManager : MonoBehaviour {
         }
         else if(hatsSelected && !inBattlefield)
         {
-            StartRound();
+//            StartRound();
         }
 	}
 
@@ -64,6 +82,8 @@ public class RoundManager : MonoBehaviour {
         ChooseHats();
         ShowScoreboard();
         inBattlefield = false;
+		scoreboard.Reset ();
+		timeElapsed = 0;
     }
 
     void StartRound()

@@ -147,29 +147,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
 		case "Fire":
-<<<<<<< HEAD
-			if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all) {
-=======
-			if ((playerStatus.playerClass == PlayerClass.attack) || noHats == true) {
->>>>>>> origin/master
+			if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (fireball, "fire", fireballGradient);
 			}
                 break;
 		case "Shield":
-<<<<<<< HEAD
-			if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all) {
-=======
-			if (playerStatus.playerClass == PlayerClass.support || noHats == true) {
->>>>>>> origin/master
+			if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (shield, "shield", shieldGradient);
 			}
                 break;
 		case "Heal":
-<<<<<<< HEAD
-			if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all) {
-=======
-			if (playerStatus.playerClass == PlayerClass.heal || noHats == true) {
->>>>>>> origin/master
+			if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				SetSpell (heal, "heal", healGradient);
 			}
                 break;

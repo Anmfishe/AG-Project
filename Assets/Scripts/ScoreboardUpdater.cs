@@ -25,8 +25,8 @@ public class ScoreboardUpdater : MonoBehaviour {
     public GameObject red_score_for_blue_view;
     public GameObject blue_score_for_blue_view;
 
-    int red_score;
-	int blue_score;
+    public int red_score;
+	public int blue_score;
 
 	// Use this for initialization
 	void Start () {
