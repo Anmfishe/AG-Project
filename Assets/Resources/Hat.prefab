@@ -218,6 +218,7 @@ MonoBehaviour:
   supportMat: {fileID: 2100000, guid: 20f044a2fcddb8942a9c5cc0917764dc, type: 2}
   playerClass: 0
   onHead: 0
+  resettable: 1
 --- !u!114 &114984566822774286
 MonoBehaviour:
   m_ObjectHideFlags: 1

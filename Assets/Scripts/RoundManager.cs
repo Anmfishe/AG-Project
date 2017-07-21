@@ -58,6 +58,9 @@ public class RoundManager : MonoBehaviour {
 
     void EndRound()
     {
+		FindPlayers ();
+//		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))                                //TODO
+//			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
         ChooseHats();
         ShowScoreboard();
         inBattlefield = false;

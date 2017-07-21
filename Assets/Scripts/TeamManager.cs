@@ -130,6 +130,6 @@ public class TeamManager : MonoBehaviour {
         avatar = _avatar;
         torso = avatar.Find("Torso");
         head = avatar.Find("Head");
-        hat = head.Find("hat1").Find("Circle");
+       // hat = head.Find("hat1").Find("Circle");
     }
 }

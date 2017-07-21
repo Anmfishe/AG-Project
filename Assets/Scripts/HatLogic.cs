@@ -60,9 +60,10 @@ public class HatLogic : MonoBehaviour {
 	public void takeOffHat()
 	{
 		onHead = false;
-		torso.GetComponent<PlayerStatus> ().playerClass = PlayerClass.none;
+		//torso.GetComponent<PlayerStatus> ().setClass(PlayerClass.none);
 	}
 
+	[PunRPC]
 	public void setClass(PlayerClass pc)
 	{
 		playerClass = pc;

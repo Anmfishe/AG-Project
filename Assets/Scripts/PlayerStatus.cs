@@ -176,8 +176,22 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
 	void SetClass(PlayerClass pc)
 	{
-	
 		playerClass = pc;
+
+		if (playerClass == PlayerClass.none) {
+
+			if (photonView.isMine) {
+				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
+				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
+			}
+		} else 
+		{
+			if(photonView.isMine)
+			{
+				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = true;
+				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = true;
+			}
+		}
 	}
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
