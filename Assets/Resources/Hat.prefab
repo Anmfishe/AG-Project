@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 33505254771148116}
   - component: {fileID: 23841129152977566}
   - component: {fileID: 54009156026956916}
-  - component: {fileID: 114907478379528352}
   - component: {fileID: 114565340129950696}
   - component: {fileID: 65631850865197112}
   - component: {fileID: 114984566822774286}
   - component: {fileID: 114225620880816228}
+  - component: {fileID: 114567075210132834}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Grabbable
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894875449414954}
   m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5032556, y: 1.264, z: -2.884}
+  m_LocalPosition: {x: -3.37, y: 1.26, z: -14.49}
   m_LocalScale: {x: 12.777954, y: 12.777954, z: 12.777954}
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,9 +128,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 10
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:
@@ -202,7 +202,7 @@ MonoBehaviour:
   padding: 50
   index: 0
   fixedPos: 0
---- !u!114 &114907478379528352
+--- !u!114 &114567075210132834
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -210,9 +210,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1894875449414954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12491c24127e5d44e8bb9d3699482951, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b3e9a209d554ed48b787efeed4afb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerMat: {fileID: 2100000, guid: f7e0c85b2ea68774b9b5b9d0c3ed4284, type: 2}
+  healerMat: {fileID: 2100000, guid: f193d75e15355674ab932cd574193954, type: 2}
+  supportMat: {fileID: 2100000, guid: 20f044a2fcddb8942a9c5cc0917764dc, type: 2}
+  playerClass: 0
+  onHead: 0
 --- !u!114 &114984566822774286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +238,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114243725288478094, guid: f1d26e622e61ce048b9fbf2b731434fb, type: 2}
+  - {fileID: 114225620880816228}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

@@ -7,104 +7,102 @@ using System.Collections.Generic;
 
 public class PickupParent : MonoBehaviour
 {
+	GameObject[] Grabbables;
+	GameObject grabbables;
+	GameObject grabbed;
+	Holdable holdable;
+	GameObject head;
+	GameObject ears;
+	GameObject origin;
+	GameObject target;
+	public GameObject button;
 
-    SteamVR_TrackedObject trackedObj;
-    SteamVR_Controller.Device device;
-    GameObject[] Grabbables;
-    GameObject grabbables;
-    GameObject grabbed;
-    Holdable holdable;
-    GameObject head;
-    GameObject ears;
-    GameObject origin;
-    GameObject target;
-    public GameObject button;
+	float pickupTime;
 
-    float pickupTime;
-
-    public Animator buttonAnim;
-    Animator whiteout;
-    List<Collider> TriggerList;
+	public Animator buttonAnim;
+	Animator whiteout;
+	List<Collider> TriggerList;
 
 
-    float audio2Volume;
-    float audio1Volume;
+	float audio2Volume;
+	float audio1Volume;
 
-    bool fadeIn;
-    bool fadeOut;
+	bool fadeIn;
+	bool fadeOut;
 
-    AudioSource ambient;
-    AudioSource foley;
+	AudioSource ambient;
+	AudioSource foley;
 
-    AudioClip[] sounds;
-    
-
-    public Transform ball;
-    private bool endingPlayed;
-
-    void Awake()
-    {
-    }
+	AudioClip[] sounds;
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown("joystick button 17") && ((Time.time - pickupTime)> .2f))
-        {
-            if (grabbed != null)
-            {
-                grabbed.GetComponent<Rigidbody>().isKinematic = false;
-                grabbed.gameObject.transform.SetParent(null);
-                holdable.held = false;
-                holdable = null;
-                grabbed = null;
-            }
+	public Transform ball;
+	private bool endingPlayed;
 
-        }
-    }
-        void OnTriggerStay(Collider col)
-    {
+	public bool inHand = false;
 
-            if (Input.GetKeyDown("joystick button 17"))
-            {
-            if (col.tag == "Grabbable" && grabbed == null)
-            {
-                if (col.GetComponent<Holdable>())
-                {
-                    holdable = col.GetComponent<Holdable>();
-                    print("hold");
+	void Awake()
+	{
+	}
 
-                    if (holdable.held == false)
-                    {
-                        col.GetComponent<Rigidbody>().isKinematic = true;
-                        col.gameObject.transform.SetParent(gameObject.transform);
-                        grabbed = col.gameObject;
-                        holdable = col.GetComponent<Holdable>();
-                        holdable.held = true;
-                        pickupTime = Time.time;
-                    }
-                }
-            }
-        }
-    }
 
-     void tossObject(Rigidbody rigidBody)
-    {
-        // If condition is true, first expression evaluated, result becomes return. If it evaluates as false, the second object is assigned.
-        // Short form of if/else
-        Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
-        if (origin != null)
-        {
-            rigidBody.velocity = origin.TransformVector(device.velocity);
-            rigidBody.angularVelocity = origin.TransformVector(device.angularVelocity);
-        }
+	void Update()
+	{
+		// Drop object
+		if (Input.GetKeyDown("joystick button 15") && ((Time.time - pickupTime)> .2f))
+		{
+			if (grabbed != null) 
+			{
+				tossObject (grabbed.GetComponent<Rigidbody>());
+				inHand = false;
+			}
+		}
+	}
 
-        else
-        {
-            rigidBody.velocity = device.velocity;
-            rigidBody.angularVelocity = device.angularVelocity;
-        }
-    }
+
+	// Pickup logic
+	void OnTriggerStay(Collider col)
+	{
+
+		if (Input.GetKeyDown("joystick button 15"))
+		{
+			if (col.tag == "Grabbable" && grabbed == null)
+			{
+				if (col.GetComponent<HatLogic>())
+				{
+					if (col.GetComponent<HatLogic>().onHead == false)
+					{
+						if (col.GetComponent<Holdable>())
+						{
+							holdable = col.GetComponent<Holdable>();
+							inHand = true;
+
+							if (holdable.held == false)
+							{
+								col.GetComponent<Rigidbody>().isKinematic = true;
+								col.gameObject.transform.SetParent(gameObject.transform);
+								grabbed = col.gameObject;
+								holdable = col.GetComponent<Holdable>();
+								holdable.held = true;
+								pickupTime = Time.time;						
+
+								col.GetComponent<HatLogic> ().takeOffHat();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	void tossObject(Rigidbody rigidBody)
+	{
+		grabbed.GetComponent<Rigidbody>().isKinematic = false;
+		grabbed.gameObject.transform.SetParent(null);
+		holdable.held = false;
+		holdable = null;
+		grabbed = null;
+	}
 
 
 }

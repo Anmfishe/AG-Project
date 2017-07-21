@@ -9,9 +9,20 @@ public class NetworkManager : Photon.PunBehaviour
     [Tooltip("The maximum number of players per room")]
     public byte maxPlayersPerRoom = 4;
 
+	public GameObject hat;
+
+	private GameObject hat1;
+	private GameObject hat2;
+	private GameObject hat3;
+	private GameObject hat4;
+	private GameObject hat5;
+	private GameObject hat6;
+
     public GameObject avatar;
     public GameObject scoreboard;
     private Transform localPlayer;
+	public Transform[] hatSpawns;
+
 
     bool isConnecting;
     private int blues = 0;
@@ -36,7 +47,12 @@ public class NetworkManager : Photon.PunBehaviour
     // Use this for initialization
     void Start()
     {
-
+		hat1 = hat;
+		hat2 = hat;
+		hat3 = hat;
+		hat4 = hat;
+		hat5 = hat;
+		hat6 = hat;
     }
 
     // Update is called once per frame
@@ -136,6 +152,7 @@ public class NetworkManager : Photon.PunBehaviour
         if (PhotonNetwork.isMasterClient)
         {
             scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+			HatSpawn ();
         }
 
         localPlayer = Camera.main.transform;
@@ -190,4 +207,25 @@ public class NetworkManager : Photon.PunBehaviour
     {
 
     }
+
+	public void HatSpawn()
+	{
+		hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
+		hat1.GetComponent<HatLogic> ().setClass (PlayerClass.attack);
+
+		hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
+		hat2.GetComponent<HatLogic> ().setClass (PlayerClass.support);
+
+		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);
+		hat3.GetComponent<HatLogic> ().setClass (PlayerClass.heal);
+
+		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
+		hat4.GetComponent<HatLogic> ().setClass (PlayerClass.attack);
+
+		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
+		hat5.GetComponent<HatLogic> ().setClass (PlayerClass.support);
+
+		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
+		hat6.GetComponent<HatLogic> ().setClass (PlayerClass.heal);
+	}
 }

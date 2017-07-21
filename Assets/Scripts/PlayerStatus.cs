@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
-    private Transform respawnPt;
+	public PlayerClass playerClass;
+
+	private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
     public PlayerSoundManager psm;
@@ -171,6 +173,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             deadText.gameObject.SetActive(false);
         }
     }
+
+	void SetClass(PlayerClass pc)
+	{
+	
+		playerClass = pc;
+	}
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
