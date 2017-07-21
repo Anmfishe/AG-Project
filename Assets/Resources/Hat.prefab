@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3e9a209d554ed48b787efeed4afb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerMat: {fileID: 2100000, guid: f7e0c85b2ea68774b9b5b9d0c3ed4284, type: 2}
+  healerMat: {fileID: 2100000, guid: f193d75e15355674ab932cd574193954, type: 2}
+  supportMat: {fileID: 2100000, guid: 20f044a2fcddb8942a9c5cc0917764dc, type: 2}
   playerClass: 0
   onHead: 0
 --- !u!114 &114984566822774286

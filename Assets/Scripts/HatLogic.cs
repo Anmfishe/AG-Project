@@ -6,6 +6,13 @@ public enum PlayerClass {none, attack, heal, support};
 
 public class HatLogic : MonoBehaviour {
 
+
+	public Material attackerMat;
+	public Material healerMat;
+	public Material supportMat;
+
+	private Renderer rend;
+
 	public PlayerClass playerClass = PlayerClass.none;
 	private GameObject torso;
 	public bool onHead = false;
@@ -36,13 +43,36 @@ public class HatLogic : MonoBehaviour {
 	public void takeOffHat()
 	{
 		onHead = false;
-		print ("off head");
-		torso.GetComponent<PlayerStatus>().playerClass = PlayerClass.none;
-		print ("yee");
+		torso.GetComponent<PlayerStatus> ().playerClass = PlayerClass.none;
 	}
+
+	public void setClass(PlayerClass pc)
+	{
+		playerClass = pc;
+
+		if (playerClass == PlayerClass.heal) {
+			if (rend != null)
+				rend.material = healerMat;
+		}
+		else if (playerClass == PlayerClass.attack) {
+			if (rend != null)
+			rend.material = attackerMat;
+		}
+		else if (playerClass == PlayerClass.support) {
+			if (rend != null)
+			rend.material = supportMat;
+		}
+
+	}
+
 
     // Use this for initialization
     void Start () {
+	}
+
+	void Awake()
+	{
+		rend = GetComponent<Renderer> ();
 	}
 	
 	// Update is called once per frame
