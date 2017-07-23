@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894875449414954}
   m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.37, y: 1.26, z: -14.49}
+  m_LocalPosition: {x: -0.5563274, y: -16.02, z: 3.252}
   m_LocalScale: {x: 12.777954, y: 12.777954, z: 12.777954}
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,10 +131,22 @@ MonoBehaviour:
   memory: 0
   countDown: 0
   keyCard: 0
+  releaseHeld: 0
   audioSource: {fileID: 0}
+  bounceSound: {fileID: 0}
   padding: 50
   index: 0
+  startTime: 0
+  warpTimeBase: 0
+  warpTimeCap: 5
+  maxDist: 0.5
+  rigidbody: {fileID: 0}
   fixedPos: 0
+  myStartPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  startRot: {x: 0, y: 0, z: 0}
+  thisStartPos: {x: 0, y: 0, z: 0}
+  landingPoint: {fileID: 0}
 --- !u!114 &114567075210132834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,6 +161,8 @@ MonoBehaviour:
   attackerMat: {fileID: 2100000, guid: f7e0c85b2ea68774b9b5b9d0c3ed4284, type: 2}
   healerMat: {fileID: 2100000, guid: f193d75e15355674ab932cd574193954, type: 2}
   supportMat: {fileID: 2100000, guid: 20f044a2fcddb8942a9c5cc0917764dc, type: 2}
-  playerClass: 0
+  playerClass: 2
   onHead: 0
+  touchingHead: 0
+  held: 0
   resettable: 1

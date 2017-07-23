@@ -4,13 +4,17 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(SteamVR_TrackedObject))]
 
 public class PickupParent : MonoBehaviour
 {
+	SteamVR_TrackedObject trackedObj;
+	SteamVR_Controller.Device device;
+
 	GameObject[] Grabbables;
 	GameObject grabbables;
 	GameObject grabbed;
-	Holdable holdable;
+	HatLogic heldHat;
 	GameObject head;
 	GameObject ears;
 	GameObject origin;
@@ -38,23 +42,28 @@ public class PickupParent : MonoBehaviour
 
 	public Transform ball;
 	private bool endingPlayed;
+	private bool releaseHat;
+	private float releaseTime;
 
 	public bool inHand = false;
 
 	void Awake()
 	{
+		trackedObj = GetComponent<SteamVR_TrackedObject> ();
+
 	}
 
 
 	void Update()
 	{
+		device = SteamVR_Controller.Input ((int)trackedObj.index);
+
 		// Drop object
 		if (Input.GetKeyUp("joystick button 15"))
 		{
 			if (grabbed != null) 
 			{
 				tossObject (grabbed.GetComponent<Rigidbody>());
-				inHand = false;
 			}
 		}
 	}
@@ -66,26 +75,23 @@ public class PickupParent : MonoBehaviour
 
 		if (Input.GetKeyDown("joystick button 15"))
 		{
-			if (col.tag == "Grabbable" && grabbed == null)
+			if (grabbed == null)
 			{
 				if (col.GetComponent<HatLogic>())
 				{
-					if (col.GetComponent<HatLogic>().onHead == false)
+					heldHat = col.GetComponent<HatLogic> ();
+					if (heldHat.onHead == false)
 					{
-						if (col.GetComponent<Holdable>())
-						{
-							holdable = col.GetComponent<Holdable>();
-							inHand = true;
-
-							if (holdable.held == false)
+							if (heldHat.held == false)
 							{
+								inHand = true;
+								heldHat.held = true;
 								col.GetComponent<Rigidbody>().isKinematic = true;
 								col.gameObject.transform.SetParent(gameObject.transform);
 								grabbed = col.gameObject;
-								holdable = col.GetComponent<Holdable>();
-								holdable.held = true;
+								heldHat = col.GetComponent<HatLogic> ();
+								heldHat.held = true;
 								pickupTime = Time.time;						
-
 								col.GetComponent<HatLogic> ().takeOffHat();
 							}
 						}
@@ -93,15 +99,19 @@ public class PickupParent : MonoBehaviour
 				}
 			}
 		}
-	}
 
 	void tossObject(Rigidbody rigidBody)
 	{
-		grabbed.GetComponent<Rigidbody>().isKinematic = false;
+		rigidBody.isKinematic = false;
 		grabbed.gameObject.transform.SetParent(null);
-		holdable.held = false;
-		holdable = null;
 		grabbed = null;
+		inHand = false;
+		heldHat.releaseHat = true;
+		heldHat.releaseTime = Time.time;
+		heldHat = null;
+		if (device !=null)
+			rigidBody.velocity = device.velocity * 1.2f;
+			//GetComponent<Rigidbody> ().velocity;
 	}
 
 
