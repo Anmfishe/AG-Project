@@ -30,7 +30,7 @@
         void Start()
         {
 			playerStatus = transform.parent.parent.GetComponentInChildren<PlayerStatus> ();
-			print ("PLAYER" + playerStatus);
+			//print ("PLAYER" + playerStatus);
 
             if (transform.GetChild(1)!= null)
             {

@@ -9,7 +9,9 @@ public class TeamManager : MonoBehaviour {
     private Transform torso;
     private Transform head;
     private Transform hat;
-    public VRTK.VRTK_StraightPointerRenderer vrtk_spr;
+    private GameObject rightHand;
+    private bool set = false;
+    private VRTK.VRTK_StraightPointerRenderer vrtk_spr;
     public Material blue_mat;
     public Material red_mat;
     [HideInInspector]
@@ -57,19 +59,22 @@ public class TeamManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(vrtk_spr == null && photonView.isMine)
+        if(rightHand != null && photonView.isMine && !set)
         {
-            vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+            set = true;
+            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
             if(blue && vrtk_spr != null)
             {
-                Debug.Log("Set Blue + " + Time.time);
                 vrtk_spr.blue = true;
             }
             else if(!blue && vrtk_spr != null)
             {
-                Debug.Log("Set Red + " + Time.time);
                 vrtk_spr.blue = false;
             }
+        }
+        else if(!set)
+        {
+            rightHand = GameObject.Find("RightController");
         }
     }
     
@@ -79,18 +84,19 @@ public class TeamManager : MonoBehaviour {
         
         blue = true;
 
-        Respawn();
+        //Respawn();
 
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach(TeamSetter ts in children)
         {
             ts.SetBlue();
         }
-        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-        vrtk_spr.blue = true;
-        //torso.GetComponent<Renderer>().material = blue_mat;
-        //head.GetComponent<Renderer>().material = blue_mat;
-        //hat.GetComponent<Renderer>().material = blue_mat;
+        rightHand = GameObject.Find("RightController");
+        if (rightHand)
+        {
+            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+            vrtk_spr.blue = true;
+        }
     }
     public void SetRed()
     {
@@ -98,17 +104,18 @@ public class TeamManager : MonoBehaviour {
         
         blue = false;
 
-        Respawn();
+        //Respawn();
         TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
         foreach (TeamSetter ts in children)
         {
             ts.SetRed();
         }
-        vrtk_spr = GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-        vrtk_spr.blue = false;
-        //torso.GetComponent<Renderer>().material = red_mat;
-        //head.GetComponent<Renderer>().material = red_mat;
-        //hat.GetComponent<Renderer>().material = red_mat;
+        rightHand = GameObject.Find("RightController");
+        if (rightHand)
+        {
+            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+            vrtk_spr.blue = false;
+        }
     }
 
     public void Respawn()
@@ -130,6 +137,5 @@ public class TeamManager : MonoBehaviour {
         avatar = _avatar;
         torso = avatar.Find("Torso");
         head = avatar.Find("Head");
-       // hat = head.Find("hat1").Find("Circle");
     }
 }

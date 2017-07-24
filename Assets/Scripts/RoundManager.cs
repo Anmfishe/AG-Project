@@ -106,7 +106,11 @@ public class RoundManager : MonoBehaviour {
         FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-			player.GetComponent<Transform>().SetPositionAndRotation(hatRoom.position, player.GetComponent<Transform>().rotation );
+            Vector3 newPos = hatRoom.position;
+            Transform camObj = player.GetComponentInChildren<Camera>().transform;
+            newPos.x -= camObj.localPosition.x;
+            newPos.z -= camObj.localPosition.z;
+            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation );
          
         }
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))

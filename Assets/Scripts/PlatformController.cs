@@ -14,6 +14,7 @@ public class PlatformController : MonoBehaviour {
     private bool canMove = true;
     private Transform targetPos;
     private AudioSource audS;
+    private GameObject camObj;
     SteamVR_TrackedObject trackedObj1;
     SteamVR_TrackedObject trackedObj2;
     SteamVR_Controller.Device device1;
@@ -23,6 +24,7 @@ public class PlatformController : MonoBehaviour {
     {
         trackedObj1 = transform.Find("Controller (left)").GetComponent<SteamVR_TrackedObject>();
         trackedObj2 = transform.Find("Controller (right)").GetComponent<SteamVR_TrackedObject>();
+        camObj = GetComponentInChildren<Camera>().gameObject;
     }
     void Start () {
         audS = GetComponent<AudioSource>();
@@ -164,7 +166,10 @@ public class PlatformController : MonoBehaviour {
     public void SetPlatform(Transform platform)
     {
         currPlatform = platform;
-        transform.position = platform.position;
+        Vector3 newTrans = platform.position;
+        newTrans.x -= camObj.transform.localPosition.x;
+        newTrans.z -= camObj.transform.localPosition.z;
+        transform.position = newTrans;
     }
     public void SetAvatar(GameObject _avatar)
     {
@@ -174,32 +179,40 @@ public class PlatformController : MonoBehaviour {
     {
         StartCoroutine(coolDown());
         Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().up;
-        //targetPos.position = newplatform.position;
-        transform.position = newplatform.position;
+        Vector3 newTrans = newplatform.position;
+        newTrans.x -= camObj.transform.localPosition.x;
+        newTrans.z -= camObj.transform.localPosition.z;
+        transform.position = newTrans;
         currPlatform = newplatform;
     }
     private void MoveDown()
     {
         StartCoroutine(coolDown());
         Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().down;
-        //targetPos.position = newplatform.position;
-        transform.position = newplatform.position;
+        Vector3 newTrans = newplatform.position;
+        newTrans.x -= camObj.transform.localPosition.x;
+        newTrans.z -= camObj.transform.localPosition.z;
+        transform.position = newTrans;
         currPlatform = newplatform;
     }
     private void MoveLeft()
     {
         StartCoroutine(coolDown());
         Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().left;
-        //targetPos.position = newplatform.position;
-        transform.position = newplatform.position;
+        Vector3 newTrans = newplatform.position;
+        newTrans.x -= camObj.transform.localPosition.x;
+        newTrans.z -= camObj.transform.localPosition.z;
+        transform.position = newTrans;
         currPlatform = newplatform;
     }
     private void MoveRight()
     {
         StartCoroutine(coolDown());
         Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().right;
-        //targetPos.position = newplatform.position;
-        transform.position = newplatform.position;
+        Vector3 newTrans = newplatform.position;
+        newTrans.x -= camObj.transform.localPosition.x;
+        newTrans.z -= camObj.transform.localPosition.z;
+        transform.position = newTrans;
         currPlatform = newplatform;
     }
     IEnumerator coolDown()
