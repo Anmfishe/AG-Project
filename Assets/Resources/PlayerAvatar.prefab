@@ -2487,6 +2487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerClass: 0
+  kill_spells: 0
   photonView: {fileID: 114473738197043446}
   psm: {fileID: 114832096951520706}
   respawnLength: 2
@@ -2745,7 +2746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998521f2815c30e42bdb1abb072c4fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrtk_spr: {fileID: 0}
   blue_mat: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   red_mat: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   blue: 0
@@ -3009,7 +3009,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 486036371
+  randomSeed: -298588768
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5979,7 +5979,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1229015937
+  randomSeed: 1853948841
   InitialModule:
     serializedVersion: 3
     enabled: 1

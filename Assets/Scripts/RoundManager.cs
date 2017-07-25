@@ -102,7 +102,6 @@ public class RoundManager : MonoBehaviour {
 
     void ChooseHats()
     {
-
         FindPlayers();
         foreach (GameObject player in playerRigs)
         {
@@ -110,13 +109,14 @@ public class RoundManager : MonoBehaviour {
             Transform camObj = player.GetComponentInChildren<Camera>().transform;
             newPos.x -= camObj.localPosition.x;
             newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation );
-         
+            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+
         }
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
             //player.TakeOffHat();
 
             hatsSelected = false;
+        
 
     }
 

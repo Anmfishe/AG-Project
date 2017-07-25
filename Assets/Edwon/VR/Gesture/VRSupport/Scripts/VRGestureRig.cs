@@ -119,7 +119,7 @@ namespace Edwon.VR
             Init();
         }
 
-        void Init()
+        public void Init()
         {
             CreateInputHelper();
 
@@ -316,6 +316,10 @@ namespace Edwon.VR
             }
         }
 
+        private void OnEnable()
+        {
+            Init();
+        }
         /// <summary>
         /// This will check to see if an IInput interface is attached to the controller.
         /// If not it will attach the default VRControllerInput from EdwonVR
@@ -347,8 +351,8 @@ namespace Edwon.VR
 
             if (GestureSettings.showVRUI)
             {
-                VRLaserPointer laserLeft = handLeft.gameObject.AddComponent<VRLaserPointer>();
-                laserLeft.InitRig(this, Handedness.Left);
+                //VRLaserPointer laserLeft = handLeft.gameObject.AddComponent<VRLaserPointer>();
+                //laserLeft.InitRig(this, Handedness.Left);
                 VRLaserPointer laserRight = handRight.gameObject.AddComponent<VRLaserPointer>();
                 laserRight.InitRig(this, Handedness.Right);
             }

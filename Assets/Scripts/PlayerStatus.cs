@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
 	public PlayerClass playerClass;
-
+    public bool kill_spells = true;
 	private GameObject[] hats;
 	private GameObject[] players;
 
@@ -239,10 +239,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
 		print ("round restarted");
 		cameraRig = Camera.main.transform.parent.gameObject;
-
-        cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
-        cameraRig.GetComponent<PlatformController>().enabled = false;
-        cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+        if (kill_spells)
+        {
+            cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+            cameraRig.GetComponent<PlatformController>().enabled = false;
+            cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+        }
 
         bookLogic.UpdateUI();
 
