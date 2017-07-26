@@ -12,7 +12,6 @@ TagManager:
   - TeleportIgnore
   - TimeOut
   - Scoreboard
-  - PCP
   - RedPlatform
   - BluePlatform
   - Shield
@@ -23,6 +22,7 @@ TagManager:
   - findHat
   - PenaltyBox
   - HatRoom
+  - NetworkManager
   layers:
   - Default
   - TransparentFX
@@ -34,11 +34,11 @@ TagManager:
   - 
   - BluePlatform
   - RedPlatform
-  - MazeTurret
-  - MazeTurretBullet
-  - Bg
-  - FPSWeapon
   - PenaltyBox
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

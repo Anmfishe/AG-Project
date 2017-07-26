@@ -17,10 +17,23 @@ public class NetworkManager : Photon.PunBehaviour
 	private GameObject hat4;
 	private GameObject hat5;
 	private GameObject hat6;
-
 	public GameObject avatar;
 	public GameObject scoreboard;
-	private Transform localPlayer;
+    private GameObject cameraRig;
+    public GameObject CameraRig
+    {
+        get
+        {
+            return cameraRig;
+        }
+    }
+    public GameObject Avatar
+    {
+        get
+        {
+            return avatar;
+        }
+    }
 	public Transform[] hatSpawns;
 
 	public bool createRoom;
@@ -83,8 +96,9 @@ public class NetworkManager : Photon.PunBehaviour
 			} else
 			{
 				Debug.Log ("Joining Room...");
-				// #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
-				PhotonNetwork.JoinRoom (roomName);
+                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
+                PhotonNetwork.JoinRoom(roomName);
+                
 			}
 		}
 		else
@@ -138,16 +152,20 @@ public class NetworkManager : Photon.PunBehaviour
 		// #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
 		PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
 	}
+    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
+    {
+        Debug.Log("Join failed, Creating Room...");
+        PhotonNetwork.CreateRoom(roomName);
+    }
 
-
-	/// <summary>
-	/// Called after disconnecting from the Photon server.
-	/// </summary>
-	/// <remarks>
-	/// In some cases, other callbacks are called before OnDisconnectedFromPhoton is called.
-	/// Examples: OnConnectionFail() and OnFailedToConnectToPhoton().
-	/// </remarks>
-	public override void OnDisconnectedFromPhoton()
+    /// <summary>
+    /// Called after disconnecting from the Photon server.
+    /// </summary>
+    /// <remarks>
+    /// In some cases, other callbacks are called before OnDisconnectedFromPhoton is called.
+    /// Examples: OnConnectionFail() and OnFailedToConnectToPhoton().
+    /// </remarks>
+    public override void OnDisconnectedFromPhoton()
 	{
 		Debug.LogError("DemoAnimator/Launcher:Disconnected");
 
@@ -178,8 +196,8 @@ public class NetworkManager : Photon.PunBehaviour
 			HatSpawn ();
 		}
 
-		localPlayer = Camera.main.transform;
-		localPlayer.GetComponentInParent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+		cameraRig = Camera.main.transform.parent.gameObject;
+		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
 		avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
 		//avatar.GetComponent<TeamSetter>().SetTeam();
 		//Debug.Log(PhotonNetwork.room.PlayerCount);
@@ -235,6 +253,7 @@ public class NetworkManager : Photon.PunBehaviour
 	{
 	}
 
+    
 
 	public void HatSpawn()
 	{

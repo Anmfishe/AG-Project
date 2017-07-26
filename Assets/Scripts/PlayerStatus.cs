@@ -102,7 +102,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void takeDamage(int damage)
     {
-        print("TAKING DAMAGE!");
         // Ensure that this is the active player
         if (!photonView.isMine)
         {
@@ -112,7 +111,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (dead == false)
         {
             current_health -= damage;
-            print("took damage, health = " + current_health);
             psm.PlayerHurt();
         }
 
@@ -134,7 +132,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
             // Increment scoreboard
             bool blueScored = ! this.transform.parent.GetComponent<TeamManager>().blue;
-            Debug.Log("ABOUT TO RPC: BLUE SCORED " + blueScored);
             self_photonview = GetComponent<PhotonView>();
             if (blueScored)
             {
@@ -188,7 +185,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
 		if (scoreboard == null)
 		{
-			Debug.Log("SCOREBOARD UPDATER IS NULL!");
+
 		}
 
 			scoreboard.Reset();
@@ -231,13 +228,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             hat.GetComponent<HatLogic>().resettable = true;
         }
 
-        players = GameObject.FindGameObjectsWithTag("PCP");
+        players = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject player in players)
         {
-            player.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
+            player.transform.parent.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
         }
-		print ("round restarted");
 		cameraRig = Camera.main.transform.parent.gameObject;
         if (kill_spells)
         {

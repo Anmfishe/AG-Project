@@ -55,7 +55,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Start()
     {
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCam = Camera.main;
         spellLogic = GetComponent<SpellLogic>();
         spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();

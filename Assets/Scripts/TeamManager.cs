@@ -10,6 +10,7 @@ public class TeamManager : MonoBehaviour {
     private Transform head;
     private Transform hat;
     private GameObject rightHand;
+    private GameObject cameraRig;
     private bool set = false;
     private VRTK.VRTK_StraightPointerRenderer vrtk_spr;
     public Material blue_mat;
@@ -17,9 +18,6 @@ public class TeamManager : MonoBehaviour {
     [HideInInspector]
     public bool blue = false;
     PhotonView photonView;
-
-    GameObject cameraRig;
-
     private void Awake()
     {
 
@@ -29,31 +27,6 @@ public class TeamManager : MonoBehaviour {
     void Start () {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
-
-        //if (blue)
-        //{
-
-        //    transform.position = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform.position;
-        //    //if (vrtk_spr != null)
-        //    //    vrtk_spr.blue = true;
-        //}
-        //else
-        //{
-
-        //    transform.position = redSquares[Random.Range(0, redSquares.Length - 1)].transform.position;
-        //    //if (vrtk_spr != null)
-        //    //    vrtk_spr.blue = false;
-        //}
-        //Debug.Log(num_players);
-        //if(num_players % 2 == 0)
-        //{
-        //    SetBlue();
-        //}
-        //else
-        //{
-        //    SetRed();
-        //}
-
     }
 	
 	// Update is called once per frame
@@ -94,6 +67,7 @@ public class TeamManager : MonoBehaviour {
         rightHand = GameObject.Find("RightController");
         if (rightHand)
         {
+            set = true;
             vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
             vrtk_spr.blue = true;
         }
@@ -113,6 +87,7 @@ public class TeamManager : MonoBehaviour {
         rightHand = GameObject.Find("RightController");
         if (rightHand)
         {
+            set = true;
             vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
             vrtk_spr.blue = false;
         }
@@ -120,15 +95,16 @@ public class TeamManager : MonoBehaviour {
 
     public void Respawn()
     {
+        cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         if (blue)
         {
-            GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PlatformController>().SetPlatform(blueSquares[Random.Range(0, blueSquares.Length - 1)].transform);
+            cameraRig.GetComponent<PlatformController>().SetPlatform(blueSquares[Random.Range(0, blueSquares.Length - 1)].transform);
         }
         else
         {
-            GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PlatformController>().SetPlatform(redSquares[Random.Range(0, redSquares.Length - 1)].transform);
+            cameraRig.GetComponent<PlatformController>().SetPlatform(redSquares[Random.Range(0, redSquares.Length - 1)].transform);
         }
     }
 

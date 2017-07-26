@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour {
     private bool inBattlefield = true;
     private bool hatsSelected = false;
     private GameObject[] playerRigs;
-    private GameObject[] playerPCP;
+    private GameObject[] players;
 	ScoreboardUpdater scoreboard;
 
     //TODO score ssystem, if you want it to end the round
@@ -73,7 +73,7 @@ public class RoundManager : MonoBehaviour {
     void FindPlayers()
     {
         playerRigs = GameObject.FindGameObjectsWithTag("CameraRig");
-        playerPCP = GameObject.FindGameObjectsWithTag("PCP");
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void EndRound()
@@ -112,8 +112,8 @@ public class RoundManager : MonoBehaviour {
             player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
 
         }
-        foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
-            //player.TakeOffHat();
+        //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+        //    //player.TakeOffHat();
 
             hatsSelected = false;
         

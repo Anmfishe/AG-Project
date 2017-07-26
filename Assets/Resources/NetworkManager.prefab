@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7845a455ab5e75a45908e8f2b20dbc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayersPerRoom: 4
+  maxPlayersPerRoom: 2
   hat: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   avatar: {fileID: 1396155991360138, guid: 3de2fe02874a78943bbd530e0ae4ee13, type: 2}
   scoreboard: {fileID: 1951878332566498, guid: f9018bea93465d042babf09b062218ae, type: 2}
@@ -89,4 +89,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  createRoom: 0
+  roomName: Room1
   roundMan: {fileID: 1845042722662058, guid: e86de04e0289a8b4e86b2239c5680aaf, type: 2}
