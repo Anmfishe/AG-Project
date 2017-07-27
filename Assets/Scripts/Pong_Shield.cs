@@ -7,7 +7,7 @@ using UnityEngine;
  *                                  
  *      This script relies on the scene having a GameObject called "RightController". MAKE SURE THAT THE GAMEOBJECT EXISTS!  
  *          Also, this script relies on the assumption that the pong shield ONLY MOVES ALONG THE X-AXIS and CENTERED IN (0, 0, 0)!
- *              In addition, it requires a GameObject (in our use, we used 2 opposite facing planes) with specified layer pongLayer
+ *              In addition, it requires a GameObject (in our use, we used a plane) with specified layer pongLayer
  * 
  * */
 
