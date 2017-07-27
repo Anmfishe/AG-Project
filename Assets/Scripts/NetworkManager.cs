@@ -192,7 +192,7 @@ public class NetworkManager : Photon.PunBehaviour
 
 		if (PhotonNetwork.isMasterClient)
 		{
-			scoreboard = PhotonNetwork.Instantiate(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
 			HatSpawn ();
 		}
 
@@ -219,7 +219,7 @@ public class NetworkManager : Photon.PunBehaviour
 		//localPlayer.GetComponentInParent<TeamManager>().SetRed();
 		//localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
 		if (PhotonNetwork.isMasterClient)
-			roundMan = PhotonNetwork.Instantiate(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+			roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
 	}
 
 	/// <summary>
