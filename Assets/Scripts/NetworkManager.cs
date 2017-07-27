@@ -35,8 +35,7 @@ public class NetworkManager : Photon.PunBehaviour
         }
     }
 	public Transform[] hatSpawns;
-
-	public bool createRoom;
+    
 	public string roomName;
 
 	PhotonView photonView;
@@ -89,17 +88,9 @@ public class NetworkManager : Photon.PunBehaviour
 		// we check if we are connected or not, we join if we are , else we initiate the connection to the server.
 		if (PhotonNetwork.connected)
 		{
-			if (createRoom)
-			{
-				Debug.Log ("Creating Room...");
-				PhotonNetwork.CreateRoom (roomName);
-			} else
-			{
-				Debug.Log ("Joining Room...");
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
-                PhotonNetwork.JoinRoom(roomName);
-                
-			}
+            Debug.Log("Joining Room...");
+            // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
+            PhotonNetwork.JoinRoom(roomName);
 		}
 		else
 		{
@@ -123,18 +114,10 @@ public class NetworkManager : Photon.PunBehaviour
 		// we don't want to do anything.
 		if (isConnecting)
 		{
-			if (createRoom)
-			{
-				Debug.Log ("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN. Attempting to create room...");
-				PhotonNetwork.CreateRoom (roomName);
-			}
-			else
-			{
-				Debug.Log ("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room.\n Calling: PhotonNetwork.JoinRandomRoom(); Operation will fail if no room found");
+			Debug.Log ("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room.\n Calling: PhotonNetwork.JoinRandomRoom(); Operation will fail if no room found");
 
-				// #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnPhotonRandomJoinFailed()
-				PhotonNetwork.JoinRoom (roomName);
-			}
+			// #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnPhotonRandomJoinFailed()
+			PhotonNetwork.JoinRoom (roomName);
 		}
 	}
 

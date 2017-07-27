@@ -70,12 +70,18 @@ public class Pong_Shield : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+        // if the player did not instantiate the pong shield (not the owner) then do not do anything
+        if (PhotonNetwork.player != this.GetComponent<PhotonView>().owner)
+        {
+            return;
+        }
+
+
         duration -= Time.deltaTime;
         if (duration <= 0)
         {
             PhotonNetwork.Destroy(GetComponent<PhotonView>());
         }
-
 
         // in case the GameObject "Right Controller" was not found in Start(), look for it again
         //      if still not found, return and skip the RayCast

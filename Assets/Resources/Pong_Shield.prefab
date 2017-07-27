@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33119838666671832}
   - component: {fileID: 65973280973765302}
   - component: {fileID: 23852852510965104}
-  - component: {fileID: 114479981728298384}
   - component: {fileID: 114187239786213946}
   - component: {fileID: 114763182588625856}
+  - component: {fileID: 114682670354319064}
   m_Layer: 0
   m_Name: Pong_Shield
   m_TagString: Shield
@@ -122,7 +122,7 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114479981728298384
+--- !u!114 &114682670354319064
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -130,12 +130,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1510076060834104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e4bc4931908bb4395559ea077ce4d8, type: 3}
+  m_Script: {fileID: 11500000, guid: e2fb97225654daa48a7f6c9ca8ca947a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: {x: 2, y: 1.5, z: 0.25}
-  clamp: 4
-  duration: 3
+  scale: {x: 0, y: 0, z: 0}
+  clamp: 0
+  duration: 0
   pongLayer: PongShieldPlane
 --- !u!114 &114763182588625856
 MonoBehaviour:
