@@ -25,6 +25,7 @@ TagManager:
   - NetworkManager
   - PCP
   - Stage
+  - Pong_Shield_Plane
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - BluePlatform
   - RedPlatform
   - PenaltyBox
-  - 
+  - PongShieldPlane
   - 
   - 
   - 
