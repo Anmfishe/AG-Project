@@ -15,6 +15,22 @@ public class PlatformNeighbors : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            hasPlayer = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            hasPlayer = false;
+        }
+    }
 }

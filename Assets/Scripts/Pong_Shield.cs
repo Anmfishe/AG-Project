@@ -71,7 +71,7 @@ public class Pong_Shield : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
         // if the player did not instantiate the pong shield (not the owner) then do not do anything
-        if (PhotonNetwork.player != this.GetComponent<PhotonView>().owner)
+        if (PhotonNetwork.player != this.GetComponent<PhotonView>().owner)          // could be replaced with PhotonView.isMine?
         {
             return;
         }

@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 114590541061986310}
   - component: {fileID: 114696692573140200}
   - component: {fileID: 114296775303848278}
+  - component: {fileID: 54295404355995054}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Player
@@ -662,7 +663,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.629134, y: -11.145557, z: 9.425122}
+  m_LocalPosition: {x: -3.857887, y: 0.27578318, z: -6.015875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -1751,6 +1752,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54295404355995054
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704670948745794}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54688421700558002
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2490,6 +2506,7 @@ MonoBehaviour:
   kill_spells: 0
   photonView: {fileID: 114473738197043446}
   psm: {fileID: 114832096951520706}
+  cameraRig: {fileID: 0}
   respawnLength: 2
   max_health: 100
   current_health: 100
