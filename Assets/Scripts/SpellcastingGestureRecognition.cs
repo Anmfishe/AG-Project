@@ -47,6 +47,16 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public string platformStealGesture;
     public Gradient platformStealGradient;
     public float platformStealCooldown = 2f;
+    
+    public GameObject lightBlade;
+    public string lightBladeGesture;
+    public Gradient lightBladeGradient;
+    public float lightBladeCooldown = 2f;
+
+    public GameObject disenchant;
+    public string disenchantGesture;
+    public Gradient disenchantGradient;
+    public float disenchantCooldown = 2f;
 
     public GameObject swipeLeft;
     public GameObject swipeRight;
@@ -249,6 +259,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     SetSpell(platformSteal, "platformSteal", platformStealGradient);
                 }
                 break;
+            case "Zed":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                }
+                break;
+            case "Elle":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(disenchant, "disenchant", disenchantGradient);
+                }
+                break;
         }
     }
 
@@ -344,6 +366,21 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
 
+                break;
+            case "lightBlade":
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
+                spellInstance.transform.SetParent(wandTip);
+                spellTimer = lightBladeCooldown;
+                break;
+            case "disenchant":
+                if (target != null && target.result != null && target.result.CompareTag("Curse"))
+                {
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
+                    spellTimer = disenchantCooldown;
+                    PhotonNetwork.Destroy(target.result.gameObject);
+                }
+                else
+                    return;
                 break;
             default:
                 spellTimer = spellCooldown;
