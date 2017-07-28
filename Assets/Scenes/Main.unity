@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 165866011}
   - component: {fileID: 165866010}
   - component: {fileID: 165866009}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (13)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -1389,8 +1389,12 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+<<<<<<< HEAD
   fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
   fireballGesture: 
+=======
+  fireball: {fileID: 1973137855731400, guid: def240b964c0e05439a4f711ed0193e1, type: 2}
+>>>>>>> cc87aa3504ff6bbb6b9c3bba9071d8e369b83605
   fireballGradient:
     serializedVersion: 2
     key0: {r: 0.7882353, g: 0.5803922, b: 0.31764707, a: 1}
@@ -1870,7 +1874,7 @@ GameObject:
   - component: {fileID: 241956646}
   - component: {fileID: 241956645}
   - component: {fileID: 241956647}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (2)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -2296,7 +2300,7 @@ GameObject:
   - component: {fileID: 265540352}
   - component: {fileID: 265540351}
   - component: {fileID: 265540353}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (3)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -3439,7 +3443,7 @@ GameObject:
   - component: {fileID: 411180261}
   - component: {fileID: 411180260}
   - component: {fileID: 411180259}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (8)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -3523,11 +3527,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4283970829176542, guid: d75c7781af0b3b046bdb1078a58d5c06, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 31.4
+      value: -226.8
       objectReference: {fileID: 0}
     - target: {fileID: 4283970829176542, guid: d75c7781af0b3b046bdb1078a58d5c06, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 218.8
       objectReference: {fileID: 0}
     - target: {fileID: 4283970829176542, guid: d75c7781af0b3b046bdb1078a58d5c06, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4630,7 +4634,7 @@ GameObject:
   - component: {fileID: 588535228}
   - component: {fileID: 588535227}
   - component: {fileID: 588535229}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (6)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -6100,7 +6104,7 @@ GameObject:
   - component: {fileID: 839578754}
   - component: {fileID: 839578753}
   - component: {fileID: 839578755}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -6434,7 +6438,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 861929339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.57182163, y: 32.1, z: 1.019}
+  m_LocalPosition: {x: -0.57182163, y: -226.1, z: 219.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 832042881}
@@ -6455,9 +6459,9 @@ GameObject:
   - component: {fileID: 872981190}
   - component: {fileID: 872981188}
   - component: {fileID: 872981189}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7863,7 +7867,7 @@ GameObject:
   - component: {fileID: 1009747433}
   - component: {fileID: 1009747432}
   - component: {fileID: 1009747431}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (12)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -8437,7 +8441,7 @@ GameObject:
   - component: {fileID: 1106725928}
   - component: {fileID: 1106725927}
   - component: {fileID: 1106725929}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (5)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -9593,7 +9597,7 @@ GameObject:
   - component: {fileID: 1181635133}
   - component: {fileID: 1181635132}
   - component: {fileID: 1181635131}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (10)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -10404,7 +10408,7 @@ GameObject:
   - component: {fileID: 1286022056}
   - component: {fileID: 1286022055}
   - component: {fileID: 1286022054}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (11)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -11620,7 +11624,7 @@ GameObject:
   - component: {fileID: 1489152693}
   - component: {fileID: 1489152692}
   - component: {fileID: 1489152691}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (9)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -13579,7 +13583,7 @@ GameObject:
   - component: {fileID: 1842198106}
   - component: {fileID: 1842198105}
   - component: {fileID: 1842198104}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Red_platform1 (7)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -13805,7 +13809,7 @@ GameObject:
   - component: {fileID: 1864699352}
   - component: {fileID: 1864699351}
   - component: {fileID: 1864699353}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (4)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -14216,7 +14220,7 @@ GameObject:
   - component: {fileID: 1963328690}
   - component: {fileID: 1963328689}
   - component: {fileID: 1963328691}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Blue_platform1 (1)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
