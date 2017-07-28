@@ -150,6 +150,39 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     }
 
+    public void SetRandomSpell()
+    {
+        int random = Random.Range(0, 3);
+
+        switch (random)
+        {
+            case 0:
+                currentSpell = fireball;
+                currentSpellName = "fireball";
+                currentSpellGradient = fireballGradient;
+                break;
+            case 1:
+                currentSpell = shield;
+                currentSpellName = "shield";
+                currentSpellGradient = shieldGradient;
+                break;
+            case 2:
+                currentSpell = heal;
+                currentSpellName = "heal";
+                currentSpellGradient = healGradient;
+                break;
+            default:
+                break;
+        }
+
+        hasSpell = true;
+
+        IgniteFlame(currentSpellGradient);
+
+        GetComponent<VRGestureRig>().enabled = false;
+        audioSource.PlayOneShot(cast_success);
+    }
+
     //Updates the color of the wand flame and restarts it.
     void IgniteFlame(Gradient flameGradient)
     {

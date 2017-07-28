@@ -158,13 +158,13 @@ public class BookLogic : MonoBehaviour
 		if (playerClass == PlayerClass.all) 
 		{
 			rend.material = pages[index];
-            SpellcastingGestureRecognition sgr = Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>();
-            if (sgr == null)
-            {
-                Debug.Log("BookLogic.cs : UpdateUI() : sgr is null!");
-                return;
-            }
-            sgr.SetSpell(index);
+            //SpellcastingGestureRecognition sgr = Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>();
+            //if (sgr == null)
+            //{
+            //    Debug.Log("BookLogic.cs : UpdateUI() : sgr is null!");
+            //    return;
+            //}
+            //sgr.SetSpell(index);
             print("BookLogic.cs : UpdateUI() : Should have set spell " + index);
 		}
 

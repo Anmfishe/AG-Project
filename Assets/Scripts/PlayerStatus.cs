@@ -16,7 +16,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private Transform timeOutPt;
     public PhotonView photonView;
     public PlayerSoundManager psm;
-    private GameObject cameraRig;
+    public GameObject cameraRig;
     private TextMesh deadText;
 
     private bool dead = false;
