@@ -61,7 +61,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   frequency: 7
-  page: {fileID: 1659428561157970, guid: 055cbffef6657454db7057ac108734a4, type: 2}
+  powerupPrefab: {fileID: 1659428561157970, guid: 055cbffef6657454db7057ac108734a4,
+    type: 2}
 --- !u!114 &114706694292711442
 MonoBehaviour:
   m_ObjectHideFlags: 1

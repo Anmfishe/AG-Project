@@ -165,7 +165,7 @@ public class BookLogic : MonoBehaviour
             //    return;
             //}
             //sgr.SetSpell(index);
-            print("BookLogic.cs : UpdateUI() : Should have set spell " + index);
+//            print("BookLogic.cs : UpdateUI() : Should have set spell " + index);
 		}
 
 		else if (playerClass == PlayerClass.none) 

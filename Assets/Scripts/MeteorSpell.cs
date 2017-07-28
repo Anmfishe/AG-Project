@@ -34,6 +34,7 @@ public class MeteorSpell : MonoBehaviour
     public bool isMaster;
     [HideInInspector]
     public bool isSlave;
+    public LayerMask layers;
 
 //    [SerializeField]
     private float activeTimer = 0;
@@ -97,7 +98,7 @@ public class MeteorSpell : MonoBehaviour
 			//Debug.DrawRay(wand.transform.position, wand.transform.forward * 1000, Color.red, 0.01f);
 			//Get raycast results.
 
-			if (Physics.Raycast (wand.transform.position, wand.transform.forward, out hit, 1000)) {
+			if (Physics.Raycast (wand.transform.position, wand.transform.forward, out hit, 1000, layers)) {
 				if (hit.transform.gameObject.tag == ("Spell")) 
 				{
 					return;
