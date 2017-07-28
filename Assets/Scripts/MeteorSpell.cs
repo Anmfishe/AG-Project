@@ -36,7 +36,7 @@ public class MeteorSpell : MonoBehaviour
 	private float steeringForceSky = 10000;
 	private float steeringForceGround = 15000;
 	public Rigidbody rb;
-
+    bool first = true;
 	public AudioSource audioSource;
 	public AudioClip deflectAudio;
 	[HideInInspector]
@@ -149,116 +149,114 @@ public class MeteorSpell : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		GameObject other = collision.gameObject;
-		print("Collided by " + other.name);
+        if (first)
+        {
+            first = false;
+            GameObject other = collision.gameObject;
+            print("Collided by " + other.name);
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
-		if (other.CompareTag ("Player")) {
-			print ("hit the body");
-			//Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-			PlayerStatus statusScript = other.GetComponent<PlayerStatus> ();
-			if (statusScript != null)
-				statusScript.takeDamage (damage);
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+            StartCoroutine(DestroyFireball());
+        }
+  //      if (other.CompareTag ("Player")) {
+		
+		//	//Instantiate new explosion.
+		//	GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			DestroyFireball ();
+		//	DestroyFireball ();
 
-		} else if (other.CompareTag ("put")) {
-			print ("hit on head");
-			//Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-			PlayerStatus statusScript = other.transform.parent.GetComponentInChildren<PlayerStatus> ();
-			if (statusScript != null)
-				statusScript.takeDamage (damage);
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+		//} else if (other.CompareTag ("put")) {
+		//	print ("hit on head");
+		//	//Apply damage to object if it has the Player tag and implements the PlayerStatus script.
+		//	PlayerStatus statusScript = other.transform.parent.GetComponentInChildren<PlayerStatus> ();
+		//	if (statusScript != null)
+		//		statusScript.takeDamage (damage);
+		//	//Instantiate new explosion.
+		//	GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			DestroyFireball ();
-		} else if (other.CompareTag ("Shield")) {
-			print ("hit on shield");
-			//Apply damage to the shield.
-			Damageable damageScript = other.GetComponent<Damageable> ();
-			if (damageScript != null)
-				damageScript.TakeDamage (damage);
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+		//	DestroyFireball ();
+		//} else if (other.CompareTag ("Shield")) {
+		//	print ("hit on shield");
+		//	//Apply damage to the shield.
+		//	Damageable damageScript = other.GetComponent<Damageable> ();
+		//	if (damageScript != null)
+		//		damageScript.TakeDamage (damage);
+		//	//Instantiate new explosion.
+		//	GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			DestroyFireball ();
-		} else if (other.CompareTag ("Spell")) {
-			print ("hit on spell");
-			//Get the point between the two fireballs.
-			//Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
+		//	DestroyFireball ();
+		//} else if (other.CompareTag ("Spell")) {
+		//	print ("hit on spell");
+		//	//Get the point between the two fireballs.
+		//	//Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
 
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+		//	//Instantiate new explosion.
+		//	GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			//Delete this game object.
-			DestroyFireball ();
+		//	//Delete this game object.
+		//	DestroyFireball ();
 
-		} 
-		else if (other.CompareTag ("BluePlatform") || other.CompareTag ("RedPlatform") || other.CompareTag ("Stage")) 
-		{
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+		//} 
+		//else if (other.CompareTag ("BluePlatform") || other.CompareTag ("RedPlatform") || other.CompareTag ("Stage")) 
+		//{
+		//	//Instantiate new explosion.
+		//	GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			//Delete this game object.
-			DestroyFireball ();
+		//	//Delete this game object.
+		//	DestroyFireball ();
 
-		}
+		//}
 	}
 
-	private void OnCollisionStay(Collision collision)
-	{
-		GameObject other = collision.gameObject;
-		if (other.CompareTag ("BluePlatform") || other.CompareTag ("RedPlatform") || other.CompareTag ("Stage")) 
-		{
-			//Instantiate new explosion.
-			GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+	//private void OnCollisionStay(Collision collision)
+	//{
+	//	GameObject other = collision.gameObject;
+	//	if (other.CompareTag ("BluePlatform") || other.CompareTag ("RedPlatform") || other.CompareTag ("Stage")) 
+	//	{
+	//		//Instantiate new explosion.
+	//		GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
-			//Delete this game object.
-			DestroyFireball ();
+	//		//Delete this game object.
+	//		DestroyFireball ();
 
-		}
-	}
+	//	}
+	//}
 
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		GameObject other = collider.gameObject;
-		print("Triggered (heh) by " + other.name);
-		if (other.CompareTag("SpellHitter"))
-		{
-			print("triggered spellhitter");
-			//Create reflected fireball if it was hit hard enough by the spell hitter.
-			Rigidbody otherBody = other.GetComponent<Rigidbody>();
+		//GameObject other = collider.gameObject;
+		//print("Triggered (heh) by " + other.name);
+		//if (other.CompareTag("SpellHitter"))
+		//{
+		//	print("triggered spellhitter");
+		//	//Create reflected fireball if it was hit hard enough by the spell hitter.
+		//	Rigidbody otherBody = other.GetComponent<Rigidbody>();
 
-			print("VELOCITY: " + otherBody.velocity.magnitude + " | ANGULAR V: " + otherBody.angularVelocity.magnitude);
-			if (otherBody.velocity.magnitude > minLinearVelocity || otherBody.angularVelocity.magnitude > minAngularVelocity)
-			{
-				print("Invert Fireball!");
-				//this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1);
-				//this.GetComponent<Rigidbody>().velocity *= -1;
-				//StartRecovery();
-				//GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
-				fbCollider.enabled = false;
-				GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.forward * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
-				DestroyFireball();
-				if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
-			}
+		//	print("VELOCITY: " + otherBody.velocity.magnitude + " | ANGULAR V: " + otherBody.angularVelocity.magnitude);
+		//	if (otherBody.velocity.magnitude > minLinearVelocity || otherBody.angularVelocity.magnitude > minAngularVelocity)
+		//	{
+		//		print("Invert Fireball!");
+		//		//this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1);
+		//		//this.GetComponent<Rigidbody>().velocity *= -1;
+		//		//StartRecovery();
+		//		//GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
+		//		fbCollider.enabled = false;
+		//		GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.forward * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+		//		DestroyFireball();
+		//		if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
+		//	}
 
-		}
+		//}
 	}
-	private void StartRecovery()
-	{
-		activeTimer = startup;
-		fbCollider.enabled = false;
-	}
-	private void DestroyFireball()
+	
+	IEnumerator DestroyFireball()
 	{
 		//Destroy game object.
 		//        PhotonNetwork.Destroy(this.gameObject);
 
 		Collider[] hits;
-		hits = Physics.OverlapSphere(transform.position, 5);
+		hits = Physics.OverlapSphere(transform.position, 6);
 		foreach (Collider hit in hits)
 		{
 			if (hit.transform.tag == "Player")
@@ -266,10 +264,14 @@ public class MeteorSpell : MonoBehaviour
 				hit.transform.GetComponent<PlayerStatus>().takeDamage(damage);
 			}
 		}
-
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
-
-		Destroy(reticleInstance);
+        yield return new WaitForSeconds(0.5f);
+		
 		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
 	}
 }
