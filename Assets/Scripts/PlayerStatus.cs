@@ -123,6 +123,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         return false;
     }
 
+    //Immobilizes the player.
+    public void EnableMovement(bool isEnabled)
+    {
+        cameraRig.GetComponent<PlatformController>().enabled = isEnabled;
+    }
+
     // On death, we warp the camera rig of the corresponding player
     void Die()
     {

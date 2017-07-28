@@ -16,7 +16,37 @@
             "name": "Heal",
             "hand": 1,
             "isSynchronous": false,
-            "exampleCount": 7
+            "exampleCount": 12
+        },
+        {
+            "name": "Vines",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 0
+        },
+        {
+            "name": "Meteor",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 0
+        },
+        {
+            "name": "Iceball",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 0
+        },
+        {
+            "name": "PongShield",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 0
+        },
+        {
+            "name": "Disenchant",
+            "hand": 1,
+            "isSynchronous": false,
+            "exampleCount": 0
         }
     ]
 }

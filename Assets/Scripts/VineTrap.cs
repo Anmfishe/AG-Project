@@ -29,6 +29,7 @@ public class VineTrap : MonoBehaviour {
         if (isActivated)
         {
             /*
+             * COMMENTED DUE TO CHANGE IN MECHANICS, VINE TRAP NOW CAN ONLY BE RID BY DISENCHANT SPELL *
             if (durationTimer > 0)
                 durationTimer -= Time.deltaTime;
             else
@@ -36,7 +37,7 @@ public class VineTrap : MonoBehaviour {
             */
 
 
-
+            //Deals damage every time the timer reaches 0.
             if (damageTimer > 0)
                 damageTimer -= Time.deltaTime;
             else
@@ -51,19 +52,34 @@ public class VineTrap : MonoBehaviour {
 
     void Activate()
     {
+        //Flag as activated.
         isActivated = true;
+        //Disable seed particle.
         seed.gameObject.SetActive(false);
+
+        //Enable explosion and body particles.
         explosion.gameObject.SetActive(true);
         body.gameObject.SetActive(true);
+
+        //Disable player's movement.
+        playerStatus.EnableMovement(false);
+
+        //Start dealing damage.
         DealDamage();
+
+        //Set duration timer.
         durationTimer = duration;
     }
     void DealDamage()
     {
         damageTimer = damageCycle;
         //Destroy if player dies.
-        if(playerStatus.takeDamage(damagePerCycle))
+        if (playerStatus.takeDamage(damagePerCycle))
+        {
+            //Enable movement before destroy itself.
+            playerStatus.EnableMovement(true);
             PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider trigger)

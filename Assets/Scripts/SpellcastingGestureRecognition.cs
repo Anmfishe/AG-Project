@@ -20,6 +20,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient healGradient;
     public float healCooldown = 1f;
 
+    public GameObject vines;
+    public Gradient vinesGradient;
+    public float vinesCooldown = 2f;
+
+    public GameObject iceball;
+    public Gradient iceballGradient;
+    public float iceballCooldown = 2f;
+
+    public GameObject meteor;
+    public Gradient meteorGradient;
+    public float meteorCooldown = 2f;
+
     public GameObject swipeLeft;
     public GameObject swipeRight;
     public AudioClip cast_success;
@@ -158,10 +170,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 				SetSpell (heal, "heal", healGradient);
 			}
                 break;
-            case "SwipeLeft":
-                break;
-            case "SwipeRight":
-                break;
+        case "SwipeLeft":
+            if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+            {
+                SetSpell(vines, "vines", vinesGradient);
+            }
+            break;
+        case "SwipeRight":
+            if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+            {
+                SetSpell(vines, "vines", vinesGradient);
+            }
+            break;
         }
     }
 
@@ -188,8 +208,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         switch (currentSpellName)
         {
-		case "fire":
-			Quaternion spellRotation = target.result != null ? Quaternion.LookRotation (target.result.position - wandTip.transform.position) : wandTip.rotation;
+		    case "fire":
+			    Quaternion spellRotation = target.result != null ? Quaternion.LookRotation (target.result.position - wandTip.transform.position) : wandTip.rotation;
 				spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
@@ -214,6 +234,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
                 spellTimer = healCooldown;
+                break;
+            case "vines":
+                //Check if target is a platform, otherwise don't do anything.
+                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                {
+                    spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(0, 0, 0, 0), 0);
+                }
+                else
+                {
+                    return;
+                }
                 break;
             default:
                 spellTimer = spellCooldown;
