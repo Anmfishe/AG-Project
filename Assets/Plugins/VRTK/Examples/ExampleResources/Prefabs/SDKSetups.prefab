@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 114000011497762404}
   - component: {fileID: 114478982118753574}
   - component: {fileID: 114597855281927430}
-  - component: {fileID: 114273605593245876}
   - component: {fileID: 82571775678770644}
   - component: {fileID: 114700496353723056}
   - component: {fileID: 114353675334571242}
@@ -299,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010499113332}
   - component: {fileID: 114000011515022730}
+  - component: {fileID: 114061062545911416}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -1432,6 +1432,8 @@ GameObject:
   - component: {fileID: 114000012377227750}
   - component: {fileID: 135379357084832078}
   - component: {fileID: 114387601043444710}
+  - component: {fileID: 54075192081362068}
+  - component: {fileID: 114745319435587660}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -1891,24 +1893,6 @@ GameObject:
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1527148175562528
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4460526242375328}
-  - component: {fileID: 54633819544598954}
-  - component: {fileID: 136183335478380926}
-  - component: {fileID: 114227249876859030}
-  m_Layer: 0
-  m_Name: RightHandTracker
-  m_TagString: SpellHitter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2460,7 +2444,6 @@ Transform:
   - {fileID: 4000013143429836}
   - {fileID: 4000010242415096}
   - {fileID: 4000010499113332}
-  - {fileID: 4460526242375328}
   m_Father: {fileID: 4000010114616428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3215,19 +3198,6 @@ Transform:
   - {fileID: 4523072362746774}
   m_Father: {fileID: 4570902433673696}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4460526242375328
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1527148175562528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.012, y: 0.76, z: 0.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4000011921798948}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4486131483486730
 Transform:
@@ -5117,18 +5087,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1878776753057470}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54633819544598954
+--- !u!54 &54075192081362068
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1527148175562528}
+  m_GameObject: {fileID: 1000013731061326}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -6542,6 +6512,17 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &114061062545911416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010636551700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79841fe5c92bbb419ae94e4e3c1d85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114139617658199918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6624,18 +6605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e19ec58d4a9e844970103e5bd8946a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114227249876859030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1527148175562528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1280b54be99d6f4fb86d6a9a49f7ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guide: {fileID: 4000013143429836}
 --- !u!114 &114256248042405202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6669,23 +6638,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Control Hints
---- !u!114 &114273605593245876
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b142dce83961a640a5b3095408e049b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  deflectMinDist: 3.5
-  spellCooldown: 1
-  fireball_Spell: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
-  debugKey: 1
-  spell_deflected: {fileID: 8300000, guid: 106c7955ff9e5de4d96f942a90c85c2b, type: 3}
 --- !u!114 &114287009055141332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6710,10 +6662,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currPlatform: {fileID: 0}
   avatar: {fileID: 0}
-  useRight: 1
-  useLeft: 1
+  lerp: 1
   CD: 1
   cd_Sound: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
+  speed: 10
 --- !u!114 &114386419681534186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6794,7 +6746,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010207334600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
   m_Name: 
@@ -6973,6 +6925,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
+  fireballGesture: Fire
   fireballGradient:
     serializedVersion: 2
     key0: {r: 0.7882353, g: 0.5803922, b: 0.31764707, a: 1}
@@ -7004,6 +6957,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   fireballCooldown: 2
   shield: {fileID: 1697145570094962, guid: d7b43ec846036514a8e537b72d47763a, type: 2}
+  shieldGesture: Shield
   shieldGradient:
     serializedVersion: 2
     key0: {r: 0.31764707, g: 0.41825557, b: 0.7882353, a: 1}
@@ -7035,6 +6989,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   shieldCooldown: 3
   heal: {fileID: 100002, guid: f1d26e622e61ce048b9fbf2b731434fb, type: 2}
+  healGesture: Heal
   healGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.8897059, b: 0.006135853, a: 1}
@@ -7065,6 +7020,167 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
   healCooldown: 1
+  vines: {fileID: 1511311979979240, guid: 992e82dbca697d94da17b47809f5ebfa, type: 2}
+  vinesGesture: Spring
+  vinesGradient:
+    serializedVersion: 2
+    key0: {r: 0.693357, g: 0.8897059, b: 0, a: 1}
+    key1: {r: 0.42647058, g: 0.4154844, b: 0.028222319, a: 1}
+    key2: {r: 0, g: 0.2794118, b: 0.048174456, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 34310
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 45875
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 3
+  vinesCooldown: 2
+  iceball: {fileID: 1973137855731400, guid: 47d2ec19600db1b44b0bf1c31492e1f5, type: 2}
+  iceballGesture: Diamond
+  iceballGradient:
+    serializedVersion: 2
+    key0: {r: 0.7373823, g: 0.8918633, b: 1, a: 1}
+    key1: {r: 0, g: 0.5882353, b: 1, a: 1}
+    key2: {r: 0.6414324, g: 0.8523545, b: 1, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 20817
+    ctime2: 38165
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 52814
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 3
+  iceballCooldown: 2
+  meteor: {fileID: 1973137855731400, guid: def240b964c0e05439a4f711ed0193e1, type: 2}
+  meteorGesture: Wave
+  meteorGradient:
+    serializedVersion: 2
+    key0: {r: 0.9766518, g: 0.97794116, b: 0.88446146, a: 1}
+    key1: {r: 0.5795273, g: 0.5808823, b: 0.48264486, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 52814
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 3
+  meteorCooldown: 2
+  pongShield: {fileID: 1510076060834104, guid: 6d04f3e281f06064bb9373da173a47e9, type: 2}
+  pongShieldGesture: OpenFrame
+  pongShieldGradient:
+    serializedVersion: 2
+    key0: {r: 0.5870183, g: 0.31764707, b: 0.7882353, a: 1}
+    key1: {r: 0.6965518, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 52814
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 3
+  pongShieldCooldown: 2
+  platformSteal: {fileID: 1501542842251532, guid: 87910818cab940e4b9bdeca8fc92a4fb,
+    type: 2}
+  platformStealGesture: 
+  platformStealGradient:
+    serializedVersion: 2
+    key0: {r: 0.7882353, g: 0.31764707, b: 0.6000002, a: 1}
+    key1: {r: 1, g: 0, b: 0.8068962, a: 1}
+    key2: {r: 0, g: 0.2794118, b: 0.048174456, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 52814
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 3
+  platformStealCooldown: 2
   swipeLeft: {fileID: 100010, guid: 330800352e7bbe34e90b0886a0ff6fde, type: 2}
   swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
   cast_success: {fileID: 8300000, guid: 63d323c7aafcf6a478c174089a3935d6, type: 3}
@@ -7076,6 +7192,7 @@ MonoBehaviour:
   torso: {fileID: 0}
   playerStatus: {fileID: 0}
   blue: 0
+  noHats: 1
   hasSpell: 0
   currentSpell: {fileID: 0}
   currentSpellName: 
@@ -7137,6 +7254,17 @@ MonoBehaviour:
   result: {fileID: 0}
   pointer: {fileID: 4905341922922828}
   range: 100
+--- !u!114 &114745319435587660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013731061326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79841fe5c92bbb419ae94e4e3c1d85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114751689080497896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7253,19 +7381,6 @@ CapsuleCollider:
   m_Radius: 1.38
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136183335478380926
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1527148175562528}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 3
-  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222000010090588156
 CanvasRenderer:

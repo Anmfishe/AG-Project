@@ -37,11 +37,16 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public string meteorGesture;
     public Gradient meteorGradient;
     public float meteorCooldown = 2f;
-
+    
     public GameObject pongShield;
     public string pongShieldGesture;
     public Gradient pongShieldGradient;
     public float pongShieldCooldown = 2f;
+
+    public GameObject platformSteal;
+    public string platformStealGesture;
+    public Gradient platformStealGradient;
+    public float platformStealCooldown = 2f;
 
     public GameObject swipeLeft;
     public GameObject swipeRight;
@@ -237,7 +242,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
                 }
-
+                break;
+            case "Star":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(platformSteal, "platformSteal", platformStealGradient);
+                }
                 break;
         }
     }
@@ -304,7 +314,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //Check if target is a platform, otherwise don't do anything.
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
-                    spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(0, 0, 0, 0), 0);
+                    spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                 }
                 else
                 {
@@ -320,6 +330,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = meteorCooldown;
+                break;
+            case "platformSteal":
+                //Check if target is a platform, otherwise don't do anything.
+                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                {
+                    spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
+                    target.result.GetComponent<PlatformMain>().ChangeColor();
+                    spellTimer = platformStealCooldown;
+                }
+                else
+                {
+                    return;
+                }
+
                 break;
             default:
                 spellTimer = spellCooldown;
