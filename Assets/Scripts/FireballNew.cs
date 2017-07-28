@@ -140,7 +140,7 @@ public class FireballNew : MonoBehaviour
     {
         //Destroy game object.
 //        PhotonNetwork.Destroy(this.gameObject);
-        Destroy(this.gameObject);
+		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
     }
 
 }
