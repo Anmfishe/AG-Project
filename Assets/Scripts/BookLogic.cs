@@ -16,6 +16,15 @@ public class BookLogic : MonoBehaviour
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
 
+	int attackTop = 2;
+	int attackBottom = 0;
+
+	int supportBottom = 3;
+	int supportTop = 5;
+
+	int healBottom = 6;
+	int healTop = 9;
+
     float trackpadPos;
     float startPressPos;
     float swipeThresh = 0.03f;
@@ -123,6 +132,44 @@ public class BookLogic : MonoBehaviour
 
     void FlipRight()
     {
+		if (playerClass == PlayerClass.attack) 
+		{
+			if (index > attackBottom)
+			{
+				index -= 1;
+			}
+			else 
+			{
+				index = attackTop;
+			}
+		}
+
+		else if (playerClass == PlayerClass.support)
+		{
+			if (index > supportBottom)
+			{
+				index -= 1;
+			}
+			else 
+			{
+				index = supportTop;
+			}
+		}
+
+		else if (playerClass == PlayerClass.heal) 
+		{
+			if (index > healBottom)
+			{
+				index -= 1;
+			}
+			else 
+			{
+				index = healTop;
+			}
+		}
+
+		else if (playerClass == PlayerClass.all) 
+		{
         if (index > 0)
         {
             index -= 1;
@@ -131,6 +178,7 @@ public class BookLogic : MonoBehaviour
         {
             index = pages.Length - 2;
         }
+		}
         if (animator)
             animator.SetTrigger("FlipRight");
         //  UpdateUI();
@@ -138,14 +186,55 @@ public class BookLogic : MonoBehaviour
 
     void FlipLeft()
     {
-        if (index < (pages.Length - 2))
-        {
-            index += 1;
-        }
-        else
-        {
-            index = 0;
-        }
+
+		if (playerClass == PlayerClass.attack) 
+		{
+			if (index < attackTop)
+			{
+				index += 1;
+			}
+			else 
+			{
+				index = attackBottom;
+			}
+		}
+
+		else if (playerClass == PlayerClass.support)
+		{
+			if (index < supportTop)
+			{
+				index += 1;
+			}
+			else 
+			{
+				index = supportBottom;
+			}
+		}
+
+		else if (playerClass == PlayerClass.heal) 
+		{
+			if (index < healTop)
+			{
+				index += 1;
+			}
+			else 
+			{
+				index = healBottom;
+			}
+		}
+
+		else if (playerClass == PlayerClass.all) 
+		{
+			if (index < (pages.Length - 2))
+			{
+				index -= 1;
+			}
+			else
+			{
+				index = 0;
+			}
+		}
+			
         if(animator)
             animator.SetTrigger("FlipLeft");
         // UpdateUI();
@@ -155,37 +244,26 @@ public class BookLogic : MonoBehaviour
     {
 		playerClass = playerStatus.playerClass;
 
-		if (playerClass == PlayerClass.all) 
-		{
 			rend.material = pages[index];
-            //SpellcastingGestureRecognition sgr = Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>();
-            //if (sgr == null)
-            //{
-            //    Debug.Log("BookLogic.cs : UpdateUI() : sgr is null!");
-            //    return;
-            //}
-            //sgr.SetSpell(index);
-//            print("BookLogic.cs : UpdateUI() : Should have set spell " + index);
-		}
 
-		else if (playerClass == PlayerClass.none) 
+		if (playerClass == PlayerClass.none) 
 		{
 			rend.material = pages[pages.Length-1];
 		}
 
-		else if (playerClass == PlayerClass.attack) 
-		{
-			rend.material = pages[0];
-		}
-
-		else if (playerClass == PlayerClass.support)
-		{
-			rend.material = pages[2];
-		}
-
-		else if (playerClass == PlayerClass.heal) 
-		{
-			rend.material = pages[1];
-		}
+//		else if (playerClass == PlayerClass.attack) 
+//		{
+//			rend.material = pages[0];
+//		}
+//
+//		else if (playerClass == PlayerClass.support)
+//		{
+//			rend.material = pages[2];
+//		}
+//
+//		else if (playerClass == PlayerClass.heal) 
+//		{
+//			rend.material = pages[1];
+//		}
     }
 }
