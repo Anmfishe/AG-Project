@@ -91,6 +91,8 @@ public class HatLogic : MonoBehaviour {
 
 				//Move player to battlefield.
 				torso.GetComponentInParent<TeamManager> ().Respawn ();
+                
+                GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
 				//gameObject.transform.scale = child.transform.scale;
 			}
 	}

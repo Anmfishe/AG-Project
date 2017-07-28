@@ -36,20 +36,7 @@ public class RoundManager : MonoBehaviour {
 	void Update () {
         //        if (Input.anyKeyDown)
         //           EndRound();
-        if (inBattlefield)
-        {
-			timeElapsed += Time.deltaTime;
-
-			if (scoreboard == null) {
-				scoreboard = GameObject.FindGameObjectWithTag ("Scoreboard").GetComponent<ScoreboardUpdater>();
-			}
-			if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
-			{
-				print (scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
-				print ("ROUND HAS ENDED");
-                EndRound();
-			}
-        }
+        
         if (!hatsSelected)
         {
             foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
@@ -65,7 +52,24 @@ public class RoundManager : MonoBehaviour {
         {
 //            StartRound();
         }
-	}
+        else if (inBattlefield)
+        {
+//            Camera.main.transform.parent.GetComponent<PlatformController>().enabled = true;
+//            GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
+            timeElapsed += Time.deltaTime;
+
+            if (scoreboard == null)
+            {
+                scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+            }
+            if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
+            {
+                print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
+                print("ROUND HAS ENDED");
+                EndRound();
+            }
+        }
+    }
 
     /// <summary>
     /// We are using this shit every time before any allPlayers action cause we didn't go with observer
@@ -78,7 +82,9 @@ public class RoundManager : MonoBehaviour {
 
     void EndRound()
     {
-		FindPlayers ();
+        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
+        print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
+        FindPlayers ();
 //		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))                                //TODO
 //			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
         ChooseHats();
@@ -86,7 +92,8 @@ public class RoundManager : MonoBehaviour {
  //       inBattlefield = false;
 		scoreboard.Reset ();
 		timeElapsed = 0;
-		print ("END OF ENDROUND");
+        
+        print ("END OF ENDROUND");
     }
 
     void StartRound()
@@ -98,10 +105,12 @@ public class RoundManager : MonoBehaviour {
         /*foreach (GameObject pl in playerPCP)
             pl.GetComponent<TeamManager>().Respawn();*/
         inBattlefield = true;
+
     }
 
     void ChooseHats()
     {
+        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         FindPlayers();
         foreach (GameObject player in playerRigs)
         {
@@ -116,8 +125,9 @@ public class RoundManager : MonoBehaviour {
         //    //player.TakeOffHat();
 
             hatsSelected = false;
-        
 
+
+        GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = true;
     }
 
     void ShowScoreboard()

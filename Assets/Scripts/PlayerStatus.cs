@@ -80,7 +80,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Die();
         }
@@ -152,6 +152,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
                 self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
             }
+
+            cameraRig.GetComponent<PlatformController>().enabled = false;
         }
 
         deathTime = Time.time;
@@ -209,17 +211,22 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
         {
-			myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+            
+            
+
+            myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
 			if (myScoreboard.roundOver == false) {
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
-			} else 
+                cameraRig.GetComponent<PlatformController>().enabled = true;
+            } else 
 			{
                 self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
-			}
+            }
 			
 			deadText.gameObject.SetActive (false);
 
+            
         }
     }
 
