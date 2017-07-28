@@ -28,9 +28,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     PhotonView self_photonview;
 
 
-    public int max_health = 100;
+    public float max_health = 100;
   //  [HideInInspector]
-    public int current_health = 100;
+    public float current_health = 100;
     //   public int hp = 100;
     // Use this for initialization
     void Start()
@@ -86,7 +86,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
-    public void heal(int healthAdded)
+    public void heal(float healthAdded)
     {
         if (dead == false)
         {
@@ -100,12 +100,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     }
 
     //Reduces the health by the damage received.
-    public void takeDamage(int damage)
+    public bool takeDamage(float damage)
     {
         // Ensure that this is the active player
         if (!photonView.isMine)
         {
-            return;
+            return false;
         }
 
         if (dead == false)
@@ -117,7 +117,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (current_health <= 0)
         {
             Die();
+            return true;
         }
+
+        return false;
     }
 
     // On death, we warp the camera rig of the corresponding player

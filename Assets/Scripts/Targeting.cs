@@ -32,27 +32,40 @@ public class Targeting : MonoBehaviour {
         {
             //print(hit.collider);
             //Return if target is the same, and turn off the previous indicator if it's not.
-            if (result != null && result == hit.collider.transform)
-                return;
-            else
+            if (result != null)
             {
-                //Reset result.
-                result = null;
+                if (result == hit.collider.transform)
+                {
+                    return;
+                }
+                else
+                {
+                    //Reset targetable script.
+                    if (targetableScript != null) targetableScript.SetIndicator(false);
+                    targetableScript = null;
 
-                //Reset targetable script.
-                if (targetableScript != null) targetableScript.SetIndicator(false);
-                targetableScript = null;
+                    //Reset result.
+                    result = null;
+                }
             }
 
             //Check if it has a Player tag.
-            if (hit.collider.tag == "Player")
+            switch(hit.collider.tag)
             {
-                //Assign resulting collider to target.
-                result = hit.collider.transform;
+                case "Player":
+                    //Assign resulting collider to target.
+                    result = hit.collider.transform;
 
-                //Try to get the targetable script. Turn it on if it's valid.
-                targetableScript = result.GetComponent<TargetablePlayer>();
-                if (targetableScript != null) targetableScript.SetIndicator(true);
+                    //Try to get the targetable script. Turn it on if it's valid.
+                    targetableScript = result.GetComponent<TargetablePlayer>();
+                    if (targetableScript != null) targetableScript.SetIndicator(true);
+                    break;
+                case "BluePlatform":
+                case "RedPlatform":
+                    //Assign resulting collider to target.
+                    result = hit.collider.transform;
+                    break;
+
             }
         }
     }
