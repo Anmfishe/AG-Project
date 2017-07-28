@@ -44,3 +44,9 @@ ehthumbs.db
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
 Assets/Prefabs.meta
+Assets/Scripts/Pong_Shield.cs.meta
+Assets/Resources/Pong_Shield.prefab.meta
+Assets/Resources/Pong_Shield_Plane.prefab.meta
+Assets/Scripts/PowerupManager.cs.meta
+Assets/Scripts/Powerup.cs.meta
+Assets/Resources/Powerup.prefab.meta

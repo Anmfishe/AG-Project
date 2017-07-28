@@ -50,4 +50,5 @@ MonoBehaviour:
   - SetMat
   - ResetScoreboard
   - RestartRound
+  - UpdatePowerupManager
   DisableAutoOpenWizard: 1
