@@ -36,7 +36,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject meteor;
     public string meteorGesture;
     public Gradient meteorGradient;
-    public float meteorCooldown = 2f;
+    public float meteorCooldown = 0f;
 
     public GameObject pongShield;
     public string pongShieldGesture;

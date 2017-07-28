@@ -1125,7 +1125,6 @@ GameObject:
   - component: {fileID: 207178183}
   - component: {fileID: 207178187}
   - component: {fileID: 207178190}
-  - component: {fileID: 207178189}
   - component: {fileID: 207178188}
   - component: {fileID: 207178191}
   - component: {fileID: 207178192}
@@ -1349,18 +1348,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &207178189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114273605593245876, guid: 41c0760bd81dd084283814f0c432b466,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 207178181}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b142dce83961a640a5b3095408e049b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &207178190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1637,7 +1624,7 @@ MonoBehaviour:
   torso: {fileID: 0}
   playerStatus: {fileID: 0}
   blue: 0
-  noHats: 1
+  noHats: 0
   hasSpell: 0
   currentSpell: {fileID: 0}
   currentSpellName: 
@@ -1706,7 +1693,7 @@ MonoBehaviour:
   lerp: 1
   CD: 1
   cd_Sound: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
-  speed: 10
+  speed: 15
 --- !u!1 &210385729
 GameObject:
   m_ObjectHideFlags: 0

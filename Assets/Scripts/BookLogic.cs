@@ -16,19 +16,19 @@ public class BookLogic : MonoBehaviour
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
 
-	int attackTop = 2;
-	int attackBottom = 0;
+	public int attackTop = 2;
+	public int attackBottom = 0;
 
-	int supportBottom = 3;
-	int supportTop = 5;
+	public int supportBottom = 3;
+	public int supportTop = 5;
 
-	int healBottom = 6;
-	int healTop = 9;
+	public int healBottom = 6;
+	public int healTop = 9;
 
     float trackpadPos;
     float startPressPos;
     float swipeThresh = 0.03f;
-    int index = 0;
+    public int index = 0;
 
     private void Awake()
     {
@@ -227,7 +227,7 @@ public class BookLogic : MonoBehaviour
 		{
 			if (index < (pages.Length - 2))
 			{
-				index -= 1;
+				index += 1;
 			}
 			else
 			{

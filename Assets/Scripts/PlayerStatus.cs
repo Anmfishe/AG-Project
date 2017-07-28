@@ -275,7 +275,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 			if (photonView.isMine) {
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
-				bookLogic.UpdateUI ();
+                bookLogic.index = bookLogic.pages.Length - 1;
+                bookLogic.UpdateUI ();
 			}
 		} else 
 		{
@@ -284,7 +285,20 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = true;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = true;
 				cameraRig.GetComponent<PlatformController> ().enabled = true;
-				bookLogic.UpdateUI ();
+                if (playerClass == PlayerClass.attack)
+                {
+                    bookLogic.index = bookLogic.attackBottom;
+                }
+                if (playerClass == PlayerClass.support)
+                {
+                    bookLogic.index = bookLogic.supportBottom;
+                }
+                if (playerClass == PlayerClass.heal)
+                {
+                    bookLogic.index = bookLogic.healBottom;
+                }
+
+                bookLogic.UpdateUI ();
 			}
 		}
 	}

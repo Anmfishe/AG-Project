@@ -9,7 +9,7 @@ using UnityEngine;
 public class MeteorSpell : MonoBehaviour
 {
 
-	private Edwon.VR.VRGestureRig spellcastingGesture;
+	private SpellcastingGestureRecognition spellcastingGesture;
 	private PhotonView photonView;
 	private LineRenderer line;
 	public GameObject reticle;
@@ -57,8 +57,8 @@ public class MeteorSpell : MonoBehaviour
 			reticleInstance = Instantiate (reticle, transform.position, transform.rotation) as GameObject;
 			mine = true;
 			wand = GameObject.Find ("Controller (right)");
-			spellcastingGesture = Camera.main.transform.parent.GetComponent<Edwon.VR.VRGestureRig> ();
-			spellcastingGesture.enabled = false;
+			spellcastingGesture = Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition> ();
+			//spellcastingGesture.enabled = false;
 			rb = GetComponent<Rigidbody> ();
 			rb.AddForce (transform.forward * 1000);
 			line = GetComponent<LineRenderer> ();
@@ -267,7 +267,7 @@ public class MeteorSpell : MonoBehaviour
 			}
 		}
 
-
+        //spellcastingGesture.enabled = true;
 
 		Destroy(reticleInstance);
 		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
