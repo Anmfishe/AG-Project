@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4983452155146466}
-  - component: {fileID: 114549052798346466}
   - component: {fileID: 114706694292711442}
+  - component: {fileID: 114318442984520726}
   m_Layer: 0
   m_Name: PowerupManager
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114549052798346466
+--- !u!114 &114318442984520726
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223233074598154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44386e965fb65b846b291e4e2c797de3, type: 3}
+  m_Script: {fileID: 11500000, guid: ecba7474cace9274a88e81295f620ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   redPlatforms:
@@ -61,8 +61,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   frequency: 7
-  powerupPrefab: {fileID: 1659428561157970, guid: 055cbffef6657454db7057ac108734a4,
+  powerupPrefab: {fileID: 1659428561157970, guid: 2b47277ee180e74479e1a58871012545,
     type: 2}
+  timer: 0
+  numPowerups: 0
 --- !u!114 &114706694292711442
 MonoBehaviour:
   m_ObjectHideFlags: 1

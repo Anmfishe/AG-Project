@@ -868,12 +868,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114860418825796782}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -894,3 +894,6 @@ MonoBehaviour:
   blue_score_for_red_view: {fileID: 1642096396408546}
   red_score_for_blue_view: {fileID: 1327683596602928}
   blue_score_for_blue_view: {fileID: 1555302261859242}
+  red_score: 0
+  blue_score: 0
+  roundOver: 0

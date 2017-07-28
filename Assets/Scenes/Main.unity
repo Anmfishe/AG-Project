@@ -3113,7 +3113,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 12.777956
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114565340129950696, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &371941120 stripped
@@ -5921,7 +5922,8 @@ Prefab:
       propertyPath: playerClass
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114565340129950696, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &832042881 stripped
@@ -13254,7 +13256,8 @@ Prefab:
       propertyPath: m_Name
       value: Hat (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114565340129950696, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1802785329 stripped
