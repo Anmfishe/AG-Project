@@ -26,7 +26,7 @@ public class Targeting : MonoBehaviour {
         //Disable back faces so it doesn't collide with itself.
         Physics.queriesHitBackfaces = false;
 
-        Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
+//Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
         //Get raycast results.
         if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
         {
