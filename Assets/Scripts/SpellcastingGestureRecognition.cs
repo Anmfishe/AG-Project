@@ -245,8 +245,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "shield":
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
-                spellInstance.transform.SetParent(wandTip);
+                //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
+                //spellInstance.transform.SetParent(wandTip);
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
@@ -280,6 +282,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
                 break;
             case "meteor":
+                spellRotation = wandTip.rotation;
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellTimer = meteorCooldown;
                 break;
             default:
                 spellTimer = spellCooldown;
