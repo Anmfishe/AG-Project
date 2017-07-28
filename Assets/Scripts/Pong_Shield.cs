@@ -7,16 +7,16 @@ using UnityEngine;
  *                                  
  *      This script relies on the scene having a GameObject called "RightController". MAKE SURE THAT THE GAMEOBJECT EXISTS!  
  *          Also, this script relies on the assumption that the pong shield ONLY MOVES ALONG THE X-AXIS and CENTERED IN (0, 0, 0)!
- *              In addition, it requires a GameObject (in our use, we used a plane) with specified layer pongLayer
+ *              In addition, it requires a GameObject (in our use, we used a plane) with specified layer "PongShieldPlane"
  * 
  * */
 
 public class Pong_Shield : MonoBehaviour {
 
     public Vector3 scale;
-    public float clamp;
+    public float x_clamp;
+    public float y;
     public float duration;
-    public string pongLayer;
 
     GameObject rightController;
     RaycastHit hit;
@@ -45,23 +45,22 @@ public class Pong_Shield : MonoBehaviour {
         }
         this.transform.localScale = scale;
 
-        // check clamp input
-        if (clamp <= 0)
+        // check x_clamp input
+        if (x_clamp <= 0)
         {
-            clamp = 4;
+            x_clamp = 4;
+        }
+
+        // check y_clamp_min input
+        if (y <= 0)
+        {
+            y = 1.75f;
         }
 
         // check duration input
         if (duration <= 0)
         {
-            duration = 3;
-        }
-
-        // check pongLayer input
-        if (LayerMask.GetMask(pongLayer) < 0)
-        {
-            Debug.Log("Pong_Shield.cs : INVALID pongLayer INPUT, DEFAULTING TO \"PongShieldPlane\"");
-            pongLayer = "PongShieldPlane";
+            duration = 10;
         }
 
         // retrieve "Right Controller" GameObject
@@ -94,11 +93,11 @@ public class Pong_Shield : MonoBehaviour {
             }
         }        
 
-		if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100, LayerMask.GetMask(pongLayer)))
+		if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100, LayerMask.GetMask("PongShieldPlane")))
         {
             if (hit.transform.tag == "Pong_Shield_Plane")
             {
-               this.transform.position = new Vector3(Mathf.Max(-clamp, Mathf.Min(clamp, hit.point.x)), this.transform.position.y, hit.point.z);
+               this.transform.position = new Vector3(Mathf.Max(-x_clamp, Mathf.Min(x_clamp, hit.point.x)), y, hit.point.z);
             }
         }
 	}

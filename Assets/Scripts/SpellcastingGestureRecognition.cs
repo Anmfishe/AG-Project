@@ -171,6 +171,26 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpellName = "heal";
                 currentSpellGradient = healGradient;
                 break;
+            case 3:
+                currentSpell = vines;
+                currentSpellName = "vines";
+                currentSpellGradient = vinesGradient;
+                break;
+            case 4:
+                currentSpell = iceball;
+                currentSpellName = "iceball";
+                currentSpellGradient = iceballGradient;
+                break;
+            case 5:
+                currentSpell = meteor;
+                currentSpellName = "meteor";
+                currentSpellGradient = meteorGradient;
+                break;
+            case 6:
+                currentSpell = pongShield;
+                currentSpellName = "pongShield";
+                currentSpellGradient = pongShieldGradient;
+                break;
             default:
                 break;
         }
@@ -201,7 +221,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
 		    case "Fire":
 			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (fireball, "fire", fireballGradient);
+				    SetSpell (fireball, "fireball", fireballGradient);
 			    }
                     break;
 		    case "Shield":
@@ -266,7 +286,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         switch (currentSpellName)
         {
-            case "fire":
+            case "fireball":
                 spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
@@ -302,13 +322,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "vines":
                 //Check if target is a platform, otherwise don't do anything.
+                if (target == null || target.result == null)
+                {
+                    return;
+                }
+                print("doing the vines, hitting " + target.result.tag);
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(0, 0, 0, 0), 0);
-                }
-                else
-                {
-                    return;
                 }
                 break;
             case "pongShield":

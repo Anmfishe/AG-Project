@@ -5,8 +5,8 @@ using UnityEngine;
 /*
  *      !!!!!!!!!   IMPORTANT   !!!!!!!!!
  *      
- *      Player avatar torso must be tagged wtih "PCP"
- *      There must be a GameObject called "PowerupManager" in the scene, and it must have a script component called "PowerupManager"
+ *      Player avatar torso must be tagged wtih "Player"
+ *      There must be a GameObject called "PowerupManager" in the scene, and it must have a script component called "PowerupManager(Clone)"
  * 
  * */
 
@@ -18,17 +18,17 @@ public class Powerup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject go = GameObject.Find("PowerupManager");
+        GameObject go = GameObject.Find("PowerupManager(Clone)");
         if (go == null)
         {
-            Debug.Log("Powerup.cs : Start() : Not able to find GameObject called \"PowerupManager\" in scene!");
+            Debug.Log("Powerup.cs : Start() : Not able to find GameObject called \"PowerupManager(Clone)\" in scene!");
             return;
         }
         
         pm = go.GetComponent<PowerupManager>();
         if (pm == null)
         {
-            Debug.Log("Powerup.cs : Start() : Not able to find script component called \"PowerupManager\" in scene!");
+            Debug.Log("Powerup.cs : Start() : Not able to find script component called \"PowerupManager(Clone)\" in scene!");
             return;
         }
 	}
@@ -46,7 +46,6 @@ public class Powerup : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        print("Powerup.cs : OnTriggerEnter : " + other.name + " " + other.tag);
         if (other.tag == "Player")
         {
             PlayerStatus ps = other.GetComponent<PlayerStatus>();

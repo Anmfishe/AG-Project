@@ -10,6 +10,7 @@ public class Targeting : MonoBehaviour {
 
     public Transform pointer;
     public float range;
+    public LayerMask layers;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +29,7 @@ public class Targeting : MonoBehaviour {
 
 //Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
         //Get raycast results.
-        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
+        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range, layers))
         {
             //print(hit.collider);
             //Return if target is the same, and turn off the previous indicator if it's not.
