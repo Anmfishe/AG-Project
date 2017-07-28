@@ -1581,7 +1581,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
   meteorCooldown: 2
-  pongShield: {fileID: 1510076060834104, guid: b41982203047e7b4b904560ec89a06ca, type: 2}
+  pongShield: {fileID: 1510076060834104, guid: 0b74ac1f87763d94baf730ca1ac40fbb, type: 2}
   pongShieldGesture: OpenFrame
   pongShieldGradient:
     serializedVersion: 2

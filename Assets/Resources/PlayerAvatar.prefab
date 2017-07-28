@@ -663,7 +663,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.74221605, y: -15.152138, z: 3.3377173}
+  m_LocalPosition: {x: -0.87375396, y: 0.6958617, z: 0.427936}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -2316,6 +2316,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 368166cda2925664594bdf5ee42fd67a, type: 2}
   - {fileID: 2100000, guid: 45870f159ac94d2469f935c1fae058d5, type: 2}
   - {fileID: 2100000, guid: 4ed99cf9b22c6844f913eade1d5610cb, type: 2}
+  attackTop: 2
+  attackBottom: 0
+  supportBottom: 3
+  supportTop: 5
+  healBottom: 6
+  healTop: 9
+  index: 0
 --- !u!114 &114400211953158868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2546,12 +2553,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114590541061986310}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

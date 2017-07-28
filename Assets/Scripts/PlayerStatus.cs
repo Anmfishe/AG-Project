@@ -35,6 +35,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Use this for initialization
     void Start()
     {
+		cameraRig = Camera.main.transform.parent.gameObject;
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 		hats = GameObject.FindGameObjectsWithTag("Grabbable");
 
