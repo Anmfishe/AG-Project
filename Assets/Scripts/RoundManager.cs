@@ -126,7 +126,7 @@ public class RoundManager : MonoBehaviour {
 
             hatsSelected = false;
 
-        if (GameObject.Find("RightController") == null || GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>())
+        if (GameObject.Find("RightController") == null)
         {
             return;
         }
