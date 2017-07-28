@@ -41,7 +41,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     Camera mainCam;
     float triggerL;
     float triggerR;
-    SpellLogic spellLogic;
     bool triggerUsed = false;
     private AudioSource audioSource;
 
@@ -56,8 +55,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private void Start()
     {
         mainCam = Camera.main;
-        spellLogic = GetComponent<SpellLogic>();
-        spellLogic.mainCam = mainCam;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
     }
@@ -162,9 +159,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 			}
                 break;
             case "SwipeLeft":
-                //   GameObject fb2 = PhotonNetwork.Instantiate(fireball.name, mainCam.transform.position - new Vector3(0, .3f, 0), mainCam.transform.rotation, 0);
-                //spellLogic.Deflect();
-                //audioSource.PlayOneShot(cast_success);
                 break;
             case "SwipeRight":
                 break;
