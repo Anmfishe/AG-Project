@@ -132,7 +132,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Immobilizes the player.
     public void EnableMovement(bool isEnabled)
     {
-        cameraRig.GetComponent<PlatformController>().enabled = isEnabled;
+        cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
     }
 
     // On death, we warp the camera rig of the corresponding player
@@ -159,7 +159,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
             }
 
-            cameraRig.GetComponent<PlatformController>().enabled = false;
+            cameraRig.GetComponent<PlatformController>().lerp = false;
         }
 
         deathTime = Time.time;
@@ -221,7 +221,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             // cameraRig.transform.position = respawnPt.position;
 			if (myScoreboard.roundOver == false) {
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
-                cameraRig.GetComponent<PlatformController>().enabled = true;
+                cameraRig.GetComponent<PlatformController>().lerp = true;
+                cameraRig.GetComponent<PlatformController>().canMove = true;
             } else 
 			{
                 self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);

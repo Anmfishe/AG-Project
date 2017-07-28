@@ -39,10 +39,10 @@ public class RoundManager : MonoBehaviour {
         
         if (!hatsSelected)
         {
-            foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))
+            foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
             {
                 
-				if (playerRCP.GetComponentInChildren<PlayerStatus>().playerClass == PlayerClass.none)
+				if (playerRCP.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                     break;
                 hatsSelected = true;   
              
@@ -119,6 +119,8 @@ public class RoundManager : MonoBehaviour {
             newPos.x -= camObj.localPosition.x;
             newPos.z -= camObj.localPosition.z;
             player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            player.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+            player.GetComponent<SpellcastingGestureRecognition>().enabled = false;
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))

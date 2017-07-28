@@ -11,9 +11,11 @@ public class PlatformController : MonoBehaviour {
     //public bool useLeft = true;
     [HideInInspector]
     public bool lerp = true;
+   
     public float CD = 1;
     public AudioClip cd_Sound;
-    private bool canMove = true;
+    [HideInInspector]
+    public bool canMove = true;
     private Vector3 targetPos;
     private AudioSource audS;
     private GameObject camObj;
@@ -43,7 +45,11 @@ public class PlatformController : MonoBehaviour {
         //device2 = SteamVR_Controller.Input((int)trackedObj2.index);
     }
 
-
+    private void OnEnable()
+    {
+        canMove = true;
+        lerp = true;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -58,7 +64,7 @@ public class PlatformController : MonoBehaviour {
                 startPressPosHoriz = trackpadPosHorizontal;
                 startPressPosVert = trackpadPosVertical;
             }
-            if (Input.GetKeyUp("joystick button 17"))
+            if (Input.GetKeyUp("joystick button 17") && canMove)
             {
                 PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
 
