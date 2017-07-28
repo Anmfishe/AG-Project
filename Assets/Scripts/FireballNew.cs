@@ -42,7 +42,10 @@ public class FireballNew : MonoBehaviour
         if (activeTimer > 0)
             activeTimer -= Time.deltaTime;
         else if (!fbCollider.enabled)
+        {
             fbCollider.enabled = true;
+            print("fbcollider enabled");
+        }
 
         //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * speed * Time.deltaTime, ForceMode);
         //this.GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
@@ -51,7 +54,9 @@ public class FireballNew : MonoBehaviour
     {
         this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
     }
-    private void OnCollisionEnter(Collision collision)
+
+    
+     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
         print("Collided by " + other.name);
@@ -62,11 +67,12 @@ public class FireballNew : MonoBehaviour
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             if (statusScript != null) statusScript.takeDamage(damage);
+            else
+            {
+                print("statusscript is null");
+            }
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-
-            DestroyFireball();
-
         }
         else if(other.CompareTag("put"))
         {
@@ -76,8 +82,6 @@ public class FireballNew : MonoBehaviour
             if (statusScript != null) statusScript.takeDamage(damage);
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-
-            DestroyFireball();
         }
         else if (other.CompareTag("Shield"))
         {
@@ -87,8 +91,6 @@ public class FireballNew : MonoBehaviour
             if (damageScript != null) damageScript.TakeDamage(damage);
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-
-            DestroyFireball();
         }
         else if (other.CompareTag("Spell"))
         {
@@ -99,17 +101,18 @@ public class FireballNew : MonoBehaviour
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
-            //Delete this game object.
-            DestroyFireball();
+            
 
         }
+        //Delete this game object.
+        DestroyFireball();
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         GameObject other = collider.gameObject;
         print("Triggered (heh) by " + other.name);
-        if (other.CompareTag("SpellHitter"))
+/*        if (other.CompareTag("SpellHitter"))
         {
             print("triggered spellhitter");
             //Create reflected fireball if it was hit hard enough by the spell hitter.
@@ -130,7 +133,23 @@ public class FireballNew : MonoBehaviour
             }
 
         }
+        else */if (other.CompareTag("Player"))
+        {
+            print("on trigger enter, hit torso");
+            //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
+            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
+            if (statusScript != null) statusScript.takeDamage(damage);
+            else
+            {
+                print("statusscript is null");
+            }
+            //Instantiate new explosion.
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+            DestroyFireball();
+        }
     }
+
+ 
     private void StartRecovery()
     {
         activeTimer = startup;
@@ -138,9 +157,11 @@ public class FireballNew : MonoBehaviour
     }
     private void DestroyFireball()
     {
+        Debug.Log("Attempting to destory fireball");
         //Destroy game object.
-//        PhotonNetwork.Destroy(this.gameObject);
-		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+        //        PhotonNetwork.Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+//        Destroy(this);
     }
 
 }

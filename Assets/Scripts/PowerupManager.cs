@@ -16,7 +16,7 @@ using UnityEngine;
  * 
  * */
 
-public class PowerupManager : MonoBehaviour {
+public class PowerupManager : MonoBehaviour, IPunObservable {
 
     public GameObject[] redPlatforms;
     public GameObject[] bluePlatforms;
@@ -133,6 +133,22 @@ public class PowerupManager : MonoBehaviour {
         else
         {
             redPowerups[platformIndex] = false;
+        }
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // If you own the game object
+        if (stream.isWriting)
+        {
+            // Sync all instances of health according to my health
+            stream.SendNext(numPowerups);
+        }
+        // If you dont own the game object
+        else
+        {
+            // Sync the avatar's health according to the owner of the avatar.
+            numPowerups = (int)(stream.ReceiveNext());
         }
     }
 }

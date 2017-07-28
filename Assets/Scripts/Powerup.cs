@@ -46,34 +46,7 @@ public class Powerup : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            PlayerStatus ps = other.GetComponent<PlayerStatus>();
-            if (ps == null)
-            {
-                Debug.Log("Powerup.cs : Could not find PlayerStatus");
-                return;
-            }
-            SpellcastingGestureRecognition sgr = ps.cameraRig.GetComponent<SpellcastingGestureRecognition>();
-            if (sgr == null)
-            {
-                Debug.Log("Powerup.cs : Could not find SpellcastingGestureRecognition");
-                return;
-            }
-
-            sgr.SetRandomSpell();
-
-            if (pm != null && PhotonNetwork.isMasterClient)
-            {
-                this.GetComponent<PhotonView>().RPC("UpdatePowerupManager", PhotonTargets.AllBuffered, null);
-            }
-            else
-            {
-                Debug.Log("Powerup.cs : OnTriggerEnter() : pm is null!");
-            }
-
-            PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
-        }
+       
     }
 
     [PunRPC]

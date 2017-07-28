@@ -8,7 +8,7 @@ public class TargetablePlayer : MonoBehaviour {
 
     public void SetIndicator(bool on)
     {
-        print("Switch " + on + "!");
+
         indicator.SetActive(on);
     }
 }

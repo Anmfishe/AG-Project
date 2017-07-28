@@ -1283,7 +1283,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207178181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe16da6304c66f94d868eac6f65e2908, type: 3}
   m_Name: 
@@ -11738,7 +11738,7 @@ Prefab:
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114565340129950696, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 1146dffe1d0bd67419d3d9b9e64a9160, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1402474077 stripped
@@ -14299,6 +14299,12 @@ Prefab:
       propertyPath: roomName
       value: rogelio16
       objectReference: {fileID: 0}
+    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
+        type: 2}
+      propertyPath: powerupManager
+      value: 
+      objectReference: {fileID: 1223233074598154, guid: 89fe05d964bad0f4082158c56fd91e07,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
   m_IsPrefabParent: 0

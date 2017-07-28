@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 135854552206161194}
   - component: {fileID: 114775295234517056}
   - component: {fileID: 114248342134202918}
-  - component: {fileID: 54491022256919336}
   - component: {fileID: 82321788481519190}
+  - component: {fileID: 54801123328779404}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Spell
@@ -178,7 +178,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279177223335786}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54491022256919336
+--- !u!54 &54801123328779404
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

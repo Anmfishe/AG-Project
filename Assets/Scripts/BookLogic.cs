@@ -242,9 +242,33 @@ public class BookLogic : MonoBehaviour
 
     public void UpdateUI()
     {
-		playerClass = playerStatus.playerClass;
+        if (playerStatus == null)
+        {
+            playerStatus = transform.parent.parent.GetComponentInChildren<PlayerStatus>();
+        }
+        if (playerStatus != null)
+        {
+            playerClass = playerStatus.playerClass;
+        }
+        else
+        {
+            print("playerStatus is null");
+        }
 
-			rend.material = pages[index];
+        if (transform.GetChild(1) != null)
+        {
+
+            page = this.gameObject.transform.GetChild(1).gameObject;
+            rend = page.GetComponent<Renderer>();
+
+
+            rend.material = pages[pages.Length - 1];
+            animator = GetComponent<Animator>();
+
+            rend.material = pages[index];
+        }
+
+        
 
 		if (playerClass == PlayerClass.none) 
 		{

@@ -106,7 +106,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         // Ensure that this is the active player
         if (!photonView.isMine)
         {
+            print("photonview isnt mine");
             return false;
+        }
+        else
+        {
+            print("OMG, took damage!");
         }
 
         if (dead == false)
@@ -212,9 +217,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
         {
-            
-            
-
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
 			if (myScoreboard.roundOver == false) {
@@ -237,12 +239,20 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //        self_photonview.RPC("ResetScoreboard", PhotonTargets.All, null);
         ResetScoreboard();
 
-        foreach (GameObject hat in hats)
+        if (hats == null)
         {
-            hat.transform.SetParent(null);
-            hat.GetComponent<HatLogic>().resetHat();
-            hat.GetComponent<HatLogic>().onHead = false;
-            hat.GetComponent<HatLogic>().resettable = true;
+            hats = GameObject.FindGameObjectsWithTag("Grabbable");
+        }
+
+        if (hats != null)
+        {
+            foreach (GameObject hat in hats)
+            {
+                hat.transform.SetParent(null);
+                hat.GetComponent<HatLogic>().resetHat();
+                hat.GetComponent<HatLogic>().onHead = false;
+                hat.GetComponent<HatLogic>().resettable = true;
+            }
         }
 
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -259,7 +269,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
         }
 
-        bookLogic.UpdateUI();
+        if (bookLogic == null)
+        {
+            bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
+        }
+        if (bookLogic != null)
+        {
+            bookLogic.UpdateUI();
+        }
 
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
@@ -304,6 +321,42 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		}
 	}
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Powerup" && photonView.isMine)
+        {
+            //PlayerStatus ps = other.GetComponent<PlayerStatus>();
+            //if (ps == null)
+            //{
+            //    Debug.Log("Powerup.cs : Could not find PlayerStatus");
+            //    return;
+            //}
+            SpellcastingGestureRecognition sgr = cameraRig.GetComponent<SpellcastingGestureRecognition>();
+            if (sgr == null)
+            {
+                Debug.Log("Powerup.cs : Could not find SpellcastingGestureRecognition");
+                return;
+            }
+
+            sgr.SetRandomSpell();
+
+            PhotonNetwork.Destroy(other.GetComponent<PhotonView>());
+
+            PowerupManager pm = GameObject.Find("PowerupManager").GetComponent<PowerupManager>();
+
+            if (pm != null /*&& PhotonNetwork.isMasterClient*/)
+            {
+                this.GetComponent<PhotonView>().RPC("UpdatePowerupManager", PhotonTargets.AllBuffered, null);
+            }
+            else
+            {
+                Debug.Log("Powerup.cs : OnTriggerEnter() : pm is null!");
+            }
+
+            
+        }
+    }
+
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // If you own the game object
@@ -316,7 +369,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         else
         {
             // Sync the avatar's health according to the owner of the avatar.
-            current_health = (int)stream.ReceiveNext();
+            current_health = (float)(stream.ReceiveNext());
         }
     }
 }

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33505254771148116}
   - component: {fileID: 23841129152977566}
   - component: {fileID: 54009156026956916}
-  - component: {fileID: 114565340129950696}
   - component: {fileID: 65631850865197112}
   - component: {fileID: 114567075210132834}
   m_Layer: 0
@@ -111,42 +110,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04345528, y: 0.03504339, z: 0.03972134}
   m_Center: {x: -0.0018669702, y: 0.017521694, z: 0}
---- !u!114 &114565340129950696
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1894875449414954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820c0d1d1e958164aa33ae57efea5e46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 750
-  thrown: 0
-  held: 0
-  warped: 0
-  deactivated: 0
-  holdable: 1
-  memory: 0
-  countDown: 0
-  keyCard: 0
-  releaseHeld: 0
-  audioSource: {fileID: 0}
-  bounceSound: {fileID: 0}
-  padding: 50
-  index: 0
-  startTime: 0
-  warpTimeBase: 0
-  warpTimeCap: 5
-  maxDist: 0.5
-  rigidbody: {fileID: 0}
-  fixedPos: 0
-  myStartPos: {x: 0, y: 0, z: 0}
-  startPos: {x: 0, y: 0, z: 0}
-  startRot: {x: 0, y: 0, z: 0}
-  thisStartPos: {x: 0, y: 0, z: 0}
-  landingPoint: {fileID: 0}
 --- !u!114 &114567075210132834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,3 +129,5 @@ MonoBehaviour:
   touchingHead: 0
   held: 0
   resettable: 1
+  releaseHat: 0
+  releaseTime: 0

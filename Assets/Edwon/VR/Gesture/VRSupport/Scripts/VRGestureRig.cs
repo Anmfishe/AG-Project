@@ -119,7 +119,7 @@ namespace Edwon.VR
             Init();
         }
 
-        void Init()
+        public void Init()
         {
             CreateInputHelper();
 
@@ -179,6 +179,10 @@ namespace Edwon.VR
             leftCapture.StopCaptureEvent -= StopCapturing;
             rightCapture.StartCaptureEvent -= StartCapturing;
             rightCapture.StopCaptureEvent -= StopCapturing;
+        }
+        private void OnEnable()
+        {
+            Init();
         }
         #endregion
 

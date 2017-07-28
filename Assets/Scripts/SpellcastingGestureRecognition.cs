@@ -167,7 +167,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public void SetRandomSpell()
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 9);
 
         switch (random)
         {
@@ -185,6 +185,36 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpell = heal;
                 currentSpellName = "heal";
                 currentSpellGradient = healGradient;
+                break;
+            case 3:
+                currentSpell = vines;
+                currentSpellName = "vines";
+                currentSpellGradient = vinesGradient;
+                break;
+            case 4:
+                currentSpell = iceball;
+                currentSpellName = "iceball";
+                currentSpellGradient = iceballGradient;
+                break;
+            case 5:
+                currentSpell = meteor;
+                currentSpellName = "meteor";
+                currentSpellGradient = meteorGradient;
+                break;
+            case 6:
+                currentSpell = pongShield;
+                currentSpellName = "pongShield";
+                currentSpellGradient = pongShieldGradient;
+                break;
+            case 7:
+                currentSpell = platformSteal;
+                currentSpellName = "platformSteal";
+                currentSpellGradient = platformStealGradient;
+                break;
+            case 8:
+                currentSpell = lightBlade;
+                currentSpellName = "lightBlade";
+                currentSpellGradient = lightBladeGradient;
                 break;
             default:
                 break;
@@ -299,7 +329,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (currentSpellName)
         {
             case "fire":
-                spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+                spellRotation = target.result != null && target.result.CompareTag("Player") ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
@@ -334,6 +364,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "vines":
                 //Check if target is a platform, otherwise don't do anything.
+                if (target == null || target.result == null)
+                {
+                    return;
+                }
+
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
@@ -355,6 +390,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "platformSteal":
                 //Check if target is a platform, otherwise don't do anything.
+                if (target == null || target.result == null)
+                {
+                    Debug.Log("target for platform steal is null");
+                    return;
+                }
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
@@ -391,7 +431,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
             ParticleSystem ps = wand.Find("tip").Find("smoke").GetComponent<ParticleSystem>();
-            var main = ps.main;
+           ParticleSystem.MainModule main = ps.main;
             ps.Stop();
             main.duration = spellTimer;
             ps.Play();
