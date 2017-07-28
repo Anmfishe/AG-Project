@@ -46,6 +46,7 @@ public class NetworkManager : Photon.PunBehaviour
 	private int temp = 0;
 	string _gameVersion = "1";
 	public GameObject roundMan;
+    public GameObject powerupManager;
 
 	void Awake()
 	{
@@ -198,11 +199,14 @@ public class NetworkManager : Photon.PunBehaviour
 
 		}
 
-		//temp++;
-		//localPlayer.GetComponentInParent<TeamManager>().SetRed();
-		//localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
-		if (PhotonNetwork.isMasterClient)
-			roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+        //temp++;
+        //localPlayer.GetComponentInParent<TeamManager>().SetRed();
+        //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        if (PhotonNetwork.isMasterClient)
+        {
+            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+        }
 	}
 
 	/// <summary>
