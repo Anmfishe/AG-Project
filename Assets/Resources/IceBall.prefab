@@ -422,8 +422,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114248342134202918}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114990702936684920
@@ -6998,7 +6998,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0
       minScalar: 1.8536144
       maxCurve:
         serializedVersion: 2
@@ -9650,7 +9650,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -242447435
+  randomSeed: 1138406006
   InitialModule:
     serializedVersion: 3
     enabled: 1

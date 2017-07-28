@@ -7,8 +7,10 @@ public class PlatformController : MonoBehaviour {
     public Transform currPlatform;
     [HideInInspector]
     public GameObject avatar;
-    public bool useRight = true;
-    public bool useLeft = true;
+    //public bool useRight = true;
+    //public bool useLeft = true;
+    [HideInInspector]
+    public bool lerp = true;
     public float CD = 1;
     public AudioClip cd_Sound;
     private bool canMove = true;
@@ -21,15 +23,15 @@ public class PlatformController : MonoBehaviour {
     float startPressPosVert;
     float swipeThresh = 0.03f;
     public float speed = 10f;
-    SteamVR_TrackedObject trackedObj1;
-    SteamVR_TrackedObject trackedObj2;
-    SteamVR_Controller.Device device1;
-    SteamVR_Controller.Device device2;
+    //SteamVR_TrackedObject trackedObj1;
+    //SteamVR_TrackedObject trackedObj2;
+    //SteamVR_Controller.Device device1;
+    //SteamVR_Controller.Device device2;
     // Use this for initialization
     private void Awake()
     {
-        trackedObj1 = transform.Find("Controller (left)").GetComponent<SteamVR_TrackedObject>();
-        trackedObj2 = transform.Find("Controller (right)").GetComponent<SteamVR_TrackedObject>();
+        //trackedObj1 = transform.Find("Controller (left)").GetComponent<SteamVR_TrackedObject>();
+        //trackedObj2 = transform.Find("Controller (right)").GetComponent<SteamVR_TrackedObject>();
         camObj = GetComponentInChildren<Camera>().gameObject;
     }
     void Start () {
@@ -37,45 +39,46 @@ public class PlatformController : MonoBehaviour {
 	}
     void FixedUpdate()
     {
-        device1 = SteamVR_Controller.Input((int)trackedObj1.index);
-        device2 = SteamVR_Controller.Input((int)trackedObj2.index);
+        //device1 = SteamVR_Controller.Input((int)trackedObj1.index);
+        //device2 = SteamVR_Controller.Input((int)trackedObj2.index);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
-        transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
-
-        trackpadPosHorizontal = Input.GetAxis("TrackpadHoriz2");
-        trackpadPosVertical = Input.GetAxis("TrackpadVert");
-        if (Input.GetKeyDown("joystick button 17"))
+        if (lerp)
         {
-            startPressPosHoriz = trackpadPosHorizontal;
-            startPressPosVert = trackpadPosVertical;
-        }
-        if (Input.GetKeyUp("joystick button 17"))
-        {
-            print("Dank");
-            if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().right != null)
-            {
-                MoveRight();
-            }
+            transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
 
-            else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().left != null)
+            trackpadPosHorizontal = Input.GetAxis("TrackpadHoriz2");
+            trackpadPosVertical = Input.GetAxis("TrackpadVert");
+            if (Input.GetKeyDown("joystick button 17"))
             {
-                MoveLeft();
+                startPressPosHoriz = trackpadPosHorizontal;
+                startPressPosVert = trackpadPosVertical;
             }
-            else if(trackpadPosVertical > startPressPosVert + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().up != null)
+            if (Input.GetKeyUp("joystick button 17"))
             {
-                MoveUp();
-            }
-            else if (trackpadPosVertical < startPressPosVert - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().down != null)
-            {
-                MoveDown();
-            }
+                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().right != null)
+                {
+                    MoveRight();
+                }
 
+                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().left != null)
+                {
+                    MoveLeft();
+                }
+                else if (trackpadPosVertical > startPressPosVert + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().up != null)
+                {
+                    MoveUp();
+                }
+                else if (trackpadPosVertical < startPressPosVert - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().down != null)
+                {
+                    MoveDown();
+                }
+
+            }
         }
 
 
