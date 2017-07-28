@@ -13,8 +13,8 @@ public class MeteorSpell : MonoBehaviour
 	public bool mine = false;
     public GameObject explosion;
 	public GameObject wand;
-    public int damage = 20;
-	private float castDist = 10;
+    public int damage = 30;
+	//private float castDist = 10;
 	private float magCap = 10;
 	private float skyCap = 10;
 	private float groundCap = 40;
@@ -243,8 +243,21 @@ public class MeteorSpell : MonoBehaviour
     {
         //Destroy game object.
 //        PhotonNetwork.Destroy(this.gameObject);
+
+		Collider[] hits;
+		hits = Physics.OverlapSphere(transform.position, 5);
+		foreach (Collider hit in hits)
+		{
+			if (hit.transform.tag == "Player")
+			{
+				hit.transform.GetComponent<PlayerStatus>().takeDamage(damage);
+			}
+		}
+
+
+
 		Destroy(reticleInstance);
-		Destroy(this.gameObject);
+		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
     }
 
 }
