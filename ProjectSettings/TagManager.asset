@@ -26,6 +26,7 @@ TagManager:
   - PCP
   - Stage
   - Pong_Shield_Plane
+  - Curse
   layers:
   - Default
   - TransparentFX

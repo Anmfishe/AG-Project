@@ -17,8 +17,10 @@ public class AutoDestroy : MonoBehaviour {
             timer -= Time.deltaTime;
         else
         {
-            PhotonNetwork.Destroy(this.gameObject);
-            Destroy(this.gameObject);
+            if(InPhoton)
+                PhotonNetwork.Destroy(this.gameObject);
+            else
+                Destroy(this.gameObject);
         }
 	}
 }

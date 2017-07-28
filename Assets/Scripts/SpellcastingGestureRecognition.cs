@@ -36,12 +36,27 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject meteor;
     public string meteorGesture;
     public Gradient meteorGradient;
-    public float meteorCooldown = 0f;
-
+    public float meteorCooldown = 2f;
+    
     public GameObject pongShield;
     public string pongShieldGesture;
     public Gradient pongShieldGradient;
     public float pongShieldCooldown = 2f;
+
+    public GameObject platformSteal;
+    public string platformStealGesture;
+    public Gradient platformStealGradient;
+    public float platformStealCooldown = 2f;
+    
+    public GameObject lightBlade;
+    public string lightBladeGesture;
+    public Gradient lightBladeGradient;
+    public float lightBladeCooldown = 2f;
+
+    public GameObject disenchant;
+    public string disenchantGesture;
+    public Gradient disenchantGradient;
+    public float disenchantCooldown = 2f;
 
     public GameObject swipeLeft;
     public GameObject swipeRight;
@@ -152,7 +167,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public void SetRandomSpell()
     {
-        int random = Random.Range(0, 7);
+        int random = Random.Range(0, 3);
 
         switch (random)
         {
@@ -170,26 +185,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpell = heal;
                 currentSpellName = "heal";
                 currentSpellGradient = healGradient;
-                break;
-            case 3:
-                currentSpell = vines;
-                currentSpellName = "vines";
-                currentSpellGradient = vinesGradient;
-                break;
-            case 4:
-                currentSpell = iceball;
-                currentSpellName = "iceball";
-                currentSpellGradient = iceballGradient;
-                break;
-            case 5:
-                currentSpell = meteor;
-                currentSpellName = "meteor";
-                currentSpellGradient = meteorGradient;
-                break;
-            case 6:
-                currentSpell = pongShield;
-                currentSpellName = "pongShield";
-                currentSpellGradient = pongShieldGradient;
                 break;
             default:
                 break;
@@ -221,7 +216,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
 		    case "Fire":
 			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (fireball, "fireball", fireballGradient);
+				    SetSpell (fireball, "fire", fireballGradient);
 			    }
                     break;
 		    case "Shield":
@@ -241,23 +236,40 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 break;
             case "Diamond":
-                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
                 }
                 break;
             case "Wave":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(meteor, "meteor", meteorGradient);
                 }
                 break;
             case "OpenFrame":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
                 }
-
+                break;
+            case "Star":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(platformSteal, "platformSteal", platformStealGradient);
+                }
+                break;
+            case "Zed":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                }
+                break;
+            case "Elle":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(disenchant, "disenchant", disenchantGradient);
+                }
                 break;
         }
     }
@@ -286,8 +298,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         switch (currentSpellName)
         {
-            case "fireball":
-			spellRotation = (target.result != null && target.result.CompareTag("Player")) ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+            case "fire":
+                spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
@@ -322,14 +334,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "vines":
                 //Check if target is a platform, otherwise don't do anything.
-                if (target == null || target.result == null)
-                {
-                    return;
-                }
-                print("doing the vines, hitting " + target.result.tag);
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
-                    spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(0, 0, 0, 0), 0);
+                    spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
+                }
+                else
+                {
+                    return;
                 }
                 break;
             case "pongShield":
@@ -341,6 +352,35 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = meteorCooldown;
+                break;
+            case "platformSteal":
+                //Check if target is a platform, otherwise don't do anything.
+                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                {
+                    spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
+                    target.result.GetComponent<PlatformMain>().ChangeColor();
+                    spellTimer = platformStealCooldown;
+                }
+                else
+                {
+                    return;
+                }
+
+                break;
+            case "lightBlade":
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
+                spellInstance.transform.SetParent(wandTip);
+                spellTimer = lightBladeCooldown;
+                break;
+            case "disenchant":
+                if (target != null && target.result != null && target.result.CompareTag("Curse"))
+                {
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
+                    spellTimer = disenchantCooldown;
+                    PhotonNetwork.Destroy(target.result.gameObject);
+                }
+                else
+                    return;
                 break;
             default:
                 spellTimer = spellCooldown;

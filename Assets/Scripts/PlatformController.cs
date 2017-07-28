@@ -60,20 +60,22 @@ public class PlatformController : MonoBehaviour {
             }
             if (Input.GetKeyUp("joystick button 17"))
             {
-                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().right != null)
+                PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
+
+                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh && currNeighborhood.right != null )
                 {
                     MoveRight();
                 }
 
-                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().left != null)
+                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh && currNeighborhood.left != null)
                 {
                     MoveLeft();
                 }
-                else if (trackpadPosVertical > startPressPosVert + swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().up != null)
+                else if (trackpadPosVertical > startPressPosVert + swipeThresh && currNeighborhood.up != null)
                 {
                     MoveUp();
                 }
-                else if (trackpadPosVertical < startPressPosVert - swipeThresh && currPlatform.GetComponent<PlatformNeighbors>().down != null)
+                else if (trackpadPosVertical < startPressPosVert - swipeThresh && currNeighborhood.down != null)
                 {
                     MoveDown();
                 }

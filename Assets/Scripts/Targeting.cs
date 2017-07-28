@@ -63,6 +63,7 @@ public class Targeting : MonoBehaviour {
                     break;
                 case "BluePlatform":
                 case "RedPlatform":
+                case "Curse":
                     //Assign resulting collider to target.
                     result = hit.collider.transform;
                     break;
