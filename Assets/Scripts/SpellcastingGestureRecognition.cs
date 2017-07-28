@@ -9,28 +9,39 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient baseGradient;
 
     public GameObject fireball;
+    public string fireballGesture;
     public Gradient fireballGradient;
     public float fireballCooldown = 2f;
 
     public GameObject shield;
+    public string shieldGesture;
     public Gradient shieldGradient;
     public float shieldCooldown = 6f;
 
     public GameObject heal;
+    public string healGesture;
     public Gradient healGradient;
     public float healCooldown = 1f;
 
     public GameObject vines;
+    public string vinesGesture;
     public Gradient vinesGradient;
     public float vinesCooldown = 2f;
 
     public GameObject iceball;
+    public string iceballGesture;
     public Gradient iceballGradient;
     public float iceballCooldown = 2f;
 
     public GameObject meteor;
+    public string meteorGesture;
     public Gradient meteorGradient;
     public float meteorCooldown = 2f;
+
+    public GameObject pongShield;
+    public string pongShieldGesture;
+    public Gradient pongShieldGradient;
+    public float pongShieldCooldown = 2f;
 
     public GameObject swipeLeft;
     public GameObject swipeRight;
@@ -155,33 +166,46 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         switch (gestureName)
         {
-		case "Fire":
-			if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				SetSpell (fireball, "fire", fireballGradient);
-			}
+		    case "Fire":
+			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+				    SetSpell (fireball, "fire", fireballGradient);
+			    }
+                    break;
+		    case "Shield":
+			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+				    SetSpell (shield, "shield", shieldGradient);
+			    }
+                    break;
+		    case "Heal":
+			    if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+				    SetSpell (heal, "heal", healGradient);
+			    }
+                    break;
+            case "Spring":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(vines, "vines", vinesGradient);
+                }
                 break;
-		case "Shield":
-			if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				SetSpell (shield, "shield", shieldGradient);
-			}
+            case "Diamond":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(iceball, "iceball", iceballGradient);
+                }
                 break;
-		case "Heal":
-			if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				SetSpell (heal, "heal", healGradient);
-			}
+            case "Wave":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(meteor, "meteor", meteorGradient);
+                }
                 break;
-        case "SwipeLeft":
-            if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
-            {
-                SetSpell(vines, "vines", vinesGradient);
-            }
-            break;
-        case "SwipeRight":
-            if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
-            {
-                SetSpell(vines, "vines", vinesGradient);
-            }
-            break;
+            case "OpenFrame":
+                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(pongShield, "pongShield", pongShieldGradient);
+                }
+
+                break;
         }
     }
 
@@ -205,18 +229,24 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         GameObject spellInstance;
         Transform wandTip = wand.Find("tip");
+        Quaternion spellRotation;
 
         switch (currentSpellName)
         {
-		    case "fire":
-			    Quaternion spellRotation = target.result != null ? Quaternion.LookRotation (target.result.position - wandTip.transform.position) : wandTip.rotation;
-				spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
+            case "fire":
+                spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;
+            case "iceball":
+                spellRotation = wandTip.rotation;
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellTimer = iceballCooldown;
+                break;
             case "shield":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
-                //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
-                //spellInstance.transform.SetParent(wandTip);
+                //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
+                spellInstance.transform.SetParent(wandTip);
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
@@ -245,6 +275,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     return;
                 }
+                break;
+            case "pongShield":
+
+                break;
+            case "meteor":
                 break;
             default:
                 spellTimer = spellCooldown;

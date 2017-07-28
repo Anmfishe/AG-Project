@@ -15,7 +15,7 @@ public class GestureRigEnabled : MonoBehaviour {
 	}
     private void OnEnable()
     {
-        camRig = transform.parent.gameObject;
-        camRig.GetComponent<Edwon.VR.VRGestureRig>().Init();
+       // camRig = transform.parent.gameObject;
+        //camRig.GetComponent<Edwon.VR.VRGestureRig>().Init();
     }
 }

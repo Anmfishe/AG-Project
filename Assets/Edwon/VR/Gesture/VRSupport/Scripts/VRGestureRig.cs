@@ -82,7 +82,7 @@ namespace Edwon.VR
             VRGestureRig[] rigs = FindObjectsOfType(typeof(VRGestureRig)) as VRGestureRig[];
             foreach (VRGestureRig _rig in rigs)
             {
-                if(_rig.playerID == _playerID)
+                if (_rig.playerID == _playerID)
                 {
                     rig = _rig;
                 }
@@ -94,7 +94,7 @@ namespace Edwon.VR
             //}
             return rig;
         }
-        
+
         #region INITIALIZATION
 
         // Reset is called when the user hits the Reset button in the Inspector's context menu
@@ -119,7 +119,7 @@ namespace Edwon.VR
             Init();
         }
 
-        public void Init()
+        void Init()
         {
             CreateInputHelper();
 
@@ -157,7 +157,7 @@ namespace Edwon.VR
             }
 
             leftCapture = new CaptureHand(this, perpTransform, Handedness.Left, leftTrail);
-            rightCapture = new CaptureHand(this, perpTransform, Handedness.Right,rightTrail);
+            rightCapture = new CaptureHand(this, perpTransform, Handedness.Right, rightTrail);
 
             if (leftCapture != null && rightCapture != null)
             {
@@ -251,7 +251,7 @@ namespace Edwon.VR
 
         public void AutoSetup()
         {
-            #if EDWON_VR_OCULUS
+#if EDWON_VR_OCULUS
                 if (GetComponent<OVRCameraRig>() != null)
                 {
                     OVRCameraRig ovrCameraRig = GetComponent<OVRCameraRig>();
@@ -265,23 +265,23 @@ namespace Edwon.VR
                         "Could not setup OculusVR rig, is this script on the top level of your OVRCameraRig?\nDid you define EDWON_VR_OCULUS in Project Settings > Player ?"
                         );
                 }
-            #endif
-            #if EDWON_VR_STEAM
-                if (GetComponent<SteamVR_ControllerManager>() != null)
-                {
-                    SteamVR_ControllerManager steamVRControllerManager = GetComponent<SteamVR_ControllerManager>();
-                    head = GetComponentInChildren<SteamVR_Camera>().transform;
-                    //TODO: CHECK IN EARLIER VERSION OF UNITY. MIGHT NEED A OR for SteamVR_Gameview
-                    handLeft = steamVRControllerManager.left.transform;
-                    handRight = steamVRControllerManager.right.transform;
-                }
-                else
-                {
-                    Debug.Log(
-                        "Could not setup SteamVR rig, is this script on the top level of your SteamVR camera prefab?\nDid you define EDWON_VR_STEAM in Project Settings > Player ?"
-                        );
-                }
-            #endif
+#endif
+#if EDWON_VR_STEAM
+            if (GetComponent<SteamVR_ControllerManager>() != null)
+            {
+                SteamVR_ControllerManager steamVRControllerManager = GetComponent<SteamVR_ControllerManager>();
+                head = GetComponentInChildren<SteamVR_Camera>().transform;
+                //TODO: CHECK IN EARLIER VERSION OF UNITY. MIGHT NEED A OR for SteamVR_Gameview
+                handLeft = steamVRControllerManager.left.transform;
+                handRight = steamVRControllerManager.right.transform;
+            }
+            else
+            {
+                Debug.Log(
+                    "Could not setup SteamVR rig, is this script on the top level of your SteamVR camera prefab?\nDid you define EDWON_VR_STEAM in Project Settings > Player ?"
+                    );
+            }
+#endif
         }
 
         public Transform GetHand(Handedness handedness)
@@ -316,10 +316,6 @@ namespace Edwon.VR
             }
         }
 
-        private void OnEnable()
-        {
-            Init();
-        }
         /// <summary>
         /// This will check to see if an IInput interface is attached to the controller.
         /// If not it will attach the default VRControllerInput from EdwonVR
@@ -347,12 +343,12 @@ namespace Edwon.VR
             inputLeft = handLeft.gameObject.AddComponent<VRControllerInputOculus>().Init(Handedness.Left);
             inputRight = handRight.gameObject.AddComponent<VRControllerInputOculus>().Init(Handedness.Right);
 
-            #endif
+#endif
 
             if (GestureSettings.showVRUI)
             {
-                //VRLaserPointer laserLeft = handLeft.gameObject.AddComponent<VRLaserPointer>();
-                //laserLeft.InitRig(this, Handedness.Left);
+                VRLaserPointer laserLeft = handLeft.gameObject.AddComponent<VRLaserPointer>();
+                laserLeft.InitRig(this, Handedness.Left);
                 VRLaserPointer laserRight = handRight.gameObject.AddComponent<VRLaserPointer>();
                 laserRight.InitRig(this, Handedness.Right);
             }
@@ -368,7 +364,7 @@ namespace Edwon.VR
             Instantiate(Resources.Load(Config.PARENT_PATH + "VRUI/VR Gesture UI"));
         }
 
-        public void SpawnControllerModels ()
+        public void SpawnControllerModels()
         {
             if (useCustomControllerModels == false)
             {
@@ -433,7 +429,6 @@ namespace Edwon.VR
 
 
 }
-
 
 
 
