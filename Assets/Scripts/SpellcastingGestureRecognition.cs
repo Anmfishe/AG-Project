@@ -312,7 +312,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 break;
             case "pongShield":
-
+                spellRotation = new Quaternion();
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellTimer = pongShieldCooldown;
                 break;
             case "meteor":
                 spellRotation = wandTip.rotation;
