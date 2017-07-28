@@ -152,7 +152,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public void SetRandomSpell()
     {
-        int random = Random.Range(0, 3);
+        int random = Random.Range(0, 7);
 
         switch (random)
         {
@@ -241,19 +241,19 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 break;
             case "Diamond":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
                 }
                 break;
             case "Wave":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(meteor, "meteor", meteorGradient);
                 }
                 break;
             case "OpenFrame":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
                 }
@@ -287,7 +287,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (currentSpellName)
         {
             case "fireball":
-                spellRotation = target.result != null ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
+			spellRotation = (target.result != null && target.result.CompareTag("Player")) ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
                 break;

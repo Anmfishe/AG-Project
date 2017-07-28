@@ -22,7 +22,7 @@ public class MeteorSpell : MonoBehaviour
 
 	public LayerMask targettable;
 	public GameObject wand;
-	public int damage = 20;
+	private int damage = 40;
 	private float castDist = 10;
 	private float magCap = 10;
 	private float skyCap = 10;
@@ -256,9 +256,20 @@ public class MeteorSpell : MonoBehaviour
 	{
 		//Destroy game object.
 		//        PhotonNetwork.Destroy(this.gameObject);
-		spellcastingGesture.enabled = true;
-		Destroy(reticleInstance);
-		Destroy(this.gameObject);
-	}
 
+		Collider[] hits;
+		hits = Physics.OverlapSphere(transform.position, 5);
+		foreach (Collider hit in hits)
+		{
+			if (hit.transform.tag == "Player")
+			{
+				hit.transform.GetComponent<PlayerStatus>().takeDamage(damage);
+			}
+		}
+
+
+
+		Destroy(reticleInstance);
+		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+	}
 }
