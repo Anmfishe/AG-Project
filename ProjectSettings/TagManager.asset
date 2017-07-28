@@ -23,6 +23,8 @@ TagManager:
   - PenaltyBox
   - HatRoom
   - NetworkManager
+  - PCP
+  - Stage
   layers:
   - Default
   - TransparentFX
