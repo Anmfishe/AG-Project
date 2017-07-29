@@ -35,7 +35,6 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         redPowerups = new bool[redPlatforms.Length];
         bluePowerups = new bool[bluePlatforms.Length];
 
-
         bluePlatforms[0] = GameObject.Find("Blue_platform1 (1)");
         bluePlatforms[1] = GameObject.Find("Blue_platform1 (3)");
         bluePlatforms[2] = GameObject.Find("Blue_platform1");
@@ -72,35 +71,38 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 	
 	// Update is called once per frame
 	void Update () {
-        timer -= Time.deltaTime;
-        if (timer <= 0 && numPowerups < 6)
+        if (PhotonNetwork.isMasterClient)
         {
-            int randomPlatform;
-            if (HasSpace(redPlatforms, redPowerups))
+            timer -= Time.deltaTime;
+            if (timer <= 0 && numPowerups < 6)
             {
-                randomPlatform = Random.Range(0, redPlatforms.Length);
-                while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                int randomPlatform;
+                if (HasSpace(redPlatforms, redPowerups))
                 {
                     randomPlatform = Random.Range(0, redPlatforms.Length);
+                    while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                    {
+                        randomPlatform = Random.Range(0, redPlatforms.Length);
+                    }
+                    PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(false, randomPlatform);
+                    redPowerups[randomPlatform] = true;
+                    numPowerups++;
                 }
-                PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(false, randomPlatform);
-                redPowerups[randomPlatform] = true;
-                numPowerups++;
-            }
 
-            if (HasSpace(bluePlatforms, bluePowerups))
-            {
-                randomPlatform = Random.Range(0, bluePlatforms.Length);
-                while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                if (HasSpace(bluePlatforms, bluePowerups))
                 {
                     randomPlatform = Random.Range(0, bluePlatforms.Length);
+                    while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                    {
+                        randomPlatform = Random.Range(0, bluePlatforms.Length);
+                    }
+                    PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(true, randomPlatform);
+                    bluePowerups[randomPlatform] = true;
+                    numPowerups++;
                 }
-                PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(true, randomPlatform);
-                bluePowerups[randomPlatform] = true;
-                numPowerups++;
-            }
 
-            ResetTimer();
+                timer = frequency;
+            }
         }
 	}
 
@@ -117,21 +119,20 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         return false;
     }
 
-    public void ResetTimer()
-    {
-        timer = frequency;
-    }
-
     public void DecrementPowerUp(bool isBlue, int platformIndex)
     {
+        print("PlayerStatus.cs : DecrememntPowerUp() : " + isBlue + " " + platformIndex);
+
         numPowerups--;
 
         if (isBlue)
         {
+            
             bluePowerups[platformIndex] = false;
         }
         else
         {
+            
             redPowerups[platformIndex] = false;
         }
     }
