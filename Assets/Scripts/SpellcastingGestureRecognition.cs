@@ -322,16 +322,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //Casts selected spell.
     private void CastSpell()
     {
-        GameObject spellInstance;
+        GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
         Quaternion spellRotation;
-
+        BaseSpellClass baseSpellClass;
         switch (currentSpellName)
         {
             case "fire":
                 spellRotation = target.result != null && target.result.CompareTag("Player") ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = fireballCooldown;
+                //if (baseSpellClass = spellInstance.GetComponent<BaseSpellClass>())
+                //{
+                //    SetSpellOwner(baseSpellClass);
+                //}
                 break;
             case "iceball":
                 spellRotation = wandTip.rotation;
@@ -426,7 +430,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellTimer = spellCooldown;
                 break;
         }
-
+        
         if (wand != null)
         {
             wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
@@ -441,6 +445,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         hasSpell = false;
         currentSpell = null;
         currentSpellName = "";
+        
+    }
+    void SetSpellOwner(BaseSpellClass bsp)
+    {
+        if(playerStatus.photonView.isMine)
+        {
+            bsp.SetOwner(avatar.gameObject);
+        }
     }
 }
 
