@@ -14297,7 +14297,7 @@ Prefab:
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
       propertyPath: roomName
-      value: rogelio16
+      value: rayjo
       objectReference: {fileID: 0}
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}

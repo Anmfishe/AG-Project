@@ -435,7 +435,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
             ParticleSystem ps = wand.Find("tip").Find("smoke").GetComponent<ParticleSystem>();
-           ParticleSystem.MainModule main = ps.main;
+            ParticleSystem.MainModule main = ps.main;
             ps.Stop();
             main.duration = spellTimer;
             ps.Play();

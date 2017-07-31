@@ -3,55 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- *      !!!!!!!!!   IMPORTANT   !!!!!!!!!
- *      
- *      Player avatar torso must be tagged wtih "Player"
- *      There must be a GameObject called "PowerupManager" in the scene, and it must have a script component called "PowerupManager(Clone)"
+ *      !!!!    IMPORTANT   !!!!
  * 
+ *      This script depends on the player torso to have a rigidbody and tag "Player".
+ *      Also depends on the scene having a GameObject called "PowerupManager(Clone)" with script component "PowerupManager"
  * */
 
 public class Powerup : MonoBehaviour {
 
-    PowerupManager pm;
-    bool isBlue;
-    int platformIndex;
+    public bool isBlue;
+    public int platformIndex;
+
+    GameObject pm;
 
 	// Use this for initialization
 	void Start () {
-        GameObject go = GameObject.Find("PowerupManager(Clone)");
-        if (go == null)
-        {
-            Debug.Log("Powerup.cs : Start() : Not able to find GameObject called \"PowerupManager(Clone)\" in scene!");
-            return;
-        }
-        
-        pm = go.GetComponent<PowerupManager>();
+        pm = GameObject.Find("PowerupManager(Clone)");
         if (pm == null)
         {
-            Debug.Log("Powerup.cs : Start() : Not able to find script component called \"PowerupManager(Clone)\" in scene!");
+            Debug.Log("Powerup.cs : Start() : Not able to find GameObject called \"PowerupManager(Clone)\" in scene!");
             return;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.Rotate(this.transform.up, 30 * Time.deltaTime);
+        if (PhotonNetwork.isMasterClient)
+        {
+            this.transform.Rotate(this.transform.up, 30 * Time.deltaTime);
+        }
 	}
 
     public void SetPowerupProperties(bool isBlue_, int platformIndex_)
     {
         isBlue = isBlue_;
         platformIndex = platformIndex_;
+
+        Debug.Log("Powerup.cs : SetPowerupProperties : isBlue=" + isBlue_ + " platformIndex=" + platformIndex_);
     }
 
     void OnTriggerEnter(Collider other)
     {
-       
-    }
-
-    [PunRPC]
-    void UpdatePowerupManager()
-    {
-        pm.DecrementPowerUp(isBlue, platformIndex);
+        if (PhotonNetwork.isMasterClient)
+        {
+            if (other.tag == "Player")
+            {
+                other.GetComponent<PhotonView>().RPC("SetRandomSpell", other.GetComponent<PhotonView>().owner, null);
+                PowerupManager pm = GameObject.Find("PowerupManager(Clone)").GetComponent<PowerupManager>();
+                pm.DecrementPowerUp(isBlue, platformIndex);
+                
+                PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+            }
+        }
     }
 }

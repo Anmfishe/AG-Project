@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ *      !!!!!!!!!   IMPORTANT   !!!!!!!!!
+ *      
+ *      
+ * 
+ * */
+
+
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
 	public PlayerClass playerClass;
@@ -106,12 +114,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         // Ensure that this is the active player
         if (!photonView.isMine)
         {
-            print("photonview isnt mine");
+ //           print("photonview isnt mine");
             return false;
         }
         else
         {
-            print("OMG, took damage!");
+//            print("OMG, took damage!");
         }
 
         if (dead == false)
@@ -322,41 +330,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		}
 	}
 
-    void OnTriggerEnter(Collider other)
+    [PunRPC]
+    void SetRandomSpell()
     {
-        if (other.tag == "Powerup" && photonView.isMine)
-        {
-            //PlayerStatus ps = other.GetComponent<PlayerStatus>();
-            //if (ps == null)
-            //{
-            //    Debug.Log("Powerup.cs : Could not find PlayerStatus");
-            //    return;
-            //}
-            SpellcastingGestureRecognition sgr = cameraRig.GetComponent<SpellcastingGestureRecognition>();
-            if (sgr == null)
-            {
-                Debug.Log("Powerup.cs : Could not find SpellcastingGestureRecognition");
-                return;
-            }
-
-            sgr.SetRandomSpell();
-
-            PhotonNetwork.Destroy(other.GetComponent<PhotonView>());
-
-            PowerupManager pm = GameObject.Find("PowerupManager").GetComponent<PowerupManager>();
-
-            if (pm != null /*&& PhotonNetwork.isMasterClient*/)
-            {
-                this.GetComponent<PhotonView>().RPC("UpdatePowerupManager", PhotonTargets.AllBuffered, null);
-            }
-            else
-            {
-                Debug.Log("Powerup.cs : OnTriggerEnter() : pm is null!");
-            }
-
-            
-        }
+        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().SetRandomSpell();
     }
+        
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

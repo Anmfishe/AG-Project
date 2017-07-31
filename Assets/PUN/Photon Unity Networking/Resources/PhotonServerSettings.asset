@@ -51,4 +51,6 @@ MonoBehaviour:
   - ResetScoreboard
   - RestartRound
   - UpdatePowerupManager
+  - SetRandomSpell
+  - setRandomSpell
   DisableAutoOpenWizard: 1
