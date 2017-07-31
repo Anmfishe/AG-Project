@@ -52,4 +52,5 @@ MonoBehaviour:
   - RestartRound
   - UpdatePowerupManager
   - SetRandomSpell
+  - setRandomSpell
   DisableAutoOpenWizard: 1

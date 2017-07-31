@@ -114,12 +114,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         // Ensure that this is the active player
         if (!photonView.isMine)
         {
-            print("photonview isnt mine");
+ //           print("photonview isnt mine");
             return false;
         }
         else
         {
-            print("OMG, took damage!");
+//            print("OMG, took damage!");
         }
 
         if (dead == false)
@@ -330,7 +330,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	}
 
     [PunRPC]
-    void setRandomSpell()
+    void SetRandomSpell()
     {
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().SetRandomSpell();
     }
