@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireballNew : MonoBehaviour
 {
     public GameObject explosion;
-    public int damage = 20;
+    public float damage = 20;
     public float duration = 12f;
     public Vector3 direction; //Sets the direction to where the fireball is traveling to.
     public float speed = 10f;
@@ -112,7 +112,7 @@ public class FireballNew : MonoBehaviour
     {
         GameObject other = collider.gameObject;
         print("Triggered (heh) by " + other.name);
-/*        if (other.CompareTag("SpellHitter"))
+        if (other.CompareTag("SpellHitter"))
         {
             print("triggered spellhitter");
             //Create reflected fireball if it was hit hard enough by the spell hitter.
@@ -133,33 +133,31 @@ public class FireballNew : MonoBehaviour
             }
 
         }
-        else */if (other.CompareTag("Player"))
+        else if (other.CompareTag("Player"))
         {
-            print("on trigger enter, hit torso");
-            //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
-            if (statusScript != null) statusScript.takeDamage(damage);
-            else
+            if (PhotonNetwork.isMasterClient)
             {
-                print("statusscript is null");
+                print("on trigger enter, hit torso");
+
+                other.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                
+                //Instantiate new explosion. May not be properly destroyed on the network
+                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+                DestroyFireball();
             }
-            //Instantiate new explosion.
-            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-            DestroyFireball();
         }
     }
 
- 
     private void StartRecovery()
     {
         activeTimer = startup;
         fbCollider.enabled = false;
     }
+
     private void DestroyFireball()
     {
         Debug.Log("Attempting to destory fireball");
         //Destroy game object.
-        //        PhotonNetwork.Destroy(this.gameObject);
         PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
 //        Destroy(this);
     }

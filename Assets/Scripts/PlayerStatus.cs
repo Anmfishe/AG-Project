@@ -137,6 +137,22 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         return false;
     }
 
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void TakeDamage(float damage)
+    {
+        if (dead == false)
+        {
+            current_health -= damage;
+            psm.PlayerHurt();
+        }
+
+        if (current_health <= 0)
+        {
+            Die();
+        }
+    }
+
     //Immobilizes the player.
     public void EnableMovement(bool isEnabled)
     {
