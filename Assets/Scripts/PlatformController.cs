@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour {
+    public LayerMask blue_platforms;
+    public LayerMask red_platforms;
+    public Transform target;
+    private LayerMask mask;
     [HideInInspector]
     public Transform currPlatform;
     [HideInInspector]
@@ -38,11 +42,36 @@ public class PlatformController : MonoBehaviour {
     }
     void Start () {
         audS = GetComponent<AudioSource>();
+        //blue_platforms = ~(int)1 << LayerMask.NameToLayer("BluePlatform");
+        //red_platforms = ~(int)1 << LayerMask.NameToLayer("RedPlatform");
+        if (avatar != null && avatar.GetComponent<TeamManager>().blue)
+        {
+            mask = blue_platforms;
+        }
+        else
+        {
+            mask = red_platforms;
+        }
+        Physics.queriesHitBackfaces = false;
 	}
     void FixedUpdate()
     {
         //device1 = SteamVR_Controller.Input((int)trackedObj1.index);
         //device2 = SteamVR_Controller.Input((int)trackedObj2.index);
+        if (avatar != null)
+        {
+            if (avatar.GetComponent<TeamManager>().blue && avatar.GetComponent<TeamManager>().photonView.isMine)
+            {
+                mask = blue_platforms;
+            }
+            else
+            {
+                mask = red_platforms;
+            }
+        }
+        else
+        {
+        }
     }
 
     private void OnEnable()
@@ -53,6 +82,19 @@ public class PlatformController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        target.position = currPlatform.position;
+        Vector3 rightVec = Quaternion.AngleAxis(90, target.up) * target.forward * 100;
+        rightVec.y = 0;
+        Vector3 forwardVec = target.forward * 100;
+        forwardVec.y = 0;
+        Vector3 leftVec = Quaternion.AngleAxis(-90, target.up) * target.forward * 100;
+        leftVec.y = 0;
+        Vector3 backVec = Quaternion.AngleAxis(180, target.up) * target.forward * 100;
+        backVec.y = 0;
+        Debug.DrawRay(target.position, forwardVec, Color.black);
+        Debug.DrawRay(target.position, rightVec, Color.red);
+        Debug.DrawRay(target.position, leftVec, Color.blue);
+        Debug.DrawRay(target.position, backVec, Color.green);
         if (lerp)
         {
             transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
@@ -66,24 +108,41 @@ public class PlatformController : MonoBehaviour {
             }
             if (Input.GetKeyUp("joystick button 17") && canMove)
             {
+                
                 PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
 
-                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh && currNeighborhood.right != null )
+                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
                 {
-                    MoveRight();
+                    RaycastHit right;
+                    if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
+                    {
+                        MoveRight(right.collider.gameObject);
+                    }
                 }
 
-                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh && currNeighborhood.left != null)
+                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
                 {
-                    MoveLeft();
+                    RaycastHit left;
+                    if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
+                    {
+                        MoveLeft(left.collider.gameObject);
+                    }
                 }
-                else if (trackpadPosVertical > startPressPosVert + swipeThresh && currNeighborhood.up != null)
+                else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
                 {
-                    MoveUp();
+                    RaycastHit up;
+                    if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
+                    {
+                        MoveUp(up.collider.gameObject);
+                    }
                 }
-                else if (trackpadPosVertical < startPressPosVert - swipeThresh && currNeighborhood.down != null)
+                else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
                 {
-                    MoveDown();
+                    RaycastHit down;
+                    if (Physics.Raycast(target.position, backVec, out down, 10, mask))
+                    {
+                        MoveDown(down.collider.gameObject);
+                    }
                 }
 
             }
@@ -227,25 +286,25 @@ public class PlatformController : MonoBehaviour {
     {
         avatar = _avatar;
     }
-    private void MoveUp()
+    private void MoveUp(GameObject np)
     {
         
-        Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().up;
+        Transform newplatform = np.transform;
         setNewPos(newplatform);
     }
-    private void MoveDown()
+    private void MoveDown(GameObject np)
     {
-        Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().down;
+        Transform newplatform = np.transform;
         setNewPos(newplatform);
     }
-    private void MoveLeft()
+    private void MoveLeft(GameObject np)
     {
-        Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().left;
+        Transform newplatform = np.transform;
         setNewPos(newplatform);
     }
-    private void MoveRight()
+    private void MoveRight(GameObject np)
     {
-        Transform newplatform = currPlatform.GetComponent<PlatformNeighbors>().right;
+        Transform newplatform = np.transform;
         setNewPos(newplatform);
     }
     IEnumerator coolDown()

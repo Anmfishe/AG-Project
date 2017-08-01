@@ -17,7 +17,8 @@ public class TeamManager : MonoBehaviour {
     public Material red_mat;
     [HideInInspector]
     public bool blue = false;
-    PhotonView photonView;
+    [HideInInspector]
+    public PhotonView photonView;
     private void Awake()
     {
 

@@ -182,7 +182,8 @@ public class NetworkManager : Photon.PunBehaviour
 
 		cameraRig = Camera.main.transform.parent.gameObject;
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
-		avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+        cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
+        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
 		//avatar.GetComponent<TeamSetter>().SetTeam();
 		//Debug.Log(PhotonNetwork.room.PlayerCount);
 		if (PhotonNetwork.room.PlayerCount % 2 == 0)
