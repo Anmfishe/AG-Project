@@ -4,58 +4,55 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour {
 
-    
+
     public Transform hatRoom;
     public float roundTime;
-	public bool isTimeBased = false;
-	public int maxScore = 3;
-	public bool isScoreBased = true;
+    public bool isTimeBased = false;
+    public int maxScore = 3;
+    public bool isScoreBased = true;
     private float timeElapsed;
     private bool inBattlefield = true;
     private bool hatsSelected = false;
-    private GameObject[] playerRigs;
-    private GameObject[] players;
-	ScoreboardUpdater scoreboard;
+    private List<GameObject> playerRigs = new List<GameObject>();
+    private List<GameObject> players = new List<GameObject>();
+    ScoreboardUpdater scoreboard;
+    int score;
 
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
-    void Start () {
-		if (GameObject.FindGameObjectWithTag ("Scoreboard")) {
-			scoreboard = GameObject.FindGameObjectWithTag ("Scoreboard").GetComponent<ScoreboardUpdater>();
-		} else {
-			print ("COULD NOT FIND SCOREBOARD");
-		}
+    void Start() {
+        if (GameObject.FindGameObjectWithTag("Scoreboard")) {
+            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        } else {
+            print("COULD NOT FIND SCOREBOARD");
+        }
 
 
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
-        FindPlayers();
-		ChooseHats ();
+        ChooseHats();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //        if (Input.anyKeyDown)
-        //           EndRound();
-        
+
+    // Update is called once per frame
+    void Update() {
+        //all this has to ce re-done according to whatever you want the round to be. Does the round start after the 1st player puts hat on? Does it start when certain ammount of people do that? 
         if (!hatsSelected)
         {
             foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
             {
-                
-				if (playerRCP.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
+
+                if (playerRCP.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                     break;
-                hatsSelected = true;   
-             
+                hatsSelected = true;
+
             }
         }
-        else if(hatsSelected && !inBattlefield)
+        else if (hatsSelected && !inBattlefield)
         {
-//            StartRound();
+            //            StartRound();
         }
         else if (inBattlefield)
         {
-//            Camera.main.transform.parent.GetComponent<PlatformController>().enabled = true;
-//            GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
+          
             timeElapsed += Time.deltaTime;
 
             if (scoreboard == null)
@@ -70,21 +67,22 @@ public class RoundManager : MonoBehaviour {
             }
         }
     }
-
     /// <summary>
-    /// We are using this shit every time before any allPlayers action cause we didn't go with observer
+    /// Call from a player once it is killed
     /// </summary>
-    void FindPlayers()
+    void OnPlayerKilled()
     {
-        playerRigs = GameObject.FindGameObjectsWithTag("CameraRig");
-        players = GameObject.FindGameObjectsWithTag("Player");
+        UpdateScoreboard();
+        score++;
     }
+    void UpdateScoreboard() { }
+  
 
     void EndRound()
     {
         Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
-        FindPlayers ();
+//        FindPlayers ();
 //		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))                                //TODO
 //			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
         ChooseHats();
@@ -98,9 +96,9 @@ public class RoundManager : MonoBehaviour {
 
     void StartRound()
     {
-
+        score = 0;
         timeElapsed = 0;
-        FindPlayers();
+ //       FindPlayers();
         //TODO send players to the battlefield
         /*foreach (GameObject pl in playerPCP)
             pl.GetComponent<TeamManager>().Respawn();*/
@@ -111,7 +109,7 @@ public class RoundManager : MonoBehaviour {
     void ChooseHats()
     {
         Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
-        FindPlayers();
+//        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
             Vector3 newPos = hatRoom.position;
@@ -135,21 +133,35 @@ public class RoundManager : MonoBehaviour {
         GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = true;
     }
 
+    void SendPlayerToHatRoom(GameObject player)
+    {
+        Vector3 newPos = hatRoom.position;
+        Transform camObj = player.GetComponentInChildren<Camera>().transform;
+        newPos.x -= camObj.localPosition.x;
+        newPos.z -= camObj.localPosition.z;
+        player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+
+    }
+
+
+
     void ShowScoreboard()
     {
         //TODO show whatever AG like to show in the end of round 
     }
-    /*
-    public void Subscribe(GameObject go)
+    public void Subscribe(GameObject go, GameObject rig)
     {
-        players.Add(go);
         Debug.Log(go.name + " subscribed");
+        players.Add(go);
+        playerRigs.Add(rig);
+        //send 
+        SendPlayerToHatRoom(rig);
     }
 
-    public void Unsubscribe(GameObject go)
+    public void Unsubscribe(GameObject go, GameObject rig)
     {
         players.Remove(go);
+        players.Remove(rig);
         Debug.Log(go.name + " unsubscribed");
     }
-    */
 }

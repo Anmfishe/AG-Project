@@ -205,7 +205,8 @@ public class NetworkManager : Photon.PunBehaviour
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         if (PhotonNetwork.isMasterClient)
         {
-            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            roundMan = PhotonNetwork.Instantiate(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
             powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
 	}
