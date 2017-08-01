@@ -196,7 +196,7 @@ Transform:
   m_GameObject: {fileID: 1279177223335786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4311865185746576}
   m_RootOrder: 2
@@ -6641,7 +6641,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
   randomSeed: 690710894
@@ -6651,7 +6651,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6772,8 +6772,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 2
+      scalar: 2
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6994,7 +6994,7 @@ ParticleSystem:
     randomizeRotationDirection: 0
     maxNumParticles: 200
     size3D: 0
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -7247,26 +7247,20 @@ ParticleSystem:
         - serializedVersion: 2
           time: 0
           value: 0
-          inSlope: 2
-          outSlope: 2
+          inSlope: 5.252643
+          outSlope: 5.252643
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.23529655
-          value: 0.06624633
-          inSlope: -0.16510487
-          outSlope: -0.16510487
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 0.7091855
-          value: 0.065371215
-          inSlope: -0.3296137
-          outSlope: -0.3296137
+          time: 0.30247033
+          value: 0.68918926
+          inSlope: -2.1172218
+          outSlope: -2.1172218
           tangentMode: 0
         - serializedVersion: 2
           time: 1
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: -1
+          outSlope: -1
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2

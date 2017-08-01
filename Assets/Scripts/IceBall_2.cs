@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IceBall_2 : MonoBehaviour {
-    ParticleSystem ps;
+    public ParticleSystem ps;
     PhotonView photonView;
     bool doDamage = true;
 	// Use this for initialization
 	void Start () {
-        ps = GetComponentInChildren<ParticleSystem>();
+        //ps = GetComponentInChildren<ParticleSystem>();
         photonView = GetComponent<PhotonView>();
         StartCoroutine(AOE_Timer());
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(doDamage)
-        {
-            
-            RaycastHit[] hits;
-            
-        }
+		
+        
 	}
     IEnumerator AOE_Timer()
     {
