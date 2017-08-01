@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Damageable: MonoBehaviour {
 
-    public int health;
-    public int armor;
+    public float health;
+    public float armor;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         //Check if we have armor.
         if (armor > 0)
