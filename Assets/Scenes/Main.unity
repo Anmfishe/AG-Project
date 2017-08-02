@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 26737219}
   - component: {fileID: 26737218}
   - component: {fileID: 26737222}
+  - component: {fileID: 26737223}
   m_Layer: 9
   m_Name: Red_platform1 (9)
   m_TagString: RedPlatform
@@ -227,6 +228,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &26737223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26737216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 12
+  instantiationId: 12
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!4 &45975375 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4568260420906790, guid: 2cebbe72b3420fb47b0861343e1b0a46,
@@ -397,6 +423,7 @@ GameObject:
   - component: {fileID: 65136625}
   - component: {fileID: 65136624}
   - component: {fileID: 65136628}
+  - component: {fileID: 65136629}
   m_Layer: 8
   m_Name: Blue_platform1 (4)
   m_TagString: BluePlatform
@@ -503,6 +530,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &65136629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 65136622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 11
+  instantiationId: 11
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &72675951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2227,7 @@ GameObject:
   - component: {fileID: 248964267}
   - component: {fileID: 248964266}
   - component: {fileID: 248964270}
+  - component: {fileID: 248964271}
   m_Layer: 8
   m_Name: Blue_platform1 (2)
   m_TagString: BluePlatform
@@ -2281,6 +2334,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &248964271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 248964264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 4
+  instantiationId: 4
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &254013749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,6 +2445,7 @@ GameObject:
   - component: {fileID: 256266375}
   - component: {fileID: 256266374}
   - component: {fileID: 256266378}
+  - component: {fileID: 256266379}
   m_Layer: 8
   m_Name: Blue_platform1 (5)
   m_TagString: BluePlatform
@@ -2473,6 +2552,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &256266379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 256266372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 10
+  instantiationId: 10
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &265540349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,6 +2866,7 @@ GameObject:
   - component: {fileID: 310353565}
   - component: {fileID: 310353564}
   - component: {fileID: 310353568}
+  - component: {fileID: 310353569}
   m_Layer: 8
   m_Name: Blue_platform1 (6)
   m_TagString: BluePlatform
@@ -2868,6 +2973,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &310353569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310353562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 3
+  instantiationId: 3
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &317367374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,6 +3011,7 @@ GameObject:
   - component: {fileID: 317367377}
   - component: {fileID: 317367376}
   - component: {fileID: 317367380}
+  - component: {fileID: 317367381}
   m_Layer: 9
   m_Name: Red_platform1 (13)
   m_TagString: RedPlatform
@@ -2987,6 +3118,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &317367381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 317367374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 13
+  instantiationId: 13
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &330060924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +5728,7 @@ GameObject:
   - component: {fileID: 788543889}
   - component: {fileID: 788543888}
   - component: {fileID: 788543892}
+  - component: {fileID: 788543893}
   m_Layer: 8
   m_Name: Blue_platform1
   m_TagString: BluePlatform
@@ -5678,6 +5835,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &788543893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788543886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 5
+  instantiationId: 5
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &798533089
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,6 +6294,7 @@ GameObject:
   - component: {fileID: 826146521}
   - component: {fileID: 826146520}
   - component: {fileID: 826146524}
+  - component: {fileID: 826146525}
   m_Layer: 8
   m_Name: Blue_platform1 (8)
   m_TagString: BluePlatform
@@ -6218,6 +6401,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &826146525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826146518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 9
+  instantiationId: 9
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1001 &832042880
 Prefab:
   m_ObjectHideFlags: 0
@@ -7137,6 +7345,7 @@ GameObject:
   - component: {fileID: 909085480}
   - component: {fileID: 909085479}
   - component: {fileID: 909085483}
+  - component: {fileID: 909085484}
   m_Layer: 9
   m_Name: Red_platform1 (10)
   m_TagString: RedPlatform
@@ -7243,6 +7452,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &909085484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 909085477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 8
+  instantiationId: 8
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &927287133
 GameObject:
   m_ObjectHideFlags: 0
@@ -7403,6 +7637,7 @@ GameObject:
   - component: {fileID: 929138210}
   - component: {fileID: 929138209}
   - component: {fileID: 929138213}
+  - component: {fileID: 929138214}
   m_Layer: 8
   m_Name: Blue_platform1 (1)
   m_TagString: BluePlatform
@@ -7509,6 +7744,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &929138214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929138207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 7
+  instantiationId: 7
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &965829015
 GameObject:
   m_ObjectHideFlags: 0
@@ -7671,6 +7931,7 @@ GameObject:
   - component: {fileID: 981320982}
   - component: {fileID: 981320981}
   - component: {fileID: 981320985}
+  - component: {fileID: 981320986}
   m_Layer: 9
   m_Name: Red_platform1 (11)
   m_TagString: RedPlatform
@@ -7777,6 +8038,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &981320986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981320979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 6
+  instantiationId: 6
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &984329286
 GameObject:
   m_ObjectHideFlags: 0
@@ -8512,6 +8798,7 @@ GameObject:
   - component: {fileID: 1073759582}
   - component: {fileID: 1073759581}
   - component: {fileID: 1073759585}
+  - component: {fileID: 1073759586}
   m_Layer: 8
   m_Name: Blue_platform1 (7)
   m_TagString: BluePlatform
@@ -8618,6 +8905,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1073759586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073759579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 18
+  instantiationId: 18
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1078709342
 GameObject:
   m_ObjectHideFlags: 0
@@ -9585,6 +9897,7 @@ GameObject:
   - component: {fileID: 1140807164}
   - component: {fileID: 1140807163}
   - component: {fileID: 1140807167}
+  - component: {fileID: 1140807168}
   m_Layer: 9
   m_Name: Red_platform1 (7)
   m_TagString: RedPlatform
@@ -9691,6 +10004,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1140807168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140807161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 15
+  instantiationId: 15
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1146425599
 GameObject:
   m_ObjectHideFlags: 0
@@ -10787,6 +11125,7 @@ GameObject:
   - component: {fileID: 1290410320}
   - component: {fileID: 1290410319}
   - component: {fileID: 1290410323}
+  - component: {fileID: 1290410324}
   m_Layer: 9
   m_Name: Red_platform1 (8)
   m_TagString: RedPlatform
@@ -10893,6 +11232,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1290410324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290410317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 19
+  instantiationId: 19
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1322365303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10906,6 +11270,7 @@ GameObject:
   - component: {fileID: 1322365306}
   - component: {fileID: 1322365305}
   - component: {fileID: 1322365309}
+  - component: {fileID: 1322365310}
   m_Layer: 9
   m_Name: Red_platform1 (15)
   m_TagString: RedPlatform
@@ -11012,6 +11377,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1322365310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1322365303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 20
+  instantiationId: 20
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1001 &1326990301
 Prefab:
   m_ObjectHideFlags: 0
@@ -11394,6 +11784,7 @@ GameObject:
   - component: {fileID: 1374938480}
   - component: {fileID: 1374938479}
   - component: {fileID: 1374938484}
+  - component: {fileID: 1374938483}
   m_Layer: 9
   m_Name: Red_platform1 (14)
   m_TagString: RedPlatform
@@ -11481,6 +11872,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374938477}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1374938483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374938477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 16
+  instantiationId: 16
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &1374938484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12968,6 +13385,7 @@ GameObject:
   - component: {fileID: 1622355309}
   - component: {fileID: 1622355308}
   - component: {fileID: 1622355312}
+  - component: {fileID: 1622355313}
   m_Layer: 8
   m_Name: Blue_platform1 (3)
   m_TagString: BluePlatform
@@ -13074,6 +13492,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1622355313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622355306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 17
+  instantiationId: 17
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1653952196
 GameObject:
   m_ObjectHideFlags: 0
@@ -13428,6 +13871,7 @@ GameObject:
   - component: {fileID: 1706877122}
   - component: {fileID: 1706877121}
   - component: {fileID: 1706877125}
+  - component: {fileID: 1706877126}
   m_Layer: 9
   m_Name: Red_platform1 (12)
   m_TagString: RedPlatform
@@ -13534,6 +13978,31 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!114 &1706877126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706877119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents: []
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 14
+  instantiationId: 14
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1741524698
 GameObject:
   m_ObjectHideFlags: 0

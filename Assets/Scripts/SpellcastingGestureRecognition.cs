@@ -347,7 +347,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                spellInstance.transform.SetParent(book);
+                spellInstance.GetComponent<Shield>().SetBook(book);
+//                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
@@ -403,7 +404,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
-                    target.result.GetComponent<PlatformMain>().ChangeColor();
+                    target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
                     spellTimer = platformStealCooldown;
                 }
                 else
