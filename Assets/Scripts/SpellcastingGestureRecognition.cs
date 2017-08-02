@@ -317,6 +317,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
 		playerStatus = torso.GetComponent<PlayerStatus>();
+		blue = avatar.GetComponent<TeamManager>().blue;
     }
 
     //Casts selected spell.
@@ -391,7 +392,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 		case "meteor":
 			spellRotation = wandTip.rotation;
 			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
-			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
+			spellInstance.GetComponent<MeteorSpell> ().blue = blue;
                 spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
@@ -415,7 +416,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "lightBlade":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                spellInstance.transform.SetParent(wandTip);
+				spellInstance.GetComponent<LightBlade>().SetBlue(blue);
+				spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
                 spellTimer = lightBladeCooldown;
                 break;
             case "disenchant":

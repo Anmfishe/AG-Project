@@ -13,7 +13,6 @@ public class MeteorSpell : MonoBehaviour
 	private Vector3 steeringDirection;
 	private Vector3[] points = new Vector3[2];
 	public bool mine = false;
-	public bool blue = false;
 	public GameObject explosion;
 
 
@@ -40,6 +39,9 @@ public class MeteorSpell : MonoBehaviour
 	public bool isMaster;
 	[HideInInspector]
 	public bool isSlave;
+
+	[HideInInspector]
+	public bool blue = false;
 
 	//    [SerializeField]
 	private float activeTimer = 0;
