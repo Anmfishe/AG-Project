@@ -24,10 +24,13 @@ public class PlatformMain : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    [PunRPC]
     public void ChangeColor()
     {
         ChangeColor(isBlue? "red" : "blue");
     }
+
     public void ChangeColor(string color)
     {
         print("BEFORE: " + LayerMask.NameToLayer(redLayer));

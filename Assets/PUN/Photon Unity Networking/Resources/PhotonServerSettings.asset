@@ -54,4 +54,6 @@ MonoBehaviour:
   - SetRandomSpell
   - setRandomSpell
   - TakeDamage
+  - ChangeColor
+  - ChangePlatformColor
   DisableAutoOpenWizard: 1

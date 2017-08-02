@@ -403,7 +403,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
-                    target.result.GetComponent<PlatformMain>().ChangeColor();
+                    target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
                     spellTimer = platformStealCooldown;
                 }
                 else
