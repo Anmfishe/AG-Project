@@ -190,15 +190,15 @@ public class NetworkManager : Photon.PunBehaviour
 		{
 			//photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
 			//localPlayer.GetComponentInParent<TeamManager>().SetBlue();
-			avatar.GetComponent<TeamManager>().SetBlue();
+			avatar.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
 		}
 		else
 		{
-			//photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
-			//localPlayer.GetComponentInParent<TeamManager>().SetRed();
-			avatar.GetComponent<TeamManager>().SetRed();
+            //photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
+            //localPlayer.GetComponentInParent<TeamManager>().SetRed();
+            avatar.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
 
-		}
+        }
 
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();

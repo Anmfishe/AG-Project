@@ -140,15 +140,10 @@ public class MeteorSpell : MonoBehaviour
        
 		if (GetComponent<PhotonView>().isMine) 
 		{
-//			if (first) 
-//			{
-//				first = false;
-//				GameObject other = collision.gameObject;
-//				print ("Collided by " + other.name);
+
 				GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
 				DestroyFireball ();
-//			}
 		}
 	}
 		
@@ -170,8 +165,9 @@ public class MeteorSpell : MonoBehaviour
 		{
 			if (hit.transform.tag == "Player")
 			{
-				if (hit.transform.parent.GetComponent<TeamManager> ().blue != blue)
-					hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                if (hit.transform.parent.GetComponent<TeamManager>().blue != blue)
+                    hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                
 			}
 		}
 

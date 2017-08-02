@@ -52,6 +52,7 @@ public class TeamManager : MonoBehaviour {
         }
     }
     
+    [PunRPC]
     public void SetBlue()
     {
         Debug.Log("Set Blue + " + Time.time);
@@ -73,6 +74,8 @@ public class TeamManager : MonoBehaviour {
             vrtk_spr.blue = true;
         }
     }
+
+    [PunRPC]
     public void SetRed()
     {
         Debug.Log("Set Red + " + Time.time);
