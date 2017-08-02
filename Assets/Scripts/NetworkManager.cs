@@ -9,8 +9,9 @@ public class NetworkManager : Photon.PunBehaviour
 	[Tooltip("The maximum number of players per room")]
 	public byte maxPlayersPerRoom = 4;
 
-	public GameObject hat;
+	public bool disableRounds = false;
 
+	public GameObject hat;
 	private GameObject hat1;
 	private GameObject hat2;
 	private GameObject hat3;
@@ -174,6 +175,12 @@ public class NetworkManager : Photon.PunBehaviour
 
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
+		if (disableRounds == true) 
+		{
+			avatar.GetComponentInChildren<PlayerStatus> ().playerClass = PlayerClass.all;
+			avatar.GetComponentInChildren<TeamManager> ().Respawn ();
+		}
+
 		if (PhotonNetwork.isMasterClient)
 		{
 			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
@@ -199,13 +206,14 @@ public class NetworkManager : Photon.PunBehaviour
             avatar.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
 
         }
-
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         if (PhotonNetwork.isMasterClient)
         {
-            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+			if (disableRounds == false)
+            	roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+			
             //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
 	}

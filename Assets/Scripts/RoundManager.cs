@@ -111,6 +111,9 @@ public class RoundManager : MonoBehaviour {
     void ChooseHats()
     {
         Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
+		Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+		Camera.main.transform.parent.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+		Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         FindPlayers();
         foreach (GameObject player in playerRigs)
         {

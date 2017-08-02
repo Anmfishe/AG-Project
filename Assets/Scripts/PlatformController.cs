@@ -29,18 +29,14 @@ public class PlatformController : MonoBehaviour {
     float startPressPosVert;
     float swipeThresh = 0.03f;
     public float speed = 10f;
-    //SteamVR_TrackedObject trackedObj1;
-    //SteamVR_TrackedObject trackedObj2;
-    //SteamVR_Controller.Device device1;
-    //SteamVR_Controller.Device device2;
+
     // Use this for initialization
     private void Awake()
     {
-        //trackedObj1 = transform.Find("Controller (left)").GetComponent<SteamVR_TrackedObject>();
-        //trackedObj2 = transform.Find("Controller (right)").GetComponent<SteamVR_TrackedObject>();
         camObj = GetComponentInChildren<Camera>().gameObject;
     }
-    void Start () {
+    void Start () 
+	{
         audS = GetComponent<AudioSource>();
         //blue_platforms = ~(int)1 << LayerMask.NameToLayer("BluePlatform");
         //red_platforms = ~(int)1 << LayerMask.NameToLayer("RedPlatform");
