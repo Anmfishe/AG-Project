@@ -25,7 +25,7 @@ public class IceBall_1 : MonoBehaviour {
     {
         this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Shield"))
         {

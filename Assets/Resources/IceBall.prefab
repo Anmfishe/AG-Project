@@ -457,8 +457,8 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973137855731400}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.175
   m_Center: {x: 0, y: 0, z: 0}
@@ -6651,7 +6651,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2.5
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6680,7 +6680,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -7
+      scalar: -3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7251,10 +7251,16 @@ ParticleSystem:
           outSlope: 5.252643
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.30247033
-          value: 0.68918926
-          inSlope: -2.1172218
-          outSlope: -2.1172218
+          time: 0.20572592
+          value: 0.29539162
+          inSlope: 0.2682209
+          outSlope: 0.2682209
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.588832
+          value: 0.14865047
+          inSlope: -0.26567
+          outSlope: -0.26567
           tangentMode: 0
         - serializedVersion: 2
           time: 1
