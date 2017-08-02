@@ -148,7 +148,7 @@ public class MeteorSpell : MonoBehaviour
 //				first = false;
 //				GameObject other = collision.gameObject;
 //				print ("Collided by " + other.name);
-//				GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+				GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
 
 				DestroyFireball ();
 //			}
@@ -167,19 +167,20 @@ public class MeteorSpell : MonoBehaviour
 		//        PhotonNetwork.Destroy(this.gameObject);
 
 //	
-//		hits = Physics.OverlapSphere(transform.position, 6);
-//		foreach (Collider hit in hits)
-//		{
-//			if (hit.transform.tag == "Player")
-//			{
-//				hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-//			}
-//		}
+		Collider[] hits;
+		hits = Physics.OverlapSphere(transform.position, 6);
+		foreach (Collider hit in hits)
+		{
+			if (hit.transform.tag == "Player")
+			{
+				hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+			}
+		}
 //        foreach (Transform child in transform)
 //        {
 //            GameObject.Destroy(child.gameObject);
 //        }
-       // Destroy(reticleInstance);
+        Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
 		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
