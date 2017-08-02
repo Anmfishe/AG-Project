@@ -141,7 +141,7 @@ public class MeteorSpell : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
        
-		if (PhotonNetwork.isMasterClient) 
+		if (GetComponent<PhotonView>().isMine) 
 		{
 //			if (first) 
 //			{
@@ -181,12 +181,6 @@ public class MeteorSpell : MonoBehaviour
 //        }
        // Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
-		this.GetComponent<PhotonView>().RPC("DestroyMeteor", this.GetComponent<PhotonView>().owner, null);
-	}
-
-	[PunRPC]
-	void DestroyMeteor()
-	{
 		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
 }
