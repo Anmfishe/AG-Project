@@ -6,7 +6,7 @@ public class LightBlade : MonoBehaviour {
 
     public GameObject hitSpark;
 	public Transform wand;
-	public bool blue;
+	private bool blue;
     private bool isDecaying = false;
     public float duration = 1;
 	public float destroyTime = 15;
@@ -52,18 +52,24 @@ public class LightBlade : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-			if (other.transform.parent.GetComponent<TeamManager> ().blue != blue) 
+			if (GetComponent<PhotonView> ().isMine) 
 			{
-				other.gameObject.GetComponent<PlayerStatus> ().takeDamage (damage);
-				PhotonNetwork.Instantiate (hitSpark.name, other.transform.position, new Quaternion (), 0);
+				if (other.transform.parent.GetComponent<TeamManager> ().blue != blue) 
+				{
+					other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+					PhotonNetwork.Instantiate (hitSpark.name, other.transform.position, new Quaternion (), 0);
 
-				if (isDecaying)
-					durationTimer += hitBonusTime;
-				else {
-					durationTimer = duration;
-					isDecaying = true;
+					if (isDecaying)
+						durationTimer += hitBonusTime;
+					else 
+					{
+						durationTimer = duration;
+						isDecaying = true;
+					}
 				}
 			}
+
+			print ("my blue: " + blue + " | their blue: " + other.transform.parent.GetComponent<TeamManager> ().blue); 
         }
     }
 

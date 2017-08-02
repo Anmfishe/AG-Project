@@ -15,11 +15,12 @@ public class TeamManager : MonoBehaviour {
     private VRTK.VRTK_StraightPointerRenderer vrtk_spr;
     public Material blue_mat;
     public Material red_mat;
+	public bool blue = false;
     [HideInInspector]
-    public bool blue = false;
-    [HideInInspector]
+   
     public PhotonView photonView;
-    private void Awake()
+	[HideInInspector]
+	private void Awake()
     {
 
         photonView = GetComponent<PhotonView>();
