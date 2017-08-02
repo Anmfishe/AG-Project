@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class MeteorSpell : MonoBehaviour
 {
 
@@ -17,6 +13,7 @@ public class MeteorSpell : MonoBehaviour
 	private Vector3 steeringDirection;
 	private Vector3[] points = new Vector3[2];
 	public bool mine = false;
+	public bool blue = false;
 	public GameObject explosion;
 
 
@@ -173,7 +170,8 @@ public class MeteorSpell : MonoBehaviour
 		{
 			if (hit.transform.tag == "Player")
 			{
-				hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+				if (hit.transform.parent.GetComponent<TeamManager> ().blue != blue)
+					hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
 			}
 		}
 

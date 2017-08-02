@@ -387,9 +387,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellTimer = pongShieldCooldown;
                 break;
-            case "meteor":
-                spellRotation = wandTip.rotation;
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+		case "meteor":
+			spellRotation = wandTip.rotation;
+			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
+			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
                 spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
