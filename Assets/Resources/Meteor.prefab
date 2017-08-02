@@ -419,7 +419,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4864
   wand: {fileID: 0}
-  damage: 40
   duration: 12
   direction: {x: 0, y: 0, z: 0}
   speed: 10
@@ -452,6 +451,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114248342134202918}
+  - {fileID: 120678960950533566}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

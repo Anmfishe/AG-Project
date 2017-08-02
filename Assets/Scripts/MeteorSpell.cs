@@ -22,7 +22,7 @@ public class MeteorSpell : MonoBehaviour
 
 	public LayerMask targettable;
 	public GameObject wand;
-	private int damage = 40;
+	private float damage = 40;
 	private float castDist = 10;
 	private float magCap = 10;
 	private float skyCap = 10;
@@ -176,10 +176,7 @@ public class MeteorSpell : MonoBehaviour
 				hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
 			}
 		}
-//        foreach (Transform child in transform)
-//        {
-//            GameObject.Destroy(child.gameObject);
-//        }
+
         Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
 		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
