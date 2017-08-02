@@ -141,6 +141,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void TakeDamage(float damage)
     {
+        if (current_health <= 0)
+        {
+            return;
+        }
+
         if (dead == false)
         {
             current_health -= damage;
