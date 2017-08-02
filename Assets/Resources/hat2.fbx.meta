@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2d862e7d0f5a197429065df7ad5ef31f
-timeCreated: 1499798126
+guid: fbbcd45d6f268674884645c6be076cea
+timeCreated: 1501631022
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -15,8 +15,8 @@ ModelImporter:
     9500000: //RootNode
   materials:
     importMaterials: 1
-    materialName: 2
-    materialSearch: 0
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -55,8 +55,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 135
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0

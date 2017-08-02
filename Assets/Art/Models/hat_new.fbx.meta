@@ -1,22 +1,20 @@
 fileFormatVersion: 2
-guid: 2d862e7d0f5a197429065df7ad5ef31f
-timeCreated: 1499798126
+guid: 17c72ea9543f90e498cabf0284117ff0
+timeCreated: 1501716859
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Circle
-    100002: //RootNode
-    400000: Circle
-    400002: //RootNode
-    2300000: Circle
-    3300000: Circle
-    4300000: Circle
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Circle_2
     9500000: //RootNode
   materials:
     importMaterials: 1
-    materialName: 2
-    materialSearch: 0
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -55,8 +53,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 135
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
