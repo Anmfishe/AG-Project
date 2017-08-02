@@ -349,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PositionModel:
     SynchronizeEnabled: 1
-    TeleportEnabled: 1
+    TeleportEnabled: 0
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reticle: {fileID: 1759314124068756, guid: 508e3167dc6fd164f93a99cdc9fa6c77, type: 2}
   mine: 0
+  blue: 0
   explosion: {fileID: 100000, guid: cb91ec3b3a515f04182f711604fc111b, type: 2}
   targettable:
     serializedVersion: 2

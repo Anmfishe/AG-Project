@@ -56,4 +56,6 @@ MonoBehaviour:
   - TakeDamage
   - ChangeColor
   - ChangePlatformColor
+  - SetBlue
+  - SetRed
   DisableAutoOpenWizard: 1
