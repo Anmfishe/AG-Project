@@ -9,18 +9,15 @@ public class HealthBar : MonoBehaviour {
     public GameObject bar;
     private Transform camera;
 
-    public bool isADummy = false;
+    public bool bookHealth = false;
     public Transform dummyCam;
 
     private Transform ownerTrans;
     public PlayerStatus ownerStat;
 	// Use this for initialization
-	void Start () {
-
-        if (isADummy == false)
-            camera = Camera.main.transform;
-        else
-            camera = dummyCam;
+	void Start () 
+	{
+        camera = Camera.main.transform;
 
         
         ownerTrans = owner.transform;
@@ -32,9 +29,14 @@ public class HealthBar : MonoBehaviour {
        
         //       myTrans.position = new Vector3(owner.position.x, owner.position.y+yOffset,owner.position.z);
 
-        this.transform.position = new Vector3(ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
-        this.transform.forward = camera.forward;
-
+		if (bookHealth == false) {
+			this.transform.position = new Vector3 (ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
+			this.transform.forward = camera.forward;
+		}
+		else 
+		{
+			//this.transform.position = new Vector3(-4.96f, 2.422f, 4.255f);
+		}
         // Debug.Log(camera);
         if ((float)ownerStat.current_health >= 0)
         {
