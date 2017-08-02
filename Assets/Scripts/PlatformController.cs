@@ -81,7 +81,7 @@ public class PlatformController : MonoBehaviour {
         target.position = currPlatform.position;
         Vector3 rightVec = Quaternion.AngleAxis(90, target.up) * target.forward * 100;
         rightVec.y = 0;
-        Vector3 forwardVec = target.forward * 100;
+		Vector3 forwardVec = target.forward;// * 100;
         forwardVec.y = 0;
         Vector3 leftVec = Quaternion.AngleAxis(-90, target.up) * target.forward * 100;
         leftVec.y = 0;
@@ -101,46 +101,70 @@ public class PlatformController : MonoBehaviour {
             {
                 startPressPosHoriz = trackpadPosHorizontal;
                 startPressPosVert = trackpadPosVertical;
-            }
+				//print(startPressPosHoriz + " | " + startPressPosVert);
+			}
             if (Input.GetKeyUp("joystick button 17") && canMove)
             {
                 
                 PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
 
-                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
-                {
-                    RaycastHit right;
-                    if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
-                    {
-                        MoveRight(right.collider.gameObject);
-                    }
-                }
+				Vector2 startPress = new Vector2 (startPressPosHoriz, startPressPosVert);
+				Vector2 endPress = new Vector2 (trackpadPosHorizontal, trackpadPosVertical);
 
-                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
-                {
-                    RaycastHit left;
-                    if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
-                    {
-                        MoveLeft(left.collider.gameObject);
-                    }
-                }
-                else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
-                {
-                    RaycastHit up;
-                    if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
-                    {
-                        MoveUp(up.collider.gameObject);
-                    }
-                }
-                else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
-                {
-                    RaycastHit down;
-                    if (Physics.Raycast(target.position, backVec, out down, 10, mask))
-                    {
-                        MoveDown(down.collider.gameObject);
-                    }
-                }
 
+				Vector3 cross = Vector3.Cross(startPress, endPress);
+				float angle = Vector2.Angle (startPress, endPress);
+				if (cross.y < 0) 
+					angle = -angle;
+
+
+
+				if (Vector2.Distance(startPress, endPress) > swipeThresh)
+				{
+					RaycastHit up;
+					print (forwardVec);
+					Debug.DrawRay(target.position, (forwardVec + new Vector3(angle, 0,0)), Color.red, 10);
+					if (Physics.Raycast(target.position, forwardVec + new Vector3(angle, 0,0), out up, 10, mask))
+					{
+						MoveUp(up.collider.gameObject);
+					}
+				}
+//				print(startPress + " | " + endPress);
+
+
+//                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
+//                {
+//                    RaycastHit right;
+//                    if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
+//                    {
+//                        MoveRight(right.collider.gameObject);
+//                    }
+//                }
+//
+//                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
+//                {
+//                    RaycastHit left;
+//                    if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
+//                    {
+//                        MoveLeft(left.collider.gameObject);
+//                    }
+//                }
+//                else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
+//                {
+//                    RaycastHit up;
+//                    if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
+//                    {
+//                        MoveUp(up.collider.gameObject);
+//                    }
+//                }
+//                else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
+//                {
+//                    RaycastHit down;
+//                    if (Physics.Raycast(target.position, backVec, out down, 10, mask))
+//                    {
+//                        MoveDown(down.collider.gameObject);
+//                    }
+//                }
             }
         }
 

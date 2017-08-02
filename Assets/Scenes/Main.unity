@@ -14814,7 +14814,7 @@ Prefab:
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
       propertyPath: disableRounds
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
