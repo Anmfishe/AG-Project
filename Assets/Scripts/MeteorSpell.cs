@@ -181,7 +181,12 @@ public class MeteorSpell : MonoBehaviour
 //        }
        // Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
-		
-		PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+		this.GetComponent<PhotonView>().RPC("DestroyMeteor", this.GetComponent<PhotonView>().owner, null);
+	}
+
+	[PunRPC]
+	void DestroyMeteor()
+	{
+		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
 }
