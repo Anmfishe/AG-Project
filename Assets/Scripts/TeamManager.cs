@@ -13,6 +13,7 @@ public class TeamManager : MonoBehaviour {
     private GameObject cameraRig;
     private bool set = false;
     private VRTK.VRTK_StraightPointerRenderer vrtk_spr;
+    private GameObject roundManager;
     public Material blue_mat;
     public Material red_mat;
     [HideInInspector]
@@ -29,6 +30,17 @@ public class TeamManager : MonoBehaviour {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
+        roundManager = GameObject.FindGameObjectWithTag("RoundManager");
+        if(roundManager)
+        {
+            Debug.Log("Assigning Team");
+            roundManager.GetComponent<RoundManager>().AssignTeam(gameObject);
+        }
+        else
+        {
+            Debug.Log("RoundManager not found");
+            SetBlue();
+        }
     }
 	
 	// Update is called once per frame

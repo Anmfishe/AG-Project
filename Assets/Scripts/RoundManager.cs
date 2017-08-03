@@ -192,20 +192,22 @@ public class RoundManager : MonoBehaviour {
         playerRigs.Add(rig);
         //send 
         SendPlayerToHatRoom(rig);
+       
+        
+    }
+    public void AssignTeam(GameObject avatar)
+    {
         avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
         setMembers();
         if (blueMemb >= redMemb)
         {
-            redMemb++;
             avatar.GetComponent<TeamManager>().SetRed();
 
         }
         else
         {
-            blueMemb++;
             avatar.GetComponent<TeamManager>().SetBlue();
         }
-        
     }
 
     public void Unsubscribe(GameObject avatar, GameObject rig)
