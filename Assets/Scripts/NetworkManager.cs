@@ -179,6 +179,7 @@ public class NetworkManager : Photon.PunBehaviour
 		{
 			avatar.GetComponentInChildren<PlayerStatus> ().playerClass = PlayerClass.all;
 			avatar.GetComponentInChildren<TeamManager> ().Respawn ();
+            Camera.main.transform.parent.GetComponentInChildren<PlatformController>().enabled = true;
 		}
 
 		if (PhotonNetwork.isMasterClient)
