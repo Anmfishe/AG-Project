@@ -29,14 +29,16 @@ public class HealthBar : MonoBehaviour {
        
         //       myTrans.position = new Vector3(owner.position.x, owner.position.y+yOffset,owner.position.z);
 
-		if (bookHealth == false) {
+		if (bookHealth == false)
+        {
 			this.transform.position = new Vector3 (ownerTrans.position.x, ownerTrans.position.y + yOffset, ownerTrans.position.z);
 			this.transform.forward = camera.forward;
 		}
 		else 
 		{
-			//this.transform.position = new Vector3(-4.96f, 2.422f, 4.255f);
-		}
+           // this.transform.position = new Vector3(ownerTrans.position.x, ownerTrans.position.y, ownerTrans.position.z);
+            
+        }
         // Debug.Log(camera);
         if ((float)ownerStat.current_health >= 0)
         {
