@@ -18,7 +18,7 @@ public class AutoDestroy : MonoBehaviour {
         else
         {
             if(InPhoton)
-                PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
             else
                 Destroy(this.gameObject);
         }
