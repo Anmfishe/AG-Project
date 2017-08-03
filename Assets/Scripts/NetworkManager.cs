@@ -80,7 +80,7 @@ public class NetworkManager : Photon.PunBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+        Debug.Log(PhotonNetwork.GetPing());
 	}
 
 	public void Connect()

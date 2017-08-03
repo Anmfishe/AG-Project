@@ -7,13 +7,14 @@ public class Targeting : MonoBehaviour {
     [HideInInspector]
     public Transform result;
     private TargetablePlayer targetableScript;
-
+    private LineRenderer lineRend;
     public Transform pointer;
     public float range;
     public LayerMask layers;
 
 	// Use this for initialization
 	void Start () {
+        lineRend = pointer.GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame

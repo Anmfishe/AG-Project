@@ -208,6 +208,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case 7:
                 currentSpell = platformSteal;
+               
                 currentSpellName = "platformSteal";
                 currentSpellGradient = platformStealGradient;
                 break;
@@ -424,10 +425,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
                     spellTimer = disenchantCooldown;
-                    PhotonNetwork.Destroy(target.result.gameObject);
+                    //target.result.GetComponent<VineTrap>().DestroyVines();
+                    target.result.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 }
                 else
-                    return;
+                {
+                    spellTimer = disenchantCooldown;
+                }
                 break;
             default:
                 spellTimer = spellCooldown;
@@ -447,6 +451,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         isCoolingDown = true;
         hasSpell = false;
         currentSpell = null;
+        //target.currentSpellName = "";
         currentSpellName = "";
         
     }

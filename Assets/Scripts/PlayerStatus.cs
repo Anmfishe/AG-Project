@@ -161,6 +161,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Immobilizes the player.
     public void EnableMovement(bool isEnabled)
     {
+        if(photonView.isMine)
         cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
     }
 

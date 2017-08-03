@@ -77,8 +77,7 @@ public class VineTrap : MonoBehaviour {
         if (playerStatus.takeDamage(damagePerCycle))
         {
             //Enable movement before destroy itself.
-            playerStatus.EnableMovement(true);
-            PhotonNetwork.Destroy(this.gameObject);
+            DestroyVines();
         }
     }
 
@@ -97,6 +96,13 @@ public class VineTrap : MonoBehaviour {
         }
 
 
+    }
+
+    [PunRPC]
+    public void DestroyVines()
+    {
+        playerStatus.EnableMovement(true);
+        PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
     }
 
 }
