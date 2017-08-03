@@ -31,12 +31,12 @@ public class TeamManager : MonoBehaviour {
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
         roundManager = GameObject.FindGameObjectWithTag("RoundManager");
-        if(roundManager)
+        if(roundManager && photonView.isMine)
         {
             Debug.Log("Assigning Team");
             roundManager.GetComponent<RoundManager>().AssignTeam(gameObject);
         }
-        else
+        else if(photonView.isMine)
         {
             Debug.Log("RoundManager not found");
             SetBlue();
