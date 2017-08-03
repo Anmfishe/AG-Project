@@ -134,6 +134,18 @@ public class RoundManager : MonoBehaviour {
     {
         if (hatRoom)
         {
+            Debug.Log("In hatroom if");
+            Vector3 newPos = hatRoom.position;
+            Transform camObj = player.GetComponentInChildren<Camera>().transform;
+            newPos.x -= camObj.localPosition.x;
+            newPos.z -= camObj.localPosition.z;
+            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            
+        }
+        else
+        {
+            hatRoom = GameObject.FindGameObjectWithTag("HatRoom").transform;
+            Debug.Log("In hatroom else");
             Vector3 newPos = hatRoom.position;
             Transform camObj = player.GetComponentInChildren<Camera>().transform;
             newPos.x -= camObj.localPosition.x;
