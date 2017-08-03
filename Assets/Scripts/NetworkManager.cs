@@ -193,7 +193,7 @@ public class NetworkManager : Photon.PunBehaviour
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
         
-        if (PunTeams.PlayersPerTeam[PunTeams.Team.red].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
+        if (PunTeams.PlayersPerTeam[PunTeams.Team.red].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count)
         {
             avatar.GetComponent<TeamManager>().SetRed();
             PhotonNetwork.player.SetTeam(PunTeams.Team.red);
