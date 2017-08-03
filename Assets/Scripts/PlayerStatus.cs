@@ -26,6 +26,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public PlayerSoundManager psm;
     public GameObject cameraRig;
     private TextMesh deadText;
+    
+    // Invulnerability frames
+    private float startTime;
+    float invulnerableFrames = 0.5f;
 
     private bool dead = false;
     private float deathTime = 0f;
@@ -141,13 +145,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void TakeDamage(float damage)
     {
-        if (current_health <= 0)
+        if (current_health <= 0 || Time.time - startTime < invulnerableFrames)
         {
             return;
         }
 
         if (dead == false)
         {
+            startTime = Time.time;
             current_health -= damage;
             psm.PlayerHurt();
         }
