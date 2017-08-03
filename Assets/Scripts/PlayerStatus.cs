@@ -194,7 +194,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         deathTime = Time.time;
         dead = true;
-      //  Respawn();
+        current_health = max_health;
+        //  Respawn();
     }
 
     [PunRPC]
