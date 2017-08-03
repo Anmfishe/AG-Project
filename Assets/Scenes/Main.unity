@@ -2011,7 +2011,7 @@ MonoBehaviour:
   torso: {fileID: 0}
   playerStatus: {fileID: 0}
   blue: 0
-  noHats: 1
+  noHats: 0
   hasSpell: 0
   currentSpell: {fileID: 0}
   currentSpellName: 

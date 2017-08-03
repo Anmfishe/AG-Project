@@ -10,6 +10,9 @@ public class BookLogic : MonoBehaviour
 	private PlayerClass playerClass;
     GameObject page;
     public Material[] pages;
+    public Material[] pagesAttack;
+    public Material[] pagesSupport;
+    public Material[] pagesHealer;
     Renderer rend;
     Animator animator;
 
@@ -134,39 +137,39 @@ public class BookLogic : MonoBehaviour
     {
 		if (playerClass == PlayerClass.attack) 
 		{
-			if (index > attackBottom)
-			{
-				index -= 1;
-			}
-			else 
-			{
-				index = attackTop;
-			}
-		}
+            if (index > 0)
+            {
+                index -= 1;
+            }
+            else
+            {
+                index = pagesAttack.Length - 1;
+            }
+        }
 
 		else if (playerClass == PlayerClass.support)
 		{
-			if (index > supportBottom)
-			{
-				index -= 1;
-			}
-			else 
-			{
-				index = supportTop;
-			}
-		}
+            if (index > 0)
+            {
+                index -= 1;
+            }
+            else
+            {
+                index = pagesSupport.Length - 1;
+            }
+        }
 
 		else if (playerClass == PlayerClass.heal) 
 		{
-			if (index > healBottom)
-			{
-				index -= 1;
-			}
-			else 
-			{
-				index = healTop;
-			}
-		}
+            if (index > 0)
+            {
+                index -= 1;
+            }
+            else
+            {
+                index = pagesHealer.Length - 1;
+            }
+        }
 
 		else if (playerClass == PlayerClass.all) 
 		{
@@ -189,39 +192,39 @@ public class BookLogic : MonoBehaviour
 
 		if (playerClass == PlayerClass.attack) 
 		{
-			if (index < attackTop)
-			{
-				index += 1;
-			}
-			else 
-			{
-				index = attackBottom;
-			}
-		}
+            if (index < (pagesAttack.Length - 1))
+            {
+                index += 1;
+            }
+            else
+            {
+                index = 0;
+            }
+        }
 
 		else if (playerClass == PlayerClass.support)
 		{
-			if (index < supportTop)
-			{
-				index += 1;
-			}
-			else 
-			{
-				index = supportBottom;
-			}
-		}
+            if (index < (pagesSupport.Length - 1))
+            {
+                index += 1;
+            }
+            else
+            {
+                index = 0;
+            }
+        }
 
 		else if (playerClass == PlayerClass.heal) 
 		{
-			if (index < healTop)
-			{
-				index += 1;
-			}
-			else 
-			{
-				index = healBottom;
-			}
-		}
+            if (index < (pagesHealer.Length - 1))
+            {
+                index += 1;
+            }
+            else
+            {
+                index = 0;
+            }
+        }
 
 		else if (playerClass == PlayerClass.all) 
 		{
@@ -262,11 +265,35 @@ public class BookLogic : MonoBehaviour
             rend = page.GetComponent<Renderer>();
 
 
-            rend.material = pages[pages.Length - 1];
+            //rend.material = pages[pages.Length - 1];
             animator = GetComponent<Animator>();
 
-            rend.material = pages[index];
-        }
+            if (playerClass == PlayerClass.attack)
+            {
+                if (index >= pagesAttack.Length)
+                    index = 0;
+
+                rend.material = pagesAttack[index];
+            }
+            else if (playerClass == PlayerClass.support)
+            {
+                if (index >= pagesAttack.Length)
+                    index = 0;
+                rend.material = pagesSupport[index];
+            }
+            else if (playerClass == PlayerClass.heal)
+            {
+                if (index >= pagesHealer.Length)
+                    index = 0;
+                rend.material = pagesHealer[index];
+            }
+            else if (playerClass == PlayerClass.all)
+            {
+                if (index >= pages.Length)
+                    index = 0;
+                rend.material = pages[index];
+            }
+           }
 
         
 

@@ -582,4 +582,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2a0bc547473304023abae9e69e7506c7, type: 2}
   - {fileID: 2100000, guid: 8c7a302d3e8b743b689eeed780f3169a, type: 2}
   - {fileID: 2100000, guid: 2c7ef3ac9b33e425e923d5431085ca97, type: 2}
-  trackedObj: {fileID: 0}
+  pagesAttack:
+  - {fileID: 2100000, guid: 2a0bc547473304023abae9e69e7506c7, type: 2}
+  - {fileID: 2100000, guid: 368166cda2925664594bdf5ee42fd67a, type: 2}
+  - {fileID: 2100000, guid: 2c7ef3ac9b33e425e923d5431085ca97, type: 2}
+  pagesSupport:
+  - {fileID: 2100000, guid: 84521c5dfbcb56f40be09e6334746474, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  pagesHealer: []
+  attackTop: 2
+  attackBottom: 0
+  supportBottom: 3
+  supportTop: 5
+  healBottom: 6
+  healTop: 9
+  index: 0
