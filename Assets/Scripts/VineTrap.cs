@@ -101,7 +101,9 @@ public class VineTrap : MonoBehaviour {
     [PunRPC]
     public void DestroyVines()
     {
-        playerStatus.EnableMovement(true);
+        if (playerStatus != null)
+            playerStatus.EnableMovement(true);
+
         PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
     }
 

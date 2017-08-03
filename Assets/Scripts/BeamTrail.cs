@@ -5,7 +5,7 @@ using UnityEngine;
 public class BeamTrail : MonoBehaviour {
 
     public float beamSpeed = 2;
-    public Transform destination;
+    public Vector3 destination;
     private LineRenderer lineRenderer;
     private Material[] lrMaterials;
 	// Use this for initialization
@@ -24,7 +24,8 @@ public class BeamTrail : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, destination.position);
+		if (destination != null)
+        	lineRenderer.SetPosition(1, destination);
 
         for(int i = 1; i < lrMaterials.Length; i++)
         {
@@ -39,6 +40,6 @@ public class BeamTrail : MonoBehaviour {
         lrMaterialOffsetX *= -1;
 
         lrMaterial.mainTextureOffset = new Vector2(lrMaterialOffsetX, lrMaterial.mainTextureOffset.y);
-        print(lrMaterial.mainTextureScale + " : " + lrMaterial.mainTextureOffset);
+        //print(lrMaterial.mainTextureScale + " : " + lrMaterial.mainTextureOffset);
     }
 }

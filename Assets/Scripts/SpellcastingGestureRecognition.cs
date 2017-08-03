@@ -90,11 +90,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private float spellTimer = 0;
     private bool isCoolingDown = false;
 
+	// Variables for targeting platforms
+	private BeamTrail beamTrail;
+    public GameObject reticle;
+    private LineRenderer lineRend;
+    public Gradient accurateTarget;
+    public Gradient inaccurateTarget;
+
     private void Start()
     {
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
+		beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
+        lineRend = beamTrail.GetComponent<LineRenderer>();
+		beamTrail.gameObject.SetActive (false);
+        reticle.SetActive(false);
     }
 
     void OnEnable()
@@ -112,7 +123,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
-
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -146,6 +156,49 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if(!hasSpell && !isCoolingDown && wand != null)
                 wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+
+        // Check if targeting platform
+        if (currentSpellName == "vines" || currentSpellName == "platformSteal")
+        {
+            if (target.result != null)
+            {
+                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                {
+                    AccurateTarget();
+                }
+                else
+                {
+                    InaccurateTarget();
+                }
+            }
+            else
+            {
+                InaccurateTarget();
+            }
+        }
+        else if (currentSpellName == "disenchant")
+        {
+            if (target.result != null)
+            {
+                if (target.result.tag == "Curse")
+                {
+                    AccurateTarget();
+                }
+                else
+                {
+                    InaccurateTarget();
+                }
+            }
+            else
+            {
+                InaccurateTarget();
+            }
+        }
+        else
+        {
+            beamTrail.gameObject.SetActive(false);
+            reticle.SetActive(false);
         }
     }
 
@@ -461,6 +514,40 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             bsp.SetOwner(avatar.gameObject);
         }
+    }
+
+    // Successfully target a platform
+    void AccurateTarget()
+    {
+        beamTrail.gameObject.SetActive(true);
+        reticle.SetActive(true);
+        RaycastHit hit;
+        Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = hit.point;
+        lineRend.colorGradient = accurateTarget;
+        reticle.transform.position = hit.point;
+    }
+
+    // Draw dotted line when not hitting platform
+    void InaccurateTarget()
+    {
+        beamTrail.gameObject.SetActive(true);
+        RaycastHit hit;
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.layers))
+        {
+            beamTrail.destination = (hit.point);
+            lineRend.colorGradient = inaccurateTarget;
+            reticle.SetActive(true);
+            reticle.transform.position = hit.point;
+        }
+        else
+        {
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 10);
+            reticle.SetActive(true);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 10);
+        }
+
+        lineRend.colorGradient = inaccurateTarget;
     }
 }
 
