@@ -40,7 +40,7 @@ public class HealthBar : MonoBehaviour {
             
         }
         // Debug.Log(camera);
-        if ((float)ownerStat.current_health >= 0)
+        if (ownerStat != null && (float)ownerStat.current_health >= 0)
         {
             //print("greater than 0 health");
             setHealthbarScale((float)ownerStat.current_health / (float)ownerStat.max_health);

@@ -31,7 +31,9 @@ public class MeteorSpell : MonoBehaviour
 	public float minAngularVelocity = 20f;
 	private float steeringForceSky = 10000;
 	private float steeringForceGround = 15000;
-	public Rigidbody rb;
+    private float initialForce = 500;
+    private float initialForceDist = 2;
+    public Rigidbody rb;
     bool first = true;
 	public AudioSource audioSource;
 	public AudioClip deflectAudio;
@@ -61,8 +63,6 @@ public class MeteorSpell : MonoBehaviour
 			rb = GetComponent<Rigidbody> ();
 			rb.AddForce (transform.forward * 1000);
 			line = GetComponent<LineRenderer> ();
-
-
 		}
 		//Destroy(this.gameObject, duration);
 		if (startup > 0)
@@ -71,6 +71,12 @@ public class MeteorSpell : MonoBehaviour
 			fbCollider = this.GetComponent<SphereCollider> ();
 		if (audioSource == null)
 			audioSource = this.GetComponent<AudioSource> ();
+
+        if (transform.rotation.x <= 45)
+        {
+            transform.rotation = Quaternion.Euler(45,0,0);
+        }
+
 	}
 
 	// Update is called once per frame
@@ -98,7 +104,14 @@ public class MeteorSpell : MonoBehaviour
 			Vector3 fwd = wand.transform.TransformDirection(Vector3.forward);
 			RaycastHit hit;
 
-			if (Physics.Raycast (wand.transform.position, wand.transform.forward, out hit, 1000,targettable) && Vector3.Distance(wand.transform.position, hit.point) < 40) {
+            if (Vector3.Distance(wand.transform.position, transform.position) < initialForceDist)
+            {
+                rb.AddForce(Vector3.up * initialForce);
+            }
+
+            // If raycast hit
+            if (Physics.Raycast (wand.transform.position, wand.transform.forward, out hit, 1000,targettable) && Vector3.Distance(wand.transform.position, hit.point) < 40)
+            {
 
 				print(Vector3.Distance(wand.transform.position, hit.point));
 				if (hit.transform.gameObject.tag == ("Spell")) 
@@ -111,6 +124,7 @@ public class MeteorSpell : MonoBehaviour
 				rb.AddForce (steeringDirection.normalized * steeringForceGround * Time.smoothDeltaTime);
 				reticleInstance.transform.position = hit.point;
 			}
+            // If raycast didn't hit
 			else
 			{
 				steeringDirection = (wand.transform.position + (wand.transform.forward * 20 - transform.position));
