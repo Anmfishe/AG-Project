@@ -193,6 +193,7 @@ public class RoundManager : MonoBehaviour {
         //send 
         SendPlayerToHatRoom(rig);
         avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+        setMembers();
         if (blueMemb >= redMemb)
         {
             redMemb++;
@@ -216,5 +217,21 @@ public class RoundManager : MonoBehaviour {
             blueMemb--;
         else
             redMemb--;
+    }
+    private void setMembers()
+    {
+        blueMemb = 0;
+        redMemb = 0;
+        foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if(p.GetComponentInParent<TeamManager>().blue)
+            {
+                blueMemb++;   
+            }
+            else
+            {
+                redMemb++;
+            }
+        }
     }
 }
