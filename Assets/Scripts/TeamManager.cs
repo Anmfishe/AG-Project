@@ -30,17 +30,17 @@ public class TeamManager : MonoBehaviour {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
-        roundManager = GameObject.FindGameObjectWithTag("RoundManager");
-        if(roundManager && photonView.isMine)
-        {
-            Debug.Log("Assigning Team");
-            roundManager.GetComponent<RoundManager>().AssignTeam(gameObject);
-        }
-        else if(photonView.isMine)
-        {
-            Debug.Log("RoundManager not found");
-            SetBlue();
-        }
+        //roundManager = GameObject.FindGameObjectWithTag("RoundManager");
+        //if(roundManager && photonView.isMine)
+        //{
+        //    Debug.Log("Assigning Team");
+        //    roundManager.GetComponent<RoundManager>().AssignTeam(gameObject);
+        //}
+        //else if(photonView.isMine)
+        //{
+        //    Debug.Log("RoundManager not found");
+        //    SetBlue();
+        //}
     }
 	
 	// Update is called once per frame

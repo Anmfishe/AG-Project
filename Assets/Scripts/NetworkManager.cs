@@ -47,7 +47,7 @@ public class NetworkManager : Photon.PunBehaviour
 	string _gameVersion = "1";
 	public GameObject roundMan;
     public GameObject powerupManager;
-
+    private PunTeams pt;
 	void Awake()
 	{
 		// #Critical
@@ -192,28 +192,39 @@ public class NetworkManager : Photon.PunBehaviour
         cameraRig = GameObject.FindWithTag("CameraRig"); 
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
-        //        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
-        //avatar.GetComponent<TeamSetter>().SetTeam();
-        //Debug.Log(PhotonNetwork.room.PlayerCount);
+        
+        if (PunTeams.PlayersPerTeam[PunTeams.Team.red].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
+        {
+            avatar.GetComponent<TeamManager>().SetRed();
+            PhotonNetwork.player.SetTeam(PunTeams.Team.red);
+        }
+        else
+        {
+            avatar.GetComponent<TeamManager>().SetBlue();
+            PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
+        }
+            //        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+            //avatar.GetComponent<TeamSetter>().SetTeam();
+            //Debug.Log(PhotonNetwork.room.PlayerCount);
 
-//        if (PhotonNetwork.room.PlayerCount % 2 == 0)
-//		{
-//			//photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
-//			//localPlayer.GetComponentInParent<TeamManager>().SetBlue();
-////			avatar.GetComponent<TeamManager>().SetBlue();
-//		}
-//		else
-//		{
-//			//photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
-//			//localPlayer.GetComponentInParent<TeamManager>().SetRed();
-////			avatar.GetComponent<TeamManager>().SetRed();
+            //        if (PhotonNetwork.room.PlayerCount % 2 == 0)
+            //		{
+            //			//photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
+            //			//localPlayer.GetComponentInParent<TeamManager>().SetBlue();
+            ////			avatar.GetComponent<TeamManager>().SetBlue();
+            //		}
+            //		else
+            //		{
+            //			//photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
+            //			//localPlayer.GetComponentInParent<TeamManager>().SetRed();
+            ////			avatar.GetComponent<TeamManager>().SetRed();
 
-//		}
+            //		}
 
-        //temp++;
-        //localPlayer.GetComponentInParent<TeamManager>().SetRed();
-        //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
-        if (PhotonNetwork.isMasterClient)
+            //temp++;
+            //localPlayer.GetComponentInParent<TeamManager>().SetRed();
+            //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+            if (PhotonNetwork.isMasterClient)
         {
             roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
