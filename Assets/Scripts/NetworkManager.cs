@@ -78,11 +78,19 @@ public class NetworkManager : Photon.PunBehaviour
 
 	// Update is called once per frame
 	void Update()
-	{
+    {
+   
+        //if (roundMan.==null)
+        //{
+           
+        //    if (roundMan = GameObject.FindGameObjectWithTag("RoundManager"))
+        //    {
+        //        roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+        //    }
+        //}
+    }
 
-	}
-
-	public void Connect()
+    public void Connect()
 	{
 		isConnecting = true;
 
@@ -180,36 +188,40 @@ public class NetworkManager : Photon.PunBehaviour
 			HatSpawn ();
 		}
 
-		cameraRig = Camera.main.transform.parent.gameObject;
+        //	cameraRig = Camera.main.transform.parent.gameObject;
+        cameraRig = GameObject.FindWithTag("CameraRig"); 
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
-        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
-		//avatar.GetComponent<TeamSetter>().SetTeam();
-		//Debug.Log(PhotonNetwork.room.PlayerCount);
-		if (PhotonNetwork.room.PlayerCount % 2 == 0)
-		{
-			//photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
-			//localPlayer.GetComponentInParent<TeamManager>().SetBlue();
-			avatar.GetComponent<TeamManager>().SetBlue();
-		}
-		else
-		{
-			//photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
-			//localPlayer.GetComponentInParent<TeamManager>().SetRed();
-			avatar.GetComponent<TeamManager>().SetRed();
+        //        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+        //avatar.GetComponent<TeamSetter>().SetTeam();
+        //Debug.Log(PhotonNetwork.room.PlayerCount);
 
-		}
+//        if (PhotonNetwork.room.PlayerCount % 2 == 0)
+//		{
+//			//photonView.RPC("SetBlue", PhotonTargets.AllBuffered, null);
+//			//localPlayer.GetComponentInParent<TeamManager>().SetBlue();
+////			avatar.GetComponent<TeamManager>().SetBlue();
+//		}
+//		else
+//		{
+//			//photonView.RPC("SetRed", PhotonTargets.AllBuffered, null);
+//			//localPlayer.GetComponentInParent<TeamManager>().SetRed();
+////			avatar.GetComponent<TeamManager>().SetRed();
+
+//		}
 
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         if (PhotonNetwork.isMasterClient)
         {
-            roundMan = PhotonNetwork.Instantiate(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
+            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
             powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
-	}
+        else
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+    }
 
 	/// <summary>
 	/// Called when a Photon Player got connected. We need to then load a bigger scene.
@@ -218,7 +230,9 @@ public class NetworkManager : Photon.PunBehaviour
 
 	public override void OnPhotonPlayerConnected(PhotonPlayer other)
 	{
-		Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
+
+       
+        Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
 	}
 
 	/// <summary>
@@ -233,10 +247,11 @@ public class NetworkManager : Photon.PunBehaviour
 	/// <summary>
 	/// Called when the local player left the room. We need to load the launcher scene.
 	/// </summary>
-	public virtual void OnLeftRoom()
+	public override void OnLeftRoom()
 	{
+        roundMan.GetComponent<RoundManager>().Unsubscribe(avatar, cameraRig);
 
-	}
+    }
 
 	public void SetMat()
 	{

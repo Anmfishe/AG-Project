@@ -28,6 +28,7 @@ TagManager:
   - Pong_Shield_Plane
   - Curse
   - Powerup
+  - RoundManager
   layers:
   - Default
   - TransparentFX

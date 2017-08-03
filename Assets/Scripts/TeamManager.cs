@@ -28,6 +28,7 @@ public class TeamManager : MonoBehaviour {
     void Start () {
         redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
+        cameraRig = GameObject.FindGameObjectWithTag("CameraRig");
     }
 	
 	// Update is called once per frame
@@ -114,5 +115,11 @@ public class TeamManager : MonoBehaviour {
         avatar = _avatar;
         torso = avatar.Find("Torso");
         head = avatar.Find("Head");
+    }
+
+    public void OnDestroy()
+    {
+        if(photonView.isMine)
+            GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>().Unsubscribe(avatar.gameObject, cameraRig);
     }
 }

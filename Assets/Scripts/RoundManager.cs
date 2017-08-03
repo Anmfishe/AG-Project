@@ -17,6 +17,8 @@ public class RoundManager : MonoBehaviour {
     private List<GameObject> players = new List<GameObject>();
     ScoreboardUpdater scoreboard;
     int score;
+    private int blueMemb;
+    private int redMemb;
 
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
@@ -37,12 +39,13 @@ public class RoundManager : MonoBehaviour {
         //all this has to ce re-done according to whatever you want the round to be. Does the round start after the 1st player puts hat on? Does it start when certain ammount of people do that? 
         if (!hatsSelected)
         {
-            foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+            //         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+            foreach(GameObject p in players)
             {
-
-                if (playerRCP.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
-                    break;
-                hatsSelected = true;
+                
+ //               if (p.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
+ //                   break;
+ //               hatsSelected = true;
 
             }
         }
@@ -86,7 +89,7 @@ public class RoundManager : MonoBehaviour {
 //		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))                                //TODO
 //			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
         ChooseHats();
-        ShowScoreboard();
+        ShowFinalScoreboard();
  //       inBattlefield = false;
 		scoreboard.Reset ();
 		timeElapsed = 0;
@@ -108,23 +111,17 @@ public class RoundManager : MonoBehaviour {
 
     void ChooseHats()
     {
-        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
-//        FindPlayers();
+//        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
+        //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-            Vector3 newPos = hatRoom.position;
-            Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            newPos.x -= camObj.localPosition.x;
-            newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
-            player.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
-            player.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+            SendPlayerToHatRoom(player);
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         //    //player.TakeOffHat();
 
-            hatsSelected = false;
+        hatsSelected = false;
 
         if (GameObject.Find("RightController") == null)
         {
@@ -135,33 +132,77 @@ public class RoundManager : MonoBehaviour {
 
     void SendPlayerToHatRoom(GameObject player)
     {
-        Vector3 newPos = hatRoom.position;
-        Transform camObj = player.GetComponentInChildren<Camera>().transform;
-        newPos.x -= camObj.localPosition.x;
-        newPos.z -= camObj.localPosition.z;
-        player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+        if (hatRoom)
+        {
+            Vector3 newPos = hatRoom.position;
+            Transform camObj = player.GetComponentInChildren<Camera>().transform;
+            newPos.x -= camObj.localPosition.x;
+            newPos.z -= camObj.localPosition.z;
+            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
 
+        }
+        
     }
+ //   [PunRPC]
+ //   void UpdateScoreboard(bool blueScored)
+ //   {
+ //       //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+ //       ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+
+ //       Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+
+ //       if (scoreboard == null)
+ //       {
+ //           Debug.Log("SCOREBOARD UPDATER IS NULL!");
+ //       }
+
+ ////       Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
+
+ //       if (blueScored)
+ //       {
+ //           scoreboard.IncrementBlueScore();
+ //       }
+ //       else
+ //       {
+ //           scoreboard.IncrementRedScore();
+ //       }
+ //   }
 
 
-
-    void ShowScoreboard()
+    void ShowFinalScoreboard()
     {
         //TODO show whatever AG like to show in the end of round 
     }
-    public void Subscribe(GameObject go, GameObject rig)
+    public void Subscribe(GameObject avatar, GameObject rig)
     {
-        Debug.Log(go.name + " subscribed");
-        players.Add(go);
+        Debug.Log(avatar.name + " subscribed");
+        players.Add(avatar);
         playerRigs.Add(rig);
         //send 
         SendPlayerToHatRoom(rig);
+        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+        if (blueMemb >= redMemb)
+        {
+            redMemb++;
+            avatar.GetComponent<TeamManager>().SetRed();
+
+        }
+        else
+        {
+            blueMemb++;
+            avatar.GetComponent<TeamManager>().SetBlue();
+        }
+        
     }
 
-    public void Unsubscribe(GameObject go, GameObject rig)
+    public void Unsubscribe(GameObject avatar, GameObject rig)
     {
-        players.Remove(go);
+        players.Remove(avatar);
         players.Remove(rig);
-        Debug.Log(go.name + " unsubscribed");
+        Debug.Log(avatar.name + " unsubscribed");
+        if (avatar.GetComponent<TeamManager>().blue)
+            blueMemb--;
+        else
+            redMemb--;
     }
 }
