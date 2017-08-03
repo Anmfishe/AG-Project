@@ -15,7 +15,8 @@ public class PlatformController : MonoBehaviour {
     //public bool useLeft = true;
     [HideInInspector]
     public bool lerp = true;
-   
+
+    bool blue;
     public float CD = 1;
     public AudioClip cd_Sound;
     [HideInInspector]
@@ -29,18 +30,14 @@ public class PlatformController : MonoBehaviour {
     float startPressPosVert;
     float swipeThresh = 0.03f;
     public float speed = 10f;
-    //SteamVR_TrackedObject trackedObj1;
-    //SteamVR_TrackedObject trackedObj2;
-    //SteamVR_Controller.Device device1;
-    //SteamVR_Controller.Device device2;
+
     // Use this for initialization
     private void Awake()
     {
-        //trackedObj1 = transform.Find("Controller (left)").GetComponent<SteamVR_TrackedObject>();
-        //trackedObj2 = transform.Find("Controller (right)").GetComponent<SteamVR_TrackedObject>();
         camObj = GetComponentInChildren<Camera>().gameObject;
     }
-    void Start () {
+    void Start () 
+	{
         audS = GetComponent<AudioSource>();
         //blue_platforms = ~(int)1 << LayerMask.NameToLayer("BluePlatform");
         //red_platforms = ~(int)1 << LayerMask.NameToLayer("RedPlatform");
@@ -62,6 +59,7 @@ public class PlatformController : MonoBehaviour {
         {
             if (avatar.GetComponent<TeamManager>().blue && avatar.GetComponent<TeamManager>().photonView.isMine)
             {
+                blue = avatar.GetComponent<TeamManager>().blue;
                 mask = blue_platforms;
             }
             else
@@ -114,34 +112,75 @@ public class PlatformController : MonoBehaviour {
                 if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
                 {
                     RaycastHit right;
-                    if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
+                    if (blue == false)
                     {
-                        MoveRight(right.collider.gameObject);
+                        if (Physics.Raycast(target.position, Vector3.right, out right, 10, mask))
+                        {
+                            MoveRight(right.collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (Physics.Raycast(target.position, Vector3.left, out right, 10, mask))
+                        {
+                            MoveRight(right.collider.gameObject);
+                        }
                     }
                 }
 
                 else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
                 {
                     RaycastHit left;
-                    if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
+
+                    if (blue == false)
                     {
-                        MoveLeft(left.collider.gameObject);
+                        if (Physics.Raycast(target.position, Vector3.left, out left, 10, mask))
+                        {
+                            MoveLeft(left.collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (Physics.Raycast(target.position, Vector3.right, out left, 10, mask))
+                        {
+                            MoveLeft(left.collider.gameObject);
+                        }
                     }
                 }
                 else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
                 {
                     RaycastHit up;
-                    if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
+                    if (blue == false)
                     {
-                        MoveUp(up.collider.gameObject);
+                        if (Physics.Raycast(target.position, Vector3.forward, out up, 10, mask))
+                        {
+                            MoveUp(up.collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (Physics.Raycast(target.position, Vector3.back, out up, 10, mask))
+                        {
+                            MoveUp(up.collider.gameObject);
+                        }
                     }
                 }
                 else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
                 {
                     RaycastHit down;
-                    if (Physics.Raycast(target.position, backVec, out down, 10, mask))
+                    if (blue == false)
                     {
-                        MoveDown(down.collider.gameObject);
+                        if (Physics.Raycast(target.position, Vector3.back, out down, 10, mask))
+                        {
+                            MoveDown(down.collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (Physics.Raycast(target.position, Vector3.forward, out down, 10, mask))
+                        {
+                            MoveDown(down.collider.gameObject);
+                        }
                     }
                 }
 

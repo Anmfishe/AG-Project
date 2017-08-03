@@ -54,4 +54,9 @@ MonoBehaviour:
   - SetRandomSpell
   - setRandomSpell
   - TakeDamage
+  - ChangeColor
+  - ChangePlatformColor
+  - SetBlue
+  - SetRed
+  - DestroyVines
   DisableAutoOpenWizard: 1

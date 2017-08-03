@@ -16,11 +16,12 @@ public class TeamManager : MonoBehaviour {
     private GameObject roundManager;
     public Material blue_mat;
     public Material red_mat;
+	public bool blue = false;
     [HideInInspector]
-    public bool blue = false;
-    [HideInInspector]
+   
     public PhotonView photonView;
-    private void Awake()
+	[HideInInspector]
+	private void Awake()
     {
 
         photonView = GetComponent<PhotonView>();
@@ -65,6 +66,7 @@ public class TeamManager : MonoBehaviour {
         }
     }
     
+    [PunRPC]
     public void SetBlue()
     {
         Debug.Log("Set Blue + " + Time.time);
@@ -86,6 +88,8 @@ public class TeamManager : MonoBehaviour {
             vrtk_spr.blue = true;
         }
     }
+
+    [PunRPC]
     public void SetRed()
     {
         Debug.Log("Set Red + " + Time.time);

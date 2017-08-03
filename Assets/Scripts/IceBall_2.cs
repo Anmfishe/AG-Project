@@ -6,6 +6,7 @@ public class IceBall_2 : MonoBehaviour {
     public ParticleSystem ps;
     PhotonView photonView;
     bool doDamage = true;
+    public bool blue;
 	// Use this for initialization
 	void Start () {
         //ps = GetComponentInChildren<ParticleSystem>();
@@ -40,7 +41,8 @@ public class IceBall_2 : MonoBehaviour {
         {
             if (hit.transform.tag == "Player")
             {
-                hit.transform.GetComponent<PlayerStatus>().takeDamage(10);
+                if(hit.transform.parent.GetComponent<TeamManager>().blue != blue)
+                    hit.transform.GetComponent<PlayerStatus>().takeDamage(10);
             }
         }
     }

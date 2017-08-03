@@ -90,11 +90,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private float spellTimer = 0;
     private bool isCoolingDown = false;
 
+	// Variables for targeting platforms
+	private BeamTrail beamTrail;
+    public GameObject reticle;
+    private LineRenderer lineRend;
+    public Gradient accurateTarget;
+    public Gradient inaccurateTarget;
+
     private void Start()
     {
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
+		beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
+        lineRend = beamTrail.GetComponent<LineRenderer>();
+		beamTrail.gameObject.SetActive (false);
+        reticle.SetActive(false);
     }
 
     void OnEnable()
@@ -112,7 +123,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
-
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -146,6 +156,49 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if(!hasSpell && !isCoolingDown && wand != null)
                 wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+
+        // Check if targeting platform
+        if (currentSpellName == "vines" || currentSpellName == "platformSteal")
+        {
+            if (target.result != null)
+            {
+                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                {
+                    AccurateTarget();
+                }
+                else
+                {
+                    InaccurateTarget();
+                }
+            }
+            else
+            {
+                InaccurateTarget();
+            }
+        }
+        else if (currentSpellName == "disenchant")
+        {
+            if (target.result != null)
+            {
+                if (target.result.tag == "Curse")
+                {
+                    AccurateTarget();
+                }
+                else
+                {
+                    InaccurateTarget();
+                }
+            }
+            else
+            {
+                InaccurateTarget();
+            }
+        }
+        else
+        {
+            beamTrail.gameObject.SetActive(false);
+            reticle.SetActive(false);
         }
     }
 
@@ -208,6 +261,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case 7:
                 currentSpell = platformSteal;
+               
                 currentSpellName = "platformSteal";
                 currentSpellGradient = platformStealGradient;
                 break;
@@ -340,6 +394,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "iceball":
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
                 spellTimer = iceballCooldown;
                 break;
             case "shield":
@@ -347,7 +402,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                spellInstance.transform.SetParent(book);
+                spellInstance.GetComponent<Shield>().SetBook(book);
+                spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+//                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
                 break;
             case "heal":
@@ -385,11 +442,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "pongShield":
                 spellRotation = new Quaternion();
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 spellTimer = pongShieldCooldown;
                 break;
-            case "meteor":
-                spellRotation = wandTip.rotation;
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+		case "meteor":
+			spellRotation = wandTip.rotation;
+			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
+			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
                 spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
@@ -402,7 +461,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
-                    target.result.GetComponent<PlatformMain>().ChangeColor();
+                    target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
                     spellTimer = platformStealCooldown;
                 }
                 else
@@ -413,7 +472,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "lightBlade":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                spellInstance.transform.SetParent(wandTip);
+				spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+				spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
                 spellTimer = lightBladeCooldown;
                 break;
             case "disenchant":
@@ -421,10 +481,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
                     spellTimer = disenchantCooldown;
-                    PhotonNetwork.Destroy(target.result.gameObject);
+                    //target.result.GetComponent<VineTrap>().DestroyVines();
+                    target.result.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 }
                 else
-                    return;
+                {
+                    spellTimer = disenchantCooldown;
+                }
                 break;
             default:
                 spellTimer = spellCooldown;
@@ -444,6 +507,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         isCoolingDown = true;
         hasSpell = false;
         currentSpell = null;
+        //target.currentSpellName = "";
         currentSpellName = "";
         
     }
@@ -453,6 +517,40 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             bsp.SetOwner(avatar.gameObject);
         }
+    }
+
+    // Successfully target a platform
+    void AccurateTarget()
+    {
+        beamTrail.gameObject.SetActive(true);
+        reticle.SetActive(true);
+        RaycastHit hit;
+        Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = hit.point;
+        lineRend.colorGradient = accurateTarget;
+        reticle.transform.position = hit.point;
+    }
+
+    // Draw dotted line when not hitting platform
+    void InaccurateTarget()
+    {
+        beamTrail.gameObject.SetActive(true);
+        RaycastHit hit;
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.layers))
+        {
+            beamTrail.destination = (hit.point);
+            lineRend.colorGradient = inaccurateTarget;
+            reticle.SetActive(true);
+            reticle.transform.position = hit.point;
+        }
+        else
+        {
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 10);
+            reticle.SetActive(true);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 10);
+        }
+
+        lineRend.colorGradient = inaccurateTarget;
     }
 }
 

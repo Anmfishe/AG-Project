@@ -26,6 +26,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public PlayerSoundManager psm;
     public GameObject cameraRig;
     private TextMesh deadText;
+    
+    // Invulnerability frames
+    private float startTime;
+    float invulnerableFrames = 0.5f;
 
     private bool dead = false;
     private float deathTime = 0f;
@@ -141,8 +145,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void TakeDamage(float damage)
     {
+        if (current_health <= 0 || Time.time - startTime < invulnerableFrames)
+        {
+            return;
+        }
+
         if (dead == false)
         {
+            startTime = Time.time;
             current_health -= damage;
             psm.PlayerHurt();
         }
@@ -156,6 +166,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Immobilizes the player.
     public void EnableMovement(bool isEnabled)
     {
+        if(photonView.isMine)
         cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
     }
 
@@ -188,7 +199,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         deathTime = Time.time;
         dead = true;
-      //  Respawn();
+        current_health = max_health;
+        //  Respawn();
     }
 
     [PunRPC]
