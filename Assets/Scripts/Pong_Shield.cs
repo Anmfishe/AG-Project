@@ -21,6 +21,8 @@ public class Pong_Shield : MonoBehaviour {
     GameObject rightController;
     RaycastHit hit;
 
+    bool blue = true;
+
     // Use this for initialization
     void Start () {
         // check scale input
@@ -101,4 +103,14 @@ public class Pong_Shield : MonoBehaviour {
             }
         }
 	}
+
+    public void SetBlue(bool blue_)
+    {
+        blue = blue_;
+    }
+
+    public bool GetBlue()
+    {
+        return blue;
+    }
 }

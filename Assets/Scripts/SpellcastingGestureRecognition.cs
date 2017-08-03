@@ -402,6 +402,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellInstance.transform.SetParent(wandTip);
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
                 spellInstance.GetComponent<Shield>().SetBook(book);
+                spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
 //                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
                 break;
@@ -440,6 +441,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "pongShield":
                 spellRotation = new Quaternion();
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 spellTimer = pongShieldCooldown;
                 break;
 		case "meteor":

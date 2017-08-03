@@ -14,14 +14,16 @@ public class MeteorSpell : MonoBehaviour
 	private Vector3[] points = new Vector3[2];
 	public bool mine = false;
 	public GameObject explosion;
+    private bool deflected;
 
 
-	public LayerMask targettable;
+
+    public LayerMask targettable;
 	public GameObject wand;
 	private float damage = 40;
 	private float castDist = 10;
 	private float magCap = 10;
-	private float skyCap = 10;
+	private float skyCap = 15;
 	private float groundCap = 40;
 	public float duration = 12f;
 	public Vector3 direction; //Sets the direction to where the fireball is traveling to.
@@ -31,6 +33,7 @@ public class MeteorSpell : MonoBehaviour
 	public float minAngularVelocity = 20f;
 	private float steeringForceSky = 10000;
 	private float steeringForceGround = 15000;
+    private float reflectForce = 100;
     private float initialForce = 500;
     private float initialForceDist = 2;
     public Rigidbody rb;
@@ -97,44 +100,47 @@ public class MeteorSpell : MonoBehaviour
 		// If this fireball belongs to me
 		if (mine == true)
 		{
-			points [0] = transform.position;
-			points [1] = wand.transform.position + wand.transform.forward * .15f;
-			line.SetPositions (points);
-
-			Vector3 fwd = wand.transform.TransformDirection(Vector3.forward);
-			RaycastHit hit;
-
-            if (Vector3.Distance(wand.transform.position, transform.position) < initialForceDist)
+            if (deflected == false)
             {
-                rb.AddForce(Vector3.up * initialForce);
+                points[0] = transform.position;
+                points[1] = wand.transform.position + wand.transform.forward * .15f;
+                line.SetPositions(points);
+
+                Vector3 fwd = wand.transform.TransformDirection(Vector3.forward);
+                RaycastHit hit;
+
+                if (Vector3.Distance(wand.transform.position, transform.position) < initialForceDist)
+                {
+                    rb.AddForce(Vector3.up * initialForce);
+                }
+
+                // If raycast hit
+                if (Physics.Raycast(wand.transform.position, wand.transform.forward, out hit, 1000, targettable) && Vector3.Distance(wand.transform.position, hit.point) < 40)
+                {
+
+                    //print(Vector3.Distance(wand.transform.position, hit.point));
+                    if (hit.transform.gameObject.tag == ("Spell"))
+                    {
+                        return;
+                    }
+                    Quaternion rotation = Quaternion.LookRotation(hit.point - transform.position);
+                    steeringDirection = hit.point - transform.position;
+                    magCap = groundCap;
+                    rb.AddForce(steeringDirection.normalized * steeringForceGround * Time.smoothDeltaTime);
+                    reticleInstance.transform.position = hit.point;
+                }
+                // If raycast didn't hit
+                else
+                {
+                    steeringDirection = (wand.transform.position + (wand.transform.forward * 20 - transform.position));
+                    magCap = skyCap;
+                    rb.AddForce(steeringDirection.normalized * steeringForceSky * Time.smoothDeltaTime);
+                    reticleInstance.transform.position = wand.transform.position + (wand.transform.forward * 20);
+                }
+                rb.velocity = clampVector(rb.velocity);
+
+                Debug.DrawRay(wand.transform.position, fwd * 1000, Color.green);
             }
-
-            // If raycast hit
-            if (Physics.Raycast (wand.transform.position, wand.transform.forward, out hit, 1000,targettable) && Vector3.Distance(wand.transform.position, hit.point) < 40)
-            {
-
-				print(Vector3.Distance(wand.transform.position, hit.point));
-				if (hit.transform.gameObject.tag == ("Spell")) 
-				{
-					return;
-				}
-				Quaternion rotation = Quaternion.LookRotation (hit.point - transform.position);
-				steeringDirection = hit.point - transform.position;
-				magCap = groundCap;
-				rb.AddForce (steeringDirection.normalized * steeringForceGround * Time.smoothDeltaTime);
-				reticleInstance.transform.position = hit.point;
-			}
-            // If raycast didn't hit
-			else
-			{
-				steeringDirection = (wand.transform.position + (wand.transform.forward * 20 - transform.position));
-				magCap = skyCap;
-				rb.AddForce (steeringDirection.normalized * steeringForceSky * Time.smoothDeltaTime);
-				reticleInstance.transform.position = wand.transform.position + (wand.transform.forward * 20);
-			}
-			rb.velocity = clampVector (rb.velocity);
-
-			Debug.DrawRay (wand.transform.position, fwd * 1000, Color.green);
 		}
 	}
 
@@ -156,10 +162,41 @@ public class MeteorSpell : MonoBehaviour
        
 		if (GetComponent<PhotonView>().isMine) 
 		{
+            // If it's a shield, deflect
+            if (collision.transform.tag == "Shield")
+            {
+                if (collision.transform.GetComponent<Shield>())
+                {
+                    // If the shield we hit is the enemy's
+                    if (collision.transform.GetComponent<Shield>().GetBlue() != blue)
+                    {
+                        Reflect();
+                    }
+                    else
+                    {
+                        Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
+                    }
 
-				GameObject newExplosion = PhotonNetwork.Instantiate (explosion.name, this.transform.position, new Quaternion (), 0);
+                }
+                else if (collision.transform.GetComponent<Pong_Shield>())
+                {
+                    // If the shield we hit is the enemy's
+                    if (collision.transform.GetComponent<Pong_Shield>().GetBlue() != blue)
+                    {
+                        Reflect();
+                    }
+                    else
+                    {
+                        Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
+                    }
+                }
 
-				DestroyFireball ();
+            }
+            else
+            {
+                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+                DestroyFireball();
+            }
 		}
 	}
 		
@@ -191,4 +228,16 @@ public class MeteorSpell : MonoBehaviour
         //spellcastingGesture.enabled = true;
 		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
+
+    void Reflect()
+    {
+        deflected = true;
+        Destroy(reticle);
+        line.enabled = false;
+        rb.velocity = Vector3.zero;
+        transform.LookAt(Camera.main.transform);
+        blue = !blue;
+        rb.AddForce((Camera.main.transform.position - transform.position) * reflectForce);
+        if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
+    }
 }

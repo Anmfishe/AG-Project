@@ -8,6 +8,7 @@ public class Shield : MonoBehaviour {
 
     private float shieldTimer;
     Transform book;
+    bool blue;
 	
     // Use this for initialization
 	void Start () {
@@ -36,5 +37,15 @@ public class Shield : MonoBehaviour {
     public void SetBook(Transform book_)
     {
         book = book_;
+    }
+
+    public void SetBlue(bool blue_)
+    {
+        blue = blue_;
+    }
+
+    public bool GetBlue()
+    {
+        return blue;
     }
 }
