@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IceBall_1 : MonoBehaviour {
     public GameObject IceBall_2;
+    public bool blue;
     float speed = 7.5f;
     int damage = 10;
     PhotonView photonView;
@@ -40,7 +41,8 @@ public class IceBall_1 : MonoBehaviour {
     IEnumerator lifetime()
     {
         yield return new WaitForSeconds(10);
-        PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
+        GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
+        ib2.GetComponent<IceBall_2>().blue = blue;
         PhotonNetwork.Destroy(photonView);
     }
 

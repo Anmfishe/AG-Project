@@ -394,6 +394,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "iceball":
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
                 spellTimer = iceballCooldown;
                 break;
             case "shield":
