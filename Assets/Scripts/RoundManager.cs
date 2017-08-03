@@ -222,7 +222,9 @@ public class RoundManager : MonoBehaviour {
     {
         blueMemb = 0;
         redMemb = 0;
-        foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("Num players found: " + players.Length);
+        foreach (GameObject p in players)
         {
             if(p.GetComponentInParent<TeamManager>().blue)
             {
@@ -233,5 +235,6 @@ public class RoundManager : MonoBehaviour {
                 redMemb++;
             }
         }
+        Debug.Log("Red: " + redMemb + " Blue: " + blueMemb);
     }
 }
