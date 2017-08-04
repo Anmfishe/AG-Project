@@ -45,7 +45,10 @@ public class IceBall_2 : MonoBehaviour {
                 {
                     if (hit.transform.parent.GetComponent<TeamManager>().blue != blue)
                     {
-                        hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, 10);
+                        hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, 10f);
+                    }
+                    else
+                    {
                     }
                 }
             }
