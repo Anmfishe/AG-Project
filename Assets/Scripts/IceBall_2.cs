@@ -15,10 +15,10 @@ public class IceBall_2 : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		
-        
+	void FixedUpdate ()
+    {
 	}
+
     IEnumerator AOE_Timer()
     {
         Wave();
@@ -42,7 +42,7 @@ public class IceBall_2 : MonoBehaviour {
             if (hit.transform.tag == "Player")
             {
                 if(hit.transform.parent.GetComponent<TeamManager>().blue != blue)
-                    hit.transform.GetComponent<PlayerStatus>().takeDamage(10);
+                    hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, 10);
             }
         }
     }
