@@ -83,7 +83,8 @@ public class RoundManager : MonoBehaviour {
 
     void EndRound()
     {
-        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
+        scoreboard.Reset();
+        //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
 //        FindPlayers ();
 		//foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
@@ -91,7 +92,7 @@ public class RoundManager : MonoBehaviour {
         ChooseHats();
         //ShowFinalScoreboard();
  //       inBattlefield = false;
-		scoreboard.Reset ();
+		
 		timeElapsed = 0;
         
         print ("END OF ENDROUND");

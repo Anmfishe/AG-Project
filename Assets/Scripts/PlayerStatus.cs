@@ -91,7 +91,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     else
                     {
                         deadText.text = "The round is over.";
-                        cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+                        //cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+                        //dead = false;
                     }
                 }
             }
@@ -188,29 +189,32 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
-            if(playerClass == PlayerClass.none || myScoreboard.roundOver)
+            if (playerClass == PlayerClass.none || myScoreboard.roundOver)
             {
-                return;
-            }
-            cameraRig.transform.position = timeOutPt.position;
 
-            deadText.gameObject.SetActive(true);
-
-            // Increment scoreboard
-            bool blueScored = ! this.transform.parent.GetComponent<TeamManager>().blue;
-            self_photonview = GetComponent<PhotonView>();
-            if (blueScored)
-            {
-                //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
-                self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
             }
             else
             {
-                //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
-                self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
-            }
+                cameraRig.transform.position = timeOutPt.position;
 
-            cameraRig.GetComponent<PlatformController>().lerp = false;
+                deadText.gameObject.SetActive(true);
+
+                // Increment scoreboard
+                bool blueScored = !this.transform.parent.GetComponent<TeamManager>().blue;
+                self_photonview = GetComponent<PhotonView>();
+                if (blueScored)
+                {
+                    //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
+                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
+                }
+                else
+                {
+                    //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
+                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
+                }
+
+                cameraRig.GetComponent<PlatformController>().lerp = false;
+            }
         }
 
         deathTime = Time.time;
