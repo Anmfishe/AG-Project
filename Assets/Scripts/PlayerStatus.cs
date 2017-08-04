@@ -138,7 +138,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         if (current_health <= 0)
         {
-            if (playerClass == PlayerClass.none)
+            if (playerClass != PlayerClass.none)
             {
                 Die();
                 return true;

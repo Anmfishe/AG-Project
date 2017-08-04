@@ -93,6 +93,7 @@ public class VineTrap : MonoBehaviour {
         
         damageTimer = damageCycle;
         //Destroy if player dies.
+        if (playerStatus != null)
         if (playerStatus.dead || playerStatus.takeDamage(damagePerCycle))
         {
             //Enable movement before destroy itself.
