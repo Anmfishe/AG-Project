@@ -10,10 +10,12 @@ public class Targeting : MonoBehaviour {
     public Transform pointer;
     public float range;
     public LayerMask layers;
+    SpellcastingGestureRecognition spellCast;
 
 	// Use this for initialization
 	void Start () 
 	{
+        spellCast = GetComponent<SpellcastingGestureRecognition>();
 	}
 	
 	// Update is called once per frame
@@ -29,25 +31,36 @@ public class Targeting : MonoBehaviour {
 
 //Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
         //Get raycast results.
-		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers)) {
+		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers))
+        {
+            if(hit.transform.parent==spellCast.avatar)
+            {
+                return;
+            }
 			//print(hit.collider);
 			//Return if target is the same, and turn off the previous indicator if it's not.
-			if (result != null) {
-				if (result == hit.collider.transform) {
+			if (result != null)
+            {
+				if (result == hit.collider.transform)
+                {
 					return;
-				} else {
-					//Reset targetable script.
-					if (targetableScript != null)
-						targetableScript.SetIndicator (false);
-					targetableScript = null;
+				}
+                else
+                {
+                   // Reset targetable script.
 
-					//Reset result.
-					result = null;
+                    if (targetableScript != null)
+                        targetableScript.SetIndicator(false);
+                    targetableScript = null;
+
+                    //Reset result.
+                    result = null;
 				}
 			}
 
 			//Check if it has a Player tag.
-			switch (hit.collider.tag) {
+			switch (hit.collider.tag)
+            {
 			case "Player":
                     //Assign resulting collider to target.
 				result = hit.collider.transform;
@@ -59,15 +72,21 @@ public class Targeting : MonoBehaviour {
 				break;
 			case "BluePlatform":
 			case "RedPlatform":
-			case "Curse":
+            case "Curse":
                     //Assign resulting collider to target.
 				result = hit.collider.transform;
 				break;
 
 			}
-		} else 
+		}
+        else 
 		{
 			result = null;
-		}
+            if (targetableScript != null)
+            { 
+                targetableScript.SetIndicator(false);
+                targetableScript = null;
+                }
+        }
     }
 }
