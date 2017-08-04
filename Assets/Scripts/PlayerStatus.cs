@@ -371,6 +371,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 }
 
                 bookLogic.UpdateUI ();
+                bookLogic.UpdateHotbar();
 			}
 		}
 	}

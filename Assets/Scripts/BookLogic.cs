@@ -6,13 +6,26 @@ using UnityEngine;
 
 public class BookLogic : MonoBehaviour
 {
-	private PlayerStatus playerStatus; 
+    int glyphRowCap = 4;
+    float glyphGap = 2f;
+    float glyphVertGap = 2f;
+    float glyphStartX = 3f;
+    float glyphStartY = 0.05f;
+    float glyphStartZ = 0.2f;
+    private PlayerStatus playerStatus; 
 	private PlayerClass playerClass;
     GameObject page;
+    public GameObject leftPage;
     public Material[] pages;
     public Material[] pagesAttack;
     public Material[] pagesSupport;
     public Material[] pagesHealer;
+
+    public Sprite[] glyphs;
+    public Sprite[] glyphsAttack;
+    public Sprite[] glyphsSupport;
+    public Sprite[] glyphsHealer;
+
     Renderer rend;
     Animator animator;
 
@@ -316,5 +329,96 @@ public class BookLogic : MonoBehaviour
 //		{
 //			rend.material = pages[1];
 //		}
+    }
+
+    public void UpdateHotbar()
+    {
+        print("updating hotbar");
+        GameObject emptyObj;
+
+        if (playerClass == PlayerClass.attack)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Sprite glyph in glyphsAttack)
+            {
+                emptyObj = new GameObject();
+                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                sr.sprite = glyph;
+                if (i >= glyphRowCap)
+                    j = (int)Mathf.Floor(i / glyphRowCap);
+
+                emptyObj.transform.SetParent(leftPage.transform);
+                emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                i += 1;
+                //Instantiate(emptyObj);
+
+            }
+        }
+        else if (playerClass == PlayerClass.support)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Sprite glyph in glyphsSupport)
+            {
+                emptyObj = new GameObject();
+                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                sr.sprite = glyph;
+                if (i >= glyphRowCap)
+                    j = (int)Mathf.Floor(i / glyphRowCap);
+
+                emptyObj.transform.SetParent(leftPage.transform);
+                emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                i += 1;
+                //Instantiate(emptyObj);
+
+            }
+        }
+        else if (playerClass == PlayerClass.heal)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Sprite glyph in glyphsHealer)
+            {
+                emptyObj = new GameObject();
+                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                sr.sprite = glyph;
+                if (i >= glyphRowCap)
+                    j = (int)Mathf.Floor(i / glyphRowCap);
+
+                emptyObj.transform.SetParent(leftPage.transform);
+                emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                i += 1;
+                //Instantiate(emptyObj);
+
+            }
+        }
+        else if (playerClass == PlayerClass.all)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Sprite glyph in glyphs)
+            {
+                emptyObj = new GameObject();
+                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                sr.sprite = glyph;
+                if (i >= glyphRowCap)
+                    j = (int)Mathf.Floor(i / glyphRowCap);
+
+                emptyObj.transform.SetParent(leftPage.transform);
+                emptyObj.transform.localRotation = Quaternion.Euler(-90,0, 0);
+                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                i += 1;
+                //Instantiate(emptyObj);
+
+            }
+        }
     }
 }
