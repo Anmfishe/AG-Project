@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -336,6 +334,15 @@ public class BookLogic : MonoBehaviour
         print("updating hotbar");
         GameObject emptyObj;
 
+        GameObject[] emptyObjs;
+
+        emptyObjs = GameObject.FindGameObjectsWithTag("glyph");
+        foreach (GameObject empty in emptyObjs)
+        {
+            Destroy(empty);
+        }
+
+
         if (playerClass == PlayerClass.attack)
         {
             int i = 0;
@@ -352,8 +359,8 @@ public class BookLogic : MonoBehaviour
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
                 emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                emptyObj.tag = "glyph";
                 i += 1;
-                //Instantiate(emptyObj);
 
             }
         }
@@ -373,8 +380,8 @@ public class BookLogic : MonoBehaviour
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
                 emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                emptyObj.tag = "glyph";
                 i += 1;
-                //Instantiate(emptyObj);
 
             }
         }
@@ -394,8 +401,8 @@ public class BookLogic : MonoBehaviour
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
                 emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                emptyObj.tag = "glyph";
                 i += 1;
-                //Instantiate(emptyObj);
 
             }
         }
@@ -415,8 +422,8 @@ public class BookLogic : MonoBehaviour
                 emptyObj.transform.localRotation = Quaternion.Euler(-90,0, 0);
                 emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
+                emptyObj.tag = "glyph";
                 i += 1;
-                //Instantiate(emptyObj);
 
             }
         }

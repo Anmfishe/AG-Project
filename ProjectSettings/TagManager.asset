@@ -29,6 +29,7 @@ TagManager:
   - Curse
   - Powerup
   - RoundManager
+  - glyph
   layers:
   - Default
   - TransparentFX
