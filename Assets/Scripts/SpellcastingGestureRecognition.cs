@@ -102,7 +102,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
-		beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
+        print(target.pointer);
+        if (target.pointer.Find("BeamTrail").gameObject.GetActive() == false)
+            target.pointer.Find("BeamTrail").gameObject.SetActive(true);
+
+        beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
+        print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
@@ -298,7 +303,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         switch (gestureName)
         {
-		    case "Fire":
+		    case "Jay":
 			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				    SetSpell (fireball, "fire", fireballGradient);
 			    }
@@ -319,7 +324,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     SetSpell(vines, "vines", vinesGradient);
                 }
                 break;
-            case "Diamond":
+            case "Bolt":
                 if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
@@ -349,7 +354,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     SetSpell(lightBlade, "lightBlade", lightBladeGradient);
                 }
                 break;
-            case "Elle":
+            case "Hourglass":
                 if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(disenchant, "disenchant", disenchantGradient);

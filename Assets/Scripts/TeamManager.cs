@@ -135,7 +135,7 @@ public class TeamManager : MonoBehaviour {
 
     public void OnDestroy()
     {
-        if(photonView.isMine)
-            GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>().Unsubscribe(avatar.gameObject, cameraRig);
+        //if(photonView.isMine)
+        //    GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>().Unsubscribe(avatar.gameObject, cameraRig);
     }
 }

@@ -260,9 +260,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;
             } else 
-			{
-                self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
-            }
+			//{
+   //             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+   //         }
 			
 			deadText.gameObject.SetActive (false);
 
@@ -274,7 +274,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public void RestartRound()
     {
         //        self_photonview.RPC("ResetScoreboard", PhotonTargets.All, null);
-        ResetScoreboard();
+        //ResetScoreboard();
 
         if (hats == null)
         {
@@ -298,6 +298,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             player.transform.parent.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
         }
+        playerClass = PlayerClass.none;
 		cameraRig = Camera.main.transform.parent.gameObject;
         if (kill_spells)
         {

@@ -228,7 +228,7 @@ public class NetworkManager : Photon.PunBehaviour
         {
             roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
-            powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
         else
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);

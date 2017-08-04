@@ -53,8 +53,8 @@ public class RoundManager : MonoBehaviour {
         {
             //            StartRound();
         }
-        else if (inBattlefield)
-        {
+        //else if (inBattlefield)
+        //{
           
             timeElapsed += Time.deltaTime;
 
@@ -68,7 +68,7 @@ public class RoundManager : MonoBehaviour {
                 print("ROUND HAS ENDED");
                 EndRound();
             }
-        }
+        //}
     }
     /// <summary>
     /// Call from a player once it is killed
@@ -86,10 +86,10 @@ public class RoundManager : MonoBehaviour {
         Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
 //        FindPlayers ();
-//		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("PCP"))                                //TODO
-//			playerRCP.GetComponentInChildren<PlayerStatus> ().takeOffHat ();
+		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
+			playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
         ChooseHats();
-        ShowFinalScoreboard();
+        //ShowFinalScoreboard();
  //       inBattlefield = false;
 		scoreboard.Reset ();
 		timeElapsed = 0;
@@ -134,7 +134,6 @@ public class RoundManager : MonoBehaviour {
     {
         if (hatRoom)
         {
-            Debug.Log("In hatroom if");
             Vector3 newPos = hatRoom.position;
             Transform camObj = player.GetComponentInChildren<Camera>().transform;
             newPos.x -= camObj.localPosition.x;
@@ -145,7 +144,6 @@ public class RoundManager : MonoBehaviour {
         else
         {
             hatRoom = GameObject.FindGameObjectWithTag("HatRoom").transform;
-            Debug.Log("In hatroom else");
             Vector3 newPos = hatRoom.position;
             Transform camObj = player.GetComponentInChildren<Camera>().transform;
             newPos.x -= camObj.localPosition.x;
@@ -195,20 +193,20 @@ public class RoundManager : MonoBehaviour {
        
         
     }
-    public void AssignTeam(GameObject avatar)
-    {
-        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
-        setMembers();
-        if (blueMemb >= redMemb)
-        {
-            avatar.GetComponent<TeamManager>().SetRed();
+    //public void AssignTeam(GameObject avatar)
+    //{
+    //    avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
+    //    setMembers();
+    //    if (blueMemb >= redMemb)
+    //    {
+    //        avatar.GetComponent<TeamManager>().SetRed();
 
-        }
-        else
-        {
-            avatar.GetComponent<TeamManager>().SetBlue();
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        avatar.GetComponent<TeamManager>().SetBlue();
+    //    }
+    //}
 
     public void Unsubscribe(GameObject avatar, GameObject rig)
     {
@@ -220,23 +218,23 @@ public class RoundManager : MonoBehaviour {
         else
             redMemb--;
     }
-    private void setMembers()
-    {
-        blueMemb = 0;
-        redMemb = 0;
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Num players found: " + players.Length);
-        foreach (GameObject p in players)
-        {
-            if(p.GetComponentInParent<TeamManager>().blue)
-            {
-                blueMemb++;   
-            }
-            else
-            {
-                redMemb++;
-            }
-        }
-        Debug.Log("Red: " + redMemb + " Blue: " + blueMemb);
-    }
+    //private void setMembers()
+    //{
+    //    blueMemb = 0;
+    //    redMemb = 0;
+    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    //    Debug.Log("Num players found: " + players.Length);
+    //    foreach (GameObject p in players)
+    //    {
+    //        if(p.GetComponentInParent<TeamManager>().blue)
+    //        {
+    //            blueMemb++;   
+    //        }
+    //        else
+    //        {
+    //            redMemb++;
+    //        }
+    //    }
+    //    Debug.Log("Red: " + redMemb + " Blue: " + blueMemb);
+    //}
 }

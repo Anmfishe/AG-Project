@@ -2812,7 +2812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerClass: 0
-  kill_spells: 0
+  kill_spells: 1
   photonView: {fileID: 114473738197043446}
   psm: {fileID: 114832096951520706}
   cameraRig: {fileID: 0}
