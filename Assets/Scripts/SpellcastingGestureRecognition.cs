@@ -6,6 +6,8 @@ using Edwon.VR.Gesture;
 
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
+    public ParticleSystem drawEffect;
+
     public Gradient baseGradient;
 
     public GameObject fireball;
@@ -155,12 +157,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             if (hasSpell)
                 CastSpell();
             else if (!isCoolingDown)
-                IgniteFlame(baseGradient);
+                drawEffect.Play();
         }
         if(Input.GetKeyUp("joystick button 15"))
         {
-            if(!hasSpell && !isCoolingDown && wand != null)
+            if (!hasSpell && !isCoolingDown && wand != null)
+            {
                 wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+                drawEffect.Stop();
+            }
         }
 
         // Check if targeting platform
