@@ -29,20 +29,22 @@ public class Targeting : MonoBehaviour {
 
 //Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
         //Get raycast results.
-		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers)) {
+		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers))
+        {
 			//print(hit.collider);
 			//Return if target is the same, and turn off the previous indicator if it's not.
 			if (result != null) {
 				if (result == hit.collider.transform) {
 					return;
 				} else {
-					//Reset targetable script.
-					if (targetableScript != null)
-						targetableScript.SetIndicator (false);
-					targetableScript = null;
+                   // Reset targetable script.
 
-					//Reset result.
-					result = null;
+                    if (targetableScript != null)
+                        targetableScript.SetIndicator(false);
+                    targetableScript = null;
+
+                    //Reset result.
+                    result = null;
 				}
 			}
 
@@ -59,7 +61,7 @@ public class Targeting : MonoBehaviour {
 				break;
 			case "BluePlatform":
 			case "RedPlatform":
-			case "Curse":
+            case "Curse":
                     //Assign resulting collider to target.
 				result = hit.collider.transform;
 				break;
@@ -68,6 +70,11 @@ public class Targeting : MonoBehaviour {
 		} else 
 		{
 			result = null;
-		}
+            if (targetableScript != null)
+            { 
+                targetableScript.SetIndicator(false);
+                targetableScript = null;
+                }
+        }
     }
 }
