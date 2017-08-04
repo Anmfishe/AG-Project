@@ -72,7 +72,8 @@ public class VineTrap : MonoBehaviour {
         playerStatus.EnableMovement(false);
 
         //Start dealing damage.
-        GetComponent<PhotonView>().RPC("DealDamage", PhotonTargets.AllBuffered, null);
+       // GetComponent<PhotonView>().RPC("DealDamage", PhotonTargets.AllBuffered, null);
+        DealDamage();
 
         //Set duration timer.
         durationTimer = duration;
@@ -87,7 +88,7 @@ public class VineTrap : MonoBehaviour {
             PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
      }
 
-[PunRPC]
+//[PunRPC]
     void DealDamage()
     {
         
