@@ -35,14 +35,19 @@ public class IceBall_2 : MonoBehaviour {
     }
     void Wave()
     {
-        Collider[] hits;
-        hits = Physics.OverlapSphere(transform.position, 5);
-        foreach (Collider hit in hits)
+        if (GetComponent<PhotonView>().isMine)
         {
-            if (hit.transform.tag == "Player")
+            Collider[] hits;
+            hits = Physics.OverlapSphere(transform.position, 5);
+            foreach (Collider hit in hits)
             {
-                if(hit.transform.parent.GetComponent<TeamManager>().blue != blue)
-                    hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, 10);
+                if (hit.transform.tag == "Player")
+                {
+                    if (hit.transform.parent.GetComponent<TeamManager>().blue != blue)
+                    {
+                        hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, 10);
+                    }
+                }
             }
         }
     }
