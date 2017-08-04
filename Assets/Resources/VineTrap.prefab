@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114036259327336726}
   - component: {fileID: 114862224633557862}
   - component: {fileID: 54474268866185832}
+  - component: {fileID: 114064799042825114}
   m_Layer: 0
   m_Name: VineTrap
   m_TagString: Curse
@@ -280,6 +281,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114064799042825114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511311979979240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092906590d5617e4892149394620733d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!114 &114589167101994046
 MonoBehaviour:
   m_ObjectHideFlags: 1

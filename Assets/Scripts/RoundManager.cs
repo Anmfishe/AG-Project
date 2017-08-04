@@ -86,8 +86,8 @@ public class RoundManager : MonoBehaviour {
         Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
 //        FindPlayers ();
-		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
-			playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
+		//foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
+		//	playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
         ChooseHats();
         //ShowFinalScoreboard();
  //       inBattlefield = false;

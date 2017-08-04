@@ -81,5 +81,5 @@ MonoBehaviour:
   hatRoom: {fileID: 0}
   roundTime: 120
   isTimeBased: 0
-  maxScore: 1
+  maxScore: 5
   isScoreBased: 1

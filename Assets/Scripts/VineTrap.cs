@@ -19,6 +19,8 @@ public class VineTrap : MonoBehaviour {
     public Transform explosion;
     public Transform body;
 
+    private PhotonView player_photonView;
+    private bool first = true;
 	// Use this for initialization
 	void Start () {
         SetUp();
@@ -35,7 +37,11 @@ public class VineTrap : MonoBehaviour {
             else
                 PhotonNetwork.Destroy(this.gameObject);
             */
-
+            if(playerStatus.dead)
+            {
+                playerStatus.EnableMovement(true);
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            }
 
             //Deals damage every time the timer reaches 0.
             if (damageTimer > 0)
@@ -48,6 +54,7 @@ public class VineTrap : MonoBehaviour {
     {
         isSet = true;
         seed.gameObject.SetActive(true);
+        
     }
 
     void Activate()
@@ -65,20 +72,26 @@ public class VineTrap : MonoBehaviour {
         playerStatus.EnableMovement(false);
 
         //Start dealing damage.
-        DealDamage();
+        GetComponent<PhotonView>().RPC("DealDamage", PhotonTargets.AllBuffered, null);
 
         //Set duration timer.
         durationTimer = duration;
     }
+    [PunRPC]
     void DealDamage()
     {
+        
         damageTimer = damageCycle;
         //Destroy if player dies.
-        if (playerStatus.takeDamage(damagePerCycle))
+        if (playerStatus.dead || playerStatus.takeDamage(damagePerCycle))
         {
             //Enable movement before destroy itself.
+            Debug.Log("FuCkMe");
+            isActivated = false;
+            body.gameObject.SetActive(false);
             playerStatus.EnableMovement(true);
-            PhotonNetwork.Destroy(this.gameObject);
+            if(GetComponent<PhotonView>().isMine)
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
         }
     }
 
@@ -89,11 +102,14 @@ public class VineTrap : MonoBehaviour {
         Transform other = trigger.transform;
         print(other.tag);
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && first)
         {
+            first = false;
             player = other;
             playerStatus = player.GetComponent<PlayerStatus>();
+            player_photonView = player.GetComponent<PlayerStatus>().photonView;
             Activate();
         }
     }
+    
 }

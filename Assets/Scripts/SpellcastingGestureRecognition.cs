@@ -161,10 +161,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         if(Input.GetKeyUp("joystick button 15"))
         {
+            drawEffect.Stop();
             if (!hasSpell && !isCoolingDown && wand != null)
             {
                 wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
-                drawEffect.Stop();
+                
             }
         }
 
@@ -330,19 +331,19 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 break;
             case "Bolt":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
                 }
                 break;
             case "Wave":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(meteor, "meteor", meteorGradient);
                 }
                 break;
             case "OpenFrame":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
                 }
@@ -354,7 +355,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 break;
             case "Zed":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
                     SetSpell(lightBlade, "lightBlade", lightBladeGradient);
                 }

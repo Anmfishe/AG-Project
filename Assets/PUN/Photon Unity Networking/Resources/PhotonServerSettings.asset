@@ -59,4 +59,5 @@ MonoBehaviour:
   - SetBlue
   - SetRed
   - DestroyVines
+  - DealDamage
   DisableAutoOpenWizard: 1

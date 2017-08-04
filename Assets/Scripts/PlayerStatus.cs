@@ -30,8 +30,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Invulnerability frames
     private float startTime;
     float invulnerableFrames = 0.5f;
-
-    private bool dead = false;
+    [HideInInspector]
+    public bool dead = false;
     private float deathTime = 0f;
     public float respawnLength = 2f;
 
@@ -64,6 +64,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
+        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
     }
 
     // Update is called once per frame
@@ -84,11 +85,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 {
 					myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
-					if (myScoreboard.roundOver == false)
-						deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
+                    if (myScoreboard.roundOver == false)
+                        deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
 
-					else
-						deadText.text = "The round is over.";
+                    else
+                    {
+                        deadText.text = "The round is over.";
+                        cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+                    }
                 }
             }
         }
@@ -134,8 +138,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         if (current_health <= 0)
         {
-            Die();
-            return true;
+            if (playerClass == PlayerClass.none)
+            {
+                Die();
+                return true;
+            }
         }
 
         return false;
@@ -159,7 +166,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         if (current_health <= 0)
         {
-            Die();
+            if (playerClass != PlayerClass.none)
+            {
+                Die();
+                
+            }
         }
     }
 
@@ -173,9 +184,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // On death, we warp the camera rig of the corresponding player
     void Die()
     {
+
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
+            if(playerClass == PlayerClass.none || myScoreboard.roundOver)
+            {
+                return;
+            }
             cameraRig.transform.position = timeOutPt.position;
 
             deadText.gameObject.SetActive(true);
@@ -259,14 +275,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;
-            } else 
-			//{
-   //             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
-   //         }
-			
-			deadText.gameObject.SetActive (false);
+            } else
+                {
+                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+                }
 
-            
+                deadText.gameObject.SetActive(false);
+
+
         }
     }
 
@@ -315,7 +331,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             bookLogic.UpdateUI();
         }
-
+        cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
 		print ("Scoreboard " +  myScoreboard.roundOver);
