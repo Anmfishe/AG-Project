@@ -77,7 +77,17 @@ public class VineTrap : MonoBehaviour {
         //Set duration timer.
         durationTimer = duration;
     }
-    [PunRPC]
+
+[PunRPC]
+     public void DestroyVines()
+     {
+         if (playerStatus != null)
+             playerStatus.EnableMovement(true);
+         if (GetComponent<PhotonView>().isMine)
+            PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+     }
+
+[PunRPC]
     void DealDamage()
     {
         
