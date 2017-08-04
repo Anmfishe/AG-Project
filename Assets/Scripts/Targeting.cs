@@ -10,10 +10,12 @@ public class Targeting : MonoBehaviour {
     public Transform pointer;
     public float range;
     public LayerMask layers;
+    SpellcastingGestureRecognition spellCast;
 
 	// Use this for initialization
 	void Start () 
 	{
+        spellCast = GetComponent<SpellcastingGestureRecognition>();
 	}
 	
 	// Update is called once per frame
@@ -31,12 +33,20 @@ public class Targeting : MonoBehaviour {
         //Get raycast results.
 		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers))
         {
+            if(hit.transform.parent==spellCast.avatar)
+            {
+                return;
+            }
 			//print(hit.collider);
 			//Return if target is the same, and turn off the previous indicator if it's not.
-			if (result != null) {
-				if (result == hit.collider.transform) {
+			if (result != null)
+            {
+				if (result == hit.collider.transform)
+                {
 					return;
-				} else {
+				}
+                else
+                {
                    // Reset targetable script.
 
                     if (targetableScript != null)
@@ -49,7 +59,8 @@ public class Targeting : MonoBehaviour {
 			}
 
 			//Check if it has a Player tag.
-			switch (hit.collider.tag) {
+			switch (hit.collider.tag)
+            {
 			case "Player":
                     //Assign resulting collider to target.
 				result = hit.collider.transform;
@@ -67,7 +78,8 @@ public class Targeting : MonoBehaviour {
 				break;
 
 			}
-		} else 
+		}
+        else 
 		{
 			result = null;
             if (targetableScript != null)
