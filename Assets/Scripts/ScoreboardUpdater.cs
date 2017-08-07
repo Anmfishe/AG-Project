@@ -48,7 +48,7 @@ public class ScoreboardUpdater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        Debug.Log("Red Score: " + red_score + " Blue Score: " + blue_score);
 	}
     
     public void ResetScoreboard()
