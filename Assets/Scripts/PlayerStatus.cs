@@ -233,14 +233,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
             ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
-            Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+           // Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
 
             if (scoreboard == null)
             {
                 Debug.Log("SCOREBOARD UPDATER IS NULL!");
             }
 
-            Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
+           // Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
 
             if (blueScored)
             {
