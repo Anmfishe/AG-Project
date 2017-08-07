@@ -101,10 +101,18 @@ void Start() {
         Debug.Log("RPC BLUE SCORED: " + blue_score);
 
     }
+    private void SetScores()
+    {
+        blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
+        blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
+        red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
+        red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        print("OnSerialize");
+        
+        
         // If you own the game object
         if (stream.isWriting)
         {
