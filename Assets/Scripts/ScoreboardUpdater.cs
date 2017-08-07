@@ -25,8 +25,8 @@ public class ScoreboardUpdater : MonoBehaviour {
     public GameObject red_score_for_blue_view;
     public GameObject blue_score_for_blue_view;
 
-    public int red_score;
-	public int blue_score;
+    public int red_score = 0;
+	public int blue_score = 0;
 
 	public bool roundOver = false;
 
@@ -39,8 +39,7 @@ public class ScoreboardUpdater : MonoBehaviour {
         red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
         blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
 
-        red_score = 0;
-        blue_score = 0;
+        
     
 }
 // Use this for initialization
