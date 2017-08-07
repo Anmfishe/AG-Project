@@ -18,7 +18,7 @@ using UnityEngine;
  *  Used by NetworkManager (to instantiate once in scene [in masterclient]) and PlayerStatus (to update scoreboard when a player is defeated)
  */
 
-public class ScoreboardUpdater : MonoBehaviour {
+public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
 	public GameObject red_score_for_red_view;
 	public GameObject blue_score_for_red_view;
@@ -100,5 +100,23 @@ void Start() {
             blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
         Debug.Log("RPC BLUE SCORED: " + blue_score);
 
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // If you own the game object
+        if (stream.isWriting)
+        {
+            // Sync all instances of health according to my health
+            stream.SendNext(red_score);
+            stream.SendNext(blue_score);
+        }
+        // If you dont own the game object
+        else
+        {
+            // Sync the avatar's health according to the owner of the avatar.
+            red_score = (int)(stream.ReceiveNext());
+            blue_score = (int)(stream.ReceiveNext());
+        }
     }
 }
