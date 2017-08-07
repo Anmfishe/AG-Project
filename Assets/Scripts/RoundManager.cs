@@ -83,7 +83,7 @@ public class RoundManager : MonoBehaviour {
 
     void EndRound()
     {
-        scoreboard.Reset();
+        scoreboard.ResetScoreboard();
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
 //        FindPlayers ();

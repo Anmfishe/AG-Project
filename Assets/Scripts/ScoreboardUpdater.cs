@@ -30,13 +30,15 @@ public class ScoreboardUpdater : MonoBehaviour {
 
 	public bool roundOver = false;
 
+    private PhotonView pv;
+
 	// Use this for initialization
 	void Start () {
 		red_score_for_red_view.GetComponent<TextMesh> ().text = "0";
 		blue_score_for_red_view.GetComponent<TextMesh> ().text = "0";
 		red_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
 		blue_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
-
+        pv = GetComponent<PhotonView>();
 		red_score = 0;
 		blue_score = 0;
 	}
@@ -45,30 +47,52 @@ public class ScoreboardUpdater : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public void Reset()
+    
+    public void ResetScoreboard()
+    {
+        pv.RPC("Reset2", PhotonTargets.AllBuffered, null);
+    }
+    public void IncrementRedScore()
+    {
+        pv.RPC("IncrementRedScore2", PhotonTargets.AllBuffered, null);
+    }
+    public void IncrementBlueScore()
+    {
+        pv.RPC("IncrementBlueScore2", PhotonTargets.AllBuffered, null);
+    }
+    [PunRPC]
+    public void Reset2()
 	{
-        red_score_for_red_view.GetComponent<TextMesh> ().text = "0";
-        blue_score_for_red_view.GetComponent<TextMesh> ().text = "0";
-        red_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
-        blue_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
+        
+        
+            red_score_for_red_view.GetComponent<TextMesh>().text = "0";
+            blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
+            red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+            blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
 
-		red_score = 0;
-		blue_score = 0;
-		roundOver = true;
+            red_score = 0;
+            blue_score = 0;
+            roundOver = true;
+        
 	}
-
-	public void IncrementRedScore()
+    [PunRPC]
+    public void IncrementRedScore2()
 	{
-		++red_score;
-        red_score_for_red_view.GetComponent<TextMesh> ().text = "" + red_score;
-        red_score_for_blue_view.GetComponent<TextMesh> ().text = "" + red_score;
+        
+        
+            ++red_score;
+            red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
+            red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
+        
 	}
-
-	public void IncrementBlueScore()
+    [PunRPC]
+    public void IncrementBlueScore2()
 	{
-		++blue_score;
-        blue_score_for_red_view.GetComponent<TextMesh> ().text = "" + blue_score;
-        blue_score_for_blue_view.GetComponent<TextMesh> ().text = "" + blue_score;
+       
+        
+            ++blue_score;
+            blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
+            blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
+        
 	}
 }

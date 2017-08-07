@@ -205,12 +205,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 if (blueScored)
                 {
                     //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
-                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, true);
+                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, true);
+                    //UpdateScoreboard(true);
                 }
                 else
                 {
                     //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
-                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.All, false);
+                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, false);
+                    //UpdateScoreboard(false);
                 }
 
                 cameraRig.GetComponent<PlatformController>().lerp = false;
@@ -226,26 +228,28 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     void UpdateScoreboard(bool blueScored)
     {
-        //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
-        ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        
+            //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+            ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
-        Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+            Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
 
-        if (scoreboard == null)
-        {
-            Debug.Log("SCOREBOARD UPDATER IS NULL!");
-        }
+            if (scoreboard == null)
+            {
+                Debug.Log("SCOREBOARD UPDATER IS NULL!");
+            }
 
-        Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
+            Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
 
-        if (blueScored)
-        {
-            scoreboard.IncrementBlueScore();
-        }
-        else
-        {
-            scoreboard.IncrementRedScore();
-        }
+            if (blueScored)
+            {
+                scoreboard.IncrementBlueScore();
+            }
+            else
+            {
+                scoreboard.IncrementRedScore();
+            }
+        
     }
 
 //	[PunRPC]
@@ -261,7 +265,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
 		}
 
-			scoreboard.Reset();
+			scoreboard.ResetScoreboard();
 	}
 
     //Reset health and move Player to respawn area.
@@ -275,7 +279,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
-			if (myScoreboard.roundOver == false) {
+			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;

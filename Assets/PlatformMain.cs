@@ -33,7 +33,7 @@ public class PlatformMain : MonoBehaviour {
 
     public void ChangeColor(string color)
     {
-        print("BEFORE: " + LayerMask.NameToLayer(redLayer));
+
         if (currentColor == color) return;
         
         currentColor = color;
@@ -55,7 +55,7 @@ public class PlatformMain : MonoBehaviour {
                 break;
         }
 
-        print("AFTER: " + currentColor);
+        //print("AFTER: " + currentColor);
     }
 
     void SetPlatform()
