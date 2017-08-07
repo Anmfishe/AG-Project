@@ -102,11 +102,13 @@ void Start() {
 
     }
 
-    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        print("OnSerialize");
         // If you own the game object
         if (stream.isWriting)
         {
+
             // Sync all instances of health according to my health
             stream.SendNext(red_score);
             stream.SendNext(blue_score);
