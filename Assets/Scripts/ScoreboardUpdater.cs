@@ -58,11 +58,11 @@ void Start() {
     }
     public void IncrementRedScore()
     {
-        pv.RPC("IncrementRedScore2", PhotonTargets.AllBufferedViaServer, null);
+        pv.RPC("IncrementRedScore2", PhotonTargets.AllBuffered, null);
     }
     public void IncrementBlueScore()
     {
-        pv.RPC("IncrementBlueScore2", PhotonTargets.AllBufferedViaServer, null);
+        pv.RPC("IncrementBlueScore2", PhotonTargets.AllBuffered, null);
     }
     [PunRPC]
     public void Reset2()
@@ -102,7 +102,7 @@ void Start() {
 
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // If you own the game object
         if (stream.isWriting)
