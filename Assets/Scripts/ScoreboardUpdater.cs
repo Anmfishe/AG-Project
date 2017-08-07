@@ -58,11 +58,11 @@ void Start() {
     }
     public void IncrementRedScore()
     {
-        pv.RPC("IncrementRedScore2", PhotonTargets.AllBuffered, null);
+        pv.RPC("IncrementRedScore2", PhotonTargets.AllBufferedViaServer, null);
     }
     public void IncrementBlueScore()
     {
-        pv.RPC("IncrementBlueScore2", PhotonTargets.AllBuffered, null);
+        pv.RPC("IncrementBlueScore2", PhotonTargets.AllBufferedViaServer, null);
     }
     [PunRPC]
     public void Reset2()
