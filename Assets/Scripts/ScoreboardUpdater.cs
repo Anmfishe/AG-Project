@@ -34,17 +34,19 @@ public class ScoreboardUpdater : MonoBehaviour {
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-    }
-    // Use this for initialization
-    void Start () {
-		red_score_for_red_view.GetComponent<TextMesh> ().text = "0";
-		blue_score_for_red_view.GetComponent<TextMesh> ().text = "0";
-		red_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
-		blue_score_for_blue_view.GetComponent<TextMesh> ().text = "0";
-        
-		red_score = 0;
-		blue_score = 0;
-	}
+        red_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+        blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+
+        red_score = 0;
+        blue_score = 0;
+    
+}
+// Use this for initialization
+void Start() {
+}
+		
 	
 	// Update is called once per frame
 	void Update () {
