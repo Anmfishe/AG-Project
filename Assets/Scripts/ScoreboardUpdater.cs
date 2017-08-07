@@ -77,27 +77,27 @@ public class ScoreboardUpdater : MonoBehaviour {
             blue_score = 0;
             roundOver = true;
         
-	}
+    }
     [PunRPC]
     public void IncrementRedScore2()
 	{
 
-        Debug.Log("RPC RED SCORED");
         
             ++red_score;
             red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
             red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
-        
-	}
+        Debug.Log("RPC RED SCORED: " + red_score);
+    }
     [PunRPC]
     public void IncrementBlueScore2()
 	{
-        Debug.Log("RPC BLUE SCORED");
+        
 
 
         ++blue_score;
             blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
             blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
-        
-	}
+        Debug.Log("RPC BLUE SCORED: " + blue_score);
+
+    }
 }
