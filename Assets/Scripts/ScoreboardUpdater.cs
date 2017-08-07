@@ -81,7 +81,8 @@ public class ScoreboardUpdater : MonoBehaviour {
     [PunRPC]
     public void IncrementRedScore2()
 	{
-        
+
+        Debug.Log("RPC RED SCORED");
         
             ++red_score;
             red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
@@ -91,9 +92,10 @@ public class ScoreboardUpdater : MonoBehaviour {
     [PunRPC]
     public void IncrementBlueScore2()
 	{
-       
-        
-            ++blue_score;
+        Debug.Log("RPC Blue SCORED");
+
+
+        ++blue_score;
             blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
             blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
         

@@ -205,14 +205,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 if (blueScored)
                 {
                     //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);
-                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, true);
-                    //UpdateScoreboard(true);
+                    //self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, true);
+                    UpdateScoreboard(true);
                 }
                 else
                 {
                     //                photonView.RPC("UpdateScoreboard", PhotonTargets.All, ! blueScored);
-                    self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, false);
-                    //UpdateScoreboard(false);
+                    //self_photonview.RPC("UpdateScoreboard", PhotonTargets.AllBuffered, false);
+                    UpdateScoreboard(false);
                 }
 
                 cameraRig.GetComponent<PlatformController>().lerp = false;
@@ -228,7 +228,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     void UpdateScoreboard(bool blueScored)
     {
-        
+        if (photonView.isMine)
+        {
             //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
             ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
@@ -249,6 +250,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             {
                 scoreboard.IncrementRedScore();
             }
+        }
         
     }
 
