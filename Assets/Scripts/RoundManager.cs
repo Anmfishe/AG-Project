@@ -20,19 +20,10 @@ public class RoundManager : MonoBehaviour {
     private int blueMemb;
     private int redMemb;
 
-
     //
     public GameObject countdown_display;
-    public float countdown_timer_max = 5.0f;
-    public float y_acceleration = 9.78f;
-    private float y_vel = 0;
-    private float countdown_timer = 0;
-    private TextMesh countdown_red_text;
-    private TextMesh countdown_blue_text;
-    private bool countdown_flag = true;
+    public GameObject restart_display;    
     
-
-
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
     void Start() {
@@ -81,70 +72,21 @@ public class RoundManager : MonoBehaviour {
             print("ROUND HAS ENDED");
             EndRound();
         }
-
-        if (countdown_flag)
-        {
-            SetCountdown();
-        }
-
             //}
     }
 
-    private void SetCountdown()
+    public void Display_Countdown()
     {
-        // Retrieve countdown text meshes if not already found. Return null if could not be found
-        if (countdown_red_text == null)
-        {
-            if (countdown_display.transform.Find("red_countdown") != null)
-            {
-                countdown_red_text = countdown_display.transform.Find("red_countdown").GetComponent<TextMesh>();
-            }
-            else
-            {
-                Debug.Log("RoundManager.cs : Countdown() : Could not find GameObject \"red_countdown\"");
-            }
-        }
-        if (countdown_blue_text == null)
-        {
-            if (countdown_display.transform.Find("blue_countdown") != null)
-            {
-                countdown_blue_text = countdown_display.transform.Find("blue_countdown").GetComponent<TextMesh>();
-            }
-            else
-            {
-                Debug.Log("RoundManager.cs : Countdown() : Could not find GameObject \"blue_countdown\"");
-            }
-        }
-        if (countdown_red_text == null || countdown_blue_text == null)
-        {
-            return;
-        }
-
-        // Set countdown
-        countdown_timer += Time.deltaTime;
-        if (countdown_timer > 1.25*countdown_timer_max)
-        {
-            countdown_flag = false;
-            countdown_timer = 0;
-        }
-        else if (countdown_timer > countdown_timer_max)
-        {
-            y_vel += y_acceleration * Time.deltaTime;
-            countdown_display.transform.position += new Vector3(0, y_vel, 0);
-        }
-        else
-        {
-            int temp = Mathf.CeilToInt(countdown_timer_max - countdown_timer);
-            float scale = 1.5f * (Mathf.Ceil(countdown_timer) - countdown_timer);
-            Debug.Log(scale);
-            countdown_red_text.text = "" + temp;
-            countdown_red_text.characterSize = scale;
-            countdown_blue_text.text = "" + temp;
-            countdown_blue_text.characterSize = scale;
-        }
-        countdown_display.SetActive(countdown_flag);
+        countdown_display.SetActive(true);
     }
 
+    public void Display_Restart(bool blueWon, int red_score, int blue_score)
+    {
+        restart_display.SetActive(true);
+        Restart_Display restart = restart_display.GetComponent<Restart_Display>();
+        restart.SetWinner(blueWon);
+        restart.SetScore(red_score, blue_score);
+    }
 
     /// <summary>
     /// Call from a player once it is killed
