@@ -8,13 +8,18 @@ public class PlatformNeighbors : MonoBehaviour {
     public Transform left;
     public Transform right;
     public bool hasPlayer = false;
+    private PhotonView pv;
     // Use this for initialization
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    
+    // Update is called once per frame
+    void Update () {
         
 	}
 
@@ -32,5 +37,14 @@ public class PlatformNeighbors : MonoBehaviour {
         {
             hasPlayer = false;
         }
+    }
+    public void HasPlayer(bool b)
+    {
+        pv.RPC("HasPlayer2", PhotonTargets.All, b);
+    }
+    [PunRPC]
+    void HasPlayer2(bool b)
+    {
+        hasPlayer = b;
     }
 }

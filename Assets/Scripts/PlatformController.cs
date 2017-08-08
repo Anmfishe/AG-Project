@@ -15,7 +15,7 @@ public class PlatformController : MonoBehaviour {
     //public bool useLeft = true;
     [HideInInspector]
     public bool lerp = true;
-
+    public bool usingOrientation = true;
     bool blue;
     public float CD = 1;
     public AudioClip cd_Sound;
@@ -108,82 +108,58 @@ public class PlatformController : MonoBehaviour {
             {
                 
                 PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
-
-                if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
-                {
-                    RaycastHit right;
-                    if (blue == false)
+                
+                    if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
                     {
-                        if (Physics.Raycast(target.position, Vector3.right, out right, 10, mask))
-                        {
+                        RaycastHit right;
+                        
+                            if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
+                            {
+                        if (!right.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
                             MoveRight(right.collider.gameObject);
-                        }
+                            }
+                        
+                        
                     }
-                    else
-                    {
-                        if (Physics.Raycast(target.position, Vector3.left, out right, 10, mask))
-                        {
-                            MoveRight(right.collider.gameObject);
-                        }
-                    }
-                }
 
-                else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
-                {
-                    RaycastHit left;
-
-                    if (blue == false)
+                    else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
                     {
-                        if (Physics.Raycast(target.position, Vector3.left, out left, 10, mask))
-                        {
+                        RaycastHit left;
+
+                        
+                            if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
+                            {
+                               if (!left.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
                             MoveLeft(left.collider.gameObject);
-                        }
+                            }
+                        
+                        
                     }
-                    else
+                    else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
                     {
-                        if (Physics.Raycast(target.position, Vector3.right, out left, 10, mask))
-                        {
-                            MoveLeft(left.collider.gameObject);
-                        }
-                    }
-                }
-                else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
-                {
-                    RaycastHit up;
-                    if (blue == false)
-                    {
-                        if (Physics.Raycast(target.position, Vector3.forward, out up, 10, mask))
-                        {
+                        RaycastHit up;
+                        
+                            if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
+                            {
+                                if (!up.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
                             MoveUp(up.collider.gameObject);
-                        }
+                            }
+                        
+                        
                     }
-                    else
+                    else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
                     {
-                        if (Physics.Raycast(target.position, Vector3.back, out up, 10, mask))
-                        {
-                            MoveUp(up.collider.gameObject);
-                        }
+                        RaycastHit down;
+                        
+                            if (Physics.Raycast(target.position, backVec, out down, 10, mask))
+                            {
+                                if(!down.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
+                                MoveDown(down.collider.gameObject);
+                            }
+                        
+                        
                     }
-                }
-                else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
-                {
-                    RaycastHit down;
-                    if (blue == false)
-                    {
-                        if (Physics.Raycast(target.position, Vector3.back, out down, 10, mask))
-                        {
-                            MoveDown(down.collider.gameObject);
-                        }
-                    }
-                    else
-                    {
-                        if (Physics.Raycast(target.position, Vector3.forward, out down, 10, mask))
-                        {
-                            MoveDown(down.collider.gameObject);
-                        }
-                    }
-                }
-
+                
             }
         }
 
@@ -320,6 +296,7 @@ public class PlatformController : MonoBehaviour {
         newTrans.z -= camObj.transform.localPosition.z;
         transform.position = newTrans;
         targetPos = newTrans;
+        currPlatform.GetComponent<PlatformNeighbors>().HasPlayer(true);
     }
     public void SetAvatar(GameObject _avatar)
     {
@@ -355,12 +332,14 @@ public class PlatformController : MonoBehaviour {
     void setNewPos(Transform newplatform)
     {
         //StartCoroutine(coolDown());
+        currPlatform.GetComponent<PlatformNeighbors>().HasPlayer(false);
         Vector3 newTrans = newplatform.position;
         newTrans.x -= camObj.transform.localPosition.x;
         newTrans.z -= camObj.transform.localPosition.z;
         //transform.position = newTrans;
         currPlatform = newplatform;
         targetPos = newTrans;
+        currPlatform.GetComponent<PlatformNeighbors>().HasPlayer(true);
     }
     void play_err()
     {

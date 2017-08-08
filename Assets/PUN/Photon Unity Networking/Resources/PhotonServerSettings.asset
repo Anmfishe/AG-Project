@@ -63,4 +63,5 @@ MonoBehaviour:
   - IncrementBlueScore2
   - IncrementRedScore2
   - Reset2
+  - HasPlayer2
   DisableAutoOpenWizard: 1
