@@ -20,6 +20,17 @@ public class RoundManager : MonoBehaviour {
     private int blueMemb;
     private int redMemb;
 
+
+    //
+    public GameObject countdown_display;
+    public float countdown_timer_max = 5.0f;
+    private float countdown_timer = 0;
+    private TextMesh countdown_red_text;
+    private TextMesh countdown_blue_text;
+    private bool countdown_flag = true;
+    
+
+
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
     void Start() {
@@ -56,20 +67,78 @@ public class RoundManager : MonoBehaviour {
         //else if (inBattlefield)
         //{
           
-            timeElapsed += Time.deltaTime;
+        timeElapsed += Time.deltaTime;
 
-            if (scoreboard == null)
-            {
-                scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-            }
-            if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
-            {
-                print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
-                print("ROUND HAS ENDED");
-                EndRound();
-            }
-        //}
+        if (scoreboard == null)
+        {
+            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        }
+        if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
+        {
+            print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
+            print("ROUND HAS ENDED");
+            EndRound();
+        }
+
+        if (countdown_flag)
+        {
+            SetCountdown();
+        }
+
+            //}
     }
+
+    private void SetCountdown()
+    {
+        // Retrieve countdown text meshes if not already found. Return null if could not be found
+        if (countdown_red_text == null)
+        {
+            if (countdown_display.transform.Find("red_countdown") != null)
+            {
+                countdown_red_text = countdown_display.transform.Find("red_countdown").GetComponent<TextMesh>();
+            }
+            else
+            {
+                Debug.Log("RoundManager.cs : Countdown() : Could not find GameObject \"red_countdown\"");
+            }
+        }
+        if (countdown_blue_text == null)
+        {
+            if (countdown_display.transform.Find("blue_countdown") != null)
+            {
+                countdown_blue_text = countdown_display.transform.Find("blue_countdown").GetComponent<TextMesh>();
+            }
+            else
+            {
+                Debug.Log("RoundManager.cs : Countdown() : Could not find GameObject \"blue_countdown\"");
+            }
+        }
+        if (countdown_red_text == null || countdown_blue_text == null)
+        {
+            return;
+        }
+
+        // Set countdown
+        countdown_timer += Time.deltaTime;
+        if (countdown_timer > countdown_timer_max)
+        {
+            countdown_timer = 0;
+            countdown_flag = false;
+        }
+        else
+        {
+            int temp = Mathf.CeilToInt(countdown_timer_max - countdown_timer);
+            float scale = 1.5f * (Mathf.Ceil(countdown_timer) - countdown_timer);
+            Debug.Log(scale);
+            countdown_red_text.text = "" + temp;
+            countdown_red_text.characterSize = scale;
+            countdown_blue_text.text = "" + temp;
+            countdown_blue_text.characterSize = scale;
+        }
+        countdown_display.SetActive(countdown_flag);
+    }
+
+
     /// <summary>
     /// Call from a player once it is killed
     /// </summary>
