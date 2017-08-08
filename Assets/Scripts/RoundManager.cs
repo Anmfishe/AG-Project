@@ -24,6 +24,8 @@ public class RoundManager : MonoBehaviour {
     //
     public GameObject countdown_display;
     public float countdown_timer_max = 5.0f;
+    public float y_acceleration = 9.78f;
+    private float y_vel = 0;
     private float countdown_timer = 0;
     private TextMesh countdown_red_text;
     private TextMesh countdown_blue_text;
@@ -120,10 +122,15 @@ public class RoundManager : MonoBehaviour {
 
         // Set countdown
         countdown_timer += Time.deltaTime;
-        if (countdown_timer > countdown_timer_max)
+        if (countdown_timer > 1.25*countdown_timer_max)
         {
-            countdown_timer = 0;
             countdown_flag = false;
+            countdown_timer = 0;
+        }
+        else if (countdown_timer > countdown_timer_max)
+        {
+            y_vel += y_acceleration * Time.deltaTime;
+            countdown_display.transform.position += new Vector3(0, y_vel, 0);
         }
         else
         {

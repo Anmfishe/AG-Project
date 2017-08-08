@@ -470,8 +470,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114657814083934554
@@ -491,6 +491,7 @@ MonoBehaviour:
   maxScore: 5
   isScoreBased: 1
   countdown_display: {fileID: 1531543093033098}
+  countdown_timer_max: 5
 --- !u!114 &114920061901061086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -513,7 +514,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 4
-  instantiationId: 4
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
