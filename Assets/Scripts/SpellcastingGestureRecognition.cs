@@ -20,6 +20,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient shieldGradient;
     public float shieldCooldown = 6f;
 
+    public GameObject Bubble_shield;
+    public string Bubble_shieldGesture;
+    public Gradient Bubble_shieldGradient;
+    public float Bubble_shieldCooldown = 8f;
+
     public GameObject heal;
     public string healGesture;
     public Gradient healGradient;
@@ -281,6 +286,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpellName = "lightBlade";
                 currentSpellGradient = lightBladeGradient;
                 break;
+            case 9:
+                currentSpell = Bubble_shield;
+                currentSpellName = "Bubble_shield";
+                currentSpellGradient = Bubble_shieldGradient;
+                break;
             default:
                 break;
         }
@@ -314,12 +324,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 				    SetSpell (fireball, "fire", fireballGradient);
 			    }
                     break;
-		    case "Shield":
+		    case "Bubble_sheild":
 			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (shield, "shield", shieldGradient);
+				    SetSpell (Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
 			    }
                     break;
-		    case "Heal":
+            case "Shield":
+                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                {
+                    SetSpell(shield, "shield", shieldGradient);
+                }
+                break;
+            case "Heal":
 			    if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				    SetSpell (heal, "heal", healGradient);
 			    }
@@ -417,6 +433,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
 //                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
+                break;
+            case "Bubble_shield":
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+                spellInstance.GetComponent<Bubble_sheild>().SetBook(book);
+                spellInstance.GetComponent<Bubble_sheild>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                spellTimer = Bubble_shieldCooldown;
                 break;
             case "heal":
                 // Heal others
