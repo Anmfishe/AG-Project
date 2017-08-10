@@ -46,7 +46,7 @@ public class TeleporterManager : MonoBehaviour {
         foreach (GameObject player in blue.players)
         {
             ps = player.GetComponent<PlayerStatus>();
-            if (ps != null)
+            if (ps != null && ps.GetComponent<PhotonView>().isMine)
             {
                 ps.Teleport(bluePlatforms[i++].transform.position);
             }
@@ -60,7 +60,7 @@ public class TeleporterManager : MonoBehaviour {
         foreach (GameObject player in red.players)
         {
             ps = player.GetComponent<PlayerStatus>();
-            if (ps != null)
+            if (ps != null && ps.GetComponent<PhotonView>().isMine)
             {
                 ps.Teleport(redPlatforms[i++].transform.position);
             }
@@ -70,8 +70,9 @@ public class TeleporterManager : MonoBehaviour {
             }
         }
 
-        rm = GameObject.Find("Round Manager(Clone)");;
-        rm.GetComponent<RoundManager>().Display_Countdown();
+        rm = GameObject.Find("Round Manager(Clone)");
+        if (rm.GetComponent<PhotonView>().isMine)
+            rm.GetComponent<RoundManager>().Display_Countdown();
 
 //        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
         
