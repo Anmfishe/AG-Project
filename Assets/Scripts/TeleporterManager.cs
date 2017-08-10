@@ -20,8 +20,8 @@ public class TeleporterManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		if (PhotonNetwork.isMasterClient && IsReady())
-        if (IsReady())
+		if (PhotonNetwork.isMasterClient && IsReady())
+//        if (IsReady())
         {
             TeleportPlayersToArena();
         }
@@ -44,13 +44,15 @@ public class TeleporterManager : MonoBehaviour {
         PlayerStatus ps;
         int i = 0;
 
-        Debug.Log("blue : total = " + blue.players);
+        Debug.Log("blue : total = " + blue.players.Count);
         foreach (GameObject player in blue.players)
         {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null && ps.GetComponent<PhotonView>().isMine)
             {
-                ps.Teleport(bluePlatforms[i++].transform.position);
+                //                ps.Teleport(bluePlatforms[i++].transform.position);
+                this.GetComponent<PhotonView>().RPC("Test", PhotonTargets.AllBuffered, ps, i);
+                i++;
             }
             else
             {
@@ -59,6 +61,7 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         i = 0;
+        Debug.Log("blue : total = " + red.players.Count);
         foreach (GameObject player in red.players)
         {
             ps = player.GetComponent<PlayerStatus>();
@@ -74,11 +77,21 @@ public class TeleporterManager : MonoBehaviour {
 
         rm = GameObject.Find("Round Manager(Clone)");
         if (rm.GetComponent<PhotonView>().isMine)
+        {
             rm.GetComponent<RoundManager>().Display_Countdown();
+        }
 
 //        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
         
     }
+
+    [PunRPC]
+    void Test(PlayerStatus ps, int i)
+    {
+        if (ps.GetComponent<PhotonView>().isMine)
+        ps.Teleport(bluePlatforms[i].transform.position);
+    }
+    
 /*
     [PunRPC]
     void Display_Countdown()
