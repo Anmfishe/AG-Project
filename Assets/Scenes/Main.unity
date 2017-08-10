@@ -1441,6 +1441,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 207178182}
+  - component: {fileID: 207178189}
   - component: {fileID: 207178186}
   - component: {fileID: 207178185}
   - component: {fileID: 207178184}
@@ -1450,7 +1451,6 @@ GameObject:
   - component: {fileID: 207178188}
   - component: {fileID: 207178191}
   - component: {fileID: 207178192}
-  - component: {fileID: 207178189}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -1682,16 +1682,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08616a8a2bea11847a8b2afd2f7dd226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireCD: 10
-  iceCD: 15
-  swordCD: 1
-  meteorCD: 1
-  shieldCD: 1
-  pongCD: 1
-  vinesCD: 1
-  healCD: 1
-  blessingCD: 1
-  flipCD: 1
+  fireCD: 3
+  iceCD: 10
+  swordCD: 10
+  meteorCD: 12
+  shieldCD: 5
+  pongCD: 10
+  vinesCD: 10
+  healCD: 5
+  blessingCD: 10
+  flipCD: 10
 --- !u!114 &207178190
 MonoBehaviour:
   m_ObjectHideFlags: 0
