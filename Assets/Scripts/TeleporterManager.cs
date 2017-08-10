@@ -20,8 +20,8 @@ public class TeleporterManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (PhotonNetwork.isMasterClient && IsReady())
-//        if (IsReady())
+//		if (PhotonNetwork.isMasterClient && IsReady())
+        if (IsReady())
         {
             TeleportPlayersToArena();
         }
