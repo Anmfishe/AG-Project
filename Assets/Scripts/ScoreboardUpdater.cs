@@ -20,10 +20,10 @@ using UnityEngine;
 
 public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
-	public GameObject red_score_for_red_view;
-	public GameObject blue_score_for_red_view;
-    public GameObject red_score_for_blue_view;
-    public GameObject blue_score_for_blue_view;
+	//public GameObject red_score_for_red_view;
+	//public GameObject blue_score_for_red_view;
+ //   public GameObject red_score_for_blue_view;
+ //   public GameObject blue_score_for_blue_view;
 
     public int red_score = 0;
 	public int blue_score = 0;
@@ -31,20 +31,30 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 	public bool roundOver = false;
 
     private PhotonView pv;
+
+    public int maxScore = 5;
+
+    public GameObject[] redHeartsB;
+    public GameObject[] blueHeartsB;
+    public GameObject[] redHeartsR;
+    public GameObject[] blueHeartsR;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        red_score_for_red_view.GetComponent<TextMesh>().text = "0";
-        blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
-        red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
-        blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+        //red_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        //blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        //red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+        //blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
 
         
     
 }
 // Use this for initialization
-void Start() {
-}
+void Start()
+    {
+        
+    }
 		
 	
 	// Update is called once per frame
@@ -69,26 +79,55 @@ void Start() {
 	{
         Debug.Log("RPC Scoreboard Reset");
 
-        red_score_for_red_view.GetComponent<TextMesh>().text = "0";
-            blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
-            red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
-            blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+        //red_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        //    blue_score_for_red_view.GetComponent<TextMesh>().text = "0";
+        //    red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
+        //    blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
 
             red_score = 0;
             blue_score = 0;
             roundOver = true;
+            updateUI();
         
     }
     [PunRPC]
     public void IncrementRedScore2()
 	{
-
-        
             ++red_score;
-            red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
-            red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
-        //Debug.Log("RPC RED SCORED: " + red_score);
+            //red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
+            //red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
+        Debug.Log("RPC RED SCORED: " + red_score);
+        updateUI();
     }
+
+    void updateUI()
+    {
+        for (int i = 0; i<maxScore; i++)
+        {
+            if (i >= red_score)
+            {
+                blueHeartsB[i].SetActive(true);
+                blueHeartsR[i].SetActive(true);
+            }
+            else
+            {
+                blueHeartsB[i].SetActive(false);
+                blueHeartsR[i].SetActive(false);
+            }
+
+            if (i >= blue_score)
+            {
+                redHeartsB[i].SetActive(true);
+                redHeartsR[i].SetActive(true);
+            }
+            else
+            {
+                redHeartsB[i].SetActive(false);
+                redHeartsR[i].SetActive(false);
+            }
+        }
+    }
+
     [PunRPC]
     public void IncrementBlueScore2()
 	{
@@ -96,17 +135,19 @@ void Start() {
 
 
         ++blue_score;
-            blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
-            blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
-        //Debug.Log("RPC BLUE SCORED: " + blue_score);
+            //blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
+            //blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
+        Debug.Log("RPC BLUE SCORED: " + blue_score);
+        updateUI();
 
     }
+
     private void SetScores()
     {
-        blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
-        blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
-        red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
-        red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
+        //blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
+        //blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
+        //red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
+        //red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

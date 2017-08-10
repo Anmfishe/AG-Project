@@ -1441,6 +1441,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 207178182}
+  - component: {fileID: 207178189}
   - component: {fileID: 207178186}
   - component: {fileID: 207178185}
   - component: {fileID: 207178184}
@@ -1670,6 +1671,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &207178189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08616a8a2bea11847a8b2afd2f7dd226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireCD: 3
+  iceCD: 10
+  swordCD: 10
+  meteorCD: 12
+  shieldCD: 5
+  pongCD: 10
+  vinesCD: 10
+  healCD: 5
+  blessingCD: 10
+  flipCD: 10
 --- !u!114 &207178190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,6 +2100,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   spellCooldown: 3
+  isCoolingDown: 0
   reticle: {fileID: 1659027785}
   accurateTarget:
     serializedVersion: 2
@@ -2137,6 +2160,16 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  fireCD: 0
+  iceCD: 0
+  swordCD: 0
+  meteorCD: 0
+  shieldCD: 0
+  pongCD: 0
+  vinesCD: 0
+  healCD: 0
+  blessingCD: 0
+  flipCD: 0
 --- !u!114 &207178191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4405,7 +4438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4109047909997984, guid: 87910818cab940e4b9bdeca8fc92a4fb, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114811463481010124, guid: 87910818cab940e4b9bdeca8fc92a4fb,
         type: 2}
@@ -6356,7 +6389,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4729724656165028, guid: fe6665b617e7781438cc88876bbaf9ef, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 82995806879091218, guid: fe6665b617e7781438cc88876bbaf9ef,
         type: 2}
@@ -6934,7 +6967,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
   instantiationId: 5
@@ -9495,7 +9529,7 @@ Transform:
   m_LocalScale: {x: 100, y: 10, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &997067100
 BoxCollider:
@@ -9942,7 +9976,7 @@ Transform:
   - {fileID: 600282859}
   - {fileID: 50755603}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061010181
 GameObject:
@@ -19654,7 +19688,7 @@ Prefab:
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
       propertyPath: roomName
-      value: rayjo3
+      value: dylan
       objectReference: {fileID: 0}
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
