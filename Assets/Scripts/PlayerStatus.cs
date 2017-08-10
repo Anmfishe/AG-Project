@@ -297,8 +297,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
-			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
-				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
+            //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
+            if (playerClass != PlayerClass.none)
+            {
+                this.transform.parent.GetComponent<TeamManager> ().Respawn ();
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;
                 vrtk_spr.enabled = true;

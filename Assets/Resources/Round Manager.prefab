@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1845042722662058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,8 +1872,8 @@ MonoBehaviour:
   red_score: {fileID: 1939350422242230}
   blue_score: {fileID: 1976105076147838}
   timer: {fileID: 1921529834482968}
-  location: {x: 0, y: 3, z: 0}
-  restart_timer_max: 5
+  location: {x: 0, y: 5, z: 0}
+  restart_timer_max: 10
 --- !u!114 &114389028476948196
 MonoBehaviour:
   m_ObjectHideFlags: 1

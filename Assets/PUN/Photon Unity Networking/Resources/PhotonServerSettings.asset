@@ -67,4 +67,5 @@ MonoBehaviour:
   - Display_Countdown
   - Teleport
   - Display_Restart
+  - EndRound
   DisableAutoOpenWizard: 1
