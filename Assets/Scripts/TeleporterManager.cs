@@ -9,8 +9,7 @@ public class TeleporterManager : MonoBehaviour {
 
     public GameObject[] bluePlatforms;
     public GameObject[] redPlatforms;
-
-    public GameObject countdown_prefab;
+    
     private GameObject rm;
 
 	// Use this for initialization
@@ -21,7 +20,6 @@ public class TeleporterManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (PhotonNetwork.isMasterClient && IsReady())
-//        if (IsReady())
         {
             TeleportPlayersToArena();
         }
@@ -50,7 +48,6 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                //                ps.Teleport(bluePlatforms[i++].transform.position);
                 ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, bluePlatforms[i].transform.position);
                 i++;
             }
@@ -67,7 +64,6 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                //                ps.Teleport(bluePlatforms[i++].transform.position);
                 ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.All, redPlatforms[i].transform.position);
                 i++;
             }
@@ -78,25 +74,7 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         rm = GameObject.Find("Round Manager(Clone)");
-        //        rm.GetComponent<RoundManager>().Display_Countdown();
         rm.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
-
-//        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
-        
     }
 
-/*
-    [PunRPC]
-    void Display_Countdown()
-    {
-        if (countdown_prefab == null)
-        {
-            countdown_prefab = PhotonNetwork.InstantiateSceneObject(countdown_prefab.name, new Vector3(0, 4, 0), Quaternion.identity, 0, null);
-        }
-        else
-        {
-            countdown_prefab.SetActive(true);
-        }
-    }
-*/
 }

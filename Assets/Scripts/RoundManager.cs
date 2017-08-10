@@ -79,12 +79,15 @@ public class RoundManager : MonoBehaviour {
     [PunRPC]
     public void Display_Countdown()
     {
-        Debug.Log("should be displaying countdown");
+        Debug.Log("RoundManager.cs : Display_Countdown() : Inside");
         countdown_display.SetActive(true);
     }
 
-    public void Display_Restart(bool blueWon, int red_score, int blue_score)
+    [PunRPC]
+    public void Display_Restart(bool blueWon, int blue_score, int red_score)
     {
+        Debug.Log("RoundManager.cs : Display_Restart() : blueWon = " + blueWon + ", red_score = " + red_score + ", blue_score = " + blue_score);
+
         restart_display.SetActive(true);
         Restart_Display restart = restart_display.GetComponent<Restart_Display>();
         restart.SetWinner(blueWon);

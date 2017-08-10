@@ -59,7 +59,12 @@ void Start()
 	
 	// Update is called once per frame
 	void Update () {
-       
+        if (PhotonNetwork.isMasterClient && (red_score >= maxScore || blue_score >= maxScore))
+        {
+            ResetScoreboard();
+            GameObject rm = GameObject.Find("Round Manager(Clone)");
+            rm.GetComponent<PhotonView>().RPC("Display_Restart", PhotonTargets.All, blue_score > red_score, blue_score, red_score);
+        }
 	}
     
     public void ResetScoreboard()
@@ -90,6 +95,7 @@ void Start()
             updateUI();
         
     }
+
     [PunRPC]
     public void IncrementRedScore2()
 	{

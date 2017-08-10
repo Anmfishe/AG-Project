@@ -65,4 +65,5 @@ MonoBehaviour:
   - Reset2
   - HasPlayer2
   - Display_Countdown
+  - Teleport
   DisableAutoOpenWizard: 1
