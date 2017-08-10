@@ -51,7 +51,7 @@ public class TeleporterManager : MonoBehaviour {
             if (ps != null)
             {
                 //                ps.Teleport(bluePlatforms[i++].transform.position);
-                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, bluePlatforms[i]);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, bluePlatforms[i].transform.position);
                 i++;
             }
             else
@@ -67,7 +67,9 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                ps.Teleport(redPlatforms[i++].transform.position);
+                //                ps.Teleport(bluePlatforms[i++].transform.position);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.All, redPlatforms[i].transform.position);
+                i++;
             }
             else
             {
@@ -76,10 +78,8 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         rm = GameObject.Find("Round Manager(Clone)");
-        if (rm.GetComponent<PhotonView>().isMine)
-        {
-            rm.GetComponent<RoundManager>().Display_Countdown();
-        }
+        //        rm.GetComponent<RoundManager>().Display_Countdown();
+        rm.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
 
 //        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
         

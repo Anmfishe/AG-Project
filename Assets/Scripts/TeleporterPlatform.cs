@@ -24,8 +24,11 @@ public class TeleporterPlatform : MonoBehaviour {
         if (other.tag == "Player")
         {
             numPlayersOnPlatform++;
-//            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
-            players.Add(other.gameObject);
+            //            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            if (!players.Contains(other.gameObject))
+            {
+                players.Add(other.gameObject);
+            }
         }
     }
 
@@ -35,8 +38,11 @@ public class TeleporterPlatform : MonoBehaviour {
         if (other.tag == "Player")
         {
             numPlayersOnPlatform--;
-//            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
-            players.Remove(other.gameObject);
+            //            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            if (players.Contains(other.gameObject))
+            {
+                players.Remove(other.gameObject);
+            }
         }
     }
 }

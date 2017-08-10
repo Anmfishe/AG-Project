@@ -76,6 +76,7 @@ public class RoundManager : MonoBehaviour {
             //}
     }
 
+    [PunRPC]
     public void Display_Countdown()
     {
         Debug.Log("should be displaying countdown");
