@@ -43,6 +43,8 @@ public class TeleporterManager : MonoBehaviour {
 //        Debug.Log("TeleporterManager.cs : TeleportPlayersToArena() : Inside");
         PlayerStatus ps;
         int i = 0;
+
+        Debug.Log("blue : total = " + blue.players);
         foreach (GameObject player in blue.players)
         {
             ps = player.GetComponent<PlayerStatus>();
