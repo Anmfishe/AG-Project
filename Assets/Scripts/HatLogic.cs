@@ -50,7 +50,7 @@ public class HatLogic : MonoBehaviour {
 		{
 			if (held == true) 
 			{
-				print ("touching head");
+				//print ("touching head");
 				bool touchingHead = true;
 				hatSpot = other.gameObject;
 				putOnHat ();
@@ -75,7 +75,7 @@ public class HatLogic : MonoBehaviour {
 
 	public void putOnHat()
 	{
-		print ("putting on");
+		//print ("putting on");
 		this.transform.SetParent (hatSpot.transform);
 		this.GetComponent<Rigidbody> ().isKinematic = true;
 		torso = hatSpot.transform.parent.Find ("Torso").gameObject;

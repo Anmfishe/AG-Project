@@ -106,12 +106,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
-        print(target.pointer);
+        //print(target.pointer);
         if (target.pointer.Find("BeamTrail").gameObject.GetActive() == false)
             target.pointer.Find("BeamTrail").gameObject.SetActive(true);
 
         beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
-        print(beamTrail);
+        //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
@@ -431,7 +431,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 // Self heal
                 else
                 {
-                    print("self heal");
+                    //print("self heal");
                     print(avatar);
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
