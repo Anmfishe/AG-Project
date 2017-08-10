@@ -97,8 +97,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject reticle;
     private LineRenderer lineRend;
     public Gradient accurateTarget;
-
-
     public Gradient inaccurateTarget;
 
     private void Start()
