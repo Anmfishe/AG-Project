@@ -1450,6 +1450,7 @@ GameObject:
   - component: {fileID: 207178188}
   - component: {fileID: 207178191}
   - component: {fileID: 207178192}
+  - component: {fileID: 207178189}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -1670,6 +1671,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &207178189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08616a8a2bea11847a8b2afd2f7dd226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireCD: 1
+  iceCD: 1
+  swordCD: 1
+  meteorCD: 1
+  shieldCD: 1
+  pongCD: 1
+  vinesCD: 1
+  healCD: 1
+  blessingCD: 1
+  flipCD: 1
 --- !u!114 &207178190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,6 +2100,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   spellCooldown: 3
+  isCoolingDown: 0
   reticle: {fileID: 1659027785}
   accurateTarget:
     serializedVersion: 2
@@ -2137,6 +2160,16 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  fireCD: 0
+  iceCD: 0
+  swordCD: 0
+  meteorCD: 0
+  shieldCD: 0
+  pongCD: 0
+  vinesCD: 0
+  healCD: 0
+  blessingCD: 0
+  flipCD: 0
 --- !u!114 &207178191
 MonoBehaviour:
   m_ObjectHideFlags: 0

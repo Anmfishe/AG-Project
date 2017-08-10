@@ -90,7 +90,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient currentSpellGradient;
     public float spellCooldown = 3f;
     private float spellTimer = 0;
-    private bool isCoolingDown = false;
+    [HideInInspector]
+    public bool isCoolingDown = false;
 
 	// Variables for targeting platforms
 	private BeamTrail beamTrail;
@@ -98,6 +99,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private LineRenderer lineRend;
     public Gradient accurateTarget;
     public Gradient inaccurateTarget;
+
+    [HideInInspector]
+    SpellCooldowns cooldowns;
+    [HideInInspector]
+    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
 
     private void Start()
     {
@@ -113,6 +119,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         lineRend = beamTrail.GetComponent<LineRenderer>();
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
+        cooldowns = GetComponent<SpellCooldowns>();
     }
 
     void OnEnable()
@@ -134,14 +141,65 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (isCoolingDown)
         {
             //If fireball timer is still active.
-            if (spellTimer > 0)
+            //if (spellTimer > 0)
+            //{
+            //    spellTimer -= Time.deltaTime;
+            //}
+
+            if(fireCD > 0)
             {
-                spellTimer -= Time.deltaTime;
+                fireCD -= Time.deltaTime;
             }
+
+            else if (iceCD > 0)
+            {
+                iceCD -= Time.deltaTime;
+            }
+
+            else if (swordCD > 0)
+            {
+                swordCD -= Time.deltaTime;
+            }
+
+            else if (meteorCD > 0)
+            {
+                meteorCD -= Time.deltaTime;
+            }
+
+            else if (shieldCD > 0)
+            {
+                shieldCD -= Time.deltaTime;
+            }
+
+            else if (pongCD > 0)
+            {
+                pongCD -= Time.deltaTime;
+            }
+
+            else if (vinesCD > 0)
+            {
+                vinesCD -= Time.deltaTime;
+            }
+
+            else if (healCD > 0)
+            {
+                healCD -= Time.deltaTime;
+            }
+
+            else if (blessingCD > 0)
+            {
+                blessingCD -= Time.deltaTime;
+            }
+
+            else if (flipCD > 0)
+            {
+                flipCD -= Time.deltaTime;
+            }
+
             else
             {
                 isCoolingDown = false;
-                GetComponent<VRGestureRig>().enabled = true;
+                //GetComponent<VRGestureRig>().enabled = true;
                 if (wand != null)
                 {
                     wand.Find("tip").Find("spark").GetComponent<ParticleSystem>().Play();
@@ -225,7 +283,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         IgniteFlame(currentSpellGradient);
 
-        GetComponent<VRGestureRig>().enabled = false;
+        //GetComponent<VRGestureRig>().enabled = false;
         audioSource.PlayOneShot(cast_success);
 
     }
@@ -290,7 +348,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         IgniteFlame(currentSpellGradient);
 
-        GetComponent<VRGestureRig>().enabled = false;
+        //GetComponent<VRGestureRig>().enabled = false;
         audioSource.PlayOneShot(cast_success);
     }
 
@@ -311,58 +369,58 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         switch (gestureName)
         {
 		    case "Jay":
-			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+			    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && fireCD <= 0) {
 				    SetSpell (fireball, "fire", fireballGradient);
 			    }
                     break;
 		    case "Shield":
-			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+			    if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && shieldCD <= 0) {
 				    SetSpell (shield, "shield", shieldGradient);
 			    }
                     break;
 		    case "Heal":
-			    if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+			    if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && healCD <= 0) {
 				    SetSpell (heal, "heal", healGradient);
 			    }
                     break;
             case "Spring":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && vinesCD <= 0)
                 {
                     SetSpell(vines, "vines", vinesGradient);
                 }
                 break;
             case "Bolt":
-                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && iceCD <= 0)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
                 }
                 break;
             case "Wave":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
                 {
                     SetSpell(meteor, "meteor", meteorGradient);
                 }
                 break;
             case "OpenFrame":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
                 }
                 break;
             case "Star":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
                 {
                     SetSpell(platformSteal, "platformSteal", platformStealGradient);
                 }
                 break;
             case "Zed":
-                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
                 {
                     SetSpell(lightBlade, "lightBlade", lightBladeGradient);
                 }
                 break;
             case "Hourglass":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
                 {
                     SetSpell(disenchant, "disenchant", disenchantGradient);
                 }
@@ -397,7 +455,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "fire":
                 spellRotation = target.result != null && target.result.CompareTag("Player") ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
-                spellTimer = fireballCooldown;
+                fireCD = cooldowns.fireCD;
+                //spellTimer = fireballCooldown;
                 //if (baseSpellClass = spellInstance.GetComponent<BaseSpellClass>())
                 //{
                 //    SetSpellOwner(baseSpellClass);
@@ -407,7 +466,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
-                spellTimer = iceballCooldown;
+                iceCD = cooldowns.iceCD;
+                //spellTimer = iceballCooldown;
                 break;
             case "shield":
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
@@ -416,8 +476,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
                 spellInstance.GetComponent<Shield>().SetBook(book);
                 spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-//                spellInstance.transform.SetParent(book);
-                spellTimer = shieldCooldown;
+                shieldCD = cooldowns.shieldCD;
+                //                spellInstance.transform.SetParent(book);
+                //spellTimer = shieldCooldown;
                 break;
             case "heal":
                 // Heal others
@@ -433,7 +494,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     print(avatar);
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
-                spellTimer = healCooldown;
+                healCD = cooldowns.healCD;
+                //spellTimer = healCooldown;
                 break;
             case "vines":
                 //Check if target is a platform, otherwise don't do anything.
@@ -445,6 +507,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
+                    vinesCD = cooldowns.vinesCD;
                 }
                 else
                 {
@@ -455,13 +518,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = new Quaternion();
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                spellTimer = pongShieldCooldown;
+                pongCD = cooldowns.pongCD;
+                //spellTimer = pongShieldCooldown;
                 break;
 		case "meteor":
 			spellRotation = wandTip.rotation;
 			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
 			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
-                spellTimer = meteorCooldown;
+            meteorCD = cooldowns.meteorCD;
+                // spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
                 //Check if target is a platform, otherwise don't do anything.
@@ -474,7 +539,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
                     target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
-                    spellTimer = platformStealCooldown;
+                    flipCD = cooldowns.flipCD;
+                    //spellTimer = platformStealCooldown;
                 }
                 else
                 {
@@ -486,23 +552,25 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
 				spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
 				spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
-                spellTimer = lightBladeCooldown;
+                swordCD = cooldowns.swordCD;
+                //spellTimer = lightBladeCooldown;
                 break;
             case "disenchant":
                 if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
-                    spellTimer = disenchantCooldown;
+                    blessingCD = cooldowns.blessingCD;
+                    //spellTimer = disenchantCooldown;
                     //target.result.GetComponent<VineTrap>().DestroyVines();
                     target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 }
                 else
                 {
-                    spellTimer = disenchantCooldown;
+                    //spellTimer = disenchantCooldown;
                 }
                 break;
             default:
-                spellTimer = spellCooldown;
+                //spellTimer = spellCooldown;
                 break;
         }
         

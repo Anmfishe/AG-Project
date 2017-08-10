@@ -15,18 +15,6 @@ public class SpellCooldowns : MonoBehaviour
     public float blessingCD = 10f;
     public float flipCD = 10f;
 
-    [HideInInspector]
-    public float fire;
-    public float ice;
-    public float sword;
-    public float meteor;
-    public float shield = 10f;
-    public float pong = 10f;
-    public float vines = 10f;
-    public float heal = 10f;
-    public float blessing = 10f;
-    public float flip = 10f;
-
 	// Use this for initialization
 	void Start () {
 		

@@ -19,10 +19,10 @@ public class BookLogic : MonoBehaviour
     public Material[] pagesSupport;
     public Material[] pagesHealer;
 
-    public Sprite[] glyphs;
-    public Sprite[] glyphsAttack;
-    public Sprite[] glyphsSupport;
-    public Sprite[] glyphsHealer;
+    public GameObject[] glyphs;
+    public GameObject[] glyphsAttack;
+    public GameObject[] glyphsSupport;
+    public GameObject[] glyphsHealer;
 
     Renderer rend;
     Animator animator;
@@ -347,19 +347,19 @@ public class BookLogic : MonoBehaviour
         {
             int i = 0;
             int j = 0;
-            foreach (Sprite glyph in glyphsAttack)
+            foreach (GameObject glyph in glyphsAttack)
             {
-                emptyObj = new GameObject();
-                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-                sr.sprite = glyph;
+                emptyObj = Instantiate(glyph);
+
+                //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                //sr.sprite = glyph;
                 if (i >= glyphRowCap)
                     j = (int)Mathf.Floor(i / glyphRowCap);
 
                 emptyObj.transform.SetParent(leftPage.transform);
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
-                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                //emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
-                emptyObj.tag = "glyph";
                 i += 1;
 
             }
@@ -368,19 +368,18 @@ public class BookLogic : MonoBehaviour
         {
             int i = 0;
             int j = 0;
-            foreach (Sprite glyph in glyphsSupport)
+            foreach (GameObject glyph in glyphsSupport)
             {
-                emptyObj = new GameObject();
-                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-                sr.sprite = glyph;
+                emptyObj = Instantiate(glyph);
+                //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                //sr.sprite = glyph;
                 if (i >= glyphRowCap)
                     j = (int)Mathf.Floor(i / glyphRowCap);
 
                 emptyObj.transform.SetParent(leftPage.transform);
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
-                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                //emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
-                emptyObj.tag = "glyph";
                 i += 1;
 
             }
@@ -389,19 +388,18 @@ public class BookLogic : MonoBehaviour
         {
             int i = 0;
             int j = 0;
-            foreach (Sprite glyph in glyphsHealer)
+            foreach (GameObject glyph in glyphsHealer)
             {
-                emptyObj = new GameObject();
-                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-                sr.sprite = glyph;
+                emptyObj = Instantiate(glyph);
+                //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                //sr.sprite = glyph;
                 if (i >= glyphRowCap)
                     j = (int)Mathf.Floor(i / glyphRowCap);
 
                 emptyObj.transform.SetParent(leftPage.transform);
                 emptyObj.transform.localRotation = Quaternion.Euler(-90, 0, 0);
-                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+                //emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
-                emptyObj.tag = "glyph";
                 i += 1;
 
             }
@@ -410,19 +408,18 @@ public class BookLogic : MonoBehaviour
         {
             int i = 0;
             int j = 0;
-            foreach (Sprite glyph in glyphs)
+            foreach (GameObject glyph in glyphs)
             {
-                emptyObj = new GameObject();
-                SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-                sr.sprite = glyph;
+                emptyObj = Instantiate(glyph);
+                //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+                //sr.sprite = glyph;
                 if (i >= glyphRowCap)
                     j = (int)Mathf.Floor(i / glyphRowCap);
 
                 emptyObj.transform.SetParent(leftPage.transform);
                 emptyObj.transform.localRotation = Quaternion.Euler(-90,0, 0);
-                emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
+               // emptyObj.transform.localScale = new Vector3(-.9f, .9f, .9f);
                 emptyObj.transform.localPosition = new Vector3(glyphStartX - ((i - (j * glyphRowCap)) * glyphGap), glyphStartY, glyphStartZ + (glyphVertGap * j));
-                emptyObj.tag = "glyph";
                 i += 1;
 
             }
