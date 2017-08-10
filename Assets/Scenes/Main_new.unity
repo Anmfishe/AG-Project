@@ -2524,6 +2524,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   spellCooldown: 3
+  isCoolingDown: 0
   reticle: {fileID: 1659027785}
   accurateTarget:
     serializedVersion: 2
@@ -2583,6 +2584,16 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  fireCD: 0
+  iceCD: 0
+  swordCD: 0
+  meteorCD: 0
+  shieldCD: 0
+  pongCD: 0
+  vinesCD: 0
+  healCD: 0
+  blessingCD: 0
+  flipCD: 0
 --- !u!114 &207178191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3446,7 +3457,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 23
   instantiationId: 23
@@ -15917,6 +15929,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: redPlatforms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: bluePlatforms.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4574827971381094, guid: 9931ab73ed66c5a47b4a2dd89208a7bb, type: 2}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -16011,6 +16033,36 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 35.708252
       objectReference: {fileID: 0}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: bluePlatforms.Array.data[3]
+      value: 
+      objectReference: {fileID: 248964264}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: bluePlatforms.Array.data[4]
+      value: 
+      objectReference: {fileID: 1073759579}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: bluePlatforms.Array.data[5]
+      value: 
+      objectReference: {fileID: 65136622}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: redPlatforms.Array.data[3]
+      value: 
+      objectReference: {fileID: 26737216}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: redPlatforms.Array.data[4]
+      value: 
+      objectReference: {fileID: 909085477}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: redPlatforms.Array.data[5]
+      value: 
+      objectReference: {fileID: 981320979}
     m_RemovedComponents:
     - {fileID: 114335612676790874, guid: 9931ab73ed66c5a47b4a2dd89208a7bb, type: 2}
     - {fileID: 114118726664853782, guid: 9931ab73ed66c5a47b4a2dd89208a7bb, type: 2}

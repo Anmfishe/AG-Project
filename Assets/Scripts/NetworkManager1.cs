@@ -206,7 +206,7 @@ public class NetworkManager1 : Photon.PunBehaviour
         }
         else
         {
-            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+//            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
         }
 /*
         if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)

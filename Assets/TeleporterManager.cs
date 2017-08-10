@@ -11,6 +11,7 @@ public class TeleporterManager : MonoBehaviour {
     public GameObject[] redPlatforms;
 
     public GameObject countdown_prefab;
+    private GameObject rm;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,7 @@ public class TeleporterManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (PhotonNetwork.isMasterClient && IsReady())
+//        if (IsReady())
         {
             TeleportPlayersToArena();
         }
@@ -68,9 +70,13 @@ public class TeleporterManager : MonoBehaviour {
             }
         }
 
-        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
-    }
+        rm = GameObject.Find("Round Manager(Clone)");;
+        rm.GetComponent<RoundManager>().Display_Countdown();
 
+//        this.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
+        
+    }
+/*
     [PunRPC]
     void Display_Countdown()
     {
@@ -83,4 +89,5 @@ public class TeleporterManager : MonoBehaviour {
             countdown_prefab.SetActive(true);
         }
     }
+*/
 }

@@ -22,7 +22,8 @@ public class RoundManager : MonoBehaviour {
 
     //
 //    public GameObject countdown_display;
-    public GameObject restart_display;    
+    public GameObject restart_display;
+    public GameObject countdown_display;
     
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
@@ -75,8 +76,6 @@ public class RoundManager : MonoBehaviour {
             //}
     }
 
-    /*
-    [PunRPC]
     public void Display_Countdown()
     {
         Debug.Log("should be displaying countdown");
@@ -90,7 +89,7 @@ public class RoundManager : MonoBehaviour {
         restart.SetWinner(blueWon);
         restart.SetScore(red_score, blue_score);
     }
-    */
+
 
     /// <summary>
     /// Call from a player once it is killed
