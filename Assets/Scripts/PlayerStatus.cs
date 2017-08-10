@@ -426,6 +426,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
+    [PunRPC]
     public void Teleport(Vector3 newLocation)
     {
 //        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);

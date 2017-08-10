@@ -48,10 +48,10 @@ public class TeleporterManager : MonoBehaviour {
         foreach (GameObject player in blue.players)
         {
             ps = player.GetComponent<PlayerStatus>();
-            if (ps != null && ps.GetComponent<PhotonView>().isMine)
+            if (ps != null)
             {
                 //                ps.Teleport(bluePlatforms[i++].transform.position);
-                this.GetComponent<PhotonView>().RPC("Test", PhotonTargets.AllBuffered, ps, i);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, bluePlatforms[i]);
                 i++;
             }
             else
@@ -65,7 +65,7 @@ public class TeleporterManager : MonoBehaviour {
         foreach (GameObject player in red.players)
         {
             ps = player.GetComponent<PlayerStatus>();
-            if (ps != null && ps.GetComponent<PhotonView>().isMine)
+            if (ps != null)
             {
                 ps.Teleport(redPlatforms[i++].transform.position);
             }
@@ -85,13 +85,6 @@ public class TeleporterManager : MonoBehaviour {
         
     }
 
-    [PunRPC]
-    void Test(PlayerStatus ps, int i)
-    {
-        if (ps.GetComponent<PhotonView>().isMine)
-        ps.Teleport(bluePlatforms[i].transform.position);
-    }
-    
 /*
     [PunRPC]
     void Display_Countdown()
