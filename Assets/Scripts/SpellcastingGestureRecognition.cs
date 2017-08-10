@@ -151,52 +151,52 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 fireCD -= Time.deltaTime;
             }
 
-            else if (iceCD > 0)
+            if (iceCD > 0)
             {
                 iceCD -= Time.deltaTime;
             }
 
-            else if (swordCD > 0)
+            if (swordCD > 0)
             {
                 swordCD -= Time.deltaTime;
             }
 
-            else if (meteorCD > 0)
+            if (meteorCD > 0)
             {
                 meteorCD -= Time.deltaTime;
             }
 
-            else if (shieldCD > 0)
+            if (shieldCD > 0)
             {
                 shieldCD -= Time.deltaTime;
             }
 
-            else if (pongCD > 0)
+            if (pongCD > 0)
             {
                 pongCD -= Time.deltaTime;
             }
 
-            else if (vinesCD > 0)
+            if (vinesCD > 0)
             {
                 vinesCD -= Time.deltaTime;
             }
 
-            else if (healCD > 0)
+            if (healCD > 0)
             {
                 healCD -= Time.deltaTime;
             }
 
-            else if (blessingCD > 0)
+            if (blessingCD > 0)
             {
                 blessingCD -= Time.deltaTime;
             }
 
-            else if (flipCD > 0)
+            if (flipCD > 0)
             {
                 flipCD -= Time.deltaTime;
             }
 
-            else
+            if(fireCD <=0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
             {
                 isCoolingDown = false;
                 //GetComponent<VRGestureRig>().enabled = true;
@@ -220,6 +220,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if(Input.GetKeyUp("joystick button 15"))
         {
             drawEffect.Stop();
+            GetComponent<VRGestureRig>().enabled = true;
             if (!hasSpell && !isCoolingDown && wand != null)
             {
                 wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
@@ -589,7 +590,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         currentSpell = null;
         //target.currentSpellName = "";
         currentSpellName = "";
-        
+        GetComponent<VRGestureRig>().enabled = false;
+
     }
     void SetSpellOwner(BaseSpellClass bsp)
     {

@@ -15,7 +15,8 @@ public class HotbarElement : MonoBehaviour
     {
         spellcast = Camera.main.GetComponentInParent<SpellcastingGestureRecognition>();
         cooldown = Camera.main.GetComponentInParent<SpellCooldowns>();
-        transform.localScale = new Vector3(-size * sizeCap, size * sizeCap, sizeCap);
+        transform.localScale = new Vector3(-sizeCap * 1.4f, sizeCap, sizeCap);
+        transform.GetChild(0).localScale = new Vector3(1, 0, 1);
 
     }
 	
@@ -38,6 +39,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.blessingCD - spellcast.blessingCD) / cooldown.blessingCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.fire)
@@ -46,6 +49,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.fireCD - spellcast.fireCD) / cooldown.fireCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.flip)
@@ -54,6 +59,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.flipCD - spellcast.flipCD) / cooldown.flipCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.heal)
@@ -62,6 +69,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.healCD - spellcast.healCD) / cooldown.healCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.ice)
@@ -70,6 +79,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.iceCD - spellcast.iceCD) / cooldown.iceCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.meteor)
@@ -78,6 +89,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.meteorCD - spellcast.meteorCD) / cooldown.meteorCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.pong)
@@ -86,6 +99,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.pongCD - spellcast.pongCD) / cooldown.pongCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.shield)
@@ -94,6 +109,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.shieldCD - spellcast.shieldCD) / cooldown.shieldCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.sword)
@@ -102,6 +119,8 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.swordCD - spellcast.swordCD) / cooldown.swordCD;
             }
+            else
+                size = 1;
         }
 
         if (glyph == Spell.vines)
@@ -110,9 +129,11 @@ public class HotbarElement : MonoBehaviour
             {
                 size = (cooldown.vinesCD - spellcast.vinesCD) / cooldown.vinesCD;
             }
+            else
+                size = 1;
         }
 
 
-        transform.localScale = new Vector3(-size * sizeCap, size * sizeCap, sizeCap);
+        transform.GetChild(0).localScale = new Vector3(1, 1-size, 1);
     }
 }

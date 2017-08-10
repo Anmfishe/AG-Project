@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BookLogic : MonoBehaviour
 {
-    int glyphRowCap = 4;
-    float glyphGap = 2f;
+    int glyphRowCap = 3;
+    float glyphGap = 3f;
     float glyphVertGap = 2f;
     float glyphStartX = 3f;
     float glyphStartY = 0.05f;
