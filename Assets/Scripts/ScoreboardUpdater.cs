@@ -20,10 +20,13 @@ using UnityEngine;
 
 public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
-	//public GameObject red_score_for_red_view;
-	//public GameObject blue_score_for_red_view;
- //   public GameObject red_score_for_blue_view;
- //   public GameObject blue_score_for_blue_view;
+    //public GameObject red_score_for_red_view;
+    //public GameObject blue_score_for_red_view;
+    //   public GameObject red_score_for_blue_view;
+    //   public GameObject blue_score_for_blue_view;
+
+    public GameObject scoreboardBlue;
+    public GameObject scoreboardRed;
 
     public int red_score = 0;
 	public int blue_score = 0;
@@ -32,12 +35,26 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
     private PhotonView pv;
 
-    public int maxScore = 5;
+    private GameObject[] redHeartsB = new GameObject[30];
+    private GameObject[] blueHeartsB = new GameObject[30];
+    private GameObject[] redHeartsR = new GameObject[30];
+    private GameObject[] blueHeartsR = new GameObject[30];
 
-    public GameObject[] redHeartsB;
-    public GameObject[] blueHeartsB;
-    public GameObject[] redHeartsR;
-    public GameObject[] blueHeartsR;
+
+    int heartRowCap = 5;
+    float heartGap = .65f;
+    float heartVertGap = -.7f;
+    Vector3 bHeartStart = new Vector3(.5f, -.05f, -0.1f);
+    Vector3 rHeartStart = new Vector3(-.5f, -.05f, -0.1f);
+    Vector3 heartScale = new Vector3(.5f, 0.5f, 6);
+    GameObject heartObj;
+
+    public Sprite blueHeart;
+    public Sprite redHeart;
+    public Sprite dead;
+
+    [HideInInspector]
+    public int maximumScore = 12;
 
     private void Awake()
     {
@@ -53,7 +70,69 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 // Use this for initialization
 void Start()
     {
-        
+        int j = 0;
+        for (int i = 0; i < maximumScore; i++)
+        {
+            // Blue scoreboard
+
+            heartObj = new GameObject();
+            SpriteRenderer sr = heartObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            sr.sprite = redHeart;
+            //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            //sr.sprite = glyph;
+            if (i >= heartRowCap)
+                j = (int)Mathf.Floor(i / heartRowCap);
+
+            heartObj.transform.SetParent(this.transform);
+            heartObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            heartObj.transform.localScale = heartScale;
+            heartObj.transform.localPosition = scoreboardBlue.transform.position + new Vector3(rHeartStart.x - ((i - (j * heartRowCap)) * heartGap), rHeartStart.y + (heartVertGap * j), -rHeartStart.z);
+            redHeartsB[i] = heartObj;
+
+            heartObj = new GameObject();
+            SpriteRenderer sr2 = heartObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            sr2.sprite = blueHeart;
+            //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            //sr.sprite = glyph;
+            if (i >= heartRowCap)
+                j = (int)Mathf.Floor(i / heartRowCap);
+
+            heartObj.transform.SetParent(this.transform);
+            heartObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            heartObj.transform.localScale = heartScale;
+            heartObj.transform.localPosition = scoreboardBlue.transform.position + new Vector3(bHeartStart.x + ((i - (j * heartRowCap)) * heartGap), bHeartStart.y + (heartVertGap * j), -bHeartStart.z);
+            blueHeartsB[i] = heartObj;
+
+            // Red scoreboard
+            heartObj = new GameObject();
+            SpriteRenderer sr3 = heartObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            sr3.sprite = redHeart;
+            //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            //sr.sprite = glyph;
+            if (i >= heartRowCap)
+                j = (int)Mathf.Floor(i / heartRowCap);
+
+            heartObj.transform.SetParent(this.transform);
+            heartObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            heartObj.transform.localScale = heartScale;
+            heartObj.transform.localPosition = scoreboardRed.transform.position + new Vector3(bHeartStart.x + ((i - (j * heartRowCap)) * heartGap), bHeartStart.y + (heartVertGap * j), bHeartStart.z);
+            redHeartsR[i] = heartObj;
+
+            heartObj = new GameObject();
+            SpriteRenderer sr4 = heartObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            sr4.sprite = blueHeart;
+            //SpriteRenderer sr = emptyObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+            //sr.sprite = glyph;
+            if (i >= heartRowCap)
+                j = (int)Mathf.Floor(i / heartRowCap);
+
+            heartObj.transform.SetParent(this.transform);
+            heartObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            heartObj.transform.localScale = heartScale;
+            heartObj.transform.localPosition = scoreboardRed.transform.position + new Vector3(rHeartStart.x - ((i - (j * heartRowCap)) * heartGap), rHeartStart.y + (heartVertGap * j), rHeartStart.z);
+            blueHeartsR[i] = heartObj;
+
+        }
     }
 		
 	
@@ -102,28 +181,28 @@ void Start()
 
     void updateUI()
     {
-        for (int i = 0; i<maxScore; i++)
+        for (int i = 0; i<maximumScore; i++)
         {
             if (i >= red_score)
             {
-                blueHeartsB[i].SetActive(true);
-                blueHeartsR[i].SetActive(true);
+                blueHeartsR[i].GetComponent<SpriteRenderer>().sprite = blueHeart;
+                blueHeartsB[i].GetComponent<SpriteRenderer>().sprite = blueHeart;
             }
             else
             {
-                blueHeartsB[i].SetActive(false);
-                blueHeartsR[i].SetActive(false);
+                blueHeartsR[i].GetComponent<SpriteRenderer>().sprite = dead;
+                blueHeartsB[i].GetComponent<SpriteRenderer>().sprite = dead;
             }
 
             if (i >= blue_score)
             {
-                redHeartsB[i].SetActive(true);
-                redHeartsR[i].SetActive(true);
+                redHeartsR[i].GetComponent<SpriteRenderer>().sprite = redHeart;
+                redHeartsB[i].GetComponent<SpriteRenderer>().sprite = redHeart;
             }
             else
             {
-                redHeartsB[i].SetActive(false);
-                redHeartsR[i].SetActive(false);
+                redHeartsR[i].GetComponent<SpriteRenderer>().sprite = dead;
+                redHeartsB[i].GetComponent<SpriteRenderer>().sprite = dead;
             }
         }
     }
