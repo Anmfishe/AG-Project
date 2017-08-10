@@ -1680,7 +1680,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
+  fireball: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae, type: 2}
   fireballGesture: Fire
   fireballGradient:
     serializedVersion: 2
@@ -1746,10 +1746,10 @@ MonoBehaviour:
   shieldCooldown: 3
   Bubble_shield: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae,
     type: 2}
-  Bubble_shieldGesture: 
+  Bubble_shieldGesture: Bubble_shield
   Bubble_shieldGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0.32352942, g: 1, b: 0.972008, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1841,7 +1841,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
   vinesCooldown: 2
-  iceball: {fileID: 1824638980495640, guid: 0eae2bb30e909a04f9c10f1cf86c5176, type: 2}
+  iceball: {fileID: 1973137855731400, guid: 47d2ec19600db1b44b0bf1c31492e1f5, type: 2}
   iceballGesture: Diamond
   iceballGradient:
     serializedVersion: 2

@@ -34,6 +34,7 @@ public class Bubble_shield : MonoBehaviour
         if (shieldTimer <= 0)
             Destroy(gameObject);
     }
+   
 
     public void SetBook(Transform book_)
     {

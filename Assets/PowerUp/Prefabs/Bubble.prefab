@@ -40,12 +40,12 @@ GameObject:
   - component: {fileID: 4229795724733164}
   - component: {fileID: 135226275932231244}
   - component: {fileID: 114546899127283890}
-  - component: {fileID: 114512522782590752}
   - component: {fileID: 114217550757120410}
   - component: {fileID: 114294460950488430}
   - component: {fileID: 23985764427339520}
-  - component: {fileID: 114086683655834786}
   - component: {fileID: 114706627256567912}
+  - component: {fileID: 114076288899021916}
+  - component: {fileID: 33136295929972426}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -79,7 +79,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185784538995728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11009216, y: 1.18, z: -4.251131}
+  m_LocalPosition: {x: 1.2712623, y: 1.557, z: 0.92685044}
   m_LocalScale: {x: 1.5702606, y: 1.5702608, z: 1.5702608}
   m_Children:
   - {fileID: 4610888308499040}
@@ -190,7 +190,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 02758698f6605d345a67239c79c069b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -209,6 +209,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33136295929972426
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185784538995728}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33506369220761592
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -223,7 +230,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105638041387234}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114086683655834786
+--- !u!114 &114076288899021916
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -231,11 +238,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185784538995728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded06c0004ab5b346a00d7b48c9ed083, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  armor: 0
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 4229795724733164}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114217550757120410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -292,7 +312,7 @@ MonoBehaviour:
     ExtrapolateNumberOfStoredPositions: 1
     DrawErrorGizmo: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -312,34 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded06c0004ab5b346a00d7b48c9ed083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 4
   armor: 0
---- !u!114 &114512522782590752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185784538995728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &114546899127283890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded06c0004ab5b346a00d7b48c9ed083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 4
   armor: 0
 --- !u!114 &114647807510881428
 MonoBehaviour:

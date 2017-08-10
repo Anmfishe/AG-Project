@@ -324,11 +324,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 				    SetSpell (fireball, "fire", fireballGradient);
 			    }
                     break;
-		    case "Bubble_sheild":
-			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
-			    }
-                    break;
+		   
             case "Shield":
                 if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
                 {
@@ -382,6 +378,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     SetSpell(disenchant, "disenchant", disenchantGradient);
                 }
                 break;
+                 case "Bubble_sheild":
+			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
+				    SetSpell (Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
+			    }
+                    break;
         }
     }
 
@@ -434,12 +435,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 //                spellInstance.transform.SetParent(book);
                 spellTimer = shieldCooldown;
                 break;
-            case "Bubble_shield":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                spellInstance.GetComponent<Bubble_shield>().SetBook(book);
-                spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                spellTimer = Bubble_shieldCooldown;
-                break;
+            //case "Bubble_shield":
+            //    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+            //    spellInstance.GetComponent<Bubble_shield>().SetBook(book);
+            //    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+            //    spellTimer = Bubble_shieldCooldown;
+            //    break;
             case "heal":
                 // Heal others
                 if (target.result != null)
