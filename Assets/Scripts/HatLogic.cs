@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerClass {none, attack, heal, support, all}; 
+//public enum PlayerClass {none, attack, heal, support, all}; 
 
 public class HatLogic : MonoBehaviour {
 
