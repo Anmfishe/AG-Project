@@ -19,6 +19,7 @@ public class NetworkManager : Photon.PunBehaviour
     private GameObject hat6;
     public GameObject avatar;
     public GameObject scoreboard;
+    public GlyphGuide guide;
     private GameObject cameraRig;
     public GameObject CameraRig
     {
@@ -192,6 +193,9 @@ public class NetworkManager : Photon.PunBehaviour
         cameraRig = GameObject.FindWithTag("CameraRig");
         cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
+        BookLogic book = avatar.GetComponentInChildren<BookLogic>();
+        book.guide = guide;
+        guide.book = book;
 
         if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
         {

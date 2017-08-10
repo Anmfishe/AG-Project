@@ -43,6 +43,8 @@ public class BookLogic : MonoBehaviour
     float startPressPos;
     float swipeThresh = 0.03f;
     public int index = 0;
+    public string currentGlyph = "";
+    public GlyphGuide guide;
 
     private void Awake()
     {
@@ -63,6 +65,8 @@ public class BookLogic : MonoBehaviour
                 
 
 			rend.material = pages [pages.Length-1];
+            currentGlyph = pages[pages.Length - 1].name;
+            guide.UpdateGlyphTexture(currentGlyph);
             animator = GetComponent<Animator>();
         }
         //page.Set
@@ -285,48 +289,58 @@ public class BookLogic : MonoBehaviour
                     index = 0;
 
                 rend.material = pagesAttack[index];
+                currentGlyph = pagesAttack[index].name;
+                //print(currentGlyph);
             }
             else if (playerClass == PlayerClass.support)
             {
                 if (index >= pagesAttack.Length)
                     index = 0;
                 rend.material = pagesSupport[index];
+                currentGlyph = pagesSupport[index].name;
+                //print(currentGlyph);
             }
             else if (playerClass == PlayerClass.heal)
             {
                 if (index >= pagesHealer.Length)
                     index = 0;
                 rend.material = pagesHealer[index];
+                currentGlyph = pagesHealer[index].name;
+                //print(currentGlyph);
             }
             else if (playerClass == PlayerClass.all)
             {
                 if (index >= pages.Length)
                     index = 0;
                 rend.material = pages[index];
+                currentGlyph = pages[index].name;
+                //print(currentGlyph);
             }
-           }
+        }
 
         
 
 		if (playerClass == PlayerClass.none) 
 		{
 			rend.material = pages[pages.Length-1];
+            currentGlyph = pages[pages.Length - 1].name;
 		}
 
-//		else if (playerClass == PlayerClass.attack) 
-//		{
-//			rend.material = pages[0];
-//		}
-//
-//		else if (playerClass == PlayerClass.support)
-//		{
-//			rend.material = pages[2];
-//		}
-//
-//		else if (playerClass == PlayerClass.heal) 
-//		{
-//			rend.material = pages[1];
-//		}
+        //		else if (playerClass == PlayerClass.attack) 
+        //		{
+        //			rend.material = pages[0];
+        //		}
+        //
+        //		else if (playerClass == PlayerClass.support)
+        //		{
+        //			rend.material = pages[2];
+        //		}
+        //
+        //		else if (playerClass == PlayerClass.heal) 
+        //		{
+        //			rend.material = pages[1];
+        //		}
+        guide.UpdateGlyphTexture(currentGlyph);
     }
 
     public void UpdateHotbar()

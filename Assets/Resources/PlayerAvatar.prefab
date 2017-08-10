@@ -2518,6 +2518,8 @@ MonoBehaviour:
   healBottom: 6
   healTop: 9
   index: 0
+  currentGlyph: 
+  guide: {fileID: 0}
 --- !u!114 &114202051127759062
 MonoBehaviour:
   m_ObjectHideFlags: 1
