@@ -1874,7 +1874,7 @@ MonoBehaviour:
   hatRoom: {fileID: 0}
   roundTime: 120
   isTimeBased: 0
-  maxScore: 5
+  maxScore: 10
   isScoreBased: 1
   countdown_display: {fileID: 1792934341244372}
   restart_display: {fileID: 1259874329974292}

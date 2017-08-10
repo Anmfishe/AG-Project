@@ -1683,11 +1683,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08616a8a2bea11847a8b2afd2f7dd226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireCD: 3
+  fireCD: 4
   iceCD: 10
   swordCD: 10
   meteorCD: 12
-  shieldCD: 5
+  shieldCD: 8
   pongCD: 10
   vinesCD: 10
   healCD: 5
@@ -11546,7 +11546,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 15
   instantiationId: 15

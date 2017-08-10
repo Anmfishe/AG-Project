@@ -8,7 +8,7 @@ public class RoundManager : MonoBehaviour {
     public Transform hatRoom;
     public float roundTime;
     public bool isTimeBased = false;
-    public int maxScore = 3;
+    public int maxScore;
     public bool isScoreBased = true;
     private float timeElapsed;
     private bool inBattlefield = true;
