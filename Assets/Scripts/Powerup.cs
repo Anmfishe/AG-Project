@@ -13,7 +13,7 @@ public class Powerup : MonoBehaviour {
 
     public bool isBlue;
     public int platformIndex;
-
+    public GameObject powerup_success;
     GameObject pm;
 
 	// Use this for initialization
@@ -51,7 +51,7 @@ public class Powerup : MonoBehaviour {
                 other.GetComponent<PhotonView>().RPC("SetRandomSpell", other.GetComponent<PhotonView>().owner, null);
                 PowerupManager pm = GameObject.Find("PowerupManager(Clone)").GetComponent<PowerupManager>();
                 pm.DecrementPowerUp(isBlue, platformIndex);
-                
+                PhotonNetwork.Instantiate(powerup_success.name, transform.position, Quaternion.identity, 0);
                 PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
             }
         }

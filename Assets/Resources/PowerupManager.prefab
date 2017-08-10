@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  frequency: 7
+  frequency: 15
   powerupPrefab: {fileID: 1659428561157970, guid: 2b47277ee180e74479e1a58871012545,
     type: 2}
   timer: 0

@@ -406,7 +406,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     void SetRandomSpell()
     {
-        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().SetRandomSpell();
+        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().SetRandomSuperSpell();
     }
         
 

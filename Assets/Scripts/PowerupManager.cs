@@ -32,41 +32,43 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     // Use this for initialization
     void Start () {
         timer = frequency;
+        redPlatforms = GameObject.FindGameObjectsWithTag("RedPlatform");
+        bluePlatforms = GameObject.FindGameObjectsWithTag("BluePlatform");
         redPowerups = new bool[redPlatforms.Length];
         bluePowerups = new bool[bluePlatforms.Length];
+        
+        //bluePlatforms[0] = GameObject.Find("Blue_platform1 (1)");
+        //bluePlatforms[1] = GameObject.Find("Blue_platform1 (3)");
+        //bluePlatforms[2] = GameObject.Find("Blue_platform1");
 
-        bluePlatforms[0] = GameObject.Find("Blue_platform1 (1)");
-        bluePlatforms[1] = GameObject.Find("Blue_platform1 (3)");
-        bluePlatforms[2] = GameObject.Find("Blue_platform1");
+        //redPlatforms[0] = GameObject.Find("Red_platform1 (8)");
+        //redPlatforms[1] = GameObject.Find("Red_platform1 (14)");
+        //redPlatforms[2] = GameObject.Find("Red_platform1 (7)");
 
-        redPlatforms[0] = GameObject.Find("Red_platform1 (8)");
-        redPlatforms[1] = GameObject.Find("Red_platform1 (14)");
-        redPlatforms[2] = GameObject.Find("Red_platform1 (7)");
-
-        if (bluePlatforms[0] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1 (1)\"");
-        }
-        if (bluePlatforms[1] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1 (3)\"");
-        }
-        if (bluePlatforms[2] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1\"");
-        }
-        if (redPlatforms[0] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (8)\"");
-        }
-        if (redPlatforms[1] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (14)\"");
-        }
-        if (redPlatforms[2] == null)
-        {
-            Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (7)\"");
-        }
+        //if (bluePlatforms[0] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1 (1)\"");
+        //}
+        //if (bluePlatforms[1] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1 (3)\"");
+        //}
+        //if (bluePlatforms[2] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Blue_platform1\"");
+        //}
+        //if (redPlatforms[0] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (8)\"");
+        //}
+        //if (redPlatforms[1] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (14)\"");
+        //}
+        //if (redPlatforms[2] == null)
+        //{
+        //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (7)\"");
+        //}
     }
 	
 	// Update is called once per frame
@@ -74,7 +76,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         if (PhotonNetwork.isMasterClient)
         {
             timer -= Time.deltaTime;
-            if (timer <= 0 && numPowerups < 6)
+            if (timer <= 0 && numPowerups < 2)
             {
                 int randomPlatform;
                 if (HasSpace(redPlatforms, redPowerups))
