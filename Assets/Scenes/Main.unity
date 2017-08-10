@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 26737218}
   - component: {fileID: 26737222}
   - component: {fileID: 26737223}
+  - component: {fileID: 26737224}
   m_Layer: 9
   m_Name: Red_platform1 (9)
   m_TagString: RedPlatform
@@ -158,6 +159,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 909085478}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &26737219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253,6 +257,18 @@ MonoBehaviour:
   instantiationId: 12
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &26737224
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26737216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: 0.0000003874302}
 --- !u!1001 &42855543
 Prefab:
   m_ObjectHideFlags: 0
@@ -622,6 +638,7 @@ GameObject:
   - component: {fileID: 65136624}
   - component: {fileID: 65136628}
   - component: {fileID: 65136629}
+  - component: {fileID: 65136630}
   m_Layer: 8
   m_Name: Blue_platform1 (4)
   m_TagString: BluePlatform
@@ -658,6 +675,9 @@ MonoBehaviour:
   left: {fileID: 1073759580}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &65136625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -753,6 +773,18 @@ MonoBehaviour:
   instantiationId: 11
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &65136630
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 65136622}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: -0.0000005662441}
 --- !u!1 &72675951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,11 +2150,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 0}
+  result2: {fileID: 0}
   pointer: {fileID: 378683154}
   range: 100
   layers:
     serializedVersion: 2
     m_Bits: 4865
+  blessing_layers:
+    serializedVersion: 2
+    m_Bits: 12289
 --- !u!114 &207178192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,6 +2181,7 @@ MonoBehaviour:
   currPlatform: {fileID: 0}
   avatar: {fileID: 0}
   lerp: 1
+  usingOrientation: 0
   CD: 1
   cd_Sound: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
   canMove: 1
@@ -2463,7 +2500,7 @@ Transform:
   m_LocalScale: {x: 0.8165307, y: 0.10806192, z: 2.0109105}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &241956643
 GameObject:
@@ -2634,6 +2671,7 @@ GameObject:
   - component: {fileID: 248964266}
   - component: {fileID: 248964270}
   - component: {fileID: 248964271}
+  - component: {fileID: 248964272}
   m_Layer: 8
   m_Name: Blue_platform1 (2)
   m_TagString: BluePlatform
@@ -2670,6 +2708,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 1073759580}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &248964267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2765,6 +2806,18 @@ MonoBehaviour:
   instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &248964272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 248964264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: -0.0000005662441}
 --- !u!1 &254013749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2905,7 @@ GameObject:
   - component: {fileID: 256266374}
   - component: {fileID: 256266378}
   - component: {fileID: 256266379}
+  - component: {fileID: 256266380}
   m_Layer: 8
   m_Name: Blue_platform1 (5)
   m_TagString: BluePlatform
@@ -2888,6 +2942,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 826146519}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &256266375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2983,6 +3040,18 @@ MonoBehaviour:
   instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &256266380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 256266372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: -0.0000010430813}
 --- !u!1 &265540349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,6 +3408,7 @@ GameObject:
   - component: {fileID: 310353564}
   - component: {fileID: 310353568}
   - component: {fileID: 310353569}
+  - component: {fileID: 310353570}
   m_Layer: 8
   m_Name: Blue_platform1 (6)
   m_TagString: BluePlatform
@@ -3375,6 +3445,9 @@ MonoBehaviour:
   left: {fileID: 826146519}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &310353565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3470,6 +3543,18 @@ MonoBehaviour:
   instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &310353570
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310353562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: -0.0000010430813}
 --- !u!1 &317367374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,6 +3569,7 @@ GameObject:
   - component: {fileID: 317367376}
   - component: {fileID: 317367380}
   - component: {fileID: 317367381}
+  - component: {fileID: 317367382}
   m_Layer: 9
   m_Name: Red_platform1 (13)
   m_TagString: RedPlatform
@@ -3520,6 +3606,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 1322365304}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &317367377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3615,6 +3704,18 @@ MonoBehaviour:
   instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &317367382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 317367374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: 0.00000086426735}
 --- !u!1 &330060924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5286,7 +5387,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f5975f5c6fe02240aa268f82fca654e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f5975f5c6fe02240aa268f82fca654e, type: 3}
       propertyPath: m_LocalScale.y
@@ -6083,7 +6184,7 @@ Transform:
   m_LocalScale: {x: 0.8165307, y: 0.10806192, z: 3.9571984}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &641455513
 GameObject:
@@ -6704,6 +6805,7 @@ GameObject:
   - component: {fileID: 788543888}
   - component: {fileID: 788543892}
   - component: {fileID: 788543893}
+  - component: {fileID: 788543894}
   m_Layer: 8
   m_Name: Blue_platform1
   m_TagString: BluePlatform
@@ -6740,6 +6842,9 @@ MonoBehaviour:
   left: {fileID: 1622355307}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &788543889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6835,6 +6940,18 @@ MonoBehaviour:
   instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &788543894
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788543886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: -0.00000032782555}
 --- !u!1 &798533089
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,6 +7387,7 @@ GameObject:
   - component: {fileID: 826146520}
   - component: {fileID: 826146524}
   - component: {fileID: 826146525}
+  - component: {fileID: 826146526}
   m_Layer: 8
   m_Name: Blue_platform1 (8)
   m_TagString: BluePlatform
@@ -7306,6 +7424,9 @@ MonoBehaviour:
   left: {fileID: 256266373}
   right: {fileID: 310353563}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &826146521
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7401,6 +7522,18 @@ MonoBehaviour:
   instantiationId: 9
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &826146526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826146518}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: -0.0000010430813}
 --- !u!1001 &832042880
 Prefab:
   m_ObjectHideFlags: 0
@@ -8324,6 +8457,7 @@ GameObject:
   - component: {fileID: 909085479}
   - component: {fileID: 909085483}
   - component: {fileID: 909085484}
+  - component: {fileID: 909085485}
   m_Layer: 9
   m_Name: Red_platform1 (10)
   m_TagString: RedPlatform
@@ -8360,6 +8494,9 @@ MonoBehaviour:
   left: {fileID: 26737217}
   right: {fileID: 981320980}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &909085480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8456,6 +8593,18 @@ MonoBehaviour:
   instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &909085485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 909085477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: 0.0000003874302}
 --- !u!1 &927287133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8581,10 +8730,10 @@ MonoBehaviour:
     m_Bits: 4
   bluelayersToIgnore:
     serializedVersion: 2
-    m_Bits: 2565
+    m_Bits: 6661
   redlayersToIgnore:
     serializedVersion: 2
-    m_Bits: 2309
+    m_Bits: 6405
   pointerOriginSmoothingSettings:
     smoothsPosition: 0
     maxAllowedPerFrameDistanceDifference: 0.003
@@ -8617,6 +8766,7 @@ GameObject:
   - component: {fileID: 929138209}
   - component: {fileID: 929138213}
   - component: {fileID: 929138214}
+  - component: {fileID: 929138215}
   m_Layer: 8
   m_Name: Blue_platform1 (1)
   m_TagString: BluePlatform
@@ -8653,6 +8803,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 1622355307}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &929138210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8748,6 +8901,18 @@ MonoBehaviour:
   instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &929138215
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929138207}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: -0.00000032782555}
 --- !u!1 &965829015
 GameObject:
   m_ObjectHideFlags: 0
@@ -8872,7 +9037,7 @@ Transform:
   m_LocalScale: {x: 0.8165307, y: 0.10806192, z: 3.9571984}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &971322008
 GameObject:
@@ -8993,6 +9158,7 @@ GameObject:
   - component: {fileID: 981320981}
   - component: {fileID: 981320985}
   - component: {fileID: 981320986}
+  - component: {fileID: 981320987}
   m_Layer: 9
   m_Name: Red_platform1 (11)
   m_TagString: RedPlatform
@@ -9029,6 +9195,9 @@ MonoBehaviour:
   left: {fileID: 909085478}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &981320982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9124,6 +9293,18 @@ MonoBehaviour:
   instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &981320987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981320979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: 0.0000003874302}
 --- !u!1 &984329286
 GameObject:
   m_ObjectHideFlags: 0
@@ -9724,8 +9905,8 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 872981191}
-  - {fileID: 1374938478}
   - {fileID: 467929895}
+  - {fileID: 1374938478}
   - {fileID: 317367375}
   - {fileID: 248964265}
   - {fileID: 1622355307}
@@ -9945,6 +10126,7 @@ GameObject:
   - component: {fileID: 1073759581}
   - component: {fileID: 1073759585}
   - component: {fileID: 1073759586}
+  - component: {fileID: 1073759587}
   m_Layer: 8
   m_Name: Blue_platform1 (7)
   m_TagString: BluePlatform
@@ -9981,6 +10163,9 @@ MonoBehaviour:
   left: {fileID: 248964265}
   right: {fileID: 65136623}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1073759582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10070,12 +10255,25 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 18
   instantiationId: 18
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1073759587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073759579}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: -0.0000005662441}
 --- !u!1 &1106725925
 GameObject:
   m_ObjectHideFlags: 0
@@ -10957,6 +11155,7 @@ GameObject:
   - component: {fileID: 1140807163}
   - component: {fileID: 1140807167}
   - component: {fileID: 1140807168}
+  - component: {fileID: 1140807169}
   m_Layer: 9
   m_Name: Red_platform1 (7)
   m_TagString: RedPlatform
@@ -10993,6 +11192,9 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 1374938478}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1140807164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11088,6 +11290,18 @@ MonoBehaviour:
   instantiationId: 15
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1140807169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140807161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.00000029802322, y: 16.4, z: 0.00000014901163}
 --- !u!1 &1146425599
 GameObject:
   m_ObjectHideFlags: 0
@@ -12180,6 +12394,7 @@ GameObject:
   - component: {fileID: 1290410319}
   - component: {fileID: 1290410323}
   - component: {fileID: 1290410324}
+  - component: {fileID: 1290410325}
   m_Layer: 9
   m_Name: Red_platform1 (8)
   m_TagString: RedPlatform
@@ -12216,6 +12431,9 @@ MonoBehaviour:
   left: {fileID: 1374938478}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1290410320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12311,6 +12529,18 @@ MonoBehaviour:
   instantiationId: 19
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1290410325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290410317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: 0.00000014901163}
 --- !u!1 &1322365303
 GameObject:
   m_ObjectHideFlags: 0
@@ -12325,6 +12555,7 @@ GameObject:
   - component: {fileID: 1322365305}
   - component: {fileID: 1322365309}
   - component: {fileID: 1322365310}
+  - component: {fileID: 1322365311}
   m_Layer: 9
   m_Name: Red_platform1 (15)
   m_TagString: RedPlatform
@@ -12361,6 +12592,9 @@ MonoBehaviour:
   left: {fileID: 317367375}
   right: {fileID: 1706877120}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1322365306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12456,6 +12690,18 @@ MonoBehaviour:
   instantiationId: 20
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1322365311
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1322365303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: 0.00000086426735}
 --- !u!1001 &1330299577
 Prefab:
   m_ObjectHideFlags: 0
@@ -12846,6 +13092,7 @@ GameObject:
   - component: {fileID: 1374938479}
   - component: {fileID: 1374938484}
   - component: {fileID: 1374938483}
+  - component: {fileID: 1374938485}
   m_Layer: 9
   m_Name: Red_platform1 (14)
   m_TagString: RedPlatform
@@ -12864,7 +13111,7 @@ Transform:
   m_LocalScale: {x: 2.2344997, y: 0.17548332, z: 2.975683}
   m_Children: []
   m_Father: {fileID: 1030857031}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1374938479
 MonoBehaviour:
@@ -12882,6 +13129,9 @@ MonoBehaviour:
   left: {fileID: 1140807162}
   right: {fileID: 1290410318}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1374938480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12978,6 +13228,18 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+--- !u!65 &1374938485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374938477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: 0.00000014901163}
 --- !u!4 &1385004754 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4568260420906790, guid: 2cebbe72b3420fb47b0861343e1b0a46,
@@ -14571,7 +14833,7 @@ Transform:
   m_LocalScale: {x: 0.8165307, y: 0.10806192, z: 2.0109105}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &1615527730
 GameObject:
@@ -14679,6 +14941,7 @@ GameObject:
   - component: {fileID: 1622355308}
   - component: {fileID: 1622355312}
   - component: {fileID: 1622355313}
+  - component: {fileID: 1622355314}
   m_Layer: 8
   m_Name: Blue_platform1 (3)
   m_TagString: BluePlatform
@@ -14715,6 +14978,9 @@ MonoBehaviour:
   left: {fileID: 929138208}
   right: {fileID: 788543887}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1622355309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14811,6 +15077,18 @@ MonoBehaviour:
   instantiationId: 17
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1622355314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622355306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: 0.000000059604645, y: 16.4, z: -0.00000032782555}
 --- !u!1 &1653952196
 GameObject:
   m_ObjectHideFlags: 0
@@ -15048,6 +15326,7 @@ GameObject:
   - component: {fileID: 1706877121}
   - component: {fileID: 1706877125}
   - component: {fileID: 1706877126}
+  - component: {fileID: 1706877127}
   m_Layer: 9
   m_Name: Red_platform1 (12)
   m_TagString: RedPlatform
@@ -15084,6 +15363,9 @@ MonoBehaviour:
   left: {fileID: 1322365304}
   right: {fileID: 0}
   hasPlayer: 0
+  layerSave:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1706877122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15179,6 +15461,18 @@ MonoBehaviour:
   instantiationId: 14
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!65 &1706877127
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706877119}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 35.92, z: 1.0000001}
+  m_Center: {x: -0.00000017881393, y: 16.4, z: 0.00000086426735}
 --- !u!1 &1741524698
 GameObject:
   m_ObjectHideFlags: 0
@@ -15414,7 +15708,7 @@ Transform:
   m_LocalScale: {x: 2.144906, y: 0.10806192, z: 3.9571984}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765220121
 GameObject:
@@ -19327,7 +19621,7 @@ Prefab:
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
       propertyPath: roomName
-      value: rayjo2
+      value: rayjo3
       objectReference: {fileID: 0}
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}

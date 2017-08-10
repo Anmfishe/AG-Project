@@ -189,12 +189,18 @@ namespace VRTK
             Transform origin = GetOrigin();
             Ray pointerRaycast = new Ray(origin.position, origin.forward);
             RaycastHit pointerCollidedWith;
+            Physics.queriesHitTriggers = false;
 #pragma warning disable 0618
             bool rayHit;
+            //RaycastHit hit;
             if (blue)
+            {
                 rayHit = VRTK_CustomRaycast.Raycast(customRaycast, pointerRaycast, out pointerCollidedWith, bluelayersToIgnore, maximumLength);
+            }
             else
+            {
                 rayHit = VRTK_CustomRaycast.Raycast(customRaycast, pointerRaycast, out pointerCollidedWith, redlayersToIgnore, maximumLength);
+            }
 #pragma warning restore 0618
 
             CheckRayMiss(rayHit, pointerCollidedWith);

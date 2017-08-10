@@ -69,45 +69,51 @@ public class TeamManager : MonoBehaviour {
     [PunRPC]
     public void SetBlue()
     {
-        Debug.Log("Set Blue + " + Time.time);
-        
-        blue = true;
-
-        //Respawn();
-
-        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
-        foreach(TeamSetter ts in children)
+        if (photonView.isMine)
         {
-            ts.SetBlue();
-        }
-        rightHand = GameObject.Find("RightController");
-        if (rightHand)
-        {
-            set = true;
-            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            vrtk_spr.blue = true;
+            Debug.Log("Set Blue + " + Time.time);
+
+            blue = true;
+
+            //Respawn();
+
+            TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+            foreach (TeamSetter ts in children)
+            {
+                ts.SetBlue();
+            }
+            rightHand = GameObject.Find("RightController");
+            if (rightHand)
+            {
+                set = true;
+                vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+                vrtk_spr.blue = true;
+            }
         }
     }
 
     [PunRPC]
     public void SetRed()
     {
-        Debug.Log("Set Red + " + Time.time);
-        
-        blue = false;
+        if (photonView.isMine)
+        {
+            Debug.Log("Set Red + " + Time.time);
 
-        //Respawn();
-        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
-        foreach (TeamSetter ts in children)
-        {
-            ts.SetRed();
-        }
-        rightHand = GameObject.Find("RightController");
-        if (rightHand)
-        {
-            set = true;
-            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            vrtk_spr.blue = false;
+            blue = false;
+
+            //Respawn();
+            TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+            foreach (TeamSetter ts in children)
+            {
+                ts.SetRed();
+            }
+            rightHand = GameObject.Find("RightController");
+            if (rightHand)
+            {
+                set = true;
+                vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+                vrtk_spr.blue = false;
+            }
         }
     }
 

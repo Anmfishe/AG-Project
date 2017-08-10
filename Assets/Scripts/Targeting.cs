@@ -6,10 +6,17 @@ public class Targeting : MonoBehaviour {
 
     [HideInInspector]
     public Transform result;
+    [HideInInspector]
+    public Transform result2;
     private TargetablePlayer targetableScript;
     public Transform pointer;
     public float range;
     public LayerMask layers;
+    public LayerMask blessing_layers;
+    [HideInInspector]
+    public RaycastHit hit;
+    [HideInInspector]
+    public RaycastHit hit_blessing;
     SpellcastingGestureRecognition spellCast;
 
 	// Use this for initialization
@@ -24,14 +31,15 @@ public class Targeting : MonoBehaviour {
     }
     private void Target()
     {
-        RaycastHit hit;
+        
 
         //Disable back faces so it doesn't collide with itself.
         Physics.queriesHitBackfaces = false;
+        Physics.queriesHitTriggers = false;
 
-//Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
+        //Debug.DrawRay(pointer.position, pointer.forward * range, Color.red, 0.01f);
         //Get raycast results.
-		if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers))
+        if (Physics.Raycast (pointer.position, pointer.forward, out hit, range, layers))
         {
             if(hit.transform.parent==spellCast.avatar)
             {
@@ -87,6 +95,15 @@ public class Targeting : MonoBehaviour {
                 targetableScript.SetIndicator(false);
                 targetableScript = null;
                 }
+        }
+        Physics.queriesHitTriggers = true;
+        if (Physics.Raycast(pointer.position, pointer.forward, out hit_blessing, range, blessing_layers))
+        {
+            result2 = hit_blessing.collider.transform;
+        }
+        else
+        {
+            result2 = null;
         }
     }
 }

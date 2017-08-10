@@ -97,6 +97,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public GameObject reticle;
     private LineRenderer lineRend;
     public Gradient accurateTarget;
+
+
     public Gradient inaccurateTarget;
 
     private void Start()
@@ -190,21 +192,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else if (currentSpellName == "disenchant")
         {
-            if (target.result != null)
+            if (target.result2 != null)
             {
-                if (target.result.tag == "Curse")
+                if (target.result2.tag == "Curse")
                 {
-                    AccurateTarget();
+                    AccurateTargetBlessing();
                 }
                 else
                 {
-                    InaccurateTarget();
+                    InaccurateTargetBlessing();
                 }
             }
             else
             {
-                InaccurateTarget();
+                InaccurateTargetBlessing();
             }
+        
         }
         else
         {
@@ -488,12 +491,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellTimer = lightBladeCooldown;
                 break;
             case "disenchant":
-                if (target != null && target.result != null && target.result.CompareTag("Curse"))
+                if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
                 {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
                     spellTimer = disenchantCooldown;
                     //target.result.GetComponent<VineTrap>().DestroyVines();
-                    target.result.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+                    target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 }
                 else
                 {
@@ -533,21 +536,34 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Successfully target a platform
     void AccurateTarget()
     {
+        Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
-        RaycastHit hit;
-        Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
-        beamTrail.destination = hit.point;
+        //RaycastHit hit;
+        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = target.hit.point;
         lineRend.colorGradient = accurateTarget;
-        reticle.transform.position = hit.point;
+        reticle.transform.position = target.hit.point;
+    }
+    void AccurateTargetBlessing()
+    {
+        Physics.queriesHitTriggers = true;
+        beamTrail.gameObject.SetActive(true);
+        reticle.SetActive(true);
+        //RaycastHit hit;
+        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = target.hit_blessing.point;
+        lineRend.colorGradient = accurateTarget;
+        reticle.transform.position = target.hit_blessing.point;
     }
 
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
+        Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         RaycastHit hit;
-        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.layers))
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000/*, target.layers*/))
         {
             beamTrail.destination = (hit.point);
             lineRend.colorGradient = inaccurateTarget;
@@ -556,9 +572,30 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else
         {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 10);
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
             reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 10);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
+        }
+
+        lineRend.colorGradient = inaccurateTarget;
+    }
+    void InaccurateTargetBlessing()
+    {
+        Physics.queriesHitTriggers = true;
+        beamTrail.gameObject.SetActive(true);
+        RaycastHit hit;
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.blessing_layers))
+        {
+            beamTrail.destination = (hit.point);
+            lineRend.colorGradient = inaccurateTarget;
+            reticle.SetActive(true);
+            reticle.transform.position = hit.point;
+        }
+        else
+        {
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
+            reticle.SetActive(true);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
         }
 
         lineRend.colorGradient = inaccurateTarget;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 /*
  *      !!!!!!!!!   IMPORTANT   !!!!!!!!!
- *      
+ *      Broke up with my 
  *      
  * 
  * */
@@ -38,7 +38,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	ScoreboardUpdater myScoreboard;
 
     PhotonView self_photonview;
-
+    private GameObject rightHand;
+    private bool set = false;
+    VRTK.VRTK_StraightPointerRenderer vrtk_spr;
 
     public float max_health = 100;
   //  [HideInInspector]
@@ -101,6 +103,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (Input.GetKeyDown(KeyCode.F))
         {
             Die();
+        }
+        if (rightHand != null && !set)
+        {
+            set = true;
+            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+            
+        }
+        else if (!set)
+        {
+            rightHand = GameObject.Find("RightController");
         }
     }
 
@@ -178,8 +190,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Immobilizes the player.
     public void EnableMovement(bool isEnabled)
     {
-        if(photonView.isMine)
-        cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
+        if (photonView.isMine)
+        {
+            cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
+            vrtk_spr.enabled = isEnabled;
+        }
     }
 
     // On death, we warp the camera rig of the corresponding player
@@ -216,6 +231,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 }
 
                 cameraRig.GetComponent<PlatformController>().lerp = false;
+                vrtk_spr.enabled = false;
             }
         }
 
@@ -285,6 +301,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;
+                vrtk_spr.enabled = true;
             } else
                 {
                              self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
