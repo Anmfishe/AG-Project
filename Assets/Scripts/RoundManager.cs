@@ -60,7 +60,7 @@ public class RoundManager : MonoBehaviour {
         }
         //else if (inBattlefield)
         //{
-/*          
+          
         timeElapsed += Time.deltaTime;
 
         if (scoreboard == null)
@@ -74,7 +74,7 @@ public class RoundManager : MonoBehaviour {
             EndRound();
         }
             //}
-*/
+
     }
 
     [PunRPC]
@@ -142,7 +142,7 @@ public class RoundManager : MonoBehaviour {
         //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-//            SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
+            SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
@@ -217,7 +217,7 @@ public class RoundManager : MonoBehaviour {
         players.Add(avatar);
         playerRigs.Add(rig);
         //send 
-        SendPlayerToHatRoom(rig);
+//        SendPlayerToHatRoom(rig);
        
         
     }

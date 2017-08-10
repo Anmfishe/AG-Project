@@ -4069,7 +4069,7 @@ GameObject:
   - component: {fileID: 304004317}
   m_Layer: 0
   m_Name: Spawns
-  m_TagString: Untagged
+  m_TagString: HatRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13258,6 +13258,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 1479090071612546, guid: d75c7781af0b3b046bdb1078a58d5c06, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d75c7781af0b3b046bdb1078a58d5c06, type: 2}
   m_IsPrefabParent: 0
@@ -15068,6 +15072,22 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1202047788}
+--- !u!1 &1208117051 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1578276973197056, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 542957078}
+--- !u!114 &1208117052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208117051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6587c8104d7524f4280d0a68dd779f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1210324767
 GameObject:
   m_ObjectHideFlags: 0

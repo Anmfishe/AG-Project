@@ -201,12 +201,12 @@ public class NetworkManager1 : Photon.PunBehaviour
         if (PhotonNetwork.isMasterClient)
         {
             roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-//            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
             //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
         else
         {
-//            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
         }
 /*
         if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
