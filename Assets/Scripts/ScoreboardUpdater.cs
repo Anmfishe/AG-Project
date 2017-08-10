@@ -87,7 +87,7 @@ void Start() {
             ++red_score;
             red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
             red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
-        Debug.Log("RPC RED SCORED: " + red_score);
+        //Debug.Log("RPC RED SCORED: " + red_score);
     }
     [PunRPC]
     public void IncrementBlueScore2()
@@ -98,7 +98,7 @@ void Start() {
         ++blue_score;
             blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
             blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
-        Debug.Log("RPC BLUE SCORED: " + blue_score);
+        //Debug.Log("RPC BLUE SCORED: " + blue_score);
 
     }
     private void SetScores()

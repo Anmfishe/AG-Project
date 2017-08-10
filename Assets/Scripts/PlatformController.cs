@@ -30,6 +30,9 @@ public class PlatformController : MonoBehaviour {
     float startPressPosVert;
     float swipeThresh = 0.03f;
     public float speed = 10f;
+    private GameObject rightHand;
+    private bool set = false;
+    VRTK.VRTK_StraightPointerRenderer vrtk_spr;
 
     // Use this for initialization
     private void Awake()
@@ -70,96 +73,110 @@ public class PlatformController : MonoBehaviour {
         else
         {
         }
+        if (rightHand != null && !set)
+        {
+            set = true;
+            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+
+        }
+        else if (!set)
+        {
+            rightHand = GameObject.Find("RightController");
+        }
+
     }
 
     private void OnEnable()
     {
         canMove = true;
         lerp = true;
+        vrtk_spr.enabled = true;
     }
     // Update is called once per frame
     void Update()
     {
-        target.position = currPlatform.position;
-        Vector3 rightVec = Quaternion.AngleAxis(90, target.up) * target.forward * 100;
-        rightVec.y = 0;
-        Vector3 forwardVec = target.forward * 100;
-        forwardVec.y = 0;
-        Vector3 leftVec = Quaternion.AngleAxis(-90, target.up) * target.forward * 100;
-        leftVec.y = 0;
-        Vector3 backVec = Quaternion.AngleAxis(180, target.up) * target.forward * 100;
-        backVec.y = 0;
-        Debug.DrawRay(target.position, forwardVec, Color.black);
-        Debug.DrawRay(target.position, rightVec, Color.red);
-        Debug.DrawRay(target.position, leftVec, Color.blue);
-        Debug.DrawRay(target.position, backVec, Color.green);
-        if (lerp)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
+        if (usingOrientation) { 
+            target.position = currPlatform.position;
+            Vector3 rightVec = Quaternion.AngleAxis(90, target.up) * target.forward * 100;
+            rightVec.y = 0;
+            Vector3 forwardVec = target.forward * 100;
+            forwardVec.y = 0;
+            Vector3 leftVec = Quaternion.AngleAxis(-90, target.up) * target.forward * 100;
+            leftVec.y = 0;
+            Vector3 backVec = Quaternion.AngleAxis(180, target.up) * target.forward * 100;
+            backVec.y = 0;
+            Debug.DrawRay(target.position, forwardVec, Color.black);
+            Debug.DrawRay(target.position, rightVec, Color.red);
+            Debug.DrawRay(target.position, leftVec, Color.blue);
+            Debug.DrawRay(target.position, backVec, Color.green);
+                if (lerp)
+                {
+                    transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
 
-            trackpadPosHorizontal = Input.GetAxis("TrackpadHoriz2");
-            trackpadPosVertical = Input.GetAxis("TrackpadVert");
-            if (Input.GetKeyDown("joystick button 17"))
-            {
-                startPressPosHoriz = trackpadPosHorizontal;
-                startPressPosVert = trackpadPosVertical;
-            }
-            if (Input.GetKeyUp("joystick button 17") && canMove)
-            {
-                
-                PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
-                
-                    if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
+                    trackpadPosHorizontal = Input.GetAxis("TrackpadHoriz2");
+                    trackpadPosVertical = Input.GetAxis("TrackpadVert");
+                    if (Input.GetKeyDown("joystick button 17"))
                     {
-                        RaycastHit right;
-                        
+                        startPressPosHoriz = trackpadPosHorizontal;
+                        startPressPosVert = trackpadPosVertical;
+                    }
+                    if (Input.GetKeyUp("joystick button 17") && canMove)
+                    {
+
+                        PlatformNeighbors currNeighborhood = currPlatform.GetComponent<PlatformNeighbors>();
+
+                        if (trackpadPosHorizontal > startPressPosHoriz + swipeThresh /*&& currNeighborhood.right != null*/ )
+                        {
+                            RaycastHit right;
+
                             if (Physics.Raycast(target.position, rightVec, out right, 10, mask))
                             {
-                        if (!right.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
-                            MoveRight(right.collider.gameObject);
+                                if (!right.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
+                                    MoveRight(right.collider.gameObject);
                             }
-                        
-                        
-                    }
 
-                    else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
-                    {
-                        RaycastHit left;
 
-                        
+                        }
+
+                        else if (trackpadPosHorizontal < startPressPosHoriz - swipeThresh /*&& currNeighborhood.left != null*/)
+                        {
+                            RaycastHit left;
+
+
                             if (Physics.Raycast(target.position, leftVec, out left, 10, mask))
                             {
-                               if (!left.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
-                            MoveLeft(left.collider.gameObject);
+                                if (!left.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
+                                    MoveLeft(left.collider.gameObject);
                             }
-                        
-                        
-                    }
-                    else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
-                    {
-                        RaycastHit up;
-                        
+
+
+                        }
+                        else if (trackpadPosVertical > startPressPosVert + swipeThresh /*&& currNeighborhood.up != null*/)
+                        {
+                            RaycastHit up;
+
                             if (Physics.Raycast(target.position, forwardVec, out up, 10, mask))
                             {
                                 if (!up.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
-                            MoveUp(up.collider.gameObject);
+                                    MoveUp(up.collider.gameObject);
                             }
-                        
-                        
-                    }
-                    else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
-                    {
-                        RaycastHit down;
-                        
+
+
+                        }
+                        else if (trackpadPosVertical < startPressPosVert - swipeThresh /*&& currNeighborhood.down != null*/)
+                        {
+                            RaycastHit down;
+
                             if (Physics.Raycast(target.position, backVec, out down, 10, mask))
                             {
-                                if(!down.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
-                                MoveDown(down.collider.gameObject);
+                                if (!down.collider.gameObject.GetComponent<PlatformNeighbors>().hasPlayer)
+                                    MoveDown(down.collider.gameObject);
                             }
-                        
-                        
+
+
+                        }
+
                     }
-                
             }
         }
 
