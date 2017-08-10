@@ -60,7 +60,7 @@ public class RoundManager : MonoBehaviour {
         }
         //else if (inBattlefield)
         //{
-          
+/*          
         timeElapsed += Time.deltaTime;
 
         if (scoreboard == null)
@@ -74,6 +74,7 @@ public class RoundManager : MonoBehaviour {
             EndRound();
         }
             //}
+*/
     }
 
     [PunRPC]

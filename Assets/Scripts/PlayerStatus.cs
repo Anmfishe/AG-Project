@@ -304,7 +304,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 vrtk_spr.enabled = true;
             } else
                 {
-                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+//                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
                 }
 
                 deadText.gameObject.SetActive(false);
@@ -427,12 +427,21 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     }
 
     [PunRPC]
-    public void Teleport(Vector3 newLocation)
+    public void Teleport(bool isBlue, Vector3 newLocation)
     {
 //        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);
         if (this.GetComponent<PhotonView>().isMine)
         {
-//            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
+            if (isBlue)
+            {
+                this.transform.parent.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
+            }
+            else
+            {
+                this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
+            }
+
+            //            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
             cameraRig.transform.position = newLocation;
 //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
