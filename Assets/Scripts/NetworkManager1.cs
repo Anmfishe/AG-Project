@@ -7,7 +7,7 @@ using ExitGames.Client.Photon;
 public class NetworkManager1 : Photon.PunBehaviour
 {
 	[Tooltip("The maximum number of players per room")]
-	public byte maxPlayersPerRoom = 4;
+	public byte maxPlayersPerRoom = 6;
 
 	public GameObject hat;
 
@@ -197,7 +197,18 @@ public class NetworkManager1 : Photon.PunBehaviour
         cameraRig.transform.position = spawnLocation;
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
-        
+
+        if (PhotonNetwork.isMasterClient)
+        {
+            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+//            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+            //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+        }
+        else
+        {
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+        }
+/*
         if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
         {
             //avatar.GetComponent<TeamManager>().SetRed();
@@ -210,6 +221,7 @@ public class NetworkManager1 : Photon.PunBehaviour
             avatar.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
             PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
         }
+*/
         //        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
         //avatar.GetComponent<TeamSetter>().SetTeam();
         //Debug.Log(PhotonNetwork.room.PlayerCount);
@@ -231,16 +243,6 @@ public class NetworkManager1 : Photon.PunBehaviour
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
-        if (PhotonNetwork.isMasterClient)
-        {
-            //            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-            //            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
-            //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-        }
-        else
-        {
-            //            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
-        }
     }
 
 	/// <summary>

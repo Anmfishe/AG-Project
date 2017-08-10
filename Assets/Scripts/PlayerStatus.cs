@@ -425,4 +425,15 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             current_health = (float)(stream.ReceiveNext());
         }
     }
+
+    public void Teleport(Vector3 newLocation)
+    {
+//        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+//            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
+            cameraRig.transform.position = newLocation;
+//            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
+        }
+    }
 }

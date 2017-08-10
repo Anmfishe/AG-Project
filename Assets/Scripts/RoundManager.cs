@@ -21,7 +21,7 @@ public class RoundManager : MonoBehaviour {
     private int redMemb;
 
     //
-    public GameObject countdown_display;
+//    public GameObject countdown_display;
     public GameObject restart_display;    
     
     //TODO score ssystem, if you want it to end the round
@@ -75,8 +75,11 @@ public class RoundManager : MonoBehaviour {
             //}
     }
 
+    /*
+    [PunRPC]
     public void Display_Countdown()
     {
+        Debug.Log("should be displaying countdown");
         countdown_display.SetActive(true);
     }
 
@@ -87,6 +90,7 @@ public class RoundManager : MonoBehaviour {
         restart.SetWinner(blueWon);
         restart.SetScore(red_score, blue_score);
     }
+    */
 
     /// <summary>
     /// Call from a player once it is killed
@@ -134,7 +138,7 @@ public class RoundManager : MonoBehaviour {
         //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-            SendPlayerToHatRoom(player);
+//            SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
@@ -151,6 +155,7 @@ public class RoundManager : MonoBehaviour {
 
     void SendPlayerToHatRoom(GameObject player)
     {
+        Debug.Log("SENDPLAYERTOHATROOM CALLED");
         if (hatRoom)
         {
             Vector3 newPos = hatRoom.position;
