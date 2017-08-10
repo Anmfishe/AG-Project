@@ -6,19 +6,19 @@ using ExitGames.Client.Photon;
 
 public class NetworkManager : Photon.PunBehaviour
 {
-	[Tooltip("The maximum number of players per room")]
-	public byte maxPlayersPerRoom = 4;
+    [Tooltip("The maximum number of players per room")]
+    public byte maxPlayersPerRoom = 4;
 
-	public GameObject hat;
+    public GameObject hat;
 
-	private GameObject hat1;
-	private GameObject hat2;
-	private GameObject hat3;
-	private GameObject hat4;
-	private GameObject hat5;
-	private GameObject hat6;
-	public GameObject avatar;
-	public GameObject scoreboard;
+    private GameObject hat1;
+    private GameObject hat2;
+    private GameObject hat3;
+    private GameObject hat4;
+    private GameObject hat5;
+    private GameObject hat6;
+    public GameObject avatar;
+    public GameObject scoreboard;
     private GameObject cameraRig;
     public GameObject CameraRig
     {
@@ -34,57 +34,55 @@ public class NetworkManager : Photon.PunBehaviour
             return avatar;
         }
     }
-	public Transform[] hatSpawns;
-    public GameObject spawnManager;
-    
-	public string roomName;
+    public Transform[] hatSpawns;
 
-	PhotonView photonView;
+    public string roomName;
 
-	bool isConnecting;
-	private int blues = 0;
-	private int reds = 0;
-	private int temp = 0;
-	string _gameVersion = "1";
-	public GameObject roundMan;
+    PhotonView photonView;
+
+    bool isConnecting;
+    private int blues = 0;
+    private int reds = 0;
+    private int temp = 0;
+    string _gameVersion = "1";
+    public GameObject roundMan;
     public GameObject powerupManager;
     private PunTeams pt;
-
-	void Awake()
-	{
-		// #Critical
-		// we don't join the lobby. There is no need to join a lobby to get the list of rooms.
-		PhotonNetwork.autoJoinLobby = false;
-
-		// #Critical
-		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
-		PhotonNetwork.automaticallySyncScene = true;
-
-
-
-		Connect();
-	}
-
-	// Use this for initialization
-	void Start()
-	{
-		photonView = GetComponent<PhotonView>();
-
-		hat1 = hat;
-		hat2 = hat;
-		hat3 = hat;
-		hat4 = hat;
-		hat5 = hat;
-		hat6 = hat;
-	}
-
-	// Update is called once per frame
-	void Update()
+    void Awake()
     {
-   
+        // #Critical
+        // we don't join the lobby. There is no need to join a lobby to get the list of rooms.
+        PhotonNetwork.autoJoinLobby = false;
+
+        // #Critical
+        // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
+        PhotonNetwork.automaticallySyncScene = true;
+
+
+
+        Connect();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+
+        hat1 = hat;
+        hat2 = hat;
+        hat3 = hat;
+        hat4 = hat;
+        hat5 = hat;
+        hat6 = hat;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
         //if (roundMan.==null)
         //{
-           
+
         //    if (roundMan = GameObject.FindGameObjectWithTag("RoundManager"))
         //    {
         //        roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
@@ -93,59 +91,59 @@ public class NetworkManager : Photon.PunBehaviour
     }
 
     public void Connect()
-	{
-		isConnecting = true;
+    {
+        isConnecting = true;
 
-		// we check if we are connected or not, we join if we are , else we initiate the connection to the server.
-		if (PhotonNetwork.connected)
-		{
+        // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
+        if (PhotonNetwork.connected)
+        {
             Debug.Log("Joining Room...");
             // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
             PhotonNetwork.JoinRoom(roomName);
-		}
-		else
-		{
-			Debug.Log("Connecting...");
+        }
+        else
+        {
+            Debug.Log("Connecting...");
 
-			// #Critical, we must first and foremost connect to Photon Online Server.
-			PhotonNetwork.ConnectUsingSettings(_gameVersion);
-		}
-	}
+            // #Critical, we must first and foremost connect to Photon Online Server.
+            PhotonNetwork.ConnectUsingSettings(_gameVersion);
+        }
+    }
 
-	/// <summary>
-	/// Called after the connection to the master is established and authenticated but only when PhotonNetwork.autoJoinLobby is false.
-	/// </summary>
-	public override void OnConnectedToMaster()
-	{
+    /// <summary>
+    /// Called after the connection to the master is established and authenticated but only when PhotonNetwork.autoJoinLobby is false.
+    /// </summary>
+    public override void OnConnectedToMaster()
+    {
 
-		//			Debug.Log("Region:"+PhotonNetwork.networkingPeer.CloudRegion);
+        //			Debug.Log("Region:"+PhotonNetwork.networkingPeer.CloudRegion);
 
-		// we don't want to do anything if we are not attempting to join a room. 
-		// this case where isConnecting is false is typically when you lost or quit the game, when this level is loaded, OnConnectedToMaster will be called, in that case
-		// we don't want to do anything.
-		if (isConnecting)
-		{
-			Debug.Log ("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room.\n Calling: PhotonNetwork.JoinRandomRoom(); Operation will fail if no room found");
+        // we don't want to do anything if we are not attempting to join a room. 
+        // this case where isConnecting is false is typically when you lost or quit the game, when this level is loaded, OnConnectedToMaster will be called, in that case
+        // we don't want to do anything.
+        if (isConnecting)
+        {
+            Debug.Log("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room.\n Calling: PhotonNetwork.JoinRandomRoom(); Operation will fail if no room found");
 
-			// #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnPhotonRandomJoinFailed()
-			PhotonNetwork.JoinRoom (roomName);
-		}
-	}
+            // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnPhotonRandomJoinFailed()
+            PhotonNetwork.JoinRoom(roomName);
+        }
+    }
 
-	/// <summary>
-	/// Called when a JoinRandom() call failed. The parameter provides ErrorCode and message.
-	/// </summary>
-	/// <remarks>
-	/// Most likely all rooms are full or no rooms are available. <br/>
-	/// </remarks>
-	/// <param name="codeAndMsg">codeAndMsg[0] is short ErrorCode. codeAndMsg[1] is string debug msg.</param>
-	public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
-	{
-		Debug.Log("DemoAnimator/Launcher:OnPhotonRandomJoinFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
+    /// <summary>
+    /// Called when a JoinRandom() call failed. The parameter provides ErrorCode and message.
+    /// </summary>
+    /// <remarks>
+    /// Most likely all rooms are full or no rooms are available. <br/>
+    /// </remarks>
+    /// <param name="codeAndMsg">codeAndMsg[0] is short ErrorCode. codeAndMsg[1] is string debug msg.</param>
+    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
+    {
+        Debug.Log("DemoAnimator/Launcher:OnPhotonRandomJoinFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
 
-		// #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
-		PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
-	}
+        // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
+    }
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
         Debug.Log("Join failed, Creating Room...");
@@ -160,44 +158,41 @@ public class NetworkManager : Photon.PunBehaviour
     /// Examples: OnConnectionFail() and OnFailedToConnectToPhoton().
     /// </remarks>
     public override void OnDisconnectedFromPhoton()
-	{
-		Debug.LogError("DemoAnimator/Launcher:Disconnected");
+    {
+        Debug.LogError("DemoAnimator/Launcher:Disconnected");
 
-		isConnecting = false;
+        isConnecting = false;
 
-	}
+    }
 
-	/// <summary>
-	/// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client).
-	/// </summary>
-	/// <remarks>
-	/// This method is commonly used to instantiate player characters.
-	/// If a match has to be started "actively", you can call an [PunRPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
-	///
-	/// When this is called, you can usually already access the existing players in the room via PhotonNetwork.playerList.
-	/// Also, all custom properties should be already available as Room.customProperties. Check Room..PlayerCount to find out if
-	/// enough players are in the room to start playing.
-	/// </remarks>
-	public override void OnJoinedRoom()
-	{
-		Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
+    /// <summary>
+    /// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client).
+    /// </summary>
+    /// <remarks>
+    /// This method is commonly used to instantiate player characters.
+    /// If a match has to be started "actively", you can call an [PunRPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
+    ///
+    /// When this is called, you can usually already access the existing players in the room via PhotonNetwork.playerList.
+    /// Also, all custom properties should be already available as Room.customProperties. Check Room..PlayerCount to find out if
+    /// enough players are in the room to start playing.
+    /// </remarks>
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
-        // hopefully PhotonNetwork.playerList.Length returns the PROPER number of PLAYERS IN ROOM
-        Vector3 spawnLocation = spawnManager.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
-		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
+        avatar = PhotonNetwork.Instantiate(this.avatar.name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
-		if (PhotonNetwork.isMasterClient)
-		{
-			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-			HatSpawn ();
-		}
+        if (PhotonNetwork.isMasterClient)
+        {
+            scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            HatSpawn();
+        }
 
         //	cameraRig = Camera.main.transform.parent.gameObject;
         cameraRig = GameObject.FindWithTag("CameraRig");
-        cameraRig.transform.position = spawnLocation;
-		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+        cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
-        
+
         if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
         {
             //avatar.GetComponent<TeamManager>().SetRed();
@@ -233,73 +228,71 @@ public class NetworkManager : Photon.PunBehaviour
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         if (PhotonNetwork.isMasterClient)
         {
-            //            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-            //            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
+            roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
             //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
         else
-        {
-            //            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
-        }
+            roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
     }
 
-	/// <summary>
-	/// Called when a Photon Player got connected. We need to then load a bigger scene.
-	/// </summary>
-	/// <param name="other">Other.</param>
+    /// <summary>
+    /// Called when a Photon Player got connected. We need to then load a bigger scene.
+    /// </summary>
+    /// <param name="other">Other.</param>
 
-	public override void OnPhotonPlayerConnected(PhotonPlayer other)
-	{
+    public override void OnPhotonPlayerConnected(PhotonPlayer other)
+    {
 
-       
+
         Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
-	}
+    }
 
-	/// <summary>
-	/// Called when a Photon Player got disconnected. We need to load a smaller scene.
-	/// </summary>
-	/// <param name="other">Other.</param>
-	public override void OnPhotonPlayerDisconnected(PhotonPlayer other)
-	{
-		Debug.Log("OnPhotonPlayerDisconnected() " + other.NickName); // seen when other disconnects
-	}
+    /// <summary>
+    /// Called when a Photon Player got disconnected. We need to load a smaller scene.
+    /// </summary>
+    /// <param name="other">Other.</param>
+    public override void OnPhotonPlayerDisconnected(PhotonPlayer other)
+    {
+        Debug.Log("OnPhotonPlayerDisconnected() " + other.NickName); // seen when other disconnects
+    }
 
-	/// <summary>
-	/// Called when the local player left the room. We need to load the launcher scene.
-	/// </summary>
-	public override void OnLeftRoom()
-	{
+    /// <summary>
+    /// Called when the local player left the room. We need to load the launcher scene.
+    /// </summary>
+    public override void OnLeftRoom()
+    {
         roundMan.GetComponent<RoundManager>().Unsubscribe(avatar, cameraRig);
 
     }
 
-	public void SetMat()
-	{
-	}
-
-    
-
-	public void HatSpawn()
-	{
+    public void SetMat()
+    {
+    }
 
 
-		//		hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
-		//		hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
-		//
-		//		hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
-		//		hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
-		//
-		//		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);
-		//		hat3.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
-		//
-		//		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
-		//		hat4.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
-		//
-		//		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
-		//		hat5.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
-		//
-		//		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
-		//		hat6.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);	}
 
-	}
+    public void HatSpawn()
+    {
+
+
+        //		hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
+        //		hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
+        //
+        //		hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
+        //		hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+        //
+        //		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);
+        //		hat3.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
+        //
+        //		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
+        //		hat4.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
+        //
+        //		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
+        //		hat5.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+        //
+        //		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
+        //		hat6.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);	}
+
+    }
 }
