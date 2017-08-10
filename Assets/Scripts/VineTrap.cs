@@ -98,7 +98,7 @@ public class VineTrap : MonoBehaviour {
         if (playerStatus.dead || playerStatus.takeDamage(damagePerCycle))
         {
             //Enable movement before destroy itself.
-            Debug.Log("FuCkMe");
+
             isActivated = false;
             body.gameObject.SetActive(false);
             playerStatus.EnableMovement(true);
@@ -115,7 +115,7 @@ public class VineTrap : MonoBehaviour {
         if (isActivated) return;
 
         Transform other = trigger.transform;
-        print(other.tag);
+
 
         if (other.CompareTag("Player") && first)
         {

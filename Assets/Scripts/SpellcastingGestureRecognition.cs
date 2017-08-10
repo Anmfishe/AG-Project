@@ -176,7 +176,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if (target.result != null)
             {
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
                 {
                     AccurateTarget();
                 }
@@ -444,7 +444,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
 
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                 }
@@ -472,7 +472,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Debug.Log("target for platform steal is null");
                     return;
                 }
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
                     target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);

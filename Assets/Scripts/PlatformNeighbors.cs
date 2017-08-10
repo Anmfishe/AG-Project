@@ -30,12 +30,14 @@ public class PlatformNeighbors : MonoBehaviour {
     private void FixedUpdate()
     {
         //pv.RPC("HasPlayer2", PhotonTargets.All, hasPlayer, gameObject.layer);
+        if(pv.isMine && gameObject.layer != LayerMask.NameToLayer("Default"))
+            layerSave = gameObject.layer;
         
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && pv.isMine)
+        if (other.tag == "Player")
         {
             hasPlayer = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
@@ -45,7 +47,7 @@ public class PlatformNeighbors : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player" && pv.isMine)
+        if (other.tag == "Player")
         {
             //hasPlayer = false;
             //gameObject.layer = layerSave;
