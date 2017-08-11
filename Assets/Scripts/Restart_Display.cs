@@ -57,6 +57,8 @@ public class Restart_Display : MonoBehaviour {
         {
             restart_timer = 0;
             timer_flag = false;
+            GameObject rm = GameObject.Find("Round Manager(Clone)");
+            rm.GetComponent<PhotonView>().RPC("EndRound", PhotonTargets.All, null);
         }
         else
         {

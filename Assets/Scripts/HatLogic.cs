@@ -89,12 +89,12 @@ public class HatLogic : MonoBehaviour {
 				this.transform.rotation = child.transform.rotation;
 				onHead = true;
 
-				//Move player to battlefield.
-				torso.GetComponentInParent<TeamManager> ().Respawn ();
-                
+                //Move player to battlefield.
+//				torso.GetComponentInParent<TeamManager> ().Respawn ();                                                                          // uncomment for 8/8 build
+
                 //GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
-				//gameObject.transform.scale = child.transform.scale;
-			}
+                //gameObject.transform.scale = child.transform.scale;
+            }
 	}
 
 	public void takeOffHat()

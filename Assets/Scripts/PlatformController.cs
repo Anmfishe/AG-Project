@@ -15,7 +15,7 @@ public class PlatformController : MonoBehaviour {
     //public bool useLeft = true;
     [HideInInspector]
     public bool lerp = true;
-    public bool usingOrientation = true;
+    public bool usingOrientation = false;
     bool blue;
     public float CD = 1;
     public AudioClip cd_Sound;

@@ -64,5 +64,8 @@ MonoBehaviour:
   - IncrementRedScore2
   - Reset2
   - HasPlayer2
-  - IncrementBlueScore3
+  - Display_Countdown
+  - Teleport
+  - Display_Restart
+  - EndRound
   DisableAutoOpenWizard: 1

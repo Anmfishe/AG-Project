@@ -297,14 +297,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
-			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
-				this.transform.parent.GetComponent<TeamManager> ().Respawn ();
+            //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
+            if (playerClass != PlayerClass.none)
+            {
+                this.transform.parent.GetComponent<TeamManager> ().Respawn ();
                 cameraRig.GetComponent<PlatformController>().lerp = true;
                 cameraRig.GetComponent<PlatformController>().canMove = true;
                 vrtk_spr.enabled = true;
             } else
                 {
-                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+//                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
                 }
 
                 deadText.gameObject.SetActive(false);
@@ -362,7 +364,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
 		print ("Scoreboard " +  myScoreboard.roundOver);
-
     }
 
 	public void SetClass(PlayerClass pc)
@@ -423,6 +424,27 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             // Sync the avatar's health according to the owner of the avatar.
             current_health = (float)(stream.ReceiveNext());
+        }
+    }
+
+    [PunRPC]
+    public void Teleport(bool isBlue, Vector3 newLocation)
+    {
+//        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            if (isBlue)
+            {
+                this.transform.parent.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
+            }
+            else
+            {
+                this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
+            }
+
+            //            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
+            cameraRig.transform.position = newLocation;
+//            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
     }
 }

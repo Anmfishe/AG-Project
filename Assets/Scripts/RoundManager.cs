@@ -21,8 +21,9 @@ public class RoundManager : MonoBehaviour {
     private int redMemb;
 
     //
+//    public GameObject countdown_display;
+    public GameObject restart_display;
     public GameObject countdown_display;
-    public GameObject restart_display;    
     
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
@@ -35,7 +36,7 @@ public class RoundManager : MonoBehaviour {
 
 
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
-        ChooseHats();
+//        ChooseHats();
     }
 
     // Update is called once per frame
@@ -59,34 +60,44 @@ public class RoundManager : MonoBehaviour {
         }
         //else if (inBattlefield)
         //{
-          
+/*          
         timeElapsed += Time.deltaTime;
 
         if (scoreboard == null)
         {
             scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         }
-        if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
+
+        Debug.Log("red = " + scoreboard.red_score + ", blue = " + scoreboard.blue_score + ", maxScore = " + scoreboard.maxScore);
+
+        if ((isScoreBased && (scoreboard.red_score >= scoreboard.maxScore || scoreboard.blue_score >= scoreboard.maxScore)) || (isTimeBased && timeElapsed >= roundTime))
         {
             print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
             print("ROUND HAS ENDED");
             EndRound();
         }
             //}
+*/
     }
 
+    [PunRPC]
     public void Display_Countdown()
     {
+        Debug.Log("RoundManager.cs : Display_Countdown() : Inside");
         countdown_display.SetActive(true);
     }
 
-    public void Display_Restart(bool blueWon, int red_score, int blue_score)
+    [PunRPC]
+    public void Display_Restart(bool blueWon, int blue_score, int red_score)
     {
+        Debug.Log("RoundManager.cs : Display_Restart() : blueWon = " + blueWon + ", red_score = " + red_score + ", blue_score = " + blue_score);
+
         restart_display.SetActive(true);
         Restart_Display restart = restart_display.GetComponent<Restart_Display>();
         restart.SetWinner(blueWon);
         restart.SetScore(red_score, blue_score);
     }
+
 
     /// <summary>
     /// Call from a player once it is killed
@@ -98,15 +109,15 @@ public class RoundManager : MonoBehaviour {
     }
     void UpdateScoreboard() { }
   
-
-    void EndRound()
+    [PunRPC]
+    public void EndRound()
     {
         scoreboard.ResetScoreboard();
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
-//        FindPlayers ();
-		//foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
-		//	playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
+//        FindPlayers();
+		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
+    	    playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
         ChooseHats();
         //ShowFinalScoreboard();
  //       inBattlefield = false;
@@ -134,7 +145,7 @@ public class RoundManager : MonoBehaviour {
         //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-            SendPlayerToHatRoom(player);
+            SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
@@ -151,6 +162,7 @@ public class RoundManager : MonoBehaviour {
 
     void SendPlayerToHatRoom(GameObject player)
     {
+        Debug.Log("SENDPLAYERTOHATROOM CALLED");
         if (hatRoom)
         {
             Vector3 newPos = hatRoom.position;
@@ -208,7 +220,7 @@ public class RoundManager : MonoBehaviour {
         players.Add(avatar);
         playerRigs.Add(rig);
         //send 
-        SendPlayerToHatRoom(rig);
+//        SendPlayerToHatRoom(rig);
        
         
     }

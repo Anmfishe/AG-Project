@@ -66,9 +66,9 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
         
     
-}
+    }
 // Use this for initialization
-void Start()
+    void Start()
     {
         int j = 0;
         for (int i = 0; i < maximumScore; i++)
@@ -138,7 +138,13 @@ void Start()
 	
 	// Update is called once per frame
 	void Update () {
-       
+        if (PhotonNetwork.isMasterClient && (red_score >= maxScore || blue_score >= maxScore))
+        {
+            GameObject rm = GameObject.Find("Round Manager(Clone)");
+            Debug.Log("ScoreboardUpdater.cs : Update() : blueWon = " + (blue_score > red_score) + ", blue_score = " + blue_score + ", red_score = " + red_score);
+            rm.GetComponent<PhotonView>().RPC("Display_Restart", PhotonTargets.All, blue_score > red_score, blue_score, red_score);
+            ResetScoreboard();
+        }
 	}
     
     public void ResetScoreboard()
@@ -169,6 +175,7 @@ void Start()
             updateUI();
         
     }
+
     [PunRPC]
     public void IncrementRedScore2()
 	{
