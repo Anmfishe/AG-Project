@@ -68,4 +68,6 @@ MonoBehaviour:
   - Teleport
   - Display_Restart
   - EndRound
+  - StartRound
+  - SetClass
   DisableAutoOpenWizard: 1

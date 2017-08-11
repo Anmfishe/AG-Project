@@ -21,7 +21,8 @@ public class HatLogic : MonoBehaviour {
 	public bool releaseHat = false;
 	public float releaseTime = 0f;
 	float timer;
-	float resetTime = .5f;
+    float resetDist = .6f;
+    float resetTime = .5f;
 	Vector3 startPosition;
 	Quaternion startRotation;
 
@@ -79,10 +80,11 @@ public class HatLogic : MonoBehaviour {
 		this.transform.SetParent (hatSpot.transform);
 		this.GetComponent<Rigidbody> ().isKinematic = true;
 		torso = hatSpot.transform.parent.Find ("Torso").gameObject;
-		torso.GetComponent<PlayerStatus> ().SetClass (playerClass);
+		torso.GetComponent<PhotonView> ().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
+        //this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
 
-		// Search for the child hat in player
-		foreach (Transform child in hatSpot.transform)
+        // Search for the child hat in player
+        foreach (Transform child in hatSpot.transform)
 			if (child.CompareTag ("findHat")) 
 			{
 				this.transform.position = child.transform.position;
@@ -142,7 +144,6 @@ public class HatLogic : MonoBehaviour {
 		gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;
 		this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
-
 	}
 
 
@@ -167,7 +168,7 @@ public class HatLogic : MonoBehaviour {
 		wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
 		resettable = !onHead && !wand.inHand;
 
-		if (resettable && timer < 2)
+        if (resettable && timer < resetTime && Vector3.Distance(startPosition, transform.position) > resetDist)
 		{
 			timer += Time.deltaTime;
 		}

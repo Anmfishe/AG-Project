@@ -30,6 +30,20 @@ public class TeleporterManager : MonoBehaviour {
 //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
         if (PhotonNetwork.playerList.Length != 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2 == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
+            foreach(GameObject player in blue.players)
+            {
+                if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
+                {
+                    return false;
+                }
+            }
+            foreach (GameObject player in red.players)
+            {
+                if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -73,8 +87,9 @@ public class TeleporterManager : MonoBehaviour {
             }
         }
 
+
         rm = GameObject.Find("Round Manager(Clone)");
-        rm.GetComponent<PhotonView>().RPC("Display_Countdown", PhotonTargets.All, null);
+        rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.All, null);
     }
 
 }

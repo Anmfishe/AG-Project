@@ -360,12 +360,13 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             bookLogic.UpdateUI();
         }
-        cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+        //cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
 		print ("Scoreboard " +  myScoreboard.roundOver);
     }
 
+    [PunRPC]
 	public void SetClass(PlayerClass pc)
 	{
 		playerClass = pc;
