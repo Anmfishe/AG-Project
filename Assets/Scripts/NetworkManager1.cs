@@ -208,27 +208,27 @@ public class NetworkManager1 : Photon.PunBehaviour
             roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
             powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
-
-            scoreboard.GetComponent<ScoreboardUpdater>().maximumScore = roundMan.GetComponent<RoundManager>().maxScore;
         }
         else
         {
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
         }
-/*
-        if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
-        {
-            //avatar.GetComponent<TeamManager>().SetRed();
-            avatar.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
-            PhotonNetwork.player.SetTeam(PunTeams.Team.red);
-        }
-        else
-        {
-            //avatar.GetComponent<TeamManager>().SetBlue();
-            avatar.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
-            PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
-        }
-*/
+
+        scoreboard.GetComponent<ScoreboardUpdater>().maximumScore = roundMan.GetComponent<RoundManager>().maxScore;
+        /*
+                if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
+                {
+                    //avatar.GetComponent<TeamManager>().SetRed();
+                    avatar.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
+                    PhotonNetwork.player.SetTeam(PunTeams.Team.red);
+                }
+                else
+                {
+                    //avatar.GetComponent<TeamManager>().SetBlue();
+                    avatar.GetComponent<PhotonView>().RPC("SetBlue", PhotonTargets.AllBuffered, null);
+                    PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
+                }
+        */
         //        avatar.GetComponent<TeamManager>().SetAvatar(avatar.transform);
         //avatar.GetComponent<TeamSetter>().SetTeam();
         //Debug.Log(PhotonNetwork.room.PlayerCount);

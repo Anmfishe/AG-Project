@@ -66,7 +66,7 @@ public class BookLogic : MonoBehaviour
 
 			rend.material = pages [pages.Length-1];
             currentGlyph = pages[pages.Length - 1].name;
-            guide.UpdateGlyphTexture(currentGlyph);
+            if(guide != null) guide.UpdateGlyphTexture(currentGlyph);
             animator = GetComponent<Animator>();
         }
         //page.Set
@@ -347,6 +347,10 @@ public class BookLogic : MonoBehaviour
         //		{
         //			rend.material = pages[1];
         //		}
+        if (guide == null)
+        {
+            return;
+        }
         guide.UpdateGlyphTexture(currentGlyph);
     }
 

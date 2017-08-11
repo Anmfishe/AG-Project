@@ -30,10 +30,12 @@ public class TeleporterManager : MonoBehaviour {
 //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
         if (PhotonNetwork.playerList.Length != 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2 == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
-            foreach(GameObject player in blue.players)
+            Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
+            foreach (GameObject player in blue.players)
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
+                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     return false;
                 }
             }
@@ -41,6 +43,7 @@ public class TeleporterManager : MonoBehaviour {
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
+                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     return false;
                 }
             }

@@ -18,13 +18,19 @@ public class TeleporterPlatform : MonoBehaviour {
 		
 	}
 
+    private void OnEnable()
+    {
+        numPlayersOnPlatform = 0;
+        players.Clear();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 //        Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : Collided with " + other.name + " with tag " + other.tag);
         if (other.tag == "Player")
         {
             numPlayersOnPlatform++;
-            //            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (!players.Contains(other.gameObject))
             {
                 players.Add(other.gameObject);
@@ -38,7 +44,7 @@ public class TeleporterPlatform : MonoBehaviour {
         if (other.tag == "Player")
         {
             numPlayersOnPlatform--;
-            //            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
             {
                 players.Remove(other.gameObject);
