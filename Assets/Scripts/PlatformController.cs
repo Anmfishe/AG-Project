@@ -95,7 +95,7 @@ public class PlatformController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (usingOrientation) { 
+        if (usingOrientation && currPlatform != null) { 
             target.position = currPlatform.position;
             Vector3 rightVec = Quaternion.AngleAxis(90, target.up) * target.forward * 100;
             rightVec.y = 0;
