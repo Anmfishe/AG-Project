@@ -182,6 +182,7 @@ public class RoundManager : MonoBehaviour {
         {//TODO
             playerRCP.GetComponent<PlayerStatus>().pregame = false;
         }
+        scoreboard.roundOver = false;
 
     }
 
