@@ -1680,7 +1680,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  fireball: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae, type: 2}
+  fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
   fireballGesture: Fire
   fireballGradient:
     serializedVersion: 2
@@ -1712,7 +1712,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
   fireballCooldown: 2
-  shield: {fileID: 1697145570094962, guid: d7b43ec846036514a8e537b72d47763a, type: 2}
+  shield: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae, type: 2}
   shieldGesture: Shield
   shieldGradient:
     serializedVersion: 2
