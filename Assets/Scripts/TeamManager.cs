@@ -122,11 +122,21 @@ public class TeamManager : MonoBehaviour {
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         if (blue)
         {
-            cameraRig.GetComponent<PlatformController>().SetPlatform(blueSquares[Random.Range(0, blueSquares.Length - 1)].transform);
+            Transform randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
+            while(randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            {
+                randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
+            }
+            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform);
         }
         else
         {
-            cameraRig.GetComponent<PlatformController>().SetPlatform(redSquares[Random.Range(0, redSquares.Length - 1)].transform);
+            Transform randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;
+            while (randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            {
+                randPlatform = blueSquares[Random.Range(0, redSquares.Length - 1)].transform;
+            }
+            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform);
         }
     }
 
