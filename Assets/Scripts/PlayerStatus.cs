@@ -30,7 +30,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Invulnerability frames
     private float startTime;
     float invulnerableFrames = 0.5f;
-    [HideInInspector]
     public bool dead = false;
     private float deathTime = 0f;
     public float respawnLength = 2f;

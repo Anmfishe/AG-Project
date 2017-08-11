@@ -138,10 +138,11 @@ public class RoundManager : MonoBehaviour {
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
         //        FindPlayers();
+
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         {//TODO
-            playerRCP.GetComponentInChildren<PlayerStatus>().RestartRound();
-            playerRCP.GetComponentInChildren<PlayerStatus>().dead = true;
+            playerRCP.GetComponent<PlayerStatus>().RestartRound();
+            playerRCP.GetComponent<PlayerStatus>().dead = true;
         }
         foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
         {
@@ -179,7 +180,7 @@ public class RoundManager : MonoBehaviour {
         Display_Countdown();
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         {//TODO
-            playerRCP.GetComponentInChildren<PlayerStatus>().dead = false;
+            playerRCP.GetComponent<PlayerStatus>().dead = false;
         }
 
     }
@@ -228,8 +229,7 @@ public class RoundManager : MonoBehaviour {
         }
         print("hat time");
         practiceRoom.SetActive(true);
-        if (PhotonNetwork.isMasterClient)
-            PhotonNetwork.Destroy(arena2.GetComponent<PhotonView>());
+        
 
     }
  //   [PunRPC]
