@@ -31,6 +31,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float startTime;
     float invulnerableFrames = 0.5f;
     public bool dead = false;
+    public bool pregame = true;
     private float deathTime = 0f;
     public float respawnLength = 2f;
 
@@ -142,7 +143,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 //            print("OMG, took damage!");
         }
 
-        if (dead == false)
+        if (dead == false && pregame == false)
         {
             current_health -= damage;
             psm.PlayerHurt();

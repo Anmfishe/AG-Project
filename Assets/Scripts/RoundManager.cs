@@ -142,7 +142,7 @@ public class RoundManager : MonoBehaviour {
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         {//TODO
             playerRCP.GetComponent<PlayerStatus>().RestartRound();
-            playerRCP.GetComponent<PlayerStatus>().dead = true;
+            playerRCP.GetComponent<PlayerStatus>().pregame = true;
         }
         foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
         {
@@ -180,7 +180,7 @@ public class RoundManager : MonoBehaviour {
         Display_Countdown();
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         {//TODO
-            playerRCP.GetComponent<PlayerStatus>().dead = false;
+            playerRCP.GetComponent<PlayerStatus>().pregame = false;
         }
 
     }
