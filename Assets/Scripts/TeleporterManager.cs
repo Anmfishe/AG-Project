@@ -63,7 +63,7 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, true, bluePlatforms[i].transform.position);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, true, Vector3.zero);
                 i++;
             }
             else
@@ -79,7 +79,7 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.All, false, redPlatforms[i].transform.position);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.All, false, Vector3.zero);
                 i++;
             }
             else

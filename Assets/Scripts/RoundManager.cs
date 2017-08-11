@@ -26,6 +26,7 @@ public class RoundManager : MonoBehaviour {
 //    public GameObject countdown_display;
     public GameObject restart_display;
     public GameObject countdown_display;
+    private GameObject arena2;
     
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
@@ -44,11 +45,12 @@ public class RoundManager : MonoBehaviour {
             practiceRoom = GameObject.FindGameObjectWithTag("Pregame");
             practiceRoom.SetActive(true);
         }
-        if (GameObject.FindGameObjectWithTag("Arena"))
-        {
-            arena = GameObject.FindGameObjectWithTag("Arena");
-            arena.SetActive(false);
-        }
+        
+        //if (GameObject.FindGameObjectWithTag("Arena"))
+        //{
+        //    arena = GameObject.FindGameObjectWithTag("Arena");
+        //    arena.SetActive(false);
+        //}
 
 
         //        ChooseHats();
@@ -128,7 +130,7 @@ public class RoundManager : MonoBehaviour {
     public void EndRound()
     {
         practiceRoom.SetActive(true);
-        arena.SetActive(false);
+        arena2.SetActive(false);
 
         Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 
@@ -141,6 +143,10 @@ public class RoundManager : MonoBehaviour {
             playerRCP.GetComponentInChildren<PlayerStatus>().RestartRound();
             playerRCP.GetComponentInChildren<PlayerStatus>().dead = true;
         }
+        foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
+        {
+            PhotonNetwork.Destroy(curse.GetPhotonView());
+        }
         ChooseHats();
         //ShowFinalScoreboard();
  //       inBattlefield = false;
@@ -149,6 +155,7 @@ public class RoundManager : MonoBehaviour {
 		timeElapsed = 0;
         
         print ("END OF ENDROUND");
+        PhotonNetwork.Destroy(arena2.gameObject);
     }
 
     [PunRPC]
@@ -164,7 +171,7 @@ public class RoundManager : MonoBehaviour {
         if (practiceRoom != null)
         {
             practiceRoom.SetActive(false);
-            arena.SetActive(true);
+            arena2 = PhotonNetwork.Instantiate(arena.name, Vector3.zero, Quaternion.identity, 0);
         }
         print("starting round");
         Display_Countdown();
@@ -219,7 +226,7 @@ public class RoundManager : MonoBehaviour {
         }
         print("hat time");
         practiceRoom.SetActive(true);
-        arena.SetActive(false);
+        PhotonNetwork.Destroy(arena2.GetComponent<PhotonView>());
 
     }
  //   [PunRPC]

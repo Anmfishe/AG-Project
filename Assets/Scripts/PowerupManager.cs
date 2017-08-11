@@ -73,12 +73,20 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 
     private void FixedUpdate()
     {
-        if(redPlatforms.Length != GameObject.FindGameObjectsWithTag("RedPlatform").Length)
+        if(redPlatforms.Length != GameObject.FindGameObjectsWithTag("RedPlatform").Length && PhotonNetwork.isMasterClient)
         {
             redPlatforms = GameObject.FindGameObjectsWithTag("RedPlatform");
             bluePlatforms = GameObject.FindGameObjectsWithTag("BluePlatform");
             redPowerups = new bool[redPlatforms.Length];
             bluePowerups = new bool[bluePlatforms.Length];
+            if(redPlatforms.Length == 0)
+            {
+                foreach(GameObject pu in GameObject.FindGameObjectsWithTag("Powerup"))
+                {
+                    PhotonNetwork.Destroy(pu.GetPhotonView());
+                    numPowerups = 0;
+                }
+            }
         }
     }
 
@@ -97,6 +105,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                     randomPlatform = Random.Range(0, redPlatforms.Length);
                     while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
                     {
+                        
                         randomPlatform = Random.Range(0, redPlatforms.Length);
                     }
                     PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(false, randomPlatform);
@@ -109,6 +118,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                     randomPlatform = Random.Range(0, bluePlatforms.Length);
                     while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
                     {
+                        
                         randomPlatform = Random.Range(0, bluePlatforms.Length);
                     }
                     PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(true, randomPlatform);
@@ -125,7 +135,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     {
         for (int i = 0; i < platforms.Length; i++)
         {
-            if (! platforms[i].GetComponent<PlatformNeighbors>().hasPlayer && ! powerups[i])
+            if (platforms.Length != 0 && !platforms[i].GetComponent<PlatformNeighbors>().hasPlayer && ! powerups[i])
             {
                 return true;
             }
