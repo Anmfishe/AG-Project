@@ -11,6 +11,7 @@ namespace Edwon.VR.Gesture
         int lengthOfLineRenderer = 50;
         List<Vector3> displayLine;
         LineRenderer currentRenderer;
+        Color defaultStartColor, defaultEndColor;
         Color initialColor, initialTransColor, finalColor, finalTransColor;
         Material material;
         public bool listening = false;
@@ -48,10 +49,28 @@ namespace Edwon.VR.Gesture
             }
 
         }
+        public void SetDefaultColor(Color start, Color end, Material material0 = null)
+        {
+            defaultStartColor = start;
+            defaultEndColor = end;
+            material = material0;
+
+            UpdateRenderer(defaultStartColor, defaultEndColor, material);
+        }
+        public void ResetRenderer()
+        {
+            UpdateRenderer(defaultStartColor, defaultEndColor, material);
+        }    
         public void UpdateRenderer(Color color1, Color color2, Material material0 = null)
         {
             initialColor = color1;
+            initialTransColor = initialColor;
+            initialTransColor.a = 0;
+
             finalColor = color2;
+            finalTransColor = finalColor;
+            finalTransColor.a = 0;
+
             material = material0;
 
             if (currentRenderer != null)
