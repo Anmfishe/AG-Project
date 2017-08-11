@@ -155,7 +155,8 @@ public class RoundManager : MonoBehaviour {
 		timeElapsed = 0;
         
         print ("END OF ENDROUND");
-        PhotonNetwork.Destroy(arena2.gameObject);
+        if (PhotonNetwork.isMasterClient)
+            PhotonNetwork.Destroy(arena2.gameObject);
     }
 
     [PunRPC]
@@ -171,6 +172,7 @@ public class RoundManager : MonoBehaviour {
         if (practiceRoom != null)
         {
             practiceRoom.SetActive(false);
+            if(PhotonNetwork.isMasterClient)
             arena2 = PhotonNetwork.Instantiate(arena.name, Vector3.zero, Quaternion.identity, 0);
         }
         print("starting round");
@@ -226,7 +228,8 @@ public class RoundManager : MonoBehaviour {
         }
         print("hat time");
         practiceRoom.SetActive(true);
-        PhotonNetwork.Destroy(arena2.GetComponent<PhotonView>());
+        if (PhotonNetwork.isMasterClient)
+            PhotonNetwork.Destroy(arena2.GetComponent<PhotonView>());
 
     }
  //   [PunRPC]
