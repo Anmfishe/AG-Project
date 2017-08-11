@@ -47,7 +47,7 @@ public class TeamManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(rightHand != null && photonView.isMine && !set)
+        if(rightHand != null && !set && photonView.isMine)
         {
             set = true;
             vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
@@ -69,8 +69,7 @@ public class TeamManager : MonoBehaviour {
     [PunRPC]
     public void SetBlue()
     {
-        if (photonView.isMine)
-        {
+       
             Debug.Log("Set Blue + " + Time.time);
 
             blue = true;
@@ -83,20 +82,19 @@ public class TeamManager : MonoBehaviour {
                 ts.SetBlue();
             }
             rightHand = GameObject.Find("RightController");
-            if (rightHand)
+            if (rightHand && photonView.isMine)
             {
                 set = true;
                 vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
                 vrtk_spr.blue = true;
             }
-        }
+        
     }
 
     [PunRPC]
     public void SetRed()
     {
-        if (photonView.isMine)
-        {
+        
             Debug.Log("Set Red + " + Time.time);
 
             blue = false;
@@ -108,13 +106,13 @@ public class TeamManager : MonoBehaviour {
                 ts.SetRed();
             }
             rightHand = GameObject.Find("RightController");
-            if (rightHand)
+            if (rightHand && photonView.isMine)
             {
                 set = true;
                 vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
                 vrtk_spr.blue = false;
             }
-        }
+        
     }
 
     public void Respawn()
