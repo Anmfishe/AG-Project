@@ -16239,22 +16239,22 @@ Prefab:
       propertyPath: m_Name
       value: Scoreboard (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114208154239249688, guid: f9018bea93465d042babf09b062218ae,
+    - target: {fileID: 114741513649148660, guid: f9018bea93465d042babf09b062218ae,
         type: 2}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114208154239249688, guid: f9018bea93465d042babf09b062218ae,
+    - target: {fileID: 114741513649148660, guid: f9018bea93465d042babf09b062218ae,
         type: 2}
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114741513649148660, guid: f9018bea93465d042babf09b062218ae,
+    - target: {fileID: 114208154239249688, guid: f9018bea93465d042babf09b062218ae,
         type: 2}
       propertyPath: viewIdField
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114741513649148660, guid: f9018bea93465d042babf09b062218ae,
+    - target: {fileID: 114208154239249688, guid: f9018bea93465d042babf09b062218ae,
         type: 2}
       propertyPath: instantiationId
       value: 2
@@ -16269,47 +16269,9 @@ Prefab:
       propertyPath: instantiationId
       value: 41
       objectReference: {fileID: 0}
-    - target: {fileID: 114860418825796782, guid: f9018bea93465d042babf09b062218ae,
-        type: 2}
-      propertyPath: scoreboardRed
-      value: 
-      objectReference: {fileID: 1353869399}
-    - target: {fileID: 114860418825796782, guid: f9018bea93465d042babf09b062218ae,
-        type: 2}
-      propertyPath: scoreboardBlue
-      value: 
-      objectReference: {fileID: 1353869400}
-    - target: {fileID: 114860418825796782, guid: f9018bea93465d042babf09b062218ae,
-        type: 2}
-      propertyPath: redHeart
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a2d9b507a1efcc429d2b6fc8d84d7dd,
-        type: 3}
-    - target: {fileID: 114860418825796782, guid: f9018bea93465d042babf09b062218ae,
-        type: 2}
-      propertyPath: blueHeart
-      value: 
-      objectReference: {fileID: 21300000, guid: 618dcb2a2a7b8bc4889257a50ae16d78,
-        type: 3}
-    - target: {fileID: 114860418825796782, guid: f9018bea93465d042babf09b062218ae,
-        type: 2}
-      propertyPath: dead
-      value: 
-      objectReference: {fileID: 21300000, guid: 81c2588b7c6641b4e8e7df358fc30890,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9018bea93465d042babf09b062218ae, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1353869399 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1206794734826408, guid: f9018bea93465d042babf09b062218ae,
-    type: 2}
-  m_PrefabInternal: {fileID: 1353869398}
---- !u!1 &1353869400 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1421275613534120, guid: f9018bea93465d042babf09b062218ae,
-    type: 2}
-  m_PrefabInternal: {fileID: 1353869398}
 --- !u!1 &1363558430
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class HotbarElement : MonoBehaviour
 
     void UpdateGlyph()
     {
-        print("IS cooling down");
+        //print("IS cooling down");
         if (glyph == Spell.blessing)
         {
             if (spellcast.blessingCD > 0)
