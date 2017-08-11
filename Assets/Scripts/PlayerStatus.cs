@@ -170,7 +170,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             return;
         }
 
-        if (dead == false)
+        if (dead == false && pregame == false)
         {
             startTime = Time.time;
             current_health -= damage;
