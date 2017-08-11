@@ -417,7 +417,7 @@ MonoBehaviour:
   explosion: {fileID: 100000, guid: cb91ec3b3a515f04182f711604fc111b, type: 2}
   targettable:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 20480
   wand: {fileID: 0}
   duration: 12
   direction: {x: 0, y: 0, z: 0}

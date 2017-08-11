@@ -58,10 +58,12 @@ public class PlatformNeighbors : MonoBehaviour {
     {
 
     }
+
     public void HasPlayer(bool b)
     {
         pv.RPC("HasPlayer2", PhotonTargets.All, b);
     }
+
     [PunRPC]
     void HasPlayer2(bool b)
     {

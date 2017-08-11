@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 23550226}
   - component: {fileID: 23550225}
   - component: {fileID: 23550224}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (10)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -933,6 +933,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -952,7 +956,7 @@ GameObject:
   - component: {fileID: 91425085}
   - component: {fileID: 91425084}
   - component: {fileID: 91425083}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (9)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -3857,6 +3861,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -4966,6 +4974,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -7379,7 +7391,7 @@ GameObject:
   - component: {fileID: 615490719}
   - component: {fileID: 615490718}
   - component: {fileID: 615490717}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (12)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -7750,6 +7762,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -8063,7 +8079,7 @@ GameObject:
   - component: {fileID: 694415664}
   - component: {fileID: 694415663}
   - component: {fileID: 694415662}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (4)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -8855,6 +8871,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -10274,7 +10294,7 @@ GameObject:
   - component: {fileID: 878057695}
   - component: {fileID: 878057694}
   - component: {fileID: 878057693}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (13)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -10666,7 +10686,7 @@ GameObject:
   - component: {fileID: 906328016}
   - component: {fileID: 906328015}
   - component: {fileID: 906328014}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (2)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -11117,13 +11137,13 @@ MonoBehaviour:
   customRaycast: {fileID: 0}
   layersToIgnore:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 4101
   bluelayersToIgnore:
     serializedVersion: 2
-    m_Bits: 2565
+    m_Bits: 6661
   redlayersToIgnore:
     serializedVersion: 2
-    m_Bits: 2309
+    m_Bits: 6405
   pointerOriginSmoothingSettings:
     smoothsPosition: 0
     maxAllowedPerFrameDistanceDifference: 0.003
@@ -11911,7 +11931,7 @@ GameObject:
   - component: {fileID: 984137362}
   - component: {fileID: 984137361}
   - component: {fileID: 984137360}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13175,6 +13195,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -15060,6 +15084,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -17433,7 +17461,7 @@ GameObject:
   - component: {fileID: 1511531076}
   - component: {fileID: 1511531075}
   - component: {fileID: 1511531074}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (1)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -18153,7 +18181,7 @@ GameObject:
   - component: {fileID: 1545727604}
   - component: {fileID: 1545727603}
   - component: {fileID: 1545727602}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (8)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -18267,7 +18295,7 @@ GameObject:
   - component: {fileID: 1557248215}
   - component: {fileID: 1557248214}
   - component: {fileID: 1557248213}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (7)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -19656,7 +19684,7 @@ GameObject:
   - component: {fileID: 1729953166}
   - component: {fileID: 1729953165}
   - component: {fileID: 1729953164}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Red_platform1 (11)
   m_TagString: RedPlatform
   m_Icon: {fileID: 0}
@@ -19738,7 +19766,7 @@ GameObject:
   - component: {fileID: 1732588914}
   - component: {fileID: 1732588913}
   - component: {fileID: 1732588912}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (6)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -20311,6 +20339,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -23647,7 +23679,7 @@ GameObject:
   - component: {fileID: 1824801474}
   - component: {fileID: 1824801473}
   - component: {fileID: 1824801472}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -25301,7 +25333,7 @@ GameObject:
   - component: {fileID: 2024129527}
   - component: {fileID: 2024129526}
   - component: {fileID: 2024129525}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (3)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -25432,6 +25464,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -25552,7 +25588,7 @@ GameObject:
   - component: {fileID: 2053292674}
   - component: {fileID: 2053292673}
   - component: {fileID: 2053292672}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blue_platform1 (5)
   m_TagString: BluePlatform
   m_Icon: {fileID: 0}
@@ -25793,6 +25829,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2b929e90bd7e4a8c65afd5326f45a, type: 2}
+    - target: {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 2}
   m_IsPrefabParent: 0
@@ -26052,7 +26092,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 38
   instantiationId: 38
