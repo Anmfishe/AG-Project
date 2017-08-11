@@ -33,11 +33,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Example Scenes/033_CameraRig_TeleportingInNavMesh 1.unity
     guid: 5f085878957b65942a46024733ac0187
   - enabled: 0
-    path: 
+    path: Assets/Scenes/Main.unity
     guid: 00d75ee5fb244bd4894709dd7ce9708d
   - enabled: 0
     path: Assets/PUNVoice/DemoVoice/DemoVoice-Scene.unity
     guid: 833e8409304dace449e9c5cf686420d7
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
+  - enabled: 0
+    path: 
     guid: d4214146593c1374087dfccfb64c40ec
