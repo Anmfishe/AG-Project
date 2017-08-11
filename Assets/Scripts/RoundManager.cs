@@ -173,7 +173,7 @@ public class RoundManager : MonoBehaviour {
         {
             practiceRoom.SetActive(false);
             if(PhotonNetwork.isMasterClient)
-            arena2 = PhotonNetwork.Instantiate(arena.name, Vector3.zero, Quaternion.identity, 0);
+            arena2 = PhotonNetwork.InstantiateSceneObject(arena.name, Vector3.zero, Quaternion.identity, 0, null);
         }
         print("starting round");
         Display_Countdown();
