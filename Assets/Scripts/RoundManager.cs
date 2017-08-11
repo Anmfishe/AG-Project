@@ -130,7 +130,7 @@ public class RoundManager : MonoBehaviour {
     public void EndRound()
     {
         practiceRoom.SetActive(true);
-        arena2.SetActive(false);
+        //arena2.SetActive(false);
 
         Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 
