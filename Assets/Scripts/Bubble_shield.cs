@@ -7,7 +7,7 @@ public class Bubble_shield : MonoBehaviour
 
     public float shieldDuration = 5f;
     private float shieldTimer;
-    Transform book;
+    Transform torso;
     bool blue;
 
     // Use this for initialization
@@ -21,13 +21,13 @@ public class Bubble_shield : MonoBehaviour
     {
         if (this.GetComponent<PhotonView>().isMine)
         {
-            if (book == null)
+            if (torso == null)
             {
                 return;
             }
 
-            this.transform.position = book.position + book.forward;
-            this.transform.rotation = book.rotation;
+            this.transform.position = torso.position;
+            this.transform.rotation = torso.rotation;
         }
 
         shieldTimer -= Time.deltaTime;
@@ -36,9 +36,9 @@ public class Bubble_shield : MonoBehaviour
     }
    
 
-    public void SetBook(Transform book_)
+    public void SetBook(Transform torso_)
     {
-        book = book_;
+        torso = torso_;
     }
 
     public void SetBlue(bool blue_)

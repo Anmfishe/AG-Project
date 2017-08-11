@@ -1746,7 +1746,7 @@ MonoBehaviour:
   shieldCooldown: 3
   Bubble_shield: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae,
     type: 2}
-  Bubble_shieldGesture: Bubble_shield
+  Bubble_shieldGesture: 
   Bubble_shieldGradient:
     serializedVersion: 2
     key0: {r: 0.32352942, g: 1, b: 0.972008, a: 1}
@@ -1808,7 +1808,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 3
-  healCooldown: 1
+  healCooldown: 1.29
   vines: {fileID: 1511311979979240, guid: 992e82dbca697d94da17b47809f5ebfa, type: 2}
   vinesGesture: Spring
   vinesGradient:
