@@ -1988,7 +1988,7 @@ MonoBehaviour:
     m_Bits: 4865
   blessing_layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 12289
 --- !u!114 &207178192
 MonoBehaviour:
   m_ObjectHideFlags: 0
