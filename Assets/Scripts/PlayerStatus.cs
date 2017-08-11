@@ -315,6 +315,37 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
+    public void RemoveHat()
+    {
+        Transform head = this.transform.parent.Find("Head");
+
+        if (head == null)
+        {
+            Debug.Log("PlayerStatus.cs : RemoveHat() : head is null");
+            return;
+        }
+
+        Transform hat = null;
+        foreach (Transform child in head)
+        {
+            if (child.tag == "Grabbable")
+            {
+                hat = child;
+                break;
+            }
+        }
+
+        if (hat == null)
+        {
+            return;
+        }
+
+        hat.SetParent(null);
+        hat.GetComponent<HatLogic>().resetHat();
+        hat.GetComponent<HatLogic>().onHead = false;
+        hat.GetComponent<HatLogic>().resettable = true;
+    }
+
     [PunRPC]
     public void RestartRound()
     {
