@@ -55,7 +55,8 @@ public class TeleporterManager : MonoBehaviour {
 //        Debug.Log("TeleporterManager.cs : TeleportPlayersToArena() : Inside");
         PlayerStatus ps;
         int i = 0;
-
+        rm = GameObject.Find("Round Manager(Clone)");
+        rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.All, null);
         Debug.Log("blue : total = " + blue.players.Count);
         foreach (GameObject player in blue.players)
         {
@@ -88,8 +89,8 @@ public class TeleporterManager : MonoBehaviour {
         }
 
 
-        rm = GameObject.Find("Round Manager(Clone)");
-        rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.All, null);
+        
+        
     }
 
 }

@@ -70,9 +70,20 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         //    Debug.Log("PowerupManager.cs : Start() : Could not find \"Red_platform1 (7)\"");
         //}
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void FixedUpdate()
+    {
+        if(redPlatforms.Length != GameObject.FindGameObjectsWithTag("RedPlatform").Length)
+        {
+            redPlatforms = GameObject.FindGameObjectsWithTag("RedPlatform");
+            bluePlatforms = GameObject.FindGameObjectsWithTag("BluePlatform");
+            redPowerups = new bool[redPlatforms.Length];
+            bluePowerups = new bool[bluePlatforms.Length];
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (PhotonNetwork.isMasterClient)
         {
             

@@ -90,6 +90,7 @@ public class PlatformController : MonoBehaviour {
     {
         canMove = true;
         lerp = true;
+        if(vrtk_spr != null)
         vrtk_spr.enabled = true;
     }
     // Update is called once per frame

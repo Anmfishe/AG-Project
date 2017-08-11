@@ -444,8 +444,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
 
             //            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
-            cameraRig.transform.position = newLocation;
-//            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
+            this.transform.parent.GetComponent<TeamManager>().Respawn();
+            //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
     }
 }
