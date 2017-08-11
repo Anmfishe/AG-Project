@@ -12,6 +12,7 @@ public class HatLogic : MonoBehaviour {
 	public Material supportMat;
 
 	public PlayerClass playerClass = PlayerClass.none;
+    public GameObject initparent;
 	private GameObject torso;
 	public bool onHead = false;
 	public bool touchingHead = false;

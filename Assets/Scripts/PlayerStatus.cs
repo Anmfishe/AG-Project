@@ -340,7 +340,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             return;
         }
 
-        hat.SetParent(null);
+        hat.SetParent(hat.GetComponent<HatLogic>().initparent.transform);
         hat.GetComponent<HatLogic>().resetHat();
         hat.GetComponent<HatLogic>().onHead = false;
         hat.GetComponent<HatLogic>().resettable = true;
@@ -351,7 +351,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     {
         //        self_photonview.RPC("ResetScoreboard", PhotonTargets.All, null);
         //ResetScoreboard();
-
+/*
         if (hats == null)
         {
             hats = GameObject.FindGameObjectsWithTag("Grabbable");
@@ -367,12 +367,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 hat.GetComponent<HatLogic>().resettable = true;
             }
         }
-
+*/
         players = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject player in players)
         {
-            player.transform.parent.GetComponentInChildren<PlayerStatus>().playerClass = PlayerClass.none;
+            PlayerStatus ps = player.transform.parent.GetComponentInChildren<PlayerStatus>();
+            ps.playerClass = PlayerClass.none;
+            ps.RemoveHat();
         }
         playerClass = PlayerClass.none;
 		cameraRig = Camera.main.transform.parent.gameObject;

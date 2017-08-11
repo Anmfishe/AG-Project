@@ -28,7 +28,7 @@ public class TeleporterManager : MonoBehaviour {
     bool IsReady()
     {
 //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
-        if (PhotonNetwork.playerList.Length != 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2 == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
+        if (PhotonNetwork.playerList.Length > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2 == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
             Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
             foreach (GameObject player in blue.players)
