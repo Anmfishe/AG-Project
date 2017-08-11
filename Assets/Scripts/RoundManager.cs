@@ -20,6 +20,8 @@ public class RoundManager : MonoBehaviour {
     private int blueMemb;
     private int redMemb;
 
+    public GameObject practiceRoom;
+    public GameObject arena;
     //
 //    public GameObject countdown_display;
     public GameObject restart_display;
@@ -36,7 +38,20 @@ public class RoundManager : MonoBehaviour {
 
 
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
-//        ChooseHats();
+
+        if (GameObject.FindGameObjectWithTag("Pregame"))
+        {
+            practiceRoom = GameObject.FindGameObjectWithTag("Pregame");
+            practiceRoom.SetActive(true);
+        }
+        if (GameObject.FindGameObjectWithTag("Arena"))
+        {
+            arena = GameObject.FindGameObjectWithTag("Arena");
+            arena.SetActive(false);
+        }
+
+
+        //        ChooseHats();
     }
 
     // Update is called once per frame
@@ -112,6 +127,11 @@ public class RoundManager : MonoBehaviour {
     [PunRPC]
     public void EndRound()
     {
+        practiceRoom.SetActive(true);
+        arena.SetActive(false);
+
+        Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+
         scoreboard.ResetScoreboard();
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
@@ -127,6 +147,7 @@ public class RoundManager : MonoBehaviour {
         print ("END OF ENDROUND");
     }
 
+    [PunRPC]
     void StartRound()
     {
         score = 0;
@@ -136,6 +157,13 @@ public class RoundManager : MonoBehaviour {
         /*foreach (GameObject pl in playerPCP)
             pl.GetComponent<TeamManager>().Respawn();*/
         inBattlefield = true;
+        if (practiceRoom != null)
+        {
+            practiceRoom.SetActive(false);
+            arena.SetActive(true);
+        }
+        print("starting round");
+        Display_Countdown();
 
     }
 
@@ -174,7 +202,6 @@ public class RoundManager : MonoBehaviour {
         }
         else
         {
-            hatRoom = GameObject.FindGameObjectWithTag("HatRoom").transform;
             Vector3 newPos = hatRoom.position;
             Transform camObj = player.GetComponentInChildren<Camera>().transform;
             newPos.x -= camObj.localPosition.x;
@@ -182,7 +209,10 @@ public class RoundManager : MonoBehaviour {
             player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
 
         }
-        
+        print("hat time");
+        practiceRoom.SetActive(true);
+        arena.SetActive(false);
+
     }
  //   [PunRPC]
  //   void UpdateScoreboard(bool blueScored)

@@ -30,6 +30,8 @@ TagManager:
   - Powerup
   - RoundManager
   - glyph
+  - Pregame
+  - Arena
   layers:
   - Default
   - TransparentFX
