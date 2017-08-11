@@ -44,10 +44,11 @@ public class Powerup : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (PhotonNetwork.isMasterClient)
+        if (GetComponent<PhotonView>().isMine)
         {
             if (other.tag == "Player")
             {
+                this.GetComponent<Collider>().enabled = false;
                 other.GetComponent<PhotonView>().RPC("SetRandomSpell", other.GetComponent<PhotonView>().owner, null);
                 PowerupManager pm = GameObject.Find("PowerupManager(Clone)").GetComponent<PowerupManager>();
                 pm.DecrementPowerUp(isBlue, platformIndex);

@@ -75,9 +75,11 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 	void Update () {
         if (PhotonNetwork.isMasterClient)
         {
+            
             timer -= Time.deltaTime;
-            if (timer <= 0 && numPowerups < 2)
+            if (timer <= 0 && numPowerups < 1)
             {
+                //Debug.Log(numPowerups);
                 int randomPlatform;
                 if (HasSpace(redPlatforms, redPowerups))
                 {
