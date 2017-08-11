@@ -27,6 +27,8 @@ public class GlyphGuide : MonoBehaviour {
         glyphs.Add("sb_shield", new Vector2(0.8f, 0));
         glyphs.Add("sb_flip", new Vector2(0.9f, 0));
 
+        rend.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -60,17 +62,16 @@ public class GlyphGuide : MonoBehaviour {
     {
         print(glyphName);
         if (glyphName == "sb_blank")
-            ToggleVisibility(false);
+            return;
         else
         {
-            ToggleVisibility(true);
             rend.material.mainTextureOffset = glyphs[glyphName];
         }
     }
 
-    public void ToggleVisibility(bool on)
+    public void ToggleVisibility()
     {
         if(rend!=null)
-            rend.enabled = on;
+            rend.enabled = !rend.enabled;
     }
 }

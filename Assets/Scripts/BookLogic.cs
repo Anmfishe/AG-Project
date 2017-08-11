@@ -131,7 +131,7 @@ public class BookLogic : MonoBehaviour
             //        print("Moving left");
             //        FlipLeft();
             //    }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             FlipLeft();
         }
@@ -141,6 +141,13 @@ public class BookLogic : MonoBehaviour
             //if (SwipeLeft)
                 FlipRight();
         }
+
+        if(Input.GetKeyDown("joystick button 8"))
+        {
+            guide.ToggleVisibility();
+        }
+
+
     }
 
     private void FixedUpdate()
