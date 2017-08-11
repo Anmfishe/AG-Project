@@ -135,12 +135,16 @@ public class RoundManager : MonoBehaviour {
         scoreboard.ResetScoreboard();
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
-//        FindPlayers();
-		foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
-    	    playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
+        //        FindPlayers();
+        foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+        {//TODO
+            playerRCP.GetComponentInChildren<PlayerStatus>().RestartRound();
+            playerRCP.GetComponentInChildren<PlayerStatus>().dead = true;
+        }
         ChooseHats();
         //ShowFinalScoreboard();
  //       inBattlefield = false;
+        
 		
 		timeElapsed = 0;
         
@@ -164,6 +168,10 @@ public class RoundManager : MonoBehaviour {
         }
         print("starting round");
         Display_Countdown();
+        foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+        {//TODO
+            playerRCP.GetComponentInChildren<PlayerStatus>().dead = false;
+        }
 
     }
 

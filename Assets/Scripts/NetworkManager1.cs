@@ -186,6 +186,7 @@ public class NetworkManager1 : Photon.PunBehaviour
         // hopefully PhotonNetwork.playerList.Length returns the PROPER number of PLAYERS IN ROOM
         Vector3 spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
+        avatar.GetComponentInChildren<PlayerStatus>().dead = true;
 
 		if (PhotonNetwork.isMasterClient)
 		{
