@@ -60,7 +60,7 @@ public class GlyphGuide : MonoBehaviour {
 
     public void UpdateGlyphTexture(string glyphName)
     {
-        print(glyphName);
+        //print(glyphName);
         if (glyphName == "sb_blank")
             return;
         else

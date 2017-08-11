@@ -253,8 +253,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 12
-  instantiationId: 12
+  viewIdField: 41
+  instantiationId: 41
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &26737224
@@ -769,8 +769,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 11
-  instantiationId: 11
+  viewIdField: 42
+  instantiationId: 42
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &65136630
@@ -1472,7 +1472,6 @@ Transform:
   - {fileID: 908663067}
   - {fileID: 406618122}
   - {fileID: 417235212}
-  - {fileID: 1018781104}
   m_Father: {fileID: 1917218974}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1705,6 +1704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba6cccb8c1e4cc479ea25bf5858d3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gestureRig: {fileID: 0}
   drawEffect: {fileID: 1953243036}
   baseGradient:
     serializedVersion: 2
@@ -2836,8 +2836,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 4
-  instantiationId: 4
+  viewIdField: 43
+  instantiationId: 43
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &248964272
@@ -3070,8 +3070,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 10
-  instantiationId: 10
+  viewIdField: 44
+  instantiationId: 44
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &256266380
@@ -3573,8 +3573,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 45
+  instantiationId: 45
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &310353570
@@ -3734,8 +3734,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 13
-  instantiationId: 13
+  viewIdField: 54
+  instantiationId: 54
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &317367382
@@ -4876,22 +4876,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 421325089}
---- !u!1 &423027842 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1999117868739958, guid: 93b54a60eba568e44acad45e6495cd3b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1880067846}
---- !u!114 &423027843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 423027842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6587c8104d7524f4280d0a68dd779f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &431527418
 GameObject:
   m_ObjectHideFlags: 0
@@ -6971,8 +6955,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 55
+  instantiationId: 55
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &788543894
@@ -7553,8 +7537,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 9
-  instantiationId: 9
+  viewIdField: 56
+  instantiationId: 56
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &826146526
@@ -8752,8 +8736,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 8
-  instantiationId: 8
+  viewIdField: 57
+  instantiationId: 57
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &909085485
@@ -9060,8 +9044,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 58
+  instantiationId: 58
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &929138215
@@ -9452,8 +9436,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 59
+  instantiationId: 59
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &981320987
@@ -10042,105 +10026,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!1 &1018781102
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1018781104}
-  - component: {fileID: 1018781107}
-  - component: {fileID: 1018781106}
-  - component: {fileID: 1018781105}
-  - component: {fileID: 1018781103}
-  m_Layer: 5
-  m_Name: GlyphGuide
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1018781103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018781102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9852721c522e59248950188cd64c621c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anchor: {fileID: 406618122}
-  book: {fileID: 0}
-  distanceRange: 1
---- !u!4 &1018781104
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018781102}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.085, y: 0.085, z: 0.085}
-  m_Children: []
-  m_Father: {fileID: 207178182}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!23 &1018781105
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018781102}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: fb94ab92cc430904eaaeb2a6c380e28e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!64 &1018781106
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018781102}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1018781107
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018781102}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1030857030
 GameObject:
   m_ObjectHideFlags: 0
@@ -10520,8 +10405,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 18
-  instantiationId: 18
+  viewIdField: 60
+  instantiationId: 60
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1073759587
@@ -11549,8 +11434,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 15
-  instantiationId: 15
+  viewIdField: 61
+  instantiationId: 61
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1140807169
@@ -12788,8 +12673,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 19
-  instantiationId: 19
+  viewIdField: 66
+  instantiationId: 66
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1290410325
@@ -12949,8 +12834,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 20
-  instantiationId: 20
+  viewIdField: 67
+  instantiationId: 67
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1322365311
@@ -13468,8 +13353,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 16
-  instantiationId: 16
+  viewIdField: 68
+  instantiationId: 68
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &1374938484
@@ -15241,8 +15126,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 17
-  instantiationId: 17
+  viewIdField: 69
+  instantiationId: 69
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1622355314
@@ -15625,8 +15510,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents: []
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 14
-  instantiationId: 14
+  viewIdField: 70
+  instantiationId: 70
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!65 &1706877127
@@ -19748,6 +19633,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
         type: 2}
+      propertyPath: guide
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
+        type: 2}
       propertyPath: hatSpawns.Array.data[0]
       value: 
       objectReference: {fileID: 157635330}
@@ -19786,32 +19676,6 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: roomName
-      value: asdfadsf
-      objectReference: {fileID: 0}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: powerupManager
-      value: 
-      objectReference: {fileID: 1223233074598154, guid: 89fe05d964bad0f4082158c56fd91e07,
-        type: 2}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: disableRounds
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: spawnManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114843425570200210, guid: 93b54a60eba568e44acad45e6495cd3b,
-        type: 2}
-      propertyPath: guide
-      value: 
-      objectReference: {fileID: 1018781103}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93b54a60eba568e44acad45e6495cd3b, type: 2}
   m_IsPrefabParent: 0

@@ -210,7 +210,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951878332566498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.11015, y: 23.990387, z: -3.9328973}
+  m_LocalPosition: {x: -2.3050368, y: 2.1057832, z: -2.686889}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4794546603077640}
@@ -625,8 +625,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114860418825796782}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 41
+  instantiationId: 41
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114208154239249688
@@ -651,8 +651,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114741513649148660
@@ -677,8 +677,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114860418825796782
@@ -700,4 +700,4 @@ MonoBehaviour:
   blueHeart: {fileID: 21300000, guid: 618dcb2a2a7b8bc4889257a50ae16d78, type: 3}
   redHeart: {fileID: 21300000, guid: 0a2d9b507a1efcc429d2b6fc8d84d7dd, type: 3}
   dead: {fileID: 21300000, guid: 81c2588b7c6641b4e8e7df358fc30890, type: 3}
-  maximumScore: 10
+  maximumScore: 12

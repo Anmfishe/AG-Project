@@ -19,6 +19,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	private GameObject hat6;
 	public GameObject avatar;
 	public GameObject scoreboard;
+    public GlyphGuide guide;
     private GameObject cameraRig;
     public GameObject CameraRig
     {
@@ -197,12 +198,15 @@ public class NetworkManager1 : Photon.PunBehaviour
         cameraRig.transform.position = spawnLocation;
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
+        BookLogic book = avatar.GetComponentInChildren<BookLogic>();
+        book.guide = guide;
+        guide.book = book;
 
         if (PhotonNetwork.isMasterClient)
         {
             roundMan = PhotonNetwork.InstantiateSceneObject(this.roundMan.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
-            //powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+            powerupManager = PhotonNetwork.InstantiateSceneObject(this.powerupManager.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
         }
         else
         {

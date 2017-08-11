@@ -138,7 +138,7 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PhotonNetwork.isMasterClient && (red_score >= maxScore || blue_score >= maxScore))
+        if (PhotonNetwork.isMasterClient && (red_score >= maximumScore || blue_score >= maximumScore))
         {
             GameObject rm = GameObject.Find("Round Manager(Clone)");
             Debug.Log("ScoreboardUpdater.cs : Update() : blueWon = " + (blue_score > red_score) + ", blue_score = " + blue_score + ", red_score = " + red_score);
