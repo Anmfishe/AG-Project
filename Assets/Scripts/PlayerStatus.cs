@@ -283,7 +283,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
 		}
 
-			scoreboard.ResetScoreboard();
+		scoreboard.ResetScoreboard();
 	}
 
     //Reset health and move Player to respawn area.

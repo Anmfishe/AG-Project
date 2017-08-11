@@ -214,6 +214,7 @@ public class NetworkManager1 : Photon.PunBehaviour
         }
 
         scoreboard.GetComponent<ScoreboardUpdater>().maximumScore = roundMan.GetComponent<RoundManager>().maxScore;
+        scoreboard.GetComponent<ScoreboardUpdater>().SetVisible(false);
         /*
                 if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
                 {

@@ -2880,7 +2880,8 @@ MonoBehaviour:
   psm: {fileID: 114832096951520706}
   cameraRig: {fileID: 0}
   dead: 0
-  respawnLength: 2
+  pregame: 1
+  respawnLength: 6
   max_health: 100
   current_health: 100
 --- !u!114 &114609537186453274

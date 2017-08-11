@@ -37,7 +37,6 @@ public class RoundManager : MonoBehaviour {
             print("COULD NOT FIND SCOREBOARD");
         }
 
-
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
 
         if (GameObject.FindGameObjectWithTag("Pregame"))
@@ -59,7 +58,7 @@ public class RoundManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         //all this has to ce re-done according to whatever you want the round to be. Does the round start after the 1st player puts hat on? Does it start when certain ammount of people do that? 
-        if (!hatsSelected)
+/*        if (!hatsSelected)
         {
             //         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
             foreach(GameObject p in players)
@@ -75,7 +74,7 @@ public class RoundManager : MonoBehaviour {
         {
             //            StartRound();
         }
-        //else if (inBattlefield)
+*/        //else if (inBattlefield)
         //{
 /*          
         timeElapsed += Time.deltaTime;
@@ -134,7 +133,6 @@ public class RoundManager : MonoBehaviour {
 
         Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 
-        scoreboard.ResetScoreboard();
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
         //        FindPlayers();
@@ -150,14 +148,17 @@ public class RoundManager : MonoBehaviour {
         }
         ChooseHats();
         //ShowFinalScoreboard();
- //       inBattlefield = false;
-        
-		
-		timeElapsed = 0;
+        //       inBattlefield = false;
+
+        scoreboard.SetVisible(false);
+
+        timeElapsed = 0;
         
         print ("END OF ENDROUND");
         if (PhotonNetwork.isMasterClient)
+        {
             PhotonNetwork.Destroy(arena2.gameObject);
+        }
     }
 
     [PunRPC]
@@ -176,6 +177,7 @@ public class RoundManager : MonoBehaviour {
             if(PhotonNetwork.isMasterClient)
             arena2 = PhotonNetwork.InstantiateSceneObject(arena.name, Vector3.zero, Quaternion.identity, 0, null);
         }
+        scoreboard.SetVisible(true);
         print("starting round");
         Display_Countdown();
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))

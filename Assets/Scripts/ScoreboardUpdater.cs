@@ -143,10 +143,21 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
             GameObject rm = GameObject.Find("Round Manager(Clone)");
             Debug.Log("ScoreboardUpdater.cs : Update() : blueWon = " + (blue_score > red_score) + ", blue_score = " + blue_score + ", red_score = " + red_score);
             rm.GetComponent<PhotonView>().RPC("Display_Restart", PhotonTargets.All, blue_score > red_score, blue_score, red_score);
-            ResetScoreboard();
+//            ResetScoreboard();
         }
 	}
-    
+
+    private void OnEnable()
+    {
+        ResetScoreboard();
+    }
+
+    public void SetVisible(bool isVisible)
+    {
+        scoreboardBlue.SetActive(isVisible);
+        scoreboardRed.SetActive(isVisible);
+    }
+
     public void ResetScoreboard()
     {
         pv.RPC("Reset2", PhotonTargets.AllBuffered, null);
@@ -169,19 +180,18 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
         //    red_score_for_blue_view.GetComponent<TextMesh>().text = "0";
         //    blue_score_for_blue_view.GetComponent<TextMesh>().text = "0";
 
-            red_score = 0;
-            blue_score = 0;
-            roundOver = true;
-            updateUI();
-        
+        red_score = 0;
+        blue_score = 0;
+        roundOver = true;
+        updateUI();
     }
 
     [PunRPC]
     public void IncrementRedScore2()
 	{
-            ++red_score;
-            //red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
-            //red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
+        ++red_score;
+        //red_score_for_red_view.GetComponent<TextMesh>().text = "" + red_score;
+        //red_score_for_blue_view.GetComponent<TextMesh>().text = "" + red_score;
         Debug.Log("RPC RED SCORED: " + red_score);
         updateUI();
     }
@@ -217,15 +227,11 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
     [PunRPC]
     public void IncrementBlueScore2()
 	{
-        
-
-
         ++blue_score;
             //blue_score_for_red_view.GetComponent<TextMesh>().text = "" + blue_score;
             //blue_score_for_blue_view.GetComponent<TextMesh>().text = "" + blue_score;
         Debug.Log("RPC BLUE SCORED: " + blue_score);
         updateUI();
-
     }
 
     private void SetScores()
