@@ -340,7 +340,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             return;
         }
 
-        hat.SetParent(hat.GetComponent<HatLogic>().initparent.transform);
+        //hat.SetParent(hat.GetComponent<HatLogic>().initparent.transform);
         hat.GetComponent<HatLogic>().resetHat();
         hat.GetComponent<HatLogic>().onHead = false;
         hat.GetComponent<HatLogic>().resettable = true;

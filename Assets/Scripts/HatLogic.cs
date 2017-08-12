@@ -13,6 +13,8 @@ public class HatLogic : MonoBehaviour {
 
 	public PlayerClass playerClass = PlayerClass.none;
     public GameObject initparent;
+    public Transform hand;
+    public Transform head;
 	private GameObject torso;
 	public bool onHead = false;
 	public bool touchingHead = false;
@@ -77,10 +79,12 @@ public class HatLogic : MonoBehaviour {
 
 	public void putOnHat()
 	{
+        held = false;
+        head = hatSpot.transform;
         torso = hatSpot.transform.parent.Find("Torso").gameObject;
         torso.GetComponent<PlayerStatus>().RemoveHat();
         //print ("putting on");
-        this.transform.SetParent (hatSpot.transform);
+        //this.transform.SetParent (hatSpot.transform);
 		this.GetComponent<Rigidbody> ().isKinematic = true;
 
 		torso.GetComponent<PhotonView> ().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
@@ -105,6 +109,7 @@ public class HatLogic : MonoBehaviour {
 	public void takeOffHat()
 	{
 		onHead = false;
+        head = null;
 		//torso.GetComponent<PlayerStatus> ().setClass(PlayerClass.none);
 	}
 		
@@ -153,8 +158,24 @@ public class HatLogic : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (onHead)
+        {
+            if (head != null)
+            {
+                transform.SetPositionAndRotation(head.position, head.rotation);
+            }
+        }
 
+        if (held == true)
+        {
+            if (hand != null)
+            {
+                transform.position = hand.position;
+                transform.rotation = hand.rotation;
+            }
+        }
 
 		if (releaseHat == true) 
 		{

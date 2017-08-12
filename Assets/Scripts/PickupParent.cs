@@ -87,10 +87,11 @@ public class PickupParent : MonoBehaviour
 								inHand = true;
 								heldHat.held = true;
 								col.GetComponent<Rigidbody>().isKinematic = true;
-								col.gameObject.transform.SetParent(gameObject.transform);
+								//col.gameObject.transform.SetParent(gameObject.transform);
 								grabbed = col.gameObject;
 								heldHat = col.GetComponent<HatLogic> ();
 								heldHat.held = true;
+                                heldHat.hand = this.gameObject.transform;
 								pickupTime = Time.time;						
 								col.GetComponent<HatLogic> ().takeOffHat();
 							}
@@ -103,11 +104,12 @@ public class PickupParent : MonoBehaviour
 	void tossObject(Rigidbody rigidBody)
 	{
 		rigidBody.isKinematic = false;
-		grabbed.gameObject.transform.SetParent(null);
+		//grabbed.gameObject.transform.SetParent(null);
 		grabbed = null;
 		inHand = false;
 		heldHat.releaseHat = true;
 		heldHat.releaseTime = Time.time;
+        heldHat.hand = null;
 		heldHat = null;
 		if (device !=null)
 			rigidBody.velocity = device.velocity * 1.2f;
