@@ -150,7 +150,7 @@ public class NetworkManager1 : Photon.PunBehaviour
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
         Debug.Log("Join failed, Creating Room...");
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
+        PhotonNetwork.CreateRoom(roomName, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
     }
 
     /// <summary>

@@ -11,7 +11,10 @@ public class Username : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		if (this.GetComponent<PhotonView>().isMine)
+        {
+            this.gameObject.SetActive(false);
+        }
 	}
 	
 	// Update is called once per frame
