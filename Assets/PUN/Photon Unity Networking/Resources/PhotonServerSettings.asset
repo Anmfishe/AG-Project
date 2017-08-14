@@ -70,4 +70,6 @@ MonoBehaviour:
   - EndRound
   - StartRound
   - SetClass
+  - SetMaterial
+  - SetUsername
   DisableAutoOpenWizard: 1

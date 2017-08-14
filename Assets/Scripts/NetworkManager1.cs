@@ -150,7 +150,7 @@ public class NetworkManager1 : Photon.PunBehaviour
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
         Debug.Log("Join failed, Creating Room...");
-        PhotonNetwork.CreateRoom(roomName);
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = this.maxPlayersPerRoom }, null);
     }
 
     /// <summary>
@@ -187,7 +187,11 @@ public class NetworkManager1 : Photon.PunBehaviour
         Vector3 spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
 
-		if (PhotonNetwork.isMasterClient)
+        PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
+        pv.RPC("SetUsername", PhotonTargets.AllBuffered, "Player " + PhotonNetwork.playerList.Length);
+        pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
+
+        if (PhotonNetwork.isMasterClient)
 		{
 			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
 			HatSpawn ();
@@ -259,9 +263,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 
 	public override void OnPhotonPlayerConnected(PhotonPlayer other)
 	{
-
-       
-        Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
+        Debug.Log("OnPhotonPlayerConnected() : " + other.NickName); // not seen if you're the player connecting
 	}
 
 	/// <summary>
@@ -270,7 +272,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	/// <param name="other">Other.</param>
 	public override void OnPhotonPlayerDisconnected(PhotonPlayer other)
 	{
-		Debug.Log("OnPhotonPlayerDisconnected() " + other.NickName); // seen when other disconnects
+		Debug.Log("OnPhotonPlayerDisconnected() : " + other.NickName); // seen when other disconnects
 	}
 
 	/// <summary>
