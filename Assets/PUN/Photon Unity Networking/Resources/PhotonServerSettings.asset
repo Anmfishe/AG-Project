@@ -70,4 +70,7 @@ MonoBehaviour:
   - EndRound
   - StartRound
   - SetClass
+  - onHandTrue
+  - onHeadTrue
+  - tossObject
   DisableAutoOpenWizard: 1

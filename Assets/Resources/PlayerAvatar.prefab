@@ -722,12 +722,12 @@ GameObject:
   - component: {fileID: 33225840613275332}
   - component: {fileID: 23775096597315670}
   m_Layer: 0
-  m_Name: hat1
+  m_Name: hatSpot
   m_TagString: findHat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1894212583596354
 GameObject:
   m_ObjectHideFlags: 1
@@ -782,7 +782,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58910483, y: 0.27578318, z: 15.785257}
+  m_LocalPosition: {x: -36.187485, y: 2.5258617, z: 2.7105849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -1113,7 +1113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886698852499414}
   m_LocalRotation: {x: -0.06252912, y: -0, z: -0, w: 0.9980432}
-  m_LocalPosition: {x: 0.000013717016, y: 0.002919999, z: -0.00043999357}
+  m_LocalPosition: {x: 0.000013717016, y: 0.00214, z: -0.00121}
   m_LocalScale: {x: 0.28984696, y: 0.28984693, z: 0.28984693}
   m_Children: []
   m_Father: {fileID: 4083235225380704}
@@ -1679,7 +1679,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886698852499414}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2951,7 +2951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
-  isValid: 1
 --- !u!114 &114696692573140200
 MonoBehaviour:
   m_ObjectHideFlags: 1

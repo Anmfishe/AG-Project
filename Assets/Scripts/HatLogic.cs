@@ -29,7 +29,7 @@ public class HatLogic : MonoBehaviour {
 	Vector3 startPosition;
 	Quaternion startRotation;
 
-	GameObject hatSpot;
+	Transform hatSpot;
 
 	PickupParent wand;
 
@@ -47,6 +47,59 @@ public class HatLogic : MonoBehaviour {
 		// print("start position is: " + startPosition);
 	}
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (onHead)
+        {
+            if (head != null)
+            {
+                transform.SetPositionAndRotation(head.position, head.rotation);
+            }
+        }
+
+        if (held == true)
+        {
+            if (hand != null)
+            {
+                transform.position = hand.position;
+                transform.rotation = hand.rotation;
+            }
+        }
+
+        if (releaseHat == true)
+        {
+            if ((Time.time - releaseTime) > .5f)
+            {
+                held = false;
+                releaseHat = false;
+            }
+        }
+
+        if (GameObject.Find("Controller (right)") == null)
+            return;
+
+        wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
+        resettable = !onHead && !wand.inHand;
+
+        if (resettable && timer < resetTime && Vector3.Distance(startPosition, transform.position) > resetDist)
+        {
+            timer += Time.deltaTime;
+        }
+
+
+        if (held == false && timer >= resetTime)
+        {
+            resetHat();
+            resettable = false;
+        }
+
+        if (!resettable)
+        {
+            timer = 0;
+        }
+    }
+
     // Detect the collision of hat and head
     void OnCollisionEnter(Collision other)
     {
@@ -56,7 +109,7 @@ public class HatLogic : MonoBehaviour {
 			{
 				//print ("touching head");
 				bool touchingHead = true;
-				hatSpot = other.gameObject;
+				hatSpot = other.transform.Find("hatSpot");
 				putOnHat ();
 			}
 
@@ -79,31 +132,35 @@ public class HatLogic : MonoBehaviour {
 
 	public void putOnHat()
 	{
-        held = false;
-        head = hatSpot.transform;
-        torso = hatSpot.transform.parent.Find("Torso").gameObject;
-        torso.GetComponent<PlayerStatus>().RemoveHat();
-        //print ("putting on");
-        //this.transform.SetParent (hatSpot.transform);
-		this.GetComponent<Rigidbody> ().isKinematic = true;
+        if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
+        {
+            photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
+            photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
+            head = hatSpot;
+            torso = hatSpot.parent.Find("Torso").gameObject;
+            torso.GetComponent<PlayerStatus>().RemoveHat();
+            //print ("putting on");
+            //this.transform.SetParent (hatSpot.transform);
+            this.GetComponent<Rigidbody>().isKinematic = true;
 
-		torso.GetComponent<PhotonView> ().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
-        //this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
+            torso.GetComponent<PhotonView>().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
+            //this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
 
-        // Search for the child hat in player
-        foreach (Transform child in hatSpot.transform)
-			if (child.CompareTag ("findHat")) 
-			{
-				this.transform.position = child.transform.position;
-				this.transform.rotation = child.transform.rotation;
-				onHead = true;
+            // Search for the child hat in player
+            foreach (Transform child in hatSpot)
+                if (child.CompareTag("findHat"))
+                {
+                    this.transform.position = child.transform.position;
+                    this.transform.rotation = child.transform.rotation;
+                    onHead = true;
 
-                //Move player to battlefield.
-//				torso.GetComponentInParent<TeamManager> ().Respawn ();                                                                          // uncomment for 8/8 build
+                    //Move player to battlefield.
+                    //				torso.GetComponentInParent<TeamManager> ().Respawn ();                                                                          // uncomment for 8/8 build
 
-                //GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
-                //gameObject.transform.scale = child.transform.scale;
-            }
+                    //GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
+                    //gameObject.transform.scale = child.transform.scale;
+                }
+        }
 	}
 
 	public void takeOffHat()
@@ -118,7 +175,19 @@ public class HatLogic : MonoBehaviour {
 		photonView.RPC("setClass", PhotonTargets.AllBuffered, pc);
 	}
 
-	[PunRPC]
+    [PunRPC]
+    public void onHeadTrue(bool _onHead)
+    {
+        onHead = _onHead;
+    }
+
+    [PunRPC]
+    public void onHandTrue(bool _held)
+    {
+        held = _held;
+    }
+
+    [PunRPC]
 	public void setClass(PlayerClass pc)
 	{
 		playerClass = pc;
@@ -137,8 +206,18 @@ public class HatLogic : MonoBehaviour {
 		}
 
 	}
-		
-	void Awake()
+
+    [PunRPC]
+    void tossObject()
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
+        releaseHat = true;
+        releaseTime = Time.time;
+        hand = null;
+        //GetComponent<Rigidbody> ().velocity;
+    }
+
+    void Awake()
 	{
 		photonView = GetComponent<PhotonView> ();
 		rend = GetComponent<Renderer> ();
@@ -154,59 +233,4 @@ public class HatLogic : MonoBehaviour {
 		this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 	}
 
-
-
-
-	// Update is called once per frame
-	void Update ()
-    {
-        if (onHead)
-        {
-            if (head != null)
-            {
-                transform.SetPositionAndRotation(head.position, head.rotation);
-            }
-        }
-
-        if (held == true)
-        {
-            if (hand != null)
-            {
-                transform.position = hand.position;
-                transform.rotation = hand.rotation;
-            }
-        }
-
-		if (releaseHat == true) 
-		{
-			if ((Time.time - releaseTime) > .5f) 
-			{
-				held = false;
-				releaseHat = false;
-			}
-		}
-
-		if (GameObject.Find ("Controller (right)") == null)
-			return;
-		
-		wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
-		resettable = !onHead && !wand.inHand;
-
-        if (resettable && timer < resetTime && Vector3.Distance(startPosition, transform.position) > resetDist)
-		{
-			timer += Time.deltaTime;
-		}
-
-
-		if (held == false && timer >= resetTime)
-		{
-			resetHat();
-			resettable = false;
-		}
-
-		if (!resettable)
-		{
-			timer = 0;
-		}
-	}
 }
