@@ -137,7 +137,7 @@ public class HatLogic : MonoBehaviour {
             photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
             photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
             head = hatSpot;
-            torso = hatSpot.parent.Find("Torso").gameObject;
+            torso = hatSpot.parent.parent.Find("Torso").gameObject;
             torso.GetComponent<PlayerStatus>().RemoveHat();
             //print ("putting on");
             //this.transform.SetParent (hatSpot.transform);
