@@ -80,7 +80,7 @@ public class HatLogic : MonoBehaviour {
             return;
 
         wand = GameObject.Find("Controller (right)").GetComponent<PickupParent>();
-        resettable = !onHead && !wand.inHand;
+        resettable = !onHead && !held;
 
         if (resettable && timer < resetTime && Vector3.Distance(startPosition, transform.position) > resetDist)
         {
