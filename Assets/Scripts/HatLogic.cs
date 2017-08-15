@@ -197,7 +197,7 @@ public class HatLogic : MonoBehaviour {
         }
         else
         {
-            GetComponent<Rigidbody>().isKinematic = false;
+            //GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
@@ -221,15 +221,15 @@ public class HatLogic : MonoBehaviour {
 
 	}
 
-    [PunRPC]
-    void tossObject()
-    {
-        GetComponent<Rigidbody>().isKinematic = false;
-        releaseHat = true;
-        releaseTime = Time.time;
-        hand = null;
-        //GetComponent<Rigidbody> ().velocity;
-    }
+    //[PunRPC]
+    //void tossObject()
+    //{
+    //    GetComponent<Rigidbody>().isKinematic = false;
+    //    releaseHat = true;
+    //    releaseTime = Time.time;
+    //    hand = null;
+    //    //GetComponent<Rigidbody> ().velocity;
+    //}
 
     void Awake()
 	{
@@ -240,7 +240,7 @@ public class HatLogic : MonoBehaviour {
 
 	public void resetHat()
 	{
-		this.GetComponent<Rigidbody>().isKinematic = false;
+		//this.GetComponent<Rigidbody>().isKinematic = false;
 		//print(onHead +" " + wand.inHand);
 		gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;
