@@ -294,23 +294,23 @@ public class NetworkManager1 : Photon.PunBehaviour
 	{
 
 
-		//		hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
-		//		hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
-		//
-		//		hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
-		//		hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
-		//
-		//		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);
-		//		hat3.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
-		//
-		//		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
-		//		hat4.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
-		//
-		//		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
-		//		hat5.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
-		//
-		//		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
-		//		hat6.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);	}
+        hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
+        hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
 
-	}
+        hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
+        hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+        //
+        //		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);
+        //		hat3.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
+        //
+        //		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
+        //		hat4.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
+        //
+        //		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
+        //		hat5.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+        //
+        //		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
+        //		hat6.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);	}
+
+    }
 }
