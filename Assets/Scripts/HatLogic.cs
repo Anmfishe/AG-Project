@@ -134,8 +134,8 @@ public class HatLogic : MonoBehaviour {
 	{
         if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
         {
-            photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
             photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
+            photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
             head = hatSpot;
             torso = hatSpot.parent.Find("Torso").gameObject;
             torso.GetComponent<PlayerStatus>().RemoveHat();
@@ -179,6 +179,11 @@ public class HatLogic : MonoBehaviour {
     public void onHeadTrue(bool _onHead)
     {
         onHead = _onHead;
+
+        if (onHead == true)
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
     [PunRPC]
