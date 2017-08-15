@@ -221,15 +221,15 @@ public class HatLogic : MonoBehaviour {
 
 	}
 
-    //[PunRPC]
-    //void tossObject()
-    //{
-    //    GetComponent<Rigidbody>().isKinematic = false;
-    //    releaseHat = true;
-    //    releaseTime = Time.time;
-    //    hand = null;
-    //    //GetComponent<Rigidbody> ().velocity;
-    //}
+    [PunRPC]
+    void tossObject()
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
+        releaseHat = true;
+        releaseTime = Time.time;
+        hand = null;
+        //GetComponent<Rigidbody> ().velocity;
+    }
 
     void Awake()
 	{
