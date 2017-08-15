@@ -12,19 +12,26 @@ public class GestureRigEnabled : MonoBehaviour {
         camRig = transform.parent.gameObject;
         spellcast = camRig.GetComponent<SpellcastingGestureRecognition>();
         tracked = GetComponent<SteamVR_TrackedObject>();
-	}
+
+        if (left)
+        {
+            spellcast.leftControllerIndex = (int)tracked.index;
+        }
+        else
+        {
+            spellcast.rightControllerIndex = (int)tracked.index;
+        }
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
     private void OnEnable()
     {
+        print("enabled");
         camRig = transform.parent.gameObject;
        camRig.GetComponent<Edwon.VR.VRGestureRig>().Init();
-        if (left)
-            spellcast.leftControllerIndex = (int)tracked.index;
-        else
-            spellcast.leftControllerIndex = (int)tracked.index;
     }
 }

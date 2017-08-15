@@ -73,11 +73,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Transform avatar;
     public Transform torso;
 
-    //[HideInInspector]
-    public int leftControllerIndex;
-   // [HideInInspector]
-    public int rightControllerIndex;
-
 	public PlayerStatus playerStatus;
 
     public bool blue = false;
@@ -112,6 +107,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     [HideInInspector]
     public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
 
+    [HideInInspector]
+    public int leftControllerIndex;
+    [HideInInspector]
+    public int rightControllerIndex;
+    bool vibrateLoop;
+    float vibrateStart;
+    ushort vibrateIntensity;
+    float length;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -119,12 +123,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         target = GetComponent<Targeting>();
         if (gestureRig == null)
             gestureRig = this.GetComponent<VRGestureRig>();
-        //print(target.pointer);
+
         if (target.pointer.Find("BeamTrail").gameObject.GetActive() == false)
             target.pointer.Find("BeamTrail").gameObject.SetActive(true);
 
         beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
-        //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
@@ -153,13 +156,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         //Check if we're cooling down.
         if (isCoolingDown)
         {
-            //If fireball timer is still active.
-            //if (spellTimer > 0)
-            //{
-            //    spellTimer -= Time.deltaTime;
-            //}
 
-            if(fireCD > 0)
+            if (fireCD > 0)
             {
                 fireCD -= Time.deltaTime;
             }
@@ -580,14 +578,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         torso = avatar.Find("Torso");
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
+        book.GetComponent<BookLogic>().spellcast = this;
 		playerStatus = torso.GetComponent<PlayerStatus>();
     }
 
     //Casts selected spell.
     private void CastSpell()
     {
-        SteamVR_Controller.Input(1).TriggerHapticPulse(500);
-        SteamVR_Controller.Input(2).TriggerHapticPulse(500);
+        Vibrate(.1f, 3999);
 
         GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
@@ -815,6 +813,26 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
 
         lineRend.colorGradient = inaccurateTarget;
+    }
+
+    void Vibrate(float _length, ushort _vibrateIntensity)
+    {
+        //SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(2000);
+        length = _length;
+        vibrateIntensity = _vibrateIntensity;
+        vibrateStart = Time.time;
+        InvokeRepeating("VibrateRepeat", 0, 0.05F);
+        
+    }
+
+    void VibrateRepeat()
+    {
+        // Vibration caps at 3999
+        SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(vibrateIntensity);
+        if (Time.time >= vibrateStart + length)
+        {
+            CancelInvoke();
+        }
     }
 }
 

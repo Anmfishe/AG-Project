@@ -12,6 +12,10 @@ public class BookLogic : MonoBehaviour
     float glyphStartZ = 0.2f;
     private PlayerStatus playerStatus; 
 	private PlayerClass playerClass;
+
+    [HideInInspector]
+    public SpellcastingGestureRecognition spellcast;
+
     GameObject page;
     public GameObject leftPage;
     public Material[] pages;
@@ -157,7 +161,9 @@ public class BookLogic : MonoBehaviour
 
     void FlipRight()
     {
-		if (playerClass == PlayerClass.attack) 
+        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(2000);
+
+        if (playerClass == PlayerClass.attack) 
 		{
             if (index > 0)
             {
@@ -211,8 +217,9 @@ public class BookLogic : MonoBehaviour
 
     void FlipLeft()
     {
+        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(2000);
 
-		if (playerClass == PlayerClass.attack) 
+        if (playerClass == PlayerClass.attack) 
 		{
             if (index < (pagesAttack.Length - 1))
             {
