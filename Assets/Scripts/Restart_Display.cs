@@ -59,6 +59,7 @@ public class Restart_Display : MonoBehaviour {
             timer_flag = false;
             GameObject rm = GameObject.Find("Round Manager(Clone)");
             rm.GetComponent<PhotonView>().RPC("EndRound", PhotonTargets.All, null);
+            this.gameObject.SetActive(false);
         }
         else
         {
@@ -72,6 +73,6 @@ public class Restart_Display : MonoBehaviour {
             blue_view.text = "" + temp;
 //            blue_view.characterSize = scale;
         }
-        this.gameObject.SetActive(timer_flag);
+        
     }
 }

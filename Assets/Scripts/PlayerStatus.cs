@@ -397,6 +397,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
 		print ("Scoreboard " +  myScoreboard.roundOver);
+        current_health = max_health;
     }
 
     [PunRPC]

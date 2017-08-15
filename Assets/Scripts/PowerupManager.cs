@@ -23,7 +23,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     
     public float frequency;
     public GameObject powerupPrefab;
-
+    public bool spawn_powerups = false;
     public float timer;
     bool[] redPowerups;
     bool[] bluePowerups;
@@ -92,7 +92,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 
     // Update is called once per frame
     void Update () {
-        if (PhotonNetwork.isMasterClient)
+        if (PhotonNetwork.isMasterClient && spawn_powerups)
         {
             
             timer -= Time.deltaTime;

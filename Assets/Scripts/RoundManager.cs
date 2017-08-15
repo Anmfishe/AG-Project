@@ -45,14 +45,7 @@ public class RoundManager : MonoBehaviour {
             practiceRoom.SetActive(true);
         }
         
-        //if (GameObject.FindGameObjectWithTag("Arena"))
-        //{
-        //    arena = GameObject.FindGameObjectWithTag("Arena");
-        //    arena.SetActive(false);
-        //}
-
-
-        //        ChooseHats();
+        
     }
 
     // Update is called once per frame
@@ -107,11 +100,12 @@ public class RoundManager : MonoBehaviour {
     public void Display_Restart(bool blueWon, int blue_score, int red_score)
     {
         Debug.Log("RoundManager.cs : Display_Restart() : blueWon = " + blueWon + ", red_score = " + red_score + ", blue_score = " + blue_score);
-
+        scoreboard.roundOver = true;
         restart_display.SetActive(true);
         Restart_Display restart = restart_display.GetComponent<Restart_Display>();
         restart.SetWinner(blueWon);
         restart.SetScore(red_score, blue_score);
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
     }
 
 
@@ -149,7 +143,7 @@ public class RoundManager : MonoBehaviour {
         ChooseHats();
         //ShowFinalScoreboard();
         //       inBattlefield = false;
-
+        scoreboard.ResetScoreboard();
         scoreboard.SetVisible(false);
 
         timeElapsed = 0;
@@ -159,6 +153,7 @@ public class RoundManager : MonoBehaviour {
         {
             PhotonNetwork.Destroy(arena2.gameObject);
         }
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
     }
 
     [PunRPC]
@@ -185,7 +180,8 @@ public class RoundManager : MonoBehaviour {
             playerRCP.GetComponent<PlayerStatus>().pregame = false;
         }
         scoreboard.roundOver = false;
-
+        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
     }
 
     void ChooseHats()

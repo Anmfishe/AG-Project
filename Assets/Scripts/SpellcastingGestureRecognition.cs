@@ -136,6 +136,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         GestureRecognizer.GestureDetectedEvent -= OnGestureDetected;
         GestureRecognizer.GestureRejectedEvent -= OnGestureRejected;
+        wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        currentSpell = null;
+        hasSpell = false;
+        currentSpellName = "";
     }
 
 
@@ -237,7 +241,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if (target.result != null)
             {
-                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || 
+                    target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || 
+                    target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     AccurateTarget();
                 }
@@ -633,7 +639,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
 
-                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                     vinesCD = cooldowns.vinesCD;
@@ -664,7 +670,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Debug.Log("target for platform steal is null");
                     return;
                 }
-                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform"))
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
                     target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
@@ -728,7 +734,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             bsp.SetOwner(avatar.gameObject);
         }
     }
-
+    public void kill_spells()
+    {
+        wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        currentSpell = null;
+        hasSpell = false;
+        currentSpellName = "";
+    }
     // Successfully target a platform
     void AccurateTarget()
     {

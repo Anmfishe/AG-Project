@@ -32,6 +32,10 @@ TagManager:
   - glyph
   - Pregame
   - Arena
+  - FxTemporaire
+  - projectile
+  - GrayPlatform
+  - PowerUpManager
   layers:
   - Default
   - TransparentFX
@@ -48,7 +52,7 @@ TagManager:
   - MeteorTargettable
   - Curse
   - Neutral
-  - 
+  - GrayPlatform
   - 
   - 
   - 
