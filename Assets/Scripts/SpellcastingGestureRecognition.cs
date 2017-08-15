@@ -109,6 +109,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private bool iceball_cast;
 
+    [HideInInspector]
+    public int leftControllerIndex;
+   [HideInInspector]
+    public int rightControllerIndex;
+    bool vibrateLoop;
+    float vibrateStart;
+    ushort vibrateIntensity;
+    float length;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -590,6 +599,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //Casts selected spell.
     private void CastSpell()
     {
+        Vibrate(.1f, 3999);
+
         GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
         Quaternion spellRotation;
@@ -828,6 +839,26 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (!hasSpell && !isCoolingDown && wand != null)
         {
             wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+    }
+
+    void Vibrate(float _length, ushort _vibrateIntensity)
+    {
+        //SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(2000);
+        length = _length;
+        vibrateIntensity = _vibrateIntensity;
+        vibrateStart = Time.time;
+        InvokeRepeating("VibrateRepeat", 0, 0.05F);
+
+    }
+
+    void VibrateRepeat()
+    {
+        // Vibration caps at 3999
+        SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(vibrateIntensity);
+        if (Time.time >= vibrateStart + length)
+        {
+            CancelInvoke();
         }
     }
 }
