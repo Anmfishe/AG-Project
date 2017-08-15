@@ -179,6 +179,10 @@ public class RoundManager : MonoBehaviour {
         {//TODO
             playerRCP.GetComponent<PlayerStatus>().pregame = false;
         }
+        foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
+        {
+            PhotonNetwork.Destroy(curse.GetPhotonView());
+        }
         scoreboard.roundOver = false;
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
