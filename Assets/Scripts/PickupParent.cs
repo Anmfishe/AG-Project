@@ -87,7 +87,7 @@ public class PickupParent : MonoBehaviour
 								inHand = true;
 								heldHat.held = true;
                                 heldHat.GetComponent<PhotonView>().RPC("onHeadTrue", PhotonTargets.AllBuffered, false);
-                                heldHat.GetComponent<PhotonView>().RPC("inHandTrue", PhotonTargets.AllBuffered, true);
+                                heldHat.GetComponent<PhotonView>().RPC("onHandTrue", PhotonTargets.AllBuffered, true);
                                 col.GetComponent<Rigidbody>().isKinematic = true;
 								//col.gameObject.transform.SetParent(gameObject.transform);
 								grabbed = col.gameObject;

@@ -185,6 +185,15 @@ public class HatLogic : MonoBehaviour {
     public void onHandTrue(bool _held)
     {
         held = _held;
+
+        if (held == true)
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 
     [PunRPC]
