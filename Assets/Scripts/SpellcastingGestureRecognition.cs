@@ -107,6 +107,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     [HideInInspector]
     public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
 
+    private bool iceball_cast;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -222,17 +224,24 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if (hasSpell)
                 CastSpell();
-            else if (!isCoolingDown)
+            else if (!isCoolingDown && !iceball_cast)
                 drawEffect.Play();
         }
         if(Input.GetKeyUp("joystick button 15"))
         {
-            drawEffect.Stop();
-            GetComponent<VRGestureRig>().enabled = true;
-            if (!hasSpell && !isCoolingDown && wand != null)
+            if (iceball_cast)
             {
-                wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
-                
+                iceball_cast = false;
+            }
+            else
+            {
+                drawEffect.Stop();
+                GetComponent<VRGestureRig>().enabled = true;
+                if (!hasSpell && !isCoolingDown && wand != null)
+                {
+                    wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+
+                }
             }
         }
 
@@ -602,6 +611,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
                 iceCD = cooldowns.iceCD;
+                iceball_cast = true;
+                StartCoroutine(IceballCast());
                 //spellTimer = iceballCooldown;
                 break;
             case "shield":
@@ -807,6 +818,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
 
         lineRend.colorGradient = inaccurateTarget;
+    }
+    IEnumerator IceballCast()
+    {
+        yield return new WaitForSeconds(4);
+        iceball_cast = false;
+        drawEffect.Stop();
+        GetComponent<VRGestureRig>().enabled = true;
+        if (!hasSpell && !isCoolingDown && wand != null)
+        {
+            wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
     }
 }
 

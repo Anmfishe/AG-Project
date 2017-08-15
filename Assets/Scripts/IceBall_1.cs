@@ -16,7 +16,7 @@ public class IceBall_1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyUp("joystick button 15") && photonView.isMine) 
+        if (Input.GetKeyDown("joystick button 15") && photonView.isMine) 
         {
             GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
             ib2.GetComponent<IceBall_2>().blue = blue;
@@ -41,7 +41,7 @@ public class IceBall_1 : MonoBehaviour {
     }
     IEnumerator lifetime()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(4);
         GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
         ib2.GetComponent<IceBall_2>().blue = blue;
         print("BLUE:" + blue);
