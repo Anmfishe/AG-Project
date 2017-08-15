@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 114076288899021916}
   - component: {fileID: 33136295929972426}
   m_Layer: 0
-  m_Name: Bubble
+  m_Name: Bubble_shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4229795724733164}
+  - {fileID: 114818742227757696, guid: d7b43ec846036514a8e537b72d47763a, type: 2}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d52a6c456afe84a9d9ae1aa6fffa5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldDuration: 5
+  shieldDuration: 10
 --- !u!114 &114813682453856008
 MonoBehaviour:
   m_ObjectHideFlags: 1
