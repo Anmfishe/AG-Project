@@ -105,7 +105,7 @@ public class PickupParent : MonoBehaviour
 
 	void tossObject(Rigidbody rigidBody)
 	{
-		rigidBody.isKinematic = false;
+		//rigidBody.isKinematic = false;
 		//grabbed.gameObject.transform.SetParent(null);
 		grabbed = null;
 		inHand = false;
