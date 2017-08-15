@@ -132,19 +132,18 @@ public class HatLogic : MonoBehaviour {
 
 	public void putOnHat()
 	{
-        if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
+//        if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
+        if (PhotonNetwork.isMasterClient)
         {
             photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
             photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
             head = hatSpot;
             torso = hatSpot.parent.parent.Find("Torso").gameObject;
             torso.GetComponent<PlayerStatus>().RemoveHat();
-            //print ("putting on");
-            //this.transform.SetParent (hatSpot.transform);
+
             this.GetComponent<Rigidbody>().isKinematic = true;
 
             torso.GetComponent<PhotonView>().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
-            //this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
 
             // Search for the child hat in player
             foreach (Transform child in hatSpot)
@@ -153,12 +152,6 @@ public class HatLogic : MonoBehaviour {
                     this.transform.position = child.transform.position;
                     this.transform.rotation = child.transform.rotation;
                     onHead = true;
-
-                    //Move player to battlefield.
-                    //				torso.GetComponentInParent<TeamManager> ().Respawn ();                                                                          // uncomment for 8/8 build
-
-                    //GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
-                    //gameObject.transform.scale = child.transform.scale;
                 }
         }
 	}
