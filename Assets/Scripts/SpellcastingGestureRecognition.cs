@@ -73,6 +73,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Transform avatar;
     public Transform torso;
 
+    //[HideInInspector]
+    public int leftControllerIndex;
+   // [HideInInspector]
+    public int rightControllerIndex;
+
 	public PlayerStatus playerStatus;
 
     public bool blue = false;
@@ -581,6 +586,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //Casts selected spell.
     private void CastSpell()
     {
+        SteamVR_Controller.Input(1).TriggerHapticPulse(500);
+        SteamVR_Controller.Input(2).TriggerHapticPulse(500);
+
         GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
         Quaternion spellRotation;
