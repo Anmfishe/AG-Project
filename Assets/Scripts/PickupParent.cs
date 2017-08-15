@@ -82,26 +82,26 @@ public class PickupParent : MonoBehaviour
 					heldHat = col.GetComponent<HatLogic> ();
 					if (heldHat.onHead == false)
 					{
-							if (heldHat.held == false)
-							{
-								inHand = true;
-								heldHat.held = true;
-                                heldHat.GetComponent<PhotonView>().RPC("onHeadTrue", PhotonTargets.AllBuffered, false);
-                                heldHat.GetComponent<PhotonView>().RPC("onHandTrue", PhotonTargets.AllBuffered, true);
-                                col.GetComponent<Rigidbody>().isKinematic = true;
-								//col.gameObject.transform.SetParent(gameObject.transform);
-								grabbed = col.gameObject;
-								heldHat = col.GetComponent<HatLogic> ();
-								heldHat.held = true;
-                                heldHat.hand = this.gameObject.transform;
-								pickupTime = Time.time;						
-								col.GetComponent<HatLogic> ().takeOffHat();
-							}
+						if (heldHat.held == false)
+						{
+							inHand = true;
+							heldHat.held = true;
+                            heldHat.GetComponent<PhotonView>().RPC("onHeadTrue", PhotonTargets.AllBuffered, false);
+                            heldHat.GetComponent<PhotonView>().RPC("onHandTrue", PhotonTargets.AllBuffered, true);
+                            col.GetComponent<Rigidbody>().isKinematic = true;
+							//col.gameObject.transform.SetParent(gameObject.transform);
+							grabbed = col.gameObject;
+							heldHat = col.GetComponent<HatLogic> ();
+							heldHat.held = true;
+                            heldHat.hand = this.gameObject.transform;
+							pickupTime = Time.time;						
+							col.GetComponent<HatLogic> ().takeOffHat();
 						}
 					}
 				}
 			}
 		}
+	}
 
 	void tossObject(Rigidbody rigidBody)
 	{

@@ -60,6 +60,7 @@ public class HatLogic : MonoBehaviour {
 
         if (held == true)
         {
+
             if (hand != null)
             {
                 transform.position = hand.position;

@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1421275613534120
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1467272807104922
 GameObject:
   m_ObjectHideFlags: 1
@@ -700,4 +700,4 @@ MonoBehaviour:
   blueHeart: {fileID: 21300000, guid: 618dcb2a2a7b8bc4889257a50ae16d78, type: 3}
   redHeart: {fileID: 21300000, guid: 0a2d9b507a1efcc429d2b6fc8d84d7dd, type: 3}
   dead: {fileID: 21300000, guid: 81c2588b7c6641b4e8e7df358fc30890, type: 3}
-  maximumScore: 12
+  maximumScore: 10
