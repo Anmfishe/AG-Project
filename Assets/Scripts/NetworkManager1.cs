@@ -294,10 +294,10 @@ public class NetworkManager1 : Photon.PunBehaviour
 	{
 
 
-        hat1 = PhotonNetwork.Instantiate(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0);
+        hat1 = PhotonNetwork.InstantiateSceneObject(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0, null);
         hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
 
-        hat2 = PhotonNetwork.Instantiate(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0);
+        hat2 = PhotonNetwork.InstantiateSceneObject(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0, null);
         hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
         //
         //		hat3 = PhotonNetwork.Instantiate(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0);

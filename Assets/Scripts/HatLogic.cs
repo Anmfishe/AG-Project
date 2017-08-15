@@ -80,8 +80,8 @@ public class HatLogic : MonoBehaviour {
         torso = hatSpot.transform.parent.Find("Torso").gameObject;
         torso.GetComponent<PlayerStatus>().RemoveHat();
         //print ("putting on");
-        this.transform.SetParent (hatSpot.transform);
-		this.GetComponent<Rigidbody> ().isKinematic = true;
+        GetComponent<PhotonView>().RPC("childHat", PhotonTargets.AllBuffered, hatSpot.GetComponent<PhotonView>());
+        this.GetComponent<Rigidbody> ().isKinematic = true;
 
 		torso.GetComponent<PhotonView> ().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
         //this.transform.parent.GetComponent<PhotonView>().RPC("SetRed", PhotonTargets.AllBuffered, null);
@@ -101,6 +101,12 @@ public class HatLogic : MonoBehaviour {
                 //gameObject.transform.scale = child.transform.scale;
             }
 	}
+
+    [PunRPC]
+    public void childHat(PhotonView view)
+    {
+        this.transform.SetParent(hatSpot.transform);
+    }
 
 	public void takeOffHat()
 	{
