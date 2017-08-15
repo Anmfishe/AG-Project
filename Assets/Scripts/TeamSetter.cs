@@ -6,10 +6,14 @@ public class TeamSetter : MonoBehaviour {
     public Material blue;
     public Material red;
     private PhotonView photonView;
-	// Use this for initialization
-	void Awake () {
+    private Renderer render;
+    TargetablePlayer targetableScript;
+    // Use this for initialization
+    void Awake () {
         photonView = GetComponent<PhotonView>();
-	}
+        render = GetComponent<Renderer>();
+        targetableScript = GetComponent<TargetablePlayer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,7 +22,7 @@ public class TeamSetter : MonoBehaviour {
     public void SetRed()
     {
         //Debug.Log("Test " + Time.time);
-            photonView.RPC("SetRed2", PhotonTargets.AllBuffered, null);
+        photonView.RPC("SetRed2", PhotonTargets.AllBuffered, null);
         
     }
     public void SetBlue()
@@ -30,11 +34,13 @@ public class TeamSetter : MonoBehaviour {
     [PunRPC]
     public void SetRed2()
     {
-        GetComponent<Renderer>().material = red;
+        render.material = red;
+        if(targetableScript != null) targetableScript.UpdateMaterials(red);
     }
     [PunRPC]
     public void SetBlue2()
     {
-        GetComponent<Renderer>().material = blue;
+        render.material = blue;
+        if (targetableScript != null) targetableScript.UpdateMaterials(blue);
     }
 }
