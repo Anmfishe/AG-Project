@@ -1680,7 +1680,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  fireball: {fileID: 1973137855731400, guid: 993ef9fe321c2f44191377c7d9250a59, type: 2}
+  fireball: {fileID: 1185784538995728, guid: 8c9c956294642464b91f6235129ddfae, type: 2}
   fireballGesture: Fire
   fireballGradient:
     serializedVersion: 2

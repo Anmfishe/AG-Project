@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bubble_shield : MonoBehaviour
 {
-
+   
     public float shieldDuration = 5f;
     private float shieldTimer;
     Transform torso;
@@ -19,8 +19,8 @@ public class Bubble_shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.GetComponent<PhotonView>().isMine)
-        {
+        //if (this.GetComponent<PhotonView>().isMine)
+        //{
             if (torso == null)
             {
                 return;
@@ -28,14 +28,13 @@ public class Bubble_shield : MonoBehaviour
 
             this.transform.position = torso.position;
             this.transform.rotation = torso.rotation;
-        }
+       // }
 
         shieldTimer -= Time.deltaTime;
         if (shieldTimer <= 0)
             Destroy(gameObject);
     }
    
-
     public void SetBook(Transform torso_)
     {
         torso = torso_;
@@ -50,4 +49,5 @@ public class Bubble_shield : MonoBehaviour
     {
         return blue;
     }
+
 }

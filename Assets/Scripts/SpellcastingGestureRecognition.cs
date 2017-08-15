@@ -429,11 +429,23 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                spellInstance.GetComponent<Shield>().SetBook(book);
-                spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-//                spellInstance.transform.SetParent(book);
-                spellTimer = shieldCooldown;
+           
+                if (target.result != null && target.result.tag == "Player")
+                {
+                    //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+                    //spellInstance.GetComponent<Shield>().SetBook(book);
+                    //spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                    ////                spellInstance.transform.SetParent(book);
+                    //spellTimer = shieldCooldown;
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position + torso.forward, torso.rotation, 0);
+                    spellInstance.GetComponent<Bubble_shield>().SetBook(torso);
+                    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                    spellTimer = Bubble_shieldCooldown;
+                }
+                else
+                {
+                    return;
+                }
                 break;
             case "Bubble_shield":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position + torso.forward, torso.rotation, 0);
