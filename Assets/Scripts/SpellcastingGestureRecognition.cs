@@ -593,6 +593,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         torso = avatar.Find("Torso");
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
+        book.GetComponent<BookLogic>().spellcast = this;
 		playerStatus = torso.GetComponent<PlayerStatus>();
     }
 

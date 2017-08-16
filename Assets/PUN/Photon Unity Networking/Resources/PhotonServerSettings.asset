@@ -72,4 +72,7 @@ MonoBehaviour:
   - SetClass
   - SetMaterial
   - SetUsername
+  - onHandTrue
+  - onHeadTrue
+  - tossObject
   DisableAutoOpenWizard: 1

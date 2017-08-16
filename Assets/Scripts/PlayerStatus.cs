@@ -42,6 +42,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private bool set = false;
     VRTK.VRTK_StraightPointerRenderer vrtk_spr;
 
+    public GameObject hat;
+
     public float max_health = 100;
   //  [HideInInspector]
     public float current_health = 100;
@@ -77,7 +79,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             if ((Time.time - deathTime) >  respawnLength)
             {
-
                 Respawn();
             }
 
@@ -315,36 +316,39 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
     }
 
-    public void RemoveHat()
-    {
-        Transform head = this.transform.parent.Find("Head");
+    //public void RemoveHat()
+    //{
+    //    Transform head = this.transform.parent.Find("Head");
 
-        if (head == null)
-        {
-            Debug.Log("PlayerStatus.cs : RemoveHat() : head is null");
-            return;
-        }
+    //    if (head == null)
+    //    {
+    //        Debug.Log("PlayerStatus.cs : RemoveHat() : head is null");
+    //        return;
+    //    }
 
-        Transform hat = null;
-        foreach (Transform child in head)
-        {
-            if (child.tag == "Grabbable")
-            {
-                hat = child;
-                break;
-            }
-        }
+    //    transform hat = null;
+    //    foreach (transform child in head)
+    //    {
+    //        if (child.tag == "grabbable")
+    //        {
+    //            hat = child;
+    //            break;
+    //        }
+    //    }
 
-        if (hat == null)
-        {
-            return;
-        }
+    //    if (hat == null)
+    //    {
+    //        debug.log("playerstatus.cs : removehat() : hat is null");
+    //        return;
+    //    }
 
-        hat.SetParent(hat.GetComponent<HatLogic>().initparent.transform);
-        hat.GetComponent<HatLogic>().resetHat();
-        hat.GetComponent<HatLogic>().onHead = false;
-        hat.GetComponent<HatLogic>().resettable = true;
-    }
+    //    Debug.Log("PlayerStatus.cs : RemoveHat() : removed hat");
+
+    //    hat.GetComponent<HatLogic>().onHead = false;
+    //    hat.GetComponent<HatLogic>().resettable = true;
+    //    hat.GetComponent<HatLogic>().resetHat();
+        
+    //}
 
     [PunRPC]
     public void RestartRound()
@@ -480,6 +484,15 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             //            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
             this.transform.parent.GetComponent<TeamManager>().Respawn();
             //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
+        }
+    }
+
+    public void RemoveHat()
+    {
+        if (hat != null)
+        {
+            hat.GetComponent<HatLogic>().resetHat();
+            hat = null;
         }
     }
 }

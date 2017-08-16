@@ -742,12 +742,12 @@ GameObject:
   - component: {fileID: 33225840613275332}
   - component: {fileID: 23775096597315670}
   m_Layer: 0
-  m_Name: hat1
+  m_Name: hatSpot
   m_TagString: findHat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1894212583596354
 GameObject:
   m_ObjectHideFlags: 1
@@ -802,7 +802,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.243, y: 3.514, z: -4.29}
+  m_LocalPosition: {x: -41.441395, y: 2.1057832, z: 2.3937163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -2548,6 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a01fbedde4bf47b3a71188274da5a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellcast: {fileID: 0}
   leftPage: {fileID: 1464113014597594}
   pages:
   - {fileID: 2100000, guid: 2a0bc547473304023abae9e69e7506c7, type: 2}
@@ -2904,8 +2905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec225b7d6188818489c53ec91384873f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseShader: {fileID: 0}
-  selectedShader: {fileID: 0}
+  baseMaterial: {fileID: 0}
+  selectedMaterial: {fileID: 0}
   head: {fileID: 1316983645817718}
   torso: {fileID: 1704670948745794}
 --- !u!114 &114578242593311320
@@ -2995,6 +2996,7 @@ MonoBehaviour:
   dead: 0
   pregame: 1
   respawnLength: 6
+  hat: {fileID: 0}
   max_health: 100
   current_health: 100
 --- !u!114 &114609537186453274
