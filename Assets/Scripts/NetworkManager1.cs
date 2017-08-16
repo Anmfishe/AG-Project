@@ -185,7 +185,11 @@ public class NetworkManager1 : Photon.PunBehaviour
         Vector3 spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
 
-		if (PhotonNetwork.isMasterClient)
+        PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
+        pv.RPC("SetUsername", PhotonTargets.AllBuffered, "Player " + PhotonNetwork.playerList.Length);
+        pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
+
+        if (PhotonNetwork.isMasterClient)
 		{
 			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
 			HatSpawn ();
