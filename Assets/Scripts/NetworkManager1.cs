@@ -267,7 +267,22 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public override void OnPhotonPlayerDisconnected(PhotonPlayer other)
 	{
 		Debug.Log("OnPhotonPlayerDisconnected() " + other.NickName); // seen when other disconnects
-	}
+
+        if (PhotonNetwork.isMasterClient)
+        {
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Grabbable"))
+            {
+                HatLogic hat = go.GetComponent<HatLogic>();
+                if (hat != null && hat.GetComponent<PhotonView>().isMine)
+                {
+                    if (hat.torso == null)
+                    {
+                        hat.resetHat();
+                    }
+                }
+            }
+        }
+    }
 
 	/// <summary>
 	/// Called when the local player left the room. We need to load the launcher scene.

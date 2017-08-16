@@ -15,7 +15,7 @@ public class HatLogic : MonoBehaviour {
     public GameObject initparent;
     public Transform hand;
     public Transform head;
-	private GameObject torso;
+	public GameObject torso;
 	public bool onHead = false;
 	public bool touchingHead = false;
 	public bool held = false;
@@ -104,12 +104,12 @@ public class HatLogic : MonoBehaviour {
     // Detect the collision of hat and head
     void OnCollisionEnter(Collision other)
     {
-		if (other.gameObject.tag == "put")
+		if (other.gameObject.tag == "put" && this.GetComponent<PhotonView>().isMine && other.gameObject.GetComponent<PhotonView>().isMine)
 		{
+            Debug.Log("HATLOGIC photon view is mine");
 			if (held == true) 
 			{
 				//print ("touching head");
-				bool touchingHead = true;
 				hatSpot = other.transform.Find("hatSpot");
 				putOnHat ();
 			}
@@ -239,11 +239,14 @@ public class HatLogic : MonoBehaviour {
 	{
         //this.GetComponent<Rigidbody>().isKinematic = false;
         //print(onHead +" " + wand.inHand);
-        onHead = false;
-        resettable = true;
 
+        photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, false);
+
+        // may not be necessary
+        resettable = true;
         gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;
+
 		this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 	}
 }
