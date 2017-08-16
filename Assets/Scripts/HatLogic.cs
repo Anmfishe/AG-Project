@@ -50,7 +50,7 @@ public class HatLogic : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (onHead)
+        if (onHead && GetComponent<PhotonView>().isMine)
         {
             if (head != null)
             {
@@ -58,7 +58,7 @@ public class HatLogic : MonoBehaviour {
             }
         }
 
-        if (held == true)
+        if (held == true && GetComponent<PhotonView>().isMine)
         {
 
             if (hand != null)
