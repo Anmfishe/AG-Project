@@ -600,7 +600,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     //Casts selected spell.
     private void CastSpell()
     {
-        Vibrate(.1f, 3999);
+        Vibrate(.05f, 3999);
 
         GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
@@ -622,6 +622,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
+                spellInstance.GetComponent<IceBall_1>().spellcast = this;
                 iceCD = cooldowns.iceCD;
                 iceball_cast = true;
                 StartCoroutine(IceballCast());
@@ -679,11 +680,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 pongCD = cooldowns.pongCD;
                 //spellTimer = pongShieldCooldown;
                 break;
-		case "meteor":
+		    case "meteor":
 			spellRotation = wandTip.rotation;
 			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
 			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
-            meteorCD = cooldowns.meteorCD;
+                spellInstance.GetComponent<MeteorSpell>().spellcast = this;
+                meteorCD = cooldowns.meteorCD;
                 // spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
@@ -843,7 +845,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
     }
 
-    void Vibrate(float _length, ushort _vibrateIntensity)
+    public void Vibrate(float _length, ushort _vibrateIntensity)
     {
         //SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(2000);
         length = _length;

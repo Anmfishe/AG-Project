@@ -7,19 +7,35 @@ public class IceBall_1 : MonoBehaviour {
     public bool blue;
     float speed = 7.5f;
     int damage = 10;
+    bool mine;
+
+    [HideInInspector]
+    public SpellcastingGestureRecognition spellcast;
+
     PhotonView photonView;
 	// Use this for initialization
 	void Start () {
         photonView = GetComponent<PhotonView>();
         StartCoroutine(lifetime());
+
+        if (photonView.isMine)
+        {
+            mine = true;
+        }
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (mine == true)
+            SteamVR_Controller.Input(spellcast.rightControllerIndex).TriggerHapticPulse(300);
+
+
         if (Input.GetKeyDown("joystick button 15") && photonView.isMine) 
         {
             GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
             ib2.GetComponent<IceBall_2>().blue = blue;
+            spellcast.Vibrate(.1f, 3999);
             PhotonNetwork.Destroy(photonView);
         }
 	}
@@ -46,7 +62,10 @@ public class IceBall_1 : MonoBehaviour {
         ib2.GetComponent<IceBall_2>().blue = blue;
         print("BLUE:" + blue);
         print("HIS BLUE: " + ib2.GetComponent<IceBall_2>().blue);
-        PhotonNetwork.Destroy(photonView);
+        spellcast.Vibrate(.1f, 3999);
+
+        if (mine == true)
+            PhotonNetwork.Destroy(photonView);
     }
 
 }
