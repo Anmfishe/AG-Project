@@ -1527,6 +1527,7 @@ GameObject:
   - component: {fileID: 207178191}
   - component: {fileID: 207178192}
   - component: {fileID: 207178189}
+  - component: {fileID: 207178193}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: CameraRig
@@ -2142,8 +2143,6 @@ MonoBehaviour:
   target: {fileID: 0}
   avatar: {fileID: 0}
   torso: {fileID: 0}
-  leftControllerIndex: 0
-  rightControllerIndex: 0
   playerStatus: {fileID: 0}
   blue: 0
   noHats: 0
@@ -2250,6 +2249,8 @@ MonoBehaviour:
   healCD: 0
   blessingCD: 0
   flipCD: 0
+  leftControllerIndex: 0
+  rightControllerIndex: 0
 --- !u!114 &207178191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2299,6 +2300,23 @@ MonoBehaviour:
   cd_Sound: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
   canMove: 1
   speed: 10
+--- !u!114 &207178193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207178181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef7e6bfad51b1f24f8bba548c8dcecb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkToColor: {r: 0, g: 0, b: 0, a: 1}
+  blinkTransitionSpeed: 0.6
+  distanceBlinkDelay: 0
+  headsetPositionCompensation: 1
+  targetListPolicy: {fileID: 0}
+  navMeshLimitDistance: 0
 --- !u!1 &210385729
 GameObject:
   m_ObjectHideFlags: 0
