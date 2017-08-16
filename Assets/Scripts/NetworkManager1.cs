@@ -10,13 +10,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public byte maxPlayersPerRoom = 6;
 
 	public GameObject hat;
-
-	private GameObject hat1;
-	private GameObject hat2;
-	private GameObject hat3;
-	private GameObject hat4;
-	private GameObject hat5;
-	private GameObject hat6;
+    GameObject[] hats;
 	public GameObject avatar;
 	public GameObject scoreboard;
     public GlyphGuide guide;
@@ -35,7 +29,8 @@ public class NetworkManager1 : Photon.PunBehaviour
             return avatar;
         }
     }
-	public Transform[] hatSpawns;
+	public Transform[] hatSpawns_blue;
+    public Transform[] hatSpawns_red;
     public GameObject spawns;
     
 	public string roomName;
@@ -71,13 +66,14 @@ public class NetworkManager1 : Photon.PunBehaviour
 	{
 		photonView = GetComponent<PhotonView>();
 
-		hat1 = hat;
-		hat2 = hat;
-		hat3 = hat;
-		hat4 = hat;
-		hat5 = hat;
-		hat6 = hat;
-	}
+        hats = new GameObject[6];
+        hats[0] = hat;
+        hats[1] = hat;
+        hats[2] = hat;
+        hats[3] = hat;
+        hats[4] = hat;
+        hats[5] = hat;
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -292,23 +288,23 @@ public class NetworkManager1 : Photon.PunBehaviour
 	{
 
 
-        hat1 = PhotonNetwork.InstantiateSceneObject(this.hat1.name, hatSpawns[0].position, Quaternion.identity, 0, null);
-        hat1.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
+        hats[0] = PhotonNetwork.InstantiateSceneObject(this.hats[0].name, hatSpawns_blue[0].position, Quaternion.identity, 0, null);
+        hats[0].GetComponent<HatLogic>().callSetClass(PlayerClass.support);
 
-        hat2 = PhotonNetwork.InstantiateSceneObject(this.hat2.name, hatSpawns[1].position, Quaternion.identity, 0, null);
-        hat2.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+        hats[1] = PhotonNetwork.InstantiateSceneObject(this.hats[1].name, hatSpawns_blue[1].position, Quaternion.identity, 0, null);
+        hats[1].GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
 
-        hat3 = PhotonNetwork.InstantiateSceneObject(this.hat3.name, hatSpawns[2].position, Quaternion.identity, 0, null);
-        hat3.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
-        //
-        //		hat4 = PhotonNetwork.Instantiate(this.hat4.name, hatSpawns[3].position, Quaternion.identity, 0);
-        //		hat4.GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
-        //
-        //		hat5 = PhotonNetwork.Instantiate(this.hat5.name, hatSpawns[4].position, Quaternion.identity, 0);
-        //		hat5.GetComponent<HatLogic>().callSetClass(PlayerClass.support);
-        //
-        //		hat6 = PhotonNetwork.Instantiate(this.hat6.name, hatSpawns[5].position, Quaternion.identity, 0);
-        //		hat6.GetComponent<HatLogic>().callSetClass(PlayerClass.heal);	}
+        hats[2] = PhotonNetwork.InstantiateSceneObject(this.hats[2].name, hatSpawns_blue[2].position, Quaternion.identity, 0, null);
+        hats[2].GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
 
+        hats[3] = PhotonNetwork.InstantiateSceneObject(this.hats[3].name, hatSpawns_red[0].position, Quaternion.identity, 0, null);
+        hats[3].GetComponent<HatLogic>().callSetClass(PlayerClass.support);
+
+        hats[4] = PhotonNetwork.InstantiateSceneObject(this.hats[4].name, hatSpawns_red[1].position, Quaternion.identity, 0, null);
+        hats[4].GetComponent<HatLogic>().callSetClass(PlayerClass.attack);
+
+        hats[5] = PhotonNetwork.InstantiateSceneObject(this.hats[5].name, hatSpawns_red[2].position, Quaternion.identity, 0, null);
+        hats[5].GetComponent<HatLogic>().callSetClass(PlayerClass.heal);
     }
+
 }

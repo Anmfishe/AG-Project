@@ -77,7 +77,7 @@ public class PickupParent : MonoBehaviour
 		{
 			if (grabbed == null)
 			{
-				if (col.GetComponent<HatLogic>())
+                if (col.GetComponent<HatLogic>())
 				{
 					heldHat = col.GetComponent<HatLogic> ();
 					if (heldHat.onHead == false)
@@ -86,6 +86,7 @@ public class PickupParent : MonoBehaviour
 						{
 							inHand = true;
 							heldHat.held = true;
+                            heldHat.GetComponent<PhotonView>().RequestOwnership();
                             heldHat.GetComponent<PhotonView>().RPC("onHeadTrue", PhotonTargets.AllBuffered, false);
                             heldHat.GetComponent<PhotonView>().RPC("onHandTrue", PhotonTargets.AllBuffered, true);
                             col.GetComponent<Rigidbody>().isKinematic = true;
@@ -115,6 +116,4 @@ public class PickupParent : MonoBehaviour
 			rigidBody.velocity = device.velocity * 1.2f;
 			//GetComponent<Rigidbody> ().velocity;
 	}
-
-
 }

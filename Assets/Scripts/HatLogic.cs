@@ -119,7 +119,6 @@ public class HatLogic : MonoBehaviour {
 //		{
 //			touchingHead = false;
 //		}
-
     }
 
 	void OnCollisionExit(Collision other)
@@ -139,8 +138,15 @@ public class HatLogic : MonoBehaviour {
             photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
             head = hatSpot;
             torso = hatSpot.parent.parent.Find("Torso").gameObject;
-            torso.GetComponent<PlayerStatus>().RemoveHat();
 
+            //            torso.GetComponent<PlayerStatus>().RemoveHat();
+
+            // remove previous hat (if at all) and then set this as new hat
+            PlayerStatus ps = torso.GetComponent<PlayerStatus>();
+            ps.RemoveHat();
+            ps.hat = this.gameObject;
+
+            
             this.GetComponent<Rigidbody>().isKinematic = true;
 
             torso.GetComponent<PhotonView>().RPC("SetClass", PhotonTargets.AllBuffered, playerClass);
@@ -211,7 +217,6 @@ public class HatLogic : MonoBehaviour {
 			if (rend != null)
 			rend.material = supportMat;
 		}
-
 	}
 
     [PunRPC]
@@ -229,15 +234,16 @@ public class HatLogic : MonoBehaviour {
 		photonView = GetComponent<PhotonView> ();
 		rend = GetComponent<Renderer> ();
 	}
-	
 
 	public void resetHat()
 	{
-		//this.GetComponent<Rigidbody>().isKinematic = false;
-		//print(onHead +" " + wand.inHand);
-		gameObject.transform.position = startPosition;
+        //this.GetComponent<Rigidbody>().isKinematic = false;
+        //print(onHead +" " + wand.inHand);
+        onHead = false;
+        resettable = true;
+
+        gameObject.transform.position = startPosition;
 		gameObject.transform.rotation = startRotation;
 		this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 	}
-
 }
