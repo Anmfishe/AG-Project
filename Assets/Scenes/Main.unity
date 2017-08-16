@@ -2427,6 +2427,24 @@ Prefab:
       propertyPath: hatSpawns_red.Array.data[2]
       value: 
       objectReference: {fileID: 107203140}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: hat_attack
+      value: 
+      objectReference: {fileID: 1894875449414954, guid: 1bf4a62c0fd332844bcd383f3090eb00,
+        type: 2}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: hat_heal
+      value: 
+      objectReference: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
+        type: 2}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: hat_support
+      value: 
+      objectReference: {fileID: 1894875449414954, guid: 9379d18af5060ab46b0192a4268a3416,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
   m_IsPrefabParent: 0

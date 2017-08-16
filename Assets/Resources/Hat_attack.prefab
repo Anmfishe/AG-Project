@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114430103130125896}
   - component: {fileID: 114676243247607816}
   m_Layer: 0
-  m_Name: Hat
+  m_Name: Hat_attack
   m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f193d75e15355674ab932cd574193954, type: 2}
+  - {fileID: 2100000, guid: f7e0c85b2ea68774b9b5b9d0c3ed4284, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,10 +152,11 @@ MonoBehaviour:
   attackerMat: {fileID: 2100000, guid: f7e0c85b2ea68774b9b5b9d0c3ed4284, type: 2}
   healerMat: {fileID: 2100000, guid: f193d75e15355674ab932cd574193954, type: 2}
   supportMat: {fileID: 2100000, guid: 20f044a2fcddb8942a9c5cc0917764dc, type: 2}
-  playerClass: 2
+  playerClass: 1
   initparent: {fileID: 0}
   hand: {fileID: 0}
   head: {fileID: 0}
+  torso: {fileID: 0}
   onHead: 0
   touchingHead: 0
   held: 0
