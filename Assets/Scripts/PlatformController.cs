@@ -306,15 +306,19 @@ public class PlatformController : MonoBehaviour {
         }*/
     }
 
-    public void SetPlatform(Transform platform)
+    public void SetPlatform(Transform platform, Quaternion q)
     {
         currPlatform = platform;
         Vector3 newTrans = platform.position;
-        newTrans.x -= camObj.transform.localPosition.x;
-        newTrans.z -= camObj.transform.localPosition.z;
-        transform.position = newTrans;
+        //newTrans.x -= camObj.transform.localPosition.x;
+        //newTrans.z -= camObj.transform.localPosition.z;
+        //transform.position = newTrans;
+        transform.rotation = q;
+        GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(platform, newTrans);
+        
         targetPos = newTrans;
         currPlatform.GetComponent<PlatformNeighbors>().HasPlayer(true);
+
     }
     public void SetAvatar(GameObject _avatar)
     {

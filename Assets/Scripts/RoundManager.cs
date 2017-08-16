@@ -214,24 +214,23 @@ public class RoundManager : MonoBehaviour {
         Debug.Log("SENDPLAYERTOHATROOM CALLED");
         if (hatRoom)
         {
-            Vector3 newPos = hatRoom.position;
-            Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            newPos.x -= camObj.localPosition.x;
-            newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount-1)).transform.position;
+            //Transform camObj = player.GetComponentInChildren<Camera>().transform;
+            //newPos.x -= camObj.localPosition.x;
+            //newPos.z -= camObj.localPosition.z;
+            //player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            player.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(newPos);
             
         }
         else
         {
-            Vector3 newPos = hatRoom.position;
-            Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            newPos.x -= camObj.localPosition.x;
-            newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
+            Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount - 1)).transform.position;
+            player.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(newPos, Quaternion.Euler(0,0,0));
 
         }
-        print("hat time");
-        practiceRoom.SetActive(true);
+
+        //practiceRoom.SetActive(true);
         
 
     }
