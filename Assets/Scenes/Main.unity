@@ -2606,16 +2606,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns_red.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns_blue.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4419708561353736, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.17917287
@@ -2650,77 +2640,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
         type: 2}
-      propertyPath: hatSpawns.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hatSpawns.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: spawns
-      value: 
-      objectReference: {fileID: 304004316}
-    - target: {fileID: 114000597212048696, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: viewIdField
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000597212048696, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: instantiationId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
       propertyPath: guide
       value: 
       objectReference: {fileID: 1018781103}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: roomName
-      value: rayjo25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hat_attack
-      value: 
-      objectReference: {fileID: 1894875449414954, guid: 1bf4a62c0fd332844bcd383f3090eb00,
-        type: 2}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hat_heal
-      value: 
-      objectReference: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
-        type: 2}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: hat_support
-      value: 
-      objectReference: {fileID: 1894875449414954, guid: 9379d18af5060ab46b0192a4268a3416,
-        type: 2}
     - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
         type: 2}
       propertyPath: hatSpawns_blue.Array.data[0]
@@ -2740,7 +2662,7 @@ Prefab:
         type: 2}
       propertyPath: hatSpawns_red.Array.data[0]
       value: 
-      objectReference: {fileID: 935598649}
+      objectReference: {fileID: 1703388582}
     - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
         type: 2}
       propertyPath: hatSpawns_red.Array.data[1]
@@ -2750,7 +2672,22 @@ Prefab:
         type: 2}
       propertyPath: hatSpawns_red.Array.data[2]
       value: 
-      objectReference: {fileID: 1703388582}
+      objectReference: {fileID: 935598649}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: spawns
+      value: 
+      objectReference: {fileID: 304004316}
+    - target: {fileID: 114000597212048696, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: viewIdField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000597212048696, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: instantiationId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
   m_IsPrefabParent: 0
