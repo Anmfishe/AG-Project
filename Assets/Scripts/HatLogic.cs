@@ -133,8 +133,7 @@ public class HatLogic : MonoBehaviour {
 
 	public void putOnHat()
 	{
-//        if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
-        if (PhotonNetwork.isMasterClient)
+        if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
         {
             photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
             photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
