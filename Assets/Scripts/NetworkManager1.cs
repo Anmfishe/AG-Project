@@ -9,7 +9,9 @@ public class NetworkManager1 : Photon.PunBehaviour
 	[Tooltip("The maximum number of players per room")]
 	public byte maxPlayersPerRoom = 6;
 
-	public GameObject hat;
+	public GameObject hat_attack;
+    public GameObject hat_support;
+    public GameObject hat_heal;
     GameObject[] hats;
 	public GameObject avatar;
 	public GameObject scoreboard;
@@ -67,12 +69,12 @@ public class NetworkManager1 : Photon.PunBehaviour
 		photonView = GetComponent<PhotonView>();
 
         hats = new GameObject[6];
-        hats[0] = hat;
-        hats[1] = hat;
-        hats[2] = hat;
-        hats[3] = hat;
-        hats[4] = hat;
-        hats[5] = hat;
+        hats[0] = hat_support;
+        hats[1] = hat_attack;
+        hats[2] = hat_heal;
+        hats[3] = hat_support;
+        hats[4] = hat_attack;
+        hats[5] = hat_heal;
     }
 
 	// Update is called once per frame
