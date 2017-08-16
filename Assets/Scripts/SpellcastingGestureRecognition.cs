@@ -378,7 +378,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     SetSpell(disenchant, "disenchant", disenchantGradient);
                 }
                 break;
-                 case "Bubble_sheild":
+                 case "Elle":
 			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
 				    SetSpell (Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
 			    }
