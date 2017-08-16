@@ -8,6 +8,7 @@ public class Bubble_shield : MonoBehaviour
     public float shieldDuration = 5f;
     private float shieldTimer;
     Transform torso;
+    Collider other;
     bool blue;
 
     // Use this for initialization
@@ -19,22 +20,30 @@ public class Bubble_shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (this.GetComponent<PhotonView>().isMine)
-        //{
-            if (torso == null)
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (this.GetComponent<PhotonView>().isMine)
             {
-                return;
+                if (other.transform.parent.GetComponent<TeamManager>().blue = blue)
+                {
+                    if (torso == null)
+                    {
+                        return;
+                    }
+
+                    this.transform.position = torso.position;
+                    this.transform.rotation = torso.rotation;
+                }
+
+
+                shieldTimer -= Time.deltaTime;
+                if (shieldTimer <= 0)
+                    Destroy(gameObject);
             }
-
-            this.transform.position = torso.position;
-            this.transform.rotation = torso.rotation;
-       // }
-
-        shieldTimer -= Time.deltaTime;
-        if (shieldTimer <= 0)
-            Destroy(gameObject);
+        }
     }
-   
+    
+
     public void SetBook(Transform torso_)
     {
         torso = torso_;
