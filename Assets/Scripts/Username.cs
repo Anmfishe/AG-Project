@@ -11,17 +11,25 @@ public class Username : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		if (this.GetComponent<PhotonView>().isMine)
-        {
-            this.gameObject.SetActive(false);
-        }
-	}
+        //if (this.GetComponent<PhotonView>().isMine)
+        //{
+        //    this.gameObject.SetActive(false);
+        //}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position = head.transform.position + 1.0f * Vector3.up;
+
+        // have usernames always be facing the local player
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            this.transform.position = head.transform.position + 0.75f * Vector3.up + 0.25f * Camera.main.transform.forward;
+        }
+        else
+        {
+            this.transform.position = head.transform.position + 1.0f * Vector3.up;
+        }
         this.transform.LookAt(Camera.main.transform);
-        //        this.transform.eulerAngles += 180f * Vector3.up;
         this.transform.RotateAround(this.transform.position, this.transform.up, 180f);
 	}
 
