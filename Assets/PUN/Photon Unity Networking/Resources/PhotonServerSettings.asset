@@ -75,4 +75,5 @@ MonoBehaviour:
   - onHandTrue
   - onHeadTrue
   - tossObject
+  - PUhit
   DisableAutoOpenWizard: 1
