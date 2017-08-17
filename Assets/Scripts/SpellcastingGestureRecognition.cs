@@ -22,6 +22,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient shieldGradient;
     public float shieldCooldown = 6f;
 
+    public GameObject Bubble_shield;
+    public string Bubble_shieldGesture;
+    public Gradient Bubble_shieldGradient;
+    public float Bubble_shieldCooldown = 6f;
+
     public GameObject heal;
     public string healGesture;
     public Gradient healGradient;
@@ -105,7 +110,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     [HideInInspector]
     SpellCooldowns cooldowns;
     [HideInInspector]
-    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
+    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, Bubble_shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
 
     private bool iceball_cast;
 
@@ -190,6 +195,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 shieldCD -= Time.deltaTime;
             }
 
+            if (Bubble_shieldCD > 0)
+            {
+                Bubble_shieldCD -= Time.deltaTime;
+            }
+
             if (pongCD > 0)
             {
                 pongCD -= Time.deltaTime;
@@ -215,7 +225,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 flipCD -= Time.deltaTime;
             }
 
-            if(fireCD <=0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
+            if(fireCD <=0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && Bubble_shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
             {
                 isCoolingDown = false;
                 //GetComponent<VRGestureRig>().enabled = true;
@@ -369,6 +379,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpellName = "lightBlade";
                 currentSpellGradient = lightBladeGradient;
                 break;
+            case 9:
+                currentSpell = Bubble_shield;
+                currentSpellName = "Bubble_shield";
+                currentSpellGradient = Bubble_shieldGradient;
+                break;
             default:
                 break;
         }
@@ -454,6 +469,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     gestureEndColor = Color.green;
                 }
                 else if (shieldCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
+                }
+                break;
+            case "Elle":
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && Bubble_shieldCD <= 0)
+                {
+                    SetSpell(Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (Bubble_shieldCD > 0)
                 {
                     gestureStartColor = Color.blue;
                     gestureEndColor = Color.blue;
@@ -638,6 +667,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 shieldCD = cooldowns.shieldCD;
                 //                spellInstance.transform.SetParent(book);
                 //spellTimer = shieldCooldown;
+                break;
+            case "Bubble_shield":
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+                spellInstance.GetComponent<Bubble_shield>().SetBook(book);
+                spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                //Bubble_shieldCD = cooldowns.Bubble_shieldCD;
                 break;
             case "heal":
                 // Heal others
