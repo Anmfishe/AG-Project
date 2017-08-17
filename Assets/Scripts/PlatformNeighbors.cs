@@ -29,9 +29,7 @@ public class PlatformNeighbors : MonoBehaviour {
 	}
     private void FixedUpdate()
     {
-        //pv.RPC("HasPlayer2", PhotonTargets.All, hasPlayer, gameObject.layer);
-        if(pv.isMine && gameObject.layer != LayerMask.NameToLayer("Default"))
-            layerSave = gameObject.layer;
+       
         
     }
 
