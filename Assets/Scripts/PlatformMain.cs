@@ -46,12 +46,14 @@ public class PlatformMain : MonoBehaviour {
                 this.gameObject.layer = LayerMask.NameToLayer(blueLayer);
                 this.tag = blueTag;
                 isBlue = true;
+                GetComponent<PlatformNeighbors>().layerSave = LayerMask.NameToLayer(blueLayer);
                 break;
             case "red":
                 this.GetComponent<Renderer>().material = redMaterial;
                 this.gameObject.layer = LayerMask.NameToLayer(redLayer);
                 this.tag = redTag;
                 isBlue = false;
+                GetComponent<PlatformNeighbors>().layerSave = LayerMask.NameToLayer(redLayer);
                 break;
         }
 
