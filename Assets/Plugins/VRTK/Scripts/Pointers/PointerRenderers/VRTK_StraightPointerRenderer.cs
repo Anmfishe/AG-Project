@@ -37,6 +37,8 @@ namespace VRTK
         [Tooltip("A custom game object to use as the appearance for the pointer cursor. If this is empty then a Sphere primitive will be created and used.")]
         public GameObject customCursor;
 
+        PadTeleport padTeleport;
+
         protected GameObject actualContainer;
         protected GameObject actualTracer;
         protected GameObject actualCursor;
@@ -47,6 +49,13 @@ namespace VRTK
         /// <summary>
         /// The UpdateRenderer method is used to run an Update routine on the pointer.
         /// </summary>
+        /// 
+
+        void Awake()
+        {
+            padTeleport = GetComponent<PadTeleport>();
+        }
+
         public override void UpdateRenderer()
         {
             if ((controllingPointer && controllingPointer.IsPointerActive()) || IsVisible())
@@ -187,6 +196,7 @@ namespace VRTK
         protected virtual float CastRayForward()
         {
             Transform origin = GetOrigin();
+            padTeleport.origin = origin;
             Ray pointerRaycast = new Ray(origin.position, origin.forward);
             RaycastHit pointerCollidedWith;
             Physics.queriesHitTriggers = false;
