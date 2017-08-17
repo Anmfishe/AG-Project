@@ -77,6 +77,7 @@ public class TeamManager : MonoBehaviour {
             //Respawn();
 
             TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+        Debug.Log("NUMBER OF TEAM SETTERS: " + children.Length);
             foreach (TeamSetter ts in children)
             {
                 ts.SetBlue();
