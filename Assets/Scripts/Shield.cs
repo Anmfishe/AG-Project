@@ -9,6 +9,7 @@ public class Shield : MonoBehaviour {
     private float shieldTimer;
     Transform book;
     bool blue;
+    Transform shieldSpot;
 	
     // Use this for initialization
 	void Start () {
@@ -24,8 +25,8 @@ public class Shield : MonoBehaviour {
                 return;
             }
 
-            this.transform.position = book.position + book.forward;
-            this.transform.rotation = book.rotation;
+            this.transform.position = (shieldSpot.position);
+            this.transform.rotation = shieldSpot.rotation;
         }
 
         shieldTimer -= Time.deltaTime;
@@ -37,6 +38,7 @@ public class Shield : MonoBehaviour {
     public void SetBook(Transform book_)
     {
         book = book_;
+        shieldSpot = book.Find("ShieldPt");
     }
 
     public void SetBlue(bool blue_)

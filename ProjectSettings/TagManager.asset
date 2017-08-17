@@ -30,6 +30,12 @@ TagManager:
   - Powerup
   - RoundManager
   - glyph
+  - Pregame
+  - Arena
+  - FxTemporaire
+  - projectile
+  - GrayPlatform
+  - PowerUpManager
   layers:
   - Default
   - TransparentFX
@@ -44,9 +50,9 @@ TagManager:
   - PenaltyBox
   - PongShieldPlane
   - MeteorTargettable
-  - 
-  - 
-  - 
+  - Curse
+  - Neutral
+  - GrayPlatform
   - 
   - 
   - 

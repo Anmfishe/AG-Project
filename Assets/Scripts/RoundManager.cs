@@ -8,7 +8,7 @@ public class RoundManager : MonoBehaviour {
     public Transform hatRoom;
     public float roundTime;
     public bool isTimeBased = false;
-    public int maxScore = 3;
+    public int maxScore;
     public bool isScoreBased = true;
     private float timeElapsed;
     private bool inBattlefield = true;
@@ -20,6 +20,14 @@ public class RoundManager : MonoBehaviour {
     private int blueMemb;
     private int redMemb;
 
+    public GameObject practiceRoom;
+    public GameObject arena;
+    //
+//    public GameObject countdown_display;
+    public GameObject restart_display;
+    public GameObject countdown_display;
+    private GameObject arena2;
+    
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
     void Start() {
@@ -29,15 +37,21 @@ public class RoundManager : MonoBehaviour {
             print("COULD NOT FIND SCOREBOARD");
         }
 
-
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
-        ChooseHats();
+
+        if (GameObject.FindGameObjectWithTag("Pregame"))
+        {
+            practiceRoom = GameObject.FindGameObjectWithTag("Pregame");
+            practiceRoom.SetActive(true);
+        }
+        
+        
     }
 
     // Update is called once per frame
     void Update() {
         //all this has to ce re-done according to whatever you want the round to be. Does the round start after the 1st player puts hat on? Does it start when certain ammount of people do that? 
-        if (!hatsSelected)
+/*        if (!hatsSelected)
         {
             //         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
             foreach(GameObject p in players)
@@ -53,23 +67,48 @@ public class RoundManager : MonoBehaviour {
         {
             //            StartRound();
         }
-        //else if (inBattlefield)
+*/        //else if (inBattlefield)
         //{
-          
-            timeElapsed += Time.deltaTime;
+/*          
+        timeElapsed += Time.deltaTime;
 
-            if (scoreboard == null)
-            {
-                scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-            }
-            if ((isScoreBased && (scoreboard.red_score >= maxScore || scoreboard.blue_score >= maxScore)) || (isTimeBased && timeElapsed >= roundTime))
-            {
-                print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
-                print("ROUND HAS ENDED");
-                EndRound();
-            }
-        //}
+        if (scoreboard == null)
+        {
+            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        }
+
+        Debug.Log("red = " + scoreboard.red_score + ", blue = " + scoreboard.blue_score + ", maxScore = " + scoreboard.maxScore);
+
+        if ((isScoreBased && (scoreboard.red_score >= scoreboard.maxScore || scoreboard.blue_score >= scoreboard.maxScore)) || (isTimeBased && timeElapsed >= roundTime))
+        {
+            print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
+            print("ROUND HAS ENDED");
+            EndRound();
+        }
+            //}
+*/
     }
+
+    [PunRPC]
+    public void Display_Countdown()
+    {
+        Debug.Log("RoundManager.cs : Display_Countdown() : Inside");
+        countdown_display.SetActive(true);
+    }
+
+    [PunRPC]
+    public void Display_Restart(bool blueWon, int blue_score, int red_score)
+    {
+        Debug.Log("RoundManager.cs : Display_Restart() : blueWon = " + blueWon + ", red_score = " + red_score + ", blue_score = " + blue_score);
+        scoreboard.roundOver = true;
+        restart_display.SetActive(true);
+        Restart_Display restart = restart_display.GetComponent<Restart_Display>();
+        restart.SetWinner(blueWon);
+        restart.SetScore(red_score, blue_score);
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
+    }
+
+
     /// <summary>
     /// Call from a player once it is killed
     /// </summary>
@@ -80,24 +119,44 @@ public class RoundManager : MonoBehaviour {
     }
     void UpdateScoreboard() { }
   
-
-    void EndRound()
+    [PunRPC]
+    public void EndRound()
     {
-        scoreboard.ResetScoreboard();
+        practiceRoom.SetActive(true);
+        //arena2.SetActive(false);
+
+        Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
+
         //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
-//        FindPlayers ();
-		//foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))                                //TODO
-		//	playerRCP.GetComponentInChildren<PlayerStatus> ().RestartRound();
+        //        FindPlayers();
+
+        foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+        {//TODO
+            playerRCP.GetComponent<PlayerStatus>().RestartRound();
+            playerRCP.GetComponent<PlayerStatus>().pregame = true;
+        }
+        foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
+        {
+            PhotonNetwork.Destroy(curse.GetPhotonView());
+        }
         ChooseHats();
         //ShowFinalScoreboard();
- //       inBattlefield = false;
-		
-		timeElapsed = 0;
+        //       inBattlefield = false;
+        scoreboard.ResetScoreboard();
+        scoreboard.SetVisible(false);
+
+        timeElapsed = 0;
         
         print ("END OF ENDROUND");
+        if (PhotonNetwork.isMasterClient)
+        {
+            PhotonNetwork.Destroy(arena2.gameObject);
+        }
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
     }
 
+    [PunRPC]
     void StartRound()
     {
         score = 0;
@@ -107,7 +166,26 @@ public class RoundManager : MonoBehaviour {
         /*foreach (GameObject pl in playerPCP)
             pl.GetComponent<TeamManager>().Respawn();*/
         inBattlefield = true;
-
+        if (practiceRoom != null)
+        {
+            practiceRoom.SetActive(false);
+            if(PhotonNetwork.isMasterClient)
+            arena2 = PhotonNetwork.InstantiateSceneObject(arena.name, Vector3.zero, Quaternion.identity, 0, null);
+        }
+        scoreboard.SetVisible(true);
+        print("starting round");
+        Display_Countdown();
+        foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
+        {//TODO
+            playerRCP.GetComponent<PlayerStatus>().pregame = false;
+        }
+        foreach (GameObject curse in GameObject.FindGameObjectsWithTag("Curse"))
+        {
+            PhotonNetwork.Destroy(curse.GetPhotonView());
+        }
+        scoreboard.roundOver = false;
+        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
+        GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
     }
 
     void ChooseHats()
@@ -116,7 +194,7 @@ public class RoundManager : MonoBehaviour {
         //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
-            SendPlayerToHatRoom(player);
+            SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
 
         }
         //foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
@@ -133,26 +211,28 @@ public class RoundManager : MonoBehaviour {
 
     void SendPlayerToHatRoom(GameObject player)
     {
+        Debug.Log("SENDPLAYERTOHATROOM CALLED");
         if (hatRoom)
         {
-            Vector3 newPos = hatRoom.position;
-            Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            newPos.x -= camObj.localPosition.x;
-            newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount-1)).transform.position;
+            //Transform camObj = player.GetComponentInChildren<Camera>().transform;
+            //newPos.x -= camObj.localPosition.x;
+            //newPos.z -= camObj.localPosition.z;
+            //player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            player.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(newPos);
             
         }
         else
         {
-            hatRoom = GameObject.FindGameObjectWithTag("HatRoom").transform;
-            Vector3 newPos = hatRoom.position;
-            Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            newPos.x -= camObj.localPosition.x;
-            newPos.z -= camObj.localPosition.z;
-            player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
+            Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount - 1)).transform.position;
+            player.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(newPos, Quaternion.Euler(0,0,0));
 
         }
+
+        //practiceRoom.SetActive(true);
         
+
     }
  //   [PunRPC]
  //   void UpdateScoreboard(bool blueScored)
@@ -190,7 +270,7 @@ public class RoundManager : MonoBehaviour {
         players.Add(avatar);
         playerRigs.Add(rig);
         //send 
-        SendPlayerToHatRoom(rig);
+//        SendPlayerToHatRoom(rig);
        
         
     }

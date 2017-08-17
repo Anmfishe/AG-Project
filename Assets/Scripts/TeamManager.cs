@@ -47,7 +47,7 @@ public class TeamManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(rightHand != null && photonView.isMine && !set)
+        if(rightHand != null && !set && photonView.isMine)
         {
             set = true;
             vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
@@ -69,46 +69,50 @@ public class TeamManager : MonoBehaviour {
     [PunRPC]
     public void SetBlue()
     {
-        Debug.Log("Set Blue + " + Time.time);
+       
+            Debug.Log("Set Blue + " + Time.time);
+
+            blue = true;
+
+            //Respawn();
+
+            TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+            foreach (TeamSetter ts in children)
+            {
+                ts.SetBlue();
+            }
+            rightHand = GameObject.Find("RightController");
+            if (rightHand && photonView.isMine)
+            {
+                set = true;
+                vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+                vrtk_spr.blue = true;
+            }
         
-        blue = true;
-
-        //Respawn();
-
-        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
-        foreach(TeamSetter ts in children)
-        {
-            ts.SetBlue();
-        }
-        rightHand = GameObject.Find("RightController");
-        if (rightHand)
-        {
-            set = true;
-            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            vrtk_spr.blue = true;
-        }
     }
 
     [PunRPC]
     public void SetRed()
     {
-        Debug.Log("Set Red + " + Time.time);
         
-        blue = false;
+            Debug.Log("Set Red + " + Time.time);
 
-        //Respawn();
-        TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
-        foreach (TeamSetter ts in children)
-        {
-            ts.SetRed();
-        }
-        rightHand = GameObject.Find("RightController");
-        if (rightHand)
-        {
-            set = true;
-            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            vrtk_spr.blue = false;
-        }
+            blue = false;
+
+            //Respawn();
+            TeamSetter[] children = GetComponentsInChildren<TeamSetter>();
+            foreach (TeamSetter ts in children)
+            {
+                ts.SetRed();
+            }
+            rightHand = GameObject.Find("RightController");
+            if (rightHand && photonView.isMine)
+            {
+                set = true;
+                vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+                vrtk_spr.blue = false;
+            }
+        
     }
 
     public void Respawn()
@@ -118,11 +122,28 @@ public class TeamManager : MonoBehaviour {
         blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
         if (blue)
         {
-            cameraRig.GetComponent<PlatformController>().SetPlatform(blueSquares[Random.Range(0, blueSquares.Length - 1)].transform);
+            Transform randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
+            while(randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            {
+                blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
+                randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
+            }
+            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform, 
+                Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (180 - Camera.main.transform.eulerAngles.y), 0));
+            //Camera.main.transform.rotation = Quaternion.Euler(0, 180, 0);
+            
         }
         else
         {
-            cameraRig.GetComponent<PlatformController>().SetPlatform(redSquares[Random.Range(0, redSquares.Length - 1)].transform);
+            Transform randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;
+            while (randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            {
+                redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
+                randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;
+            }
+            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform, 
+                Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0));
+            //Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 

@@ -34,11 +34,11 @@ public class Pong_Shield : MonoBehaviour {
         {
             if (scale.x == 0)
             {
-                scale.x = 2;
+                scale.x = 3;
             }
             if (scale.y == 0)
             {
-                scale.y = 1.5f;
+                scale.y = 2.5f;
             }
             if (scale.z == 0)
             {
@@ -56,7 +56,7 @@ public class Pong_Shield : MonoBehaviour {
         // check y_clamp_min input
         if (y <= 0)
         {
-            y = 1.75f;
+            y = 3;
         }
 
         // check duration input
@@ -99,7 +99,8 @@ public class Pong_Shield : MonoBehaviour {
         {
             if (hit.transform.tag == "Pong_Shield_Plane")
             {
-               this.transform.position = new Vector3(Mathf.Max(-x_clamp, Mathf.Min(x_clamp, hit.point.x)), y, hit.point.z);
+                //               this.transform.position = new Vector3(Mathf.Max(-x_clamp, Mathf.Min(x_clamp, hit.point.x)), y, hit.point.z);
+                this.transform.position = new Vector3(hit.point.x, y, hit.point.z);
             }
         }
 	}

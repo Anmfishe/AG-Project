@@ -23,7 +23,7 @@ namespace Edwon.VR.Gesture
         //Another that is EnteringCapture, ReadyToCapture, Capturing
         public VRGestureCaptureState state;
 
-        GestureTrail myTrail;
+        public GestureTrail myTrail;
         List<Vector3> currentCapturedLine;
 
         float nextRenderTime = 0;
@@ -171,6 +171,7 @@ namespace Edwon.VR.Gesture
 
         void StartRecording()
         {
+            myTrail.ResetRenderer();
             nextRenderTime = Time.time + renderRateLimit / 1000;
             if (StartCaptureEvent != null)
             {

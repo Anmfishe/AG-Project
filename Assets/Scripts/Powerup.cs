@@ -13,11 +13,14 @@ public class Powerup : MonoBehaviour {
 
     public bool isBlue;
     public int platformIndex;
-
+    public GameObject powerup_success;
     GameObject pm;
+    private ParticleSystem ps;
+    private GameObject _other;
 
 	// Use this for initialization
 	void Start () {
+        ps = GetComponentInChildren<ParticleSystem>();
         pm = GameObject.Find("PowerupManager(Clone)");
         if (pm == null)
         {
@@ -44,16 +47,25 @@ public class Powerup : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (PhotonNetwork.isMasterClient)
+        if (GetComponent<PhotonView>().isMine)
         {
             if (other.tag == "Player")
             {
-                other.GetComponent<PhotonView>().RPC("SetRandomSpell", other.GetComponent<PhotonView>().owner, null);
-                PowerupManager pm = GameObject.Find("PowerupManager(Clone)").GetComponent<PowerupManager>();
-                pm.DecrementPowerUp(isBlue, platformIndex);
-                
-                PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+                _other = other.gameObject;
+                GetComponent<PhotonView>().RPC("PUhit", PhotonTargets.All, null);
             }
         }
     }
+    [PunRPC]
+    void PUhit()
+    {
+        ps.Stop();
+        this.GetComponent<Collider>().enabled = false;
+        _other.GetComponent<PhotonView>().RPC("SetRandomSpell", _other.GetComponent<PhotonView>().owner, null);
+        PowerupManager pm = GameObject.Find("PowerupManager(Clone)").GetComponent<PowerupManager>();
+        pm.DecrementPowerUp(isBlue, platformIndex);
+        PhotonNetwork.Instantiate(powerup_success.name, transform.position, Quaternion.identity, 0);
+        PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+    }
+        
 }

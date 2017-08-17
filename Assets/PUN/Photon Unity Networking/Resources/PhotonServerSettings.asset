@@ -64,4 +64,15 @@ MonoBehaviour:
   - IncrementRedScore2
   - Reset2
   - HasPlayer2
+  - Display_Countdown
+  - Teleport
+  - Display_Restart
+  - EndRound
+  - StartRound
+  - SetClass
+  - SetMaterial
+  - SetUsername
+  - onHandTrue
+  - onHeadTrue
+  - tossObject
   DisableAutoOpenWizard: 1

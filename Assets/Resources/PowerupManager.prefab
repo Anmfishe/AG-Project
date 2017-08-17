@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114318442984520726}
   m_Layer: 0
   m_Name: PowerupManager
-  m_TagString: Untagged
+  m_TagString: PowerUpManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,9 +60,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  frequency: 7
+  frequency: 20
   powerupPrefab: {fileID: 1659428561157970, guid: 2b47277ee180e74479e1a58871012545,
     type: 2}
+  spawn_powerups: 0
   timer: 0
   numPowerups: 0
 --- !u!114 &114706694292711442

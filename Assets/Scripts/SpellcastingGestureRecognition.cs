@@ -6,6 +6,8 @@ using Edwon.VR.Gesture;
 
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
+    public VRGestureRig gestureRig;
+
     public ParticleSystem drawEffect;
 
     public Gradient baseGradient;
@@ -19,11 +21,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public string shieldGesture;
     public Gradient shieldGradient;
     public float shieldCooldown = 6f;
-
-    public GameObject Bubble_shield;
-    public string Bubble_shieldGesture;
-    public Gradient Bubble_shieldGradient;
-    public float Bubble_shieldCooldown = 8f;
 
     public GameObject heal;
     public string healGesture;
@@ -95,7 +92,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient currentSpellGradient;
     public float spellCooldown = 3f;
     private float spellTimer = 0;
-    private bool isCoolingDown = false;
+    [HideInInspector]
+    public bool isCoolingDown = false;
 
 	// Variables for targeting platforms
 	private BeamTrail beamTrail;
@@ -104,20 +102,39 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Gradient accurateTarget;
     public Gradient inaccurateTarget;
 
+    [HideInInspector]
+    SpellCooldowns cooldowns;
+    [HideInInspector]
+    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
+
+    private bool iceball_cast;
+
+    [HideInInspector]
+    public int leftControllerIndex;
+   [HideInInspector]
+    public int rightControllerIndex;
+    bool vibrateLoop;
+    float vibrateStart;
+    ushort vibrateIntensity;
+    float length;
+
     private void Start()
     {
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
-        print(target.pointer);
+        if (gestureRig == null)
+            gestureRig = this.GetComponent<VRGestureRig>();
+        //print(target.pointer);
         if (target.pointer.Find("BeamTrail").gameObject.GetActive() == false)
             target.pointer.Find("BeamTrail").gameObject.SetActive(true);
 
         beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
-        print(beamTrail);
+        //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
+        cooldowns = GetComponent<SpellCooldowns>();
     }
 
     void OnEnable()
@@ -130,6 +147,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         GestureRecognizer.GestureDetectedEvent -= OnGestureDetected;
         GestureRecognizer.GestureRejectedEvent -= OnGestureRejected;
+        wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        currentSpell = null;
+        hasSpell = false;
+        currentSpellName = "";
     }
 
 
@@ -139,14 +160,65 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (isCoolingDown)
         {
             //If fireball timer is still active.
-            if (spellTimer > 0)
+            //if (spellTimer > 0)
+            //{
+            //    spellTimer -= Time.deltaTime;
+            //}
+
+            if(fireCD > 0)
             {
-                spellTimer -= Time.deltaTime;
+                fireCD -= Time.deltaTime;
             }
-            else
+
+            if (iceCD > 0)
+            {
+                iceCD -= Time.deltaTime;
+            }
+
+            if (swordCD > 0)
+            {
+                swordCD -= Time.deltaTime;
+            }
+
+            if (meteorCD > 0)
+            {
+                meteorCD -= Time.deltaTime;
+            }
+
+            if (shieldCD > 0)
+            {
+                shieldCD -= Time.deltaTime;
+            }
+
+            if (pongCD > 0)
+            {
+                pongCD -= Time.deltaTime;
+            }
+
+            if (vinesCD > 0)
+            {
+                vinesCD -= Time.deltaTime;
+            }
+
+            if (healCD > 0)
+            {
+                healCD -= Time.deltaTime;
+            }
+
+            if (blessingCD > 0)
+            {
+                blessingCD -= Time.deltaTime;
+            }
+
+            if (flipCD > 0)
+            {
+                flipCD -= Time.deltaTime;
+            }
+
+            if(fireCD <=0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
             {
                 isCoolingDown = false;
-                GetComponent<VRGestureRig>().enabled = true;
+                //GetComponent<VRGestureRig>().enabled = true;
                 if (wand != null)
                 {
                     wand.Find("tip").Find("spark").GetComponent<ParticleSystem>().Play();
@@ -161,16 +233,24 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if (hasSpell)
                 CastSpell();
-            else if (!isCoolingDown)
+            else if (!isCoolingDown && !iceball_cast)
                 drawEffect.Play();
         }
         if(Input.GetKeyUp("joystick button 15"))
         {
-            drawEffect.Stop();
-            if (!hasSpell && !isCoolingDown && wand != null)
+            if (iceball_cast)
             {
-                wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
-                
+                iceball_cast = false;
+            }
+            else
+            {
+                drawEffect.Stop();
+                GetComponent<VRGestureRig>().enabled = true;
+                if (!hasSpell && !isCoolingDown && wand != null)
+                {
+                    wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+
+                }
             }
         }
 
@@ -179,7 +259,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             if (target.result != null)
             {
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || 
+                    target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || 
+                    target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     AccurateTarget();
                 }
@@ -195,21 +277,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else if (currentSpellName == "disenchant")
         {
-            if (target.result != null)
+            if (target.result2 != null)
             {
-                if (target.result.tag == "Curse")
+                if (target.result2.tag == "Curse")
                 {
-                    AccurateTarget();
+                    AccurateTargetBlessing();
                 }
                 else
                 {
-                    InaccurateTarget();
+                    InaccurateTargetBlessing();
                 }
             }
             else
             {
-                InaccurateTarget();
+                InaccurateTargetBlessing();
             }
+        
         }
         else
         {
@@ -229,7 +312,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         IgniteFlame(currentSpellGradient);
 
-        GetComponent<VRGestureRig>().enabled = false;
+        //GetComponent<VRGestureRig>().enabled = false;
         audioSource.PlayOneShot(cast_success);
 
     }
@@ -286,10 +369,37 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 currentSpellName = "lightBlade";
                 currentSpellGradient = lightBladeGradient;
                 break;
-            case 9:
-                currentSpell = Bubble_shield;
-                currentSpellName = "Bubble_shield";
-                currentSpellGradient = Bubble_shieldGradient;
+            default:
+                break;
+        }
+
+        hasSpell = true;
+
+        IgniteFlame(currentSpellGradient);
+
+        //GetComponent<VRGestureRig>().enabled = false;
+        audioSource.PlayOneShot(cast_success);
+    }
+    public void SetRandomSuperSpell()
+    {
+        int random = Random.Range(0, 3);
+
+        switch (random)
+        {
+            case 0:
+                currentSpell = meteor;
+                currentSpellName = "meteor";
+                currentSpellGradient = meteorGradient;
+                break;
+            case 1:
+                currentSpell = lightBlade;
+                currentSpellName = "lightBlade";
+                currentSpellGradient = lightBladeGradient;
+                break;
+            case 2:
+                currentSpell = iceball;
+                currentSpellName = "iceball";
+                currentSpellGradient = iceballGradient;
                 break;
             default:
                 break;
@@ -299,8 +409,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
         IgniteFlame(currentSpellGradient);
 
-        GetComponent<VRGestureRig>().enabled = false;
-        audioSource.PlayOneShot(cast_success);
+        //GetComponent<VRGestureRig>().enabled = false;
+        //audioSource.PlayOneShot(cast_success);
     }
 
     //Updates the color of the wand flame and restarts it.
@@ -317,78 +427,163 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     }
     void OnGestureDetected(string gestureName, double confidence, Handedness hand, bool isDouble)
     {
+        Color gestureStartColor = Color.red;
+        Color gestureEndColor = Color.red;
+
         switch (gestureName)
         {
-		    case "Jay":
-			    if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (fireball, "fire", fireballGradient);
-			    }
-                    break;
-		   
+            case "Jay":
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && fireCD <= 0)
+                {
+                    SetSpell(fireball, "fire", fireballGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (fireCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
+                }
+                break;
             case "Shield":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && shieldCD <= 0)
                 {
                     SetSpell(shield, "shield", shieldGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (shieldCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Heal":
-			    if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (heal, "heal", healGradient);
-			    }
-                    break;
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && healCD <= 0)
+                {
+                    SetSpell(heal, "heal", healGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (healCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
+                }
+                break;
             case "Spring":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && vinesCD <= 0)
                 {
                     SetSpell(vines, "vines", vinesGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (vinesCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Bolt":
-                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && iceCD <= 0)
                 {
                     SetSpell(iceball, "iceball", iceballGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (iceCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Wave":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
                 {
                     SetSpell(meteor, "meteor", meteorGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (meteorCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "OpenFrame":
-                if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
                 {
                     SetSpell(pongShield, "pongShield", pongShieldGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (pongCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Star":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
                 {
                     SetSpell(platformSteal, "platformSteal", platformStealGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (flipCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Zed":
-                if (playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
                 {
                     SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (swordCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
             case "Hourglass":
-                if (playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true)
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
                 {
                     SetSpell(disenchant, "disenchant", disenchantGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (swordCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
                 }
                 break;
-                 case "Elle":
-			    if (playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) {
-				    SetSpell (Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
-			    }
-                    break;
         }
+
+        //Set gesture as successful.
+        if (gestureRig.rightCapture.myTrail != null) gestureRig.rightCapture.myTrail.UpdateRenderer(gestureStartColor, gestureEndColor, gestureRig.gestureMaterial);
     }
 
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
     {
         audioSource.PlayOneShot(cast_failure);
+
+        //Set gesture as failure.
+        if (gestureRig.rightCapture.myTrail != null) gestureRig.rightCapture.myTrail.UpdateRenderer(Color.red, Color.red, gestureRig.gestureMaterial);
     }
 
     //Get avatar's wand and book.
@@ -398,12 +593,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         torso = avatar.Find("Torso");
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
+        book.GetComponent<BookLogic>().spellcast = this;
 		playerStatus = torso.GetComponent<PlayerStatus>();
     }
 
     //Casts selected spell.
     private void CastSpell()
     {
+        Vibrate(.05f, 3999);
+
         GameObject spellInstance = null;
         Transform wandTip = wand.Find("tip");
         Quaternion spellRotation;
@@ -413,7 +611,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             case "fire":
                 spellRotation = target.result != null && target.result.CompareTag("Player") ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
-                spellTimer = fireballCooldown;
+                fireCD = cooldowns.fireCD;
+                //spellTimer = fireballCooldown;
                 //if (baseSpellClass = spellInstance.GetComponent<BaseSpellClass>())
                 //{
                 //    SetSpellOwner(baseSpellClass);
@@ -423,35 +622,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<IceBall_1>().blue = avatar.GetComponent<TeamManager>().blue;
-                spellTimer = iceballCooldown;
+                spellInstance.GetComponent<IceBall_1>().spellcast = this;
+                iceCD = cooldowns.iceCD;
+                iceball_cast = true;
+                StartCoroutine(IceballCast());
+                //spellTimer = iceballCooldown;
                 break;
             case "shield":
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, Camera.main.transform.rotation, 0);
                 //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position + wandTip.forward, wandTip.rotation, 0);
                 //spellInstance.transform.SetParent(wandTip);
-           
-                if (target.result != null && target.result.tag == "Player")
-                {
-                    //spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                    //spellInstance.GetComponent<Shield>().SetBook(book);
-                    //spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                    ////                spellInstance.transform.SetParent(book);
-                    //spellTimer = shieldCooldown;
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position + torso.forward, torso.rotation, 0);
-                    spellInstance.GetComponent<Bubble_shield>().SetBook(torso);
-                    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                    spellTimer = Bubble_shieldCooldown;
-                }
-                else
-                {
-                    return;
-                }
-                break;
-            case "Bubble_shield":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position + torso.forward, torso.rotation, 0);
-                spellInstance.GetComponent<Bubble_shield>().SetBook(torso);
-                spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                spellTimer = Bubble_shieldCooldown;
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
+                spellInstance.GetComponent<Shield>().SetBook(book);
+                spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                shieldCD = cooldowns.shieldCD;
+                //                spellInstance.transform.SetParent(book);
+                //spellTimer = shieldCooldown;
                 break;
             case "heal":
                 // Heal others
@@ -463,11 +649,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 // Self heal
                 else
                 {
-                    print("self heal");
+                    //print("self heal");
                     print(avatar);
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
-                spellTimer = healCooldown;
+                healCD = cooldowns.healCD;
+                //spellTimer = healCooldown;
                 break;
             case "vines":
                 //Check if target is a platform, otherwise don't do anything.
@@ -476,9 +663,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
 
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
+                    vinesCD = cooldowns.vinesCD;
                 }
                 else
                 {
@@ -489,13 +677,16 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellRotation = new Quaternion();
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
                 spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                spellTimer = pongShieldCooldown;
+                pongCD = cooldowns.pongCD;
+                //spellTimer = pongShieldCooldown;
                 break;
-		case "meteor":
+		    case "meteor":
 			spellRotation = wandTip.rotation;
 			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
 			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
-                spellTimer = meteorCooldown;
+                spellInstance.GetComponent<MeteorSpell>().spellcast = this;
+                meteorCD = cooldowns.meteorCD;
+                // spellTimer = meteorCooldown;
                 break;
             case "platformSteal":
                 //Check if target is a platform, otherwise don't do anything.
@@ -504,11 +695,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Debug.Log("target for platform steal is null");
                     return;
                 }
-                if (target.result.tag == "BluePlatform" || target.result.tag == "RedPlatform")
+                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
                     target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
-                    spellTimer = platformStealCooldown;
+                    flipCD = cooldowns.flipCD;
+                    //spellTimer = platformStealCooldown;
                 }
                 else
                 {
@@ -520,23 +712,25 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
 				spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
 				spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
-                spellTimer = lightBladeCooldown;
+                swordCD = cooldowns.swordCD;
+                //spellTimer = lightBladeCooldown;
                 break;
             case "disenchant":
-                if (target != null && target.result != null && target.result.CompareTag("Curse"))
+                if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
                 {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.position, new Quaternion(), 0);
-                    spellTimer = disenchantCooldown;
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
+                    blessingCD = cooldowns.blessingCD;
+                    //spellTimer = disenchantCooldown;
                     //target.result.GetComponent<VineTrap>().DestroyVines();
-                    target.result.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+                    target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 }
                 else
                 {
-                    spellTimer = disenchantCooldown;
+                    //spellTimer = disenchantCooldown;
                 }
                 break;
             default:
-                spellTimer = spellCooldown;
+                //spellTimer = spellCooldown;
                 break;
         }
         
@@ -555,7 +749,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         currentSpell = null;
         //target.currentSpellName = "";
         currentSpellName = "";
-        
+        GetComponent<VRGestureRig>().enabled = false;
+
     }
     void SetSpellOwner(BaseSpellClass bsp)
     {
@@ -564,25 +759,44 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             bsp.SetOwner(avatar.gameObject);
         }
     }
-
+    public void kill_spells()
+    {
+        wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        currentSpell = null;
+        hasSpell = false;
+        currentSpellName = "";
+    }
     // Successfully target a platform
     void AccurateTarget()
     {
+        Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
-        RaycastHit hit;
-        Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
-        beamTrail.destination = hit.point;
+        //RaycastHit hit;
+        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = target.hit.point;
         lineRend.colorGradient = accurateTarget;
-        reticle.transform.position = hit.point;
+        reticle.transform.position = target.hit.point;
+    }
+    void AccurateTargetBlessing()
+    {
+        Physics.queriesHitTriggers = true;
+        beamTrail.gameObject.SetActive(true);
+        reticle.SetActive(true);
+        //RaycastHit hit;
+        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
+        beamTrail.destination = target.hit_blessing.point;
+        lineRend.colorGradient = accurateTarget;
+        reticle.transform.position = target.hit_blessing.point;
     }
 
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
+        Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         RaycastHit hit;
-        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.layers))
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000/*, target.layers*/))
         {
             beamTrail.destination = (hit.point);
             lineRend.colorGradient = inaccurateTarget;
@@ -591,12 +805,64 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else
         {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 10);
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
             reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 10);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
         }
 
         lineRend.colorGradient = inaccurateTarget;
+    }
+    void InaccurateTargetBlessing()
+    {
+        Physics.queriesHitTriggers = true;
+        beamTrail.gameObject.SetActive(true);
+        RaycastHit hit;
+        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, target.blessing_layers))
+        {
+            beamTrail.destination = (hit.point);
+            lineRend.colorGradient = inaccurateTarget;
+            reticle.SetActive(true);
+            reticle.transform.position = hit.point;
+        }
+        else
+        {
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
+            reticle.SetActive(true);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
+        }
+
+        lineRend.colorGradient = inaccurateTarget;
+    }
+    IEnumerator IceballCast()
+    {
+        yield return new WaitForSeconds(4);
+        iceball_cast = false;
+        drawEffect.Stop();
+        GetComponent<VRGestureRig>().enabled = true;
+        if (!hasSpell && !isCoolingDown && wand != null)
+        {
+            wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+    }
+
+    public void Vibrate(float _length, ushort _vibrateIntensity)
+    {
+        //SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(2000);
+        length = _length;
+        vibrateIntensity = _vibrateIntensity;
+        vibrateStart = Time.time;
+        InvokeRepeating("VibrateRepeat", 0, 0.05F);
+
+    }
+
+    void VibrateRepeat()
+    {
+        // Vibration caps at 3999
+        SteamVR_Controller.Input(rightControllerIndex).TriggerHapticPulse(vibrateIntensity);
+        if (Time.time >= vibrateStart + length)
+        {
+            CancelInvoke();
+        }
     }
 }
 

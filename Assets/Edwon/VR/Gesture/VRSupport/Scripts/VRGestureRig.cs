@@ -151,9 +151,9 @@ namespace Edwon.VR
             if (displayGestureTrail)
             {
                 leftTrail = gameObject.AddComponent<GestureTrail>();
-                leftTrail.UpdateRenderer(gestureInitialColor, gestureFinalColor, gestureMaterial);
+                leftTrail.SetDefaultColor(gestureInitialColor, gestureFinalColor, gestureMaterial);
                 rightTrail = gameObject.AddComponent<GestureTrail>();
-                rightTrail.UpdateRenderer(gestureInitialColor, gestureFinalColor, gestureMaterial);
+                rightTrail.SetDefaultColor(gestureInitialColor, gestureFinalColor, gestureMaterial);
             }
 
             leftCapture = new CaptureHand(this, perpTransform, Handedness.Left, leftTrail);

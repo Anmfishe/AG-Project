@@ -24,6 +24,7 @@ public class VineTrap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SetUp();
+        
 	}
 	
 	// Update is called once per frame
@@ -77,6 +78,7 @@ public class VineTrap : MonoBehaviour {
 
         //Set duration timer.
         durationTimer = duration;
+        StartCoroutine(DestroyAfterSeconds());
     }
 
 [PunRPC]
@@ -97,8 +99,8 @@ public class VineTrap : MonoBehaviour {
         if (playerStatus != null)
         if (playerStatus.dead || playerStatus.takeDamage(damagePerCycle))
         {
-            //Enable movement before destroy itself.
-            Debug.Log("FuCkMe");
+                //Enable movement before destroy itself.
+                StopCoroutine(DestroyAfterSeconds());
             isActivated = false;
             body.gameObject.SetActive(false);
             playerStatus.EnableMovement(true);
@@ -115,7 +117,7 @@ public class VineTrap : MonoBehaviour {
         if (isActivated) return;
 
         Transform other = trigger.transform;
-        print(other.tag);
+
 
         if (other.CompareTag("Player") && first)
         {
@@ -125,6 +127,12 @@ public class VineTrap : MonoBehaviour {
             player_photonView = player.GetComponent<PlayerStatus>().photonView;
             Activate();
         }
+    }
+    IEnumerator DestroyAfterSeconds()
+    {
+        yield return new WaitForSeconds(duration);
+        DestroyVines();
+        GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
     }
     
 }

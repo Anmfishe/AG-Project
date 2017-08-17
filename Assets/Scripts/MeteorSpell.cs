@@ -16,7 +16,8 @@ public class MeteorSpell : MonoBehaviour
 	public GameObject explosion;
     private bool deflected;
 
-
+    [HideInInspector]
+    public SpellcastingGestureRecognition spellcast;
 
     public LayerMask targettable;
 	public GameObject wand;
@@ -85,9 +86,10 @@ public class MeteorSpell : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (mine == true) 
+        if (mine == true) 
 		{
-		}
+            SteamVR_Controller.Input(spellcast.rightControllerIndex).TriggerHapticPulse(300);SteamVR_Controller.Input(spellcast.rightControllerIndex).TriggerHapticPulse(300);
+        }
 
 		//Timer to activate collider.
 		if (activeTimer > 0)
@@ -226,7 +228,8 @@ public class MeteorSpell : MonoBehaviour
 
         Destroy(reticleInstance);
         //spellcastingGesture.enabled = true;
-		PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
+        spellcast.Vibrate(.1f, 3999);
+        PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
 
     void Reflect()

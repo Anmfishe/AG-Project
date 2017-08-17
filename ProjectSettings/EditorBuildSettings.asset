@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PUNVoice/DemoVoice/DemoVoice-Scene.unity
     guid: 833e8409304dace449e9c5cf686420d7
+  - enabled: 0
+    path: 
+    guid: d4214146593c1374087dfccfb64c40ec

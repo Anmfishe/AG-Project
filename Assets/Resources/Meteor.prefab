@@ -414,11 +414,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reticle: {fileID: 1759314124068756, guid: 508e3167dc6fd164f93a99cdc9fa6c77, type: 2}
   mine: 0
-  blue: 0
   explosion: {fileID: 100000, guid: cb91ec3b3a515f04182f711604fc111b, type: 2}
   targettable:
     serializedVersion: 2
-    m_Bits: 4864
+    m_Bits: 20480
   wand: {fileID: 0}
   duration: 12
   direction: {x: 0, y: 0, z: 0}
@@ -431,6 +430,7 @@ MonoBehaviour:
   deflectAudio: {fileID: 8300000, guid: 106c7955ff9e5de4d96f942a90c85c2b, type: 3}
   isMaster: 0
   isSlave: 0
+  blue: 0
 --- !u!114 &114775295234517056
 MonoBehaviour:
   m_ObjectHideFlags: 1
