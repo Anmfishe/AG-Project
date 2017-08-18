@@ -1,42 +1,16 @@
 fileFormatVersion: 2
-guid: d60d93ac7f7cf2040b78913678af8fd2
-timeCreated: 1502948471
+guid: 8649a00bf9d6c64418ea880230fdeafc
+timeCreated: 1503002995
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pPipe1
-    100004: pSphere1
-    100006: pPipe2
-    100008: pSphere2
-    100010: BaseMesh
-    100012: CrystalMesh
     400000: //RootNode
-    400002: pPipe1
-    400004: pSphere1
-    400006: pPipe2
-    400008: pSphere2
-    400010: BaseMesh
-    400012: CrystalMesh
-    2300000: pPipe1
-    2300002: pSphere1
-    2300004: pPipe2
-    2300006: pSphere2
-    2300008: BaseMesh
-    2300010: CrystalMesh
-    3300000: pPipe1
-    3300002: pSphere1
-    3300004: pPipe2
-    3300006: pSphere2
-    3300008: BaseMesh
-    3300010: CrystalMesh
-    4300000: pPipe1
-    4300002: pSphere1
-    4300004: pSphere2
-    4300006: pPipe2
-    4300008: BaseMesh
-    4300010: CrystalMesh
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: PlatformBaseMesh
+    4300002: BaseMesh
     9500000: //RootNode
   materials:
     importMaterials: 1
