@@ -279,8 +279,10 @@ public class NetworkManager1 : Photon.PunBehaviour
             name = usernames[random];
             Debug.Log("Randomly chosen " + name);
             
+            // loop through all usernames
             foreach (GameObject go in GameObject.FindGameObjectsWithTag("Username"))
             { 
+                // if duplicate name, set name to empty string to loop again
                 if (go.GetComponent<TextMesh>().text == usernames[random])
                 {
                     Debug.Log("Uh oh, it's a match. Should re-randomize");
