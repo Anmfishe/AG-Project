@@ -168,7 +168,7 @@ public class PadTeleport : MonoBehaviour
     }
 
 
-    void disableHighlight(Transform highlighted)
+    public void disableHighlight(Transform highlighted)
     {
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
@@ -180,13 +180,25 @@ public class PadTeleport : MonoBehaviour
                 
     }
 
-    void enableHighlight(Transform highlighted)
+    public void enableHighlight(Transform highlighted)
     {
+        print("ENABLING");
         if (highlighted!= null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
-            if((highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform" )))
+            if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform")))
+            {
                 if (highlighted.parent.childCount > 1)
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                print("parent! " + highlighted.parent.gameObject.tag);
+            }
+        }
+
+        else
+        {
+            print("child!" + highlighted.gameObject.tag);
         }
 
 

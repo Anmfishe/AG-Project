@@ -8,6 +8,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public VRGestureRig gestureRig;
 
+
+    PadTeleport padTeleport;
     public ParticleSystem drawEffect;
 
     public Gradient baseGradient;
@@ -77,6 +79,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Targeting target;
     public Transform avatar;
     public Transform torso;
+    public Transform padHit;
 
 	public PlayerStatus playerStatus;
 
@@ -122,6 +125,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     float vibrateStart;
     ushort vibrateIntensity;
     float length;
+
+    private void Awake()
+    {
+        padTeleport = GetComponent<PadTeleport>();
+    }
 
     private void Start()
     {
@@ -273,6 +281,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || 
                     target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
+                    if (target.result.transform != padHit)
+                    {
+                        if (padHit != null)
+                        {
+                            if (padHit.childCount > 0)
+                            {
+                                padTeleport.disableHighlight(padHit.GetChild(0));
+                            }
+                            padHit = null;
+                        }
+
+                        padHit = target.result.transform;
+                    }
+
                     AccurateTarget();
                 }
                 else
@@ -713,6 +735,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                     vinesCD = cooldowns.vinesCD;
+
+                    if (padHit != null)
+                    {
+                        if (padHit.childCount > 0)
+                        {
+                            padTeleport.disableHighlight(padHit.GetChild(0));
+                        }
+                        padHit = null;
+                    }
                 }
                 else
                 {
@@ -746,7 +777,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
                     target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
                     flipCD = cooldowns.flipCD;
-                    //spellTimer = platformStealCooldown;
+
+                    if (padHit != null)
+                    {
+                        if (padHit.childCount > 0)
+                        {
+                            padTeleport.disableHighlight(padHit.GetChild(0));
+                        }
+                        padHit = null;
+                    }
                 }
                 else
                 {
@@ -823,6 +862,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         beamTrail.destination = target.hit.point;
         lineRend.colorGradient = accurateTarget;
         reticle.transform.position = target.hit.point;
+        padHit = target.hit.transform;
+
+        if (padHit.childCount > 0)
+        {
+            padTeleport.enableHighlight(padHit.GetChild(0));
+        }
     }
     void AccurateTargetBlessing()
     {
@@ -839,6 +884,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
+        if (padHit != null)
+        {
+            if (padHit.childCount > 0)
+                padTeleport.disableHighlight(padHit.GetChild(0));
+
+            padHit = null;
+        }
+
         Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         RaycastHit hit;
@@ -851,9 +904,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else
         {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 25);
             reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 25);
         }
 
         lineRend.colorGradient = inaccurateTarget;
@@ -872,9 +925,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
         else
         {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 100);
+            beamTrail.destination = (target.pointer.position + target.pointer.forward * 25);
             reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 100);
+            reticle.transform.position = (target.pointer.position + target.pointer.forward * 25);
         }
 
         lineRend.colorGradient = inaccurateTarget;
