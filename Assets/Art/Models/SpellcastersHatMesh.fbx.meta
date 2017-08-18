@@ -1,22 +1,15 @@
 fileFormatVersion: 2
-guid: bbb30930a619c484f9b47c7e681c1939
-timeCreated: 1502852964
+guid: 58866a80aece3f442bb500f60a791f2f
+timeCreated: 1503000669
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: polySurface2
-    100002: //RootNode
-    100004: transform1
-    400000: polySurface2
-    400002: //RootNode
-    400004: transform1
-    2300000: polySurface2
-    2300002: //RootNode
-    3300000: polySurface2
-    3300002: //RootNode
-    4300000: polySurface2
-    4300002: HatMesh
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SpellcasterHatMesh
     9500000: //RootNode
   materials:
     importMaterials: 1

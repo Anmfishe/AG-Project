@@ -45,7 +45,7 @@ public class TeamManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         if(rightHand != null && !set && photonView.isMine)
         {
