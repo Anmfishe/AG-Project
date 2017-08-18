@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TeleporterPlatform : MonoBehaviour {
-    [HideInInspector]
+//    [HideInInspector]
     public int numPlayersOnPlatform = 0;
     [HideInInspector]
     public List<GameObject> players = new List<GameObject>();
@@ -29,11 +29,13 @@ public class TeleporterPlatform : MonoBehaviour {
 //        Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : Collided with " + other.name + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            numPlayersOnPlatform++;
+            
             Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (!players.Contains(other.gameObject))
             {
+                numPlayersOnPlatform++;
                 players.Add(other.gameObject);
+                other.GetComponent<PlayerStatus>().onTeleporter = true;
             }
         }
     }
@@ -43,11 +45,13 @@ public class TeleporterPlatform : MonoBehaviour {
 //        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            numPlayersOnPlatform--;
+            
             Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
             {
+                numPlayersOnPlatform--;
                 players.Remove(other.gameObject);
+                other.GetComponent<PlayerStatus>().onTeleporter = false;
             }
         }
     }

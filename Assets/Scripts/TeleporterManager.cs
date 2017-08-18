@@ -10,16 +10,23 @@ public class TeleporterManager : MonoBehaviour {
     public GameObject[] bluePlatforms;
     public GameObject[] redPlatforms;
     
-    private GameObject rm;
+    GameObject rm;
+    NotificationManager nm;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        if (Camera.main.GetComponent<NotificationManager>() == null)
+        {
+            Debug.Log("TeleporterManager.cs : Start() : Could not find \"NotificationManager\" component");
+            return;
+        }
+
+        nm = Camera.main.GetComponent<NotificationManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (PhotonNetwork.isMasterClient && IsReady())
+		if (IsReady())
         {
             TeleportPlayersToArena();
         }
@@ -27,34 +34,71 @@ public class TeleporterManager : MonoBehaviour {
 
     bool IsReady()
     {
-//        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
-        if (PhotonNetwork.playerList.Length > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2 == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
+        if (nm == null)
         {
+            nm = Camera.main.GetComponent<NotificationManager>();
+        }
+
+        //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
+        if (PhotonNetwork.playerList.Length > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
+        {
+            bool ready = true;
             Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
             foreach (GameObject player in blue.players)
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
+                    // Notify player to get a hat if the player is on the teleport without a hat
+                    if (player.GetComponent<PlayerStatus>().onTeleporter)
+                    {
+                        nm.SetNotification("Grab a hat!");
+                    }
+                    
                     Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
-                    return false;
+                    ready = false;
                 }
             }
             foreach (GameObject player in red.players)
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
+                    // Notify player to get a hat if the player is on the teleport without a hat
+                    if (player.GetComponent<PlayerStatus>().onTeleporter)
+                    {
+                        nm.SetNotification("Grab a hat!");
+                    }
+
                     Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
-                    return false;
+                    ready = false;
                 }
             }
-            return true;
+
+            // only way for ready to be true if it hasn't been set to false
+            return ready;
         }
 
+        // Notify player how many people are not ready if the player is on the teleporter
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter)
+            {
+                int playersNotReady = PhotonNetwork.playerList.Length - (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2;
+                nm.SetNotification("Waiting on " + playersNotReady + " player(s)..");
+                break;
+            }
+        }
         return false;
     }
 
     void TeleportPlayersToArena()
     {
+        nm.Clear();
+
+        if (! PhotonNetwork.isMasterClient)
+        {
+            return;
+        }
+
 //        Debug.Log("TeleporterManager.cs : TeleportPlayersToArena() : Inside");
         PlayerStatus ps;
         int i = 0;
@@ -90,9 +134,6 @@ public class TeleporterManager : MonoBehaviour {
                 Debug.Log("TeleportManager.cs : Teleport() : [red] " + player.name + " does not have a PlayerStatus component!");
             }
         }
-
-
-        
         
     }
 

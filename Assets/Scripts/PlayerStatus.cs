@@ -46,6 +46,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     VRTK.VRTK_StraightPointerRenderer vrtk_spr;
 
     public GameObject hat;
+    public bool onTeleporter = false;
 
     public float max_health = 100;
   //  [HideInInspector]

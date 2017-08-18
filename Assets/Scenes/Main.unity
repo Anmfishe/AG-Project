@@ -2444,7 +2444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210075018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 0.010489999, y: 0.010489999, z: 0.010489999}
   m_Children: []
   m_Father: {fileID: 1061010182}
@@ -2465,7 +2465,7 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 204
+  m_FontSize: 100
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 448f1e21dfc845a4baec38c20a8ee52e, type: 3}
@@ -2958,6 +2958,11 @@ Prefab:
         type: 2}
       propertyPath: usernames_post.Array.data[4]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: roomName
+      value: ray
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}

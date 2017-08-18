@@ -12,6 +12,7 @@ public class NotificationManager : MonoBehaviour {
         if (this.transform.Find("NotificationText") != null)
         {
             notification = this.transform.Find("NotificationText").GetComponent<TextMesh>();
+            Clear();
         }
         else
         {
@@ -35,7 +36,7 @@ public class NotificationManager : MonoBehaviour {
         }
 	}
 
-    public void SetNotification(string text, float duration = 3)
+    public void SetNotification(string text, float duration = 1.5f)
     {
         if (notification == null)
         {
