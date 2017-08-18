@@ -39,7 +39,6 @@ public class PickupParent : MonoBehaviour
 
 	AudioClip[] sounds;
 
-
 	public Transform ball;
 	private bool endingPlayed;
 	private bool releaseHat;
@@ -50,7 +49,6 @@ public class PickupParent : MonoBehaviour
 	void Awake()
 	{
 		trackedObj = GetComponent<SteamVR_TrackedObject> ();
-
 	}
 
 
@@ -72,7 +70,6 @@ public class PickupParent : MonoBehaviour
 	// Pickup logic
 	void OnTriggerStay(Collider col)
 	{
-
 		if (Input.GetKeyDown("joystick button 15"))
 		{
 			if (grabbed == null)
@@ -94,6 +91,7 @@ public class PickupParent : MonoBehaviour
 							grabbed = col.gameObject;
 							heldHat = col.GetComponent<HatLogic> ();
 							heldHat.held = true;
+                            Debug.Log("this: " + this.transform.position + ", other: " + col.transform.position);
                             heldHat.hand = this.gameObject.transform;
 							pickupTime = Time.time;						
 							col.GetComponent<HatLogic> ().takeOffHat();
