@@ -9580,7 +9580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -9977,7 +9977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10178,7 +10178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10378,7 +10378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10416,7 +10416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10781,7 +10781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11537,7 +11537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11679,7 +11679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11871,7 +11871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
-  currentColor: blue
+  currentColor: red
   blueMaterial: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
