@@ -277,13 +277,13 @@ public class NetworkManager1 : Photon.PunBehaviour
         {
             random = Mathf.FloorToInt(Random.Range(0, usernames.Length));
             name = usernames[random];
-//            Debug.Log("Randomly chosen " + name);
+            Debug.Log("Randomly chosen " + name);
             
             foreach (GameObject go in GameObject.FindGameObjectsWithTag("Username"))
             { 
                 if (go.GetComponent<TextMesh>().text == usernames[random])
                 {
-//                    Debug.Log("Uh oh, it's a match. Should re-randomize");
+                    Debug.Log("Uh oh, it's a match. Should re-randomize");
                     name = "";
                     break;
                 }
