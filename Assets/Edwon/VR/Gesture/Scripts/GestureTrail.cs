@@ -44,8 +44,14 @@ namespace Edwon.VR.Gesture
             //If stopped listening and transition timer is less than one, lerp the trail's colors to transparent.
             if(!listening && transitionTimer <= 1)
             {
-                currentRenderer.startColor = Color.Lerp(initialColor, initialTransColor, transitionTimer += Time.deltaTime);
-                currentRenderer.endColor = Color.Lerp(finalColor, initialTransColor, transitionTimer += Time.deltaTime);
+                transitionTimer += Time.deltaTime;
+                currentRenderer.startColor = Color.Lerp(initialColor, initialTransColor, transitionTimer);
+                currentRenderer.endColor = Color.Lerp(finalColor, finalTransColor, transitionTimer);
+            }
+            else if(!listening && transitionTimer > 1)
+            {
+                currentRenderer.startColor = initialTransColor;
+                currentRenderer.endColor = finalTransColor;
             }
 
         }
