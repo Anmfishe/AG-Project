@@ -30,8 +30,6 @@ public class FireballNew : MonoBehaviour
         if (startup > 0) activeTimer = startup;
         if(fbCollider == null) fbCollider = this.GetComponent<SphereCollider>();
         if (audioSource == null) audioSource = this.GetComponent<AudioSource>();
-
-        
     }
 
     // Update is called once per frame
@@ -108,45 +106,45 @@ public class FireballNew : MonoBehaviour
         DestroyFireball();
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        GameObject other = collider.gameObject;
-        print("Triggered (heh) by " + other.name);
-        if (other.CompareTag("SpellHitter"))
-        {
-            print("triggered spellhitter");
-            //Create reflected fireball if it was hit hard enough by the spell hitter.
-            Rigidbody otherBody = other.GetComponent<Rigidbody>();
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    GameObject other = collider.gameObject;
+    //    print("Triggered (heh) by " + other.name);
+    //    if (other.CompareTag("SpellHitter"))
+    //    {
+    //        print("triggered spellhitter");
+    //        //Create reflected fireball if it was hit hard enough by the spell hitter.
+    //        Rigidbody otherBody = other.GetComponent<Rigidbody>();
 
-            print("VELOCITY: " + otherBody.velocity.magnitude + " | ANGULAR V: " + otherBody.angularVelocity.magnitude);
-            if (otherBody.velocity.magnitude > minLinearVelocity || otherBody.angularVelocity.magnitude > minAngularVelocity)
-            {
-                print("Invert Fireball!");
-                //this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1);
-                //this.GetComponent<Rigidbody>().velocity *= -1;
-                //StartRecovery();
-                //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
-                fbCollider.enabled = false;
-                GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.forward * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
-                DestroyFireball();
-                if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
-            }
+    //        print("VELOCITY: " + otherBody.velocity.magnitude + " | ANGULAR V: " + otherBody.angularVelocity.magnitude);
+    //        if (otherBody.velocity.magnitude > minLinearVelocity || otherBody.angularVelocity.magnitude > minAngularVelocity)
+    //        {
+    //            print("Invert Fireball!");
+    //            //this.transform.rotation = Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1);
+    //            //this.GetComponent<Rigidbody>().velocity *= -1;
+    //            //StartRecovery();
+    //            //GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position, Quaternion.LookRotation(otherBody.transform.forward, otherBody.transform.up), 0);
+    //            fbCollider.enabled = false;
+    //            GameObject reflectedFireball = PhotonNetwork.Instantiate("Fireball", this.transform.position + this.transform.forward * -1, Quaternion.LookRotation(this.transform.forward * -1, this.transform.up * -1), 0);
+    //            DestroyFireball();
+    //            if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
+    //        }
 
-        }
-        else if (other.CompareTag("Player"))
-        {
-            if (PhotonNetwork.isMasterClient)
-            {
-                print("on trigger enter, hit torso");
+    //    }
+    //    else if (other.CompareTag("Player"))
+    //    {
+    //        if (PhotonNetwork.isMasterClient)
+    //        {
+    //            print("on trigger enter, hit torso");
 
-                other.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+    //            other.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
                 
-                //Instantiate new explosion. May not be properly destroyed on the network
-                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-                DestroyFireball();
-            }
-        }
-    }
+    //            //Instantiate new explosion. May not be properly destroyed on the network
+    //            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+    //            DestroyFireball();
+    //        }
+    //    }
+    //}
 
     private void StartRecovery()
     {
