@@ -72,12 +72,12 @@ public class NetworkManager1 : Photon.PunBehaviour
 		photonView = GetComponent<PhotonView>();
 
         hats = new GameObject[6];
-        hats[0] = hat_support_red;
-        hats[1] = hat_attack_red;
-        hats[2] = hat_heal_red;
-        hats[3] = hat_heal_blue;
-        hats[4] = hat_attack_blue;
-        hats[5] = hat_support_blue;
+        hats[3] = hat_support_red;
+        hats[4] = hat_attack_red;
+        hats[5] = hat_heal_red;
+        hats[0] = hat_heal_blue;
+        hats[1] = hat_attack_blue;
+        hats[2] = hat_support_blue;
     }
 
 	// Update is called once per frame

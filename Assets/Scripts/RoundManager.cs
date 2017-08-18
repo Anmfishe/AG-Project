@@ -159,12 +159,10 @@ public class RoundManager : MonoBehaviour {
     [PunRPC]
     void StartRound()
     {
+        GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
+      //  GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PadTeleport>().enabled = true;
         score = 0;
         timeElapsed = 0;
- //       FindPlayers();
-        //TODO send players to the battlefield
-        /*foreach (GameObject pl in playerPCP)
-            pl.GetComponent<TeamManager>().Respawn();*/
         inBattlefield = true;
         if (practiceRoom != null)
         {
@@ -190,7 +188,7 @@ public class RoundManager : MonoBehaviour {
 
     void ChooseHats()
     {
-//        Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
+        // Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
@@ -207,6 +205,7 @@ public class RoundManager : MonoBehaviour {
             return;
         }
         GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = true;
+        GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PadTeleport>().enabled = false;
     }
 
     void SendPlayerToHatRoom(GameObject player)

@@ -503,6 +503,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
             //            Debug.Log("PlayerStatus.cs : Teleport() : Inside isMine");
             this.transform.parent.GetComponent<TeamManager>().Respawn();
+            Camera.main.transform.parent.GetComponent<PadTeleport>().enabled = true;
+            Camera.main.transform.parent.GetComponent<PadTeleport>().blue = isBlue;
             //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
     }
