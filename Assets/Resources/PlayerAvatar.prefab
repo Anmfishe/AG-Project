@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 114737257153124418}
   m_Layer: 0
   m_Name: Username
-  m_TagString: Untagged
+  m_TagString: Username
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2650,8 +2650,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 29
-  instantiationId: 29
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114296775303848278
@@ -2716,8 +2716,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114737257153124418}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 22
-  instantiationId: 22
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114316427438194120
@@ -2868,8 +2868,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 30
-  instantiationId: 30
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114473738197043446
@@ -2894,8 +2894,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114485207094041094}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 27
-  instantiationId: 27
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114485207094041094
@@ -3000,8 +3000,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999018229916790}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 24
-  instantiationId: 24
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114579494545927690
@@ -3026,8 +3026,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114344753946840322}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 23
-  instantiationId: 23
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114583489857709276
@@ -3065,6 +3065,7 @@ MonoBehaviour:
   dead: 0
   pregame: 1
   respawnLength: 6
+  bubbled: 0
   hat: {fileID: 0}
   max_health: 100
   current_health: 100
@@ -3157,8 +3158,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114590541061986310}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 20
-  instantiationId: 20
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114712731056247226
@@ -3384,8 +3385,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 19
-  instantiationId: 19
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114781080419311168
@@ -3531,8 +3532,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114712731056247226}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 25
-  instantiationId: 25
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114983368042875874

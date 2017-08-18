@@ -50,6 +50,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public GameObject roundMan;
     public GameObject powerupManager;
     private PunTeams pt;
+	string[] usernames;
 
 	void Awake()
 	{
@@ -78,6 +79,8 @@ public class NetworkManager1 : Photon.PunBehaviour
         hats[3] = hat_heal_blue;
         hats[4] = hat_attack_blue;
         hats[5] = hat_support_blue;
+
+		usernames = new string[] {"Anton", "Dylan", "Lingyi", "Max", "Rayjo", "Rogelio", "MJ" , "Erin", "Sam"};
     }
 
 	// Update is called once per frame
@@ -189,7 +192,27 @@ public class NetworkManager1 : Photon.PunBehaviour
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
 
         PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
-        pv.RPC("SetUsername", PhotonTargets.AllBuffered, "Player " + PhotonNetwork.playerList.Length);
+
+
+		string name = "";
+		int random;
+		while (name == "")
+		{
+			random = Mathf.FloorToInt(Random.Range (0, 9));
+
+
+			foreach (GameObject go in GameObject.FindGameObjectsWithTag("Username"))
+			{
+				if (go.GetComponent<TextMesh> ().text == usernames [random])
+				{
+					continue;
+				}
+			}
+
+			name = usernames[random];
+		}
+
+        pv.RPC("SetUsername", PhotonTargets.AllBuffered, name);
         pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
 
         if (PhotonNetwork.isMasterClient)
