@@ -156,6 +156,11 @@ public class TeamManager : MonoBehaviour {
                 cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                 Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0));
             }
+            else
+            {
+                cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
+                Quaternion.Euler(0, 0, 0));
+            }
             //Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
