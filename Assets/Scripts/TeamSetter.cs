@@ -34,13 +34,24 @@ public class TeamSetter : MonoBehaviour {
     [PunRPC]
     public void SetRed2()
     {
-        render.material = red;
-        if(targetableScript != null) targetableScript.UpdateMaterials(red);
+        Material[] mats = render.materials;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            mats[i] = red;
+        }
+        render.materials = mats;
+
+        if (targetableScript != null) targetableScript.UpdateMaterials(red);
     }
     [PunRPC]
     public void SetBlue2()
     {
-        render.material = blue;
+        Material[] mats = render.materials;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            mats[i] = blue;
+        }
+        render.materials = mats;
         if (targetableScript != null) targetableScript.UpdateMaterials(blue);
     }
 }
