@@ -8,10 +8,12 @@ public class TeleporterPlatform : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> players = new List<GameObject>();
 
+    NotificationManager nm;
+
     // Use this for initialization
     void Start () {
-
-	}
+        SetNotificationManager();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,32 +28,64 @@ public class TeleporterPlatform : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-//        Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : Collided with " + other.name + " with tag " + other.tag);
+        SetNotificationManager();
+
+        //        Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : Collided with " + other.name + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            
-            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
-            if (!players.Contains(other.gameObject))
+            PlayerStatus ps = other.GetComponent<PlayerStatus>();
+
+//            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            if (! players.Contains(other.gameObject))
             {
                 numPlayersOnPlatform++;
                 players.Add(other.gameObject);
                 other.GetComponent<PlayerStatus>().onTeleporter = true;
+            }
+
+            // Notify player to get a hat if the player is on the teleporter without a hat
+            if (ps.playerClass == PlayerClass.none)
+            {
+                nm.SetNotification("Grab a hat!", 101);
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-//        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
+        SetNotificationManager();
+
+        //        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            
             Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
             {
                 numPlayersOnPlatform--;
                 players.Remove(other.gameObject);
                 other.GetComponent<PlayerStatus>().onTeleporter = false;
+            }
+
+            // Clear notifications
+            nm.Clear();
+        }
+    }
+
+    void SetNotificationManager()
+    {
+        if (nm == null)
+        {
+            if (Camera.main == null)
+            {
+                Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+            }
+            else if (Camera.main.GetComponent<NotificationManager>() == null)
+            {
+                Debug.Log("TeleporterManager.cs : Start() : Could not find \"NotificationManager\" component");
+            }
+            else
+            {
+                nm = Camera.main.GetComponent<NotificationManager>();
             }
         }
     }

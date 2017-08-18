@@ -59,17 +59,12 @@ public class TeleporterManager : MonoBehaviour {
         if (PhotonNetwork.playerList.Length > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
             bool ready = true;
+
             Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
             foreach (GameObject player in blue.players)
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
-                {
-                    // Notify player to get a hat if the player is on the teleport without a hat
-                    if (player.GetComponent<PlayerStatus>().onTeleporter)
-                    {
-                        nm.SetNotification("Grab a hat!");
-                    }
-                    
+                {                    
                     Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     ready = false;
                 }
@@ -78,28 +73,25 @@ public class TeleporterManager : MonoBehaviour {
             {
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
-                    // Notify player to get a hat if the player is on the teleport without a hat
-                    if (player.GetComponent<PlayerStatus>().onTeleporter)
-                    {
-                        nm.SetNotification("Grab a hat!");
-                    }
-
                     Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     ready = false;
                 }
             }
 
-            // only way for ready to be true if it hasn't been set to false
-            return ready;
+            if (ready)
+            {
+                nm.Clear();
+                return true;
+            }
         }
 
         // Notify player how many people are not ready if the player is on the teleporter
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter)
+            if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter && go.GetComponent<PlayerStatus>().playerClass != PlayerClass.none)
             {
-                int playersNotReady = PhotonNetwork.playerList.Length - (blue.numPlayersOnPlatform + red.numPlayersOnPlatform);
-                nm.SetNotification("Waiting on " + playersNotReady + " player(s)..");
+                int numPlayersNotReady = PhotonNetwork.playerList.Length - blue.numPlayersOnPlatform - red.numPlayersOnPlatform;
+                nm.SetNotification("Waiting on " + numPlayersNotReady + " player(s)..");
                 break;
             }
         }
@@ -108,8 +100,6 @@ public class TeleporterManager : MonoBehaviour {
 
     void TeleportPlayersToArena()
     {
-        nm.Clear();
-
         if (! PhotonNetwork.isMasterClient)
         {
             return;
