@@ -98,8 +98,17 @@ public class PadTeleport : MonoBehaviour
 
                         else
                         {
-                            enableHighlight(padHit);
-                            neutral = false;
+                            if (padHit.GetComponentInParent<PlatformNeighbors>().hasPlayer == true)
+                            {
+                                padHit = null;
+                                neutral = false;
+                            }
+
+                            else
+                            {
+                                enableHighlight(padHit);
+                                neutral = false;
+                            }
                         }
                     }
 
@@ -175,7 +184,7 @@ public class PadTeleport : MonoBehaviour
     {
         if (highlighted!= null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
-            if(highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform" ) )
+            if((highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform" )))
                 if (highlighted.parent.childCount > 1)
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
         }
