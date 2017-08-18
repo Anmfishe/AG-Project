@@ -59,15 +59,24 @@ public class FireballNew : MonoBehaviour
         GameObject other = collision.gameObject;
         print("Collided by " + other.name);
 
+        if (! this.GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
+
         if (other.CompareTag("Player"))
         {
             print("hit the body");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
-            if (statusScript != null) statusScript.TakeDamage(damage);
+            //            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
+            PhotonView pv = other.GetComponent<PhotonView>();
+            if (pv != null)
+            {
+                pv.RPC("TakeDamage", PhotonTargets.All, damage);
+            }
             else
             {
-                print("statusscript is null");
+                print("pv is null");
             }
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
@@ -79,8 +88,15 @@ public class FireballNew : MonoBehaviour
         {
             print("hit on head");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
-            PlayerStatus statusScript = other.transform.parent.GetComponentInChildren<PlayerStatus>();
-            if (statusScript != null) statusScript.TakeDamage(damage);
+            PhotonView pv = other.GetComponent<PhotonView>();
+            if (pv != null)
+            {
+                pv.RPC("TakeDamage", PhotonTargets.All, damage);
+            }
+            else
+            {
+                print("pv is null");
+            }
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
