@@ -133,6 +133,7 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
             blueHeartsR[i] = heartObj;
 
         }
+        SetVisible(false);
     }
 		
 	
@@ -149,13 +150,17 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
 
     private void OnEnable()
     {
-        ResetScoreboard();
+//        ResetScoreboard();
     }
 
     public void SetVisible(bool isVisible)
     {
-        scoreboardBlue.SetActive(isVisible);
-        scoreboardRed.SetActive(isVisible);
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(isVisible);
+        }
+        //scoreboardBlue.SetActive(isVisible);
+        //scoreboardRed.SetActive(isVisible);
     }
 
     public void ResetScoreboard()
