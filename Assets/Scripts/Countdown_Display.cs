@@ -44,6 +44,7 @@ public class Countdown_Display : MonoBehaviour {
         if (countdown_timer > 1.25 * countdown_timer_max)
         {
             countdown_flag = false;
+            countdownDone = false;
         }
         else if (countdown_timer > countdown_timer_max)
         {
