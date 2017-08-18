@@ -50,43 +50,7 @@ public class RoundManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //all this has to ce re-done according to whatever you want the round to be. Does the round start after the 1st player puts hat on? Does it start when certain ammount of people do that? 
-/*        if (!hatsSelected)
-        {
-            //         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
-            foreach(GameObject p in players)
-            {
-                
- //               if (p.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
- //                   break;
- //               hatsSelected = true;
 
-            }
-        }
-        else if (hatsSelected && !inBattlefield)
-        {
-            //            StartRound();
-        }
-*/        //else if (inBattlefield)
-        //{
-/*          
-        timeElapsed += Time.deltaTime;
-
-        if (scoreboard == null)
-        {
-            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-        }
-
-        Debug.Log("red = " + scoreboard.red_score + ", blue = " + scoreboard.blue_score + ", maxScore = " + scoreboard.maxScore);
-
-        if ((isScoreBased && (scoreboard.red_score >= scoreboard.maxScore || scoreboard.blue_score >= scoreboard.maxScore)) || (isTimeBased && timeElapsed >= roundTime))
-        {
-            print(scoreboard.red_score + " | " + scoreboard.blue_score + " | " + maxScore);
-            print("ROUND HAS ENDED");
-            EndRound();
-        }
-            //}
-*/
     }
 
     [PunRPC]
@@ -107,17 +71,6 @@ public class RoundManager : MonoBehaviour {
         restart.SetScore(red_score, blue_score);
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
     }
-
-
-    /// <summary>
-    /// Call from a player once it is killed
-    /// </summary>
-    void OnPlayerKilled()
-    {
-        UpdateScoreboard();
-        score++;
-    }
-    void UpdateScoreboard() { }
   
     [PunRPC]
     public void EndRound()
@@ -154,6 +107,8 @@ public class RoundManager : MonoBehaviour {
             PhotonNetwork.Destroy(arena2.gameObject);
         }
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
+
+        SetUnusedHatsVisible(true);
     }
 
     [PunRPC]
@@ -184,6 +139,22 @@ public class RoundManager : MonoBehaviour {
         scoreboard.roundOver = false;
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
+
+        SetUnusedHatsVisible(false);
+    }
+
+    void SetUnusedHatsVisible(bool isVisible)
+    {
+        Debug.Log("SetHatsVisible is " + isVisible);
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Grabbable"))
+        {
+            HatLogic hat = go.GetComponent<HatLogic>();
+            if (hat != null && hat.onHead == false)
+            {
+                hat.SetVisible(isVisible);
+                Debug.Log("Setting hat visible " + isVisible);
+            }
+        }
     }
 
     void ChooseHats()
@@ -217,7 +188,7 @@ public class RoundManager : MonoBehaviour {
             if (!VRDevice.model.ToLower().Contains("oculus"))
             {
                 player.transform.rotation = 
-                Quaternion.Euler(0, player.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0);
+                Quaternion.Euler(0, player.transform.eulerAngles.y + (180 - Camera.main.transform.eulerAngles.y), 0);
             }
             else
             {

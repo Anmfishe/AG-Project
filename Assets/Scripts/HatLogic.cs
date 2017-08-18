@@ -113,12 +113,7 @@ public class HatLogic : MonoBehaviour {
 				hatSpot = other.transform.Find("hatSpot");
 				putOnHat ();
 			}
-
 		}
-//	
-//		{
-//			touchingHead = false;
-//		}
     }
 
 	void OnCollisionExit(Collision other)
@@ -249,4 +244,18 @@ public class HatLogic : MonoBehaviour {
 
 		this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 	}
+
+    public void SetVisible(bool isVisible)
+    {
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(isVisible);
+        }
+        this.GetComponent<MeshRenderer>().enabled = isVisible;
+
+        if (isVisible)
+        {
+            resetHat();
+        }
+    }
 }
