@@ -2720,6 +2720,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4419708561353736, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.17917287
@@ -2801,6 +2811,66 @@ Prefab:
         type: 2}
       propertyPath: instantiationId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[0]
+      value: Doc
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[1]
+      value: Dopey
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[2]
+      value: Bashful
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[3]
+      value: Grumpy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[4]
+      value: Sneezy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[5]
+      value: Sleepy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_pre.Array.data[6]
+      value: Happy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.data[0]
+      value: Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.data[1]
+      value: Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.data[2]
+      value: Warlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.data[3]
+      value: Witch
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
+        type: 2}
+      propertyPath: usernames_post.Array.data[4]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}

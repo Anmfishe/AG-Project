@@ -278,8 +278,8 @@ public class NetworkManager1 : Photon.PunBehaviour
         while (name == "")
         {
             random_pre = Mathf.FloorToInt(Random.Range(0, usernames_pre.Length));
-            random_post = Mathf.FloorToInt(Random.Range(0, usernames_post.Length));
-            name = usernames_pre[random_pre] + " " + usernames_post[random_post];
+//            random_post = Mathf.FloorToInt(Random.Range(0, usernames_post.Length));
+            name = usernames_pre[random_pre];// + " " + usernames_post[random_post];
             Debug.Log("Randomly chosen " + name);
 
             // loop through all usernames
