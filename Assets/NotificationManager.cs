@@ -36,7 +36,7 @@ public class NotificationManager : MonoBehaviour {
         }
 	}
 
-    public void SetNotification(string text, float duration = 1.5f)
+    public void SetNotification(string text, float duration = 1)
     {
         if (notification == null)
         {

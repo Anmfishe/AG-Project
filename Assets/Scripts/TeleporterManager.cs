@@ -15,6 +15,11 @@ public class TeleporterManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (Camera.main == null)
+        {
+            Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+            return;
+        }
         if (Camera.main.GetComponent<NotificationManager>() == null)
         {
             Debug.Log("TeleporterManager.cs : Start() : Could not find \"NotificationManager\" component");
@@ -36,7 +41,18 @@ public class TeleporterManager : MonoBehaviour {
     {
         if (nm == null)
         {
-            nm = Camera.main.GetComponent<NotificationManager>();
+            if (Camera.main == null)
+            {
+                Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+            }
+            else if (Camera.main.GetComponent<NotificationManager>() == null)
+            {
+                Debug.Log("TeleporterManager.cs : Start() : Could not find \"NotificationManager\" component");
+            }
+            else
+            {
+                nm = Camera.main.GetComponent<NotificationManager>();
+            }
         }
 
         //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
@@ -82,7 +98,7 @@ public class TeleporterManager : MonoBehaviour {
         {
             if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter)
             {
-                int playersNotReady = PhotonNetwork.playerList.Length - (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) / 2;
+                int playersNotReady = PhotonNetwork.playerList.Length - (blue.numPlayersOnPlatform + red.numPlayersOnPlatform);
                 nm.SetNotification("Waiting on " + playersNotReady + " player(s)..");
                 break;
             }
