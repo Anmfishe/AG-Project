@@ -76,4 +76,5 @@ MonoBehaviour:
   - onHeadTrue
   - tossObject
   - PUhit
+  - set_BubbleShield
   DisableAutoOpenWizard: 1

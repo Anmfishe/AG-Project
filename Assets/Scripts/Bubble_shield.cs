@@ -44,7 +44,7 @@ public class Bubble_shield : MonoBehaviour
     public void SetTorso(Transform torso_)
     {
         torso = torso_;
-        StartCoroutine(torso.GetComponent<PlayerStatus>().setBubble_shield(Bubble_shieldDuration));
+        torso.GetComponent<PhotonView>().RPC("set_BubbleShield", PhotonTargets.All, Bubble_shieldDuration);
         //Bubble_shieldSpot = torso.Find("Bubble_ShieldPt");
     }
 

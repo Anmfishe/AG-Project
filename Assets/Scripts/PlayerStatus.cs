@@ -190,6 +190,13 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
         }
     }
+    
+    [PunRPC]
+    public void set_BubbleShield(float t)
+    {
+        if(photonView.isMine)
+        StartCoroutine(setBubble_shield(t));
+    }
 
     public IEnumerator setBubble_shield(float TtimeCD)
     {
