@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.VR;
 public class RoundManager : MonoBehaviour {
 
 
@@ -214,10 +214,16 @@ public class RoundManager : MonoBehaviour {
         if (hatRoom)
         {
             Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount-1)).transform.position;
-            //Transform camObj = player.GetComponentInChildren<Camera>().transform;
-            //newPos.x -= camObj.localPosition.x;
-            //newPos.z -= camObj.localPosition.z;
-            //player.GetComponent<Transform>().SetPositionAndRotation(newPos, player.GetComponent<Transform>().rotation);
+            if (!VRDevice.model.ToLower().Contains("oculus"))
+            {
+                player.transform.rotation = 
+                Quaternion.Euler(0, player.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0);
+            }
+            else
+            {
+                player.transform.rotation = 
+                Quaternion.Euler(0, 0, 0);
+            }
             player.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(newPos);
             
         }
