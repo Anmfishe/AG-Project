@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnnouncerEvents : MonoBehaviour {
 
-    public AudioClip intro, countdown, roundStart, knockOut, vanquished;
+    public AudioClip intro, countdown, roundStart, knockOut, vanquished, putOnHat, victory, defeat, nine, eight, seven, six, five, four, three, two, one;
     private AudioSource speaker;
 	// Use this for initialization
 	void Start () {
@@ -39,6 +39,42 @@ public class AnnouncerEvents : MonoBehaviour {
                 break;
             case "vanquished":
                 audioClip = vanquished;
+                break;
+            case "putOnHat":
+                audioClip = putOnHat;
+                break;
+            case "victory":
+                audioClip = victory;
+                break;
+            case "defeat":
+                audioClip = defeat;
+                break;
+            case "nine":
+                audioClip = nine;
+                break;
+            case "eight":
+                audioClip = eight;
+                break;
+            case "seven":
+                audioClip = seven;
+                break;
+            case "six":
+                audioClip = six;
+                break;
+            case "five":
+                audioClip = five;
+                break;
+            case "four":
+                audioClip = four;
+                break;
+            case "three":
+                audioClip = three;
+                break;
+            case "two":
+                audioClip = two;
+                break;
+            case "one":
+                audioClip = one;
                 break;
         }
 

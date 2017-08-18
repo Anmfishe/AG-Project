@@ -70,6 +70,21 @@ public class RoundManager : MonoBehaviour {
         restart.SetWinner(blueWon);
         restart.SetScore(red_score, blue_score);
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
+
+        Debug.Log("victory or defeat speech");
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("PCP"))
+        {
+            if (go.GetComponent<TeamManager>().blue == blueWon)
+            {
+                Debug.Log("VICTORY SPEECH");
+                GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("victory");
+            }
+            else
+            {
+                Debug.Log("DEFEAT SPEECH");
+                GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("defeat");
+            }
+        }
     }
   
     [PunRPC]

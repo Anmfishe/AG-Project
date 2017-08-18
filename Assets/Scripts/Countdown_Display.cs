@@ -15,6 +15,16 @@ public class Countdown_Display : MonoBehaviour {
     private TextMesh countdown_blue_text;
     private bool countdown_flag = false;
     private bool countdownDone = false;
+    bool already1 = false;
+    bool already2 = false;
+    bool already3 = false;
+    bool already4 = false;
+    bool already5 = false;
+    bool already6 = false;
+    bool already7 = false;
+    bool already8 = false;
+    bool already9 = false;
+
     // Use this for initialization
     void Start () {
 		
@@ -45,6 +55,15 @@ public class Countdown_Display : MonoBehaviour {
         {
             countdown_flag = false;
             countdownDone = false;
+            already1 = false;
+            already2 = false;
+            already3 = false;
+            already4 = false;
+            already5 = false;
+            already6 = false;
+            already7 = false;
+            already8 = false;
+            already9 = false;
         }
         else if (countdown_timer > countdown_timer_max)
         {
@@ -65,6 +84,59 @@ public class Countdown_Display : MonoBehaviour {
             red_timer.characterSize = scale;
             blue_timer.text = "" + temp;
             blue_timer.characterSize = scale;
+
+            if (GameObject.Find("Announcer").GetComponent<AudioSource>().isPlaying == false)
+            {
+                AnnouncerEvents ae = GameObject.Find("Announcer").GetComponent<AnnouncerEvents>();
+                switch (temp)
+                {
+                    case 1:
+                        if (already1) { break; }
+                        already1 = true;
+                        ae.PlaySound("one");
+                        break;
+                    case 2:
+                        if (already2) { break; }
+                        already2 = true;
+                        ae.PlaySound("two");
+                        break;
+                    case 3:
+                        if (already3) { break; }
+                        already3 = true;
+                        ae.PlaySound("three");
+                        break;
+                    case 4:
+                        if (already4) { break; }
+                        already4 = true;
+                        ae.PlaySound("four");
+                        break;
+                    case 5:
+                        if (already5) { break; }
+                        already5 = true;
+                        ae.PlaySound("five");
+                        break;
+                    case 6:
+                        if (already6) { break; }
+                        already6 = true;
+                        ae.PlaySound("six");
+                        break;
+                    case 7:
+                        if (already7) { break; }
+                        already7 = true;
+                        ae.PlaySound("seven");
+                        break;
+                    case 8:
+                        if (already8) { break; }
+                        already8 = true;
+                        ae.PlaySound("eight");
+                        break;
+                    case 9:
+                        if (already9) { break; }
+                        already9 = true;
+                        ae.PlaySound("nine");
+                        break;
+                }
+            }
         }
         this.gameObject.SetActive(countdown_flag);
     }

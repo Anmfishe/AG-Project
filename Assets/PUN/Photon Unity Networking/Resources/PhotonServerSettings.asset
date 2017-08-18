@@ -78,4 +78,5 @@ MonoBehaviour:
   - PUhit
   - set_BubbleShield
   - PlaySoundToOthers
+  - ResetOnTeleporter
   DisableAutoOpenWizard: 1
