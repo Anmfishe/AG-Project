@@ -127,7 +127,6 @@ public class RoundManager : MonoBehaviour {
 
         Camera.main.transform.parent.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 
-        //Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
         print("ROUND ENDED, SHOULD HAVE TURNED OFF PLATFORMCONTROLLER");
         //        FindPlayers();
 
@@ -159,8 +158,6 @@ public class RoundManager : MonoBehaviour {
     [PunRPC]
     void StartRound()
     {
-        GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = false;
-      //  GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PadTeleport>().enabled = true;
         score = 0;
         timeElapsed = 0;
         inBattlefield = true;
@@ -188,8 +185,6 @@ public class RoundManager : MonoBehaviour {
 
     void ChooseHats()
     {
-        // Camera.main.transform.parent.GetComponent<PlatformController>().enabled = false;
-        //        FindPlayers();
         foreach (GameObject player in playerRigs)
         {
             SendPlayerToHatRoom(player);                                                                  // UNCOMMENT
@@ -204,8 +199,6 @@ public class RoundManager : MonoBehaviour {
         {
             return;
         }
-        GameObject.Find("RightController").GetComponent<VRTK.VRTK_StraightPointerRenderer>().enabled = true;
-        GameObject.FindGameObjectWithTag("CameraRig").GetComponent<PadTeleport>().enabled = false;
     }
 
     void SendPlayerToHatRoom(GameObject player)

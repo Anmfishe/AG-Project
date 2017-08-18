@@ -212,8 +212,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     {
         if (photonView.isMine)
         {
-            cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
-            vrtk_spr.enabled = isEnabled;
+            // cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
+            cameraRig.GetComponent<PadTeleport>().enabled = isEnabled;
+            // vrtk_spr.enabled = isEnabled;
         }
     }
 
@@ -252,8 +253,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     UpdateScoreboard(false);
                 }
 
-                cameraRig.GetComponent<PlatformController>().lerp = false;
-                vrtk_spr.enabled = false;
+                //cameraRig.GetComponent<PlatformController>().lerp = false;
+                //vrtk_spr.enabled = false;
+                cameraRig.GetComponent<PadTeleport>().enabled = false;
             }
         }
 
@@ -323,9 +325,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             if (playerClass != PlayerClass.none)
             {
                 this.transform.parent.GetComponent<TeamManager> ().Respawn ();
-                cameraRig.GetComponent<PlatformController>().lerp = true;
-                cameraRig.GetComponent<PlatformController>().canMove = true;
-                vrtk_spr.enabled = true;
+                //cameraRig.GetComponent<PlatformController>().lerp = true;
+                //cameraRig.GetComponent<PlatformController>().canMove = true;
+                // vrtk_spr.enabled = true;
+                cameraRig.GetComponent<PadTeleport>().enabled = true;
             } else
                 {
 //                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
