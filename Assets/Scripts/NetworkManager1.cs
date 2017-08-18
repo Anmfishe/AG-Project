@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.VR;
 using ExitGames.Client.Photon;
 
 public class NetworkManager1 : Photon.PunBehaviour
@@ -206,6 +206,11 @@ public class NetworkManager1 : Photon.PunBehaviour
         BookLogic book = avatar.GetComponentInChildren<BookLogic>();
         book.guide = guide;
         guide.book = book;
+
+        if(VRDevice.model.ToLower().Contains("oculus"))
+        {
+            cameraRig.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
 
         if (PhotonNetwork.isMasterClient)
         {

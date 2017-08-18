@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class TeamManager : MonoBehaviour {
     private GameObject[] redSquares;
@@ -129,8 +130,16 @@ public class TeamManager : MonoBehaviour {
                 blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
                 randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
             }
-            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform, 
-                Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (180 - Camera.main.transform.eulerAngles.y), 0));
+            if (!VRDevice.model.ToLower().Contains("oculus"))
+            {
+                cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
+                    Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (180 - Camera.main.transform.eulerAngles.y), 0));
+            }
+            else
+            {
+                cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
+                    Quaternion.Euler(0, 180, 0));
+            }
             //Camera.main.transform.rotation = Quaternion.Euler(0, 180, 0);
             
         }
@@ -142,8 +151,11 @@ public class TeamManager : MonoBehaviour {
                 redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
                 randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;
             }
-            cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform, 
+            if (!VRDevice.model.ToLower().Contains("oculus"))
+            {
+                cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                 Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0));
+            }
             //Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }

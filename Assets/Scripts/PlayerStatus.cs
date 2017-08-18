@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.VR;
 /*
  *      !!!!!!!!!   IMPORTANT   !!!!!!!!!
  *      Broke up with my 
@@ -231,8 +231,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             else
             {
                 //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
-                cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
-                cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().ForceTeleport(timeOutPt.position);
+                if (!VRDevice.model.ToLower().Contains("oculus"))
+                    cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+                cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
                 deadText.gameObject.SetActive(true);
 
                 // Increment scoreboard
