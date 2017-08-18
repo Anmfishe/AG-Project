@@ -80,7 +80,6 @@ public class TeleporterManager : MonoBehaviour {
 
             if (ready)
             {
-                nm.Clear();
                 return true;
             }
         }
@@ -100,6 +99,12 @@ public class TeleporterManager : MonoBehaviour {
 
     void TeleportPlayersToArena()
     {
+        nm.Clear();
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            go.GetComponent<PlayerStatus>().onTeleporter = false;
+        }
+
         if (! PhotonNetwork.isMasterClient)
         {
             return;
