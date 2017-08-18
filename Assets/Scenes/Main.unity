@@ -2788,11 +2788,6 @@ Prefab:
       propertyPath: instantiationId
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
-        type: 2}
-      propertyPath: roomName
-      value: dyl
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
   m_IsPrefabParent: 0
