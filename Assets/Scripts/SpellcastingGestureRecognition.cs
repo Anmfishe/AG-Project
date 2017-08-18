@@ -8,6 +8,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public VRGestureRig gestureRig;
 
+    public Gradient greenHighlight;
 
     PadTeleport padTeleport;
     public ParticleSystem drawEffect;
@@ -287,7 +288,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                         {
                             if (padHit.childCount > 0)
                             {
-                                padTeleport.disableHighlight(padHit.GetChild(0));
+                                disableHighlight(padHit.GetChild(0), !blue);
                             }
                             padHit = null;
                         }
@@ -740,7 +741,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     {
                         if (padHit.childCount > 0)
                         {
-                            padTeleport.disableHighlight(padHit.GetChild(0));
+                            disableHighlight(padHit.GetChild(0), !blue);
                         }
                         padHit = null;
                     }
@@ -782,7 +783,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     {
                         if (padHit.childCount > 0)
                         {
-                            padTeleport.disableHighlight(padHit.GetChild(0));
+                            disableHighlight(padHit.GetChild(0), !blue);
                         }
                         padHit = null;
                     }
@@ -860,13 +861,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         //RaycastHit hit;
         //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
         beamTrail.destination = target.hit.point;
-        lineRend.colorGradient = accurateTarget;
-        reticle.transform.position = target.hit.point;
-        padHit = target.hit.transform;
-
-        if (padHit.childCount > 0)
+        if (target.hit.transform.gameObject.tag == "GrayPlatform" || (target.hit.transform.gameObject.tag == "BluePlatform") || (target.hit.transform.gameObject.tag == "RedPlatform"))
         {
-            padTeleport.enableHighlight(padHit.GetChild(0));
+            lineRend.colorGradient = accurateTarget;
+            reticle.transform.position = target.hit.point;
+            
+padHit = target.hit.transform;
+
+            if (padHit.childCount > 0)
+            {
+                enableHighlight(padHit.GetChild(0), blue);
+            }
         }
     }
     void AccurateTargetBlessing()
@@ -887,7 +892,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (padHit != null)
         {
             if (padHit.childCount > 0)
-                padTeleport.disableHighlight(padHit.GetChild(0));
+                disableHighlight(padHit.GetChild(0), !blue);
 
             padHit = null;
         }
@@ -962,6 +967,48 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         {
             CancelInvoke();
         }
+    }
+
+    public void disableHighlight(Transform highlighted, bool myBlue)
+    {
+        print("disabling!!!");
+        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        {
+
+            if (highlighted.parent.childCount > 1)
+                highlighted.parent.GetChild(1).gameObject.SetActive(false);
+        }
+
+
+    }
+
+    public void enableHighlight(Transform highlighted, bool myBlue)
+    {
+        print("ENABLING in spellcast");
+        var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
+        mainModule.startColor = greenHighlight;
+
+        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        {
+            if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (highlighted.parent.gameObject.tag == "BluePlatform") || (highlighted.parent.gameObject.tag == "RedPlatform")))
+            {
+                if (highlighted.parent.childCount > 1)
+                {
+                    highlighted.parent.GetChild(1).gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                print("parent! " + highlighted.parent.gameObject.tag);
+            }
+        }
+
+        else
+        {
+            print("child!" + highlighted.gameObject.tag);
+        }
+
+
     }
 }
 

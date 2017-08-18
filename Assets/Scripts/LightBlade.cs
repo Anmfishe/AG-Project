@@ -31,7 +31,6 @@ public class LightBlade : MonoBehaviour {
 			{
 				return;
 			}
-
 			this.transform.position = wand.position;
 			this.transform.rotation = wand.rotation;
 

@@ -8,6 +8,8 @@ public class PadTeleport : MonoBehaviour
     BeamTrail beamTrail;
     public LineRenderer lineRend;
 
+    public Gradient highlightColor;
+
     private Vector3[] points = new Vector3[2];
 
     public LayerMask blueLayersToIgnore;
@@ -85,7 +87,7 @@ public class PadTeleport : MonoBehaviour
                     
                     if (hit.transform != padHit)
                     {
-                        disableHighlight(padHit);
+                        disableHighlight(padHit, blue);
                         padHit = hit.transform;
                         warpSpot = hit.point;
                         beamTrail.destination = warpSpot;
@@ -106,7 +108,7 @@ public class PadTeleport : MonoBehaviour
 
                             else
                             {
-                                enableHighlight(padHit);
+                                enableHighlight(padHit, blue);
                                 neutral = false;
                             }
                         }
@@ -125,7 +127,7 @@ public class PadTeleport : MonoBehaviour
 
             else if (padHit != null)
                 {
-                    disableHighlight(padHit);
+                    disableHighlight(padHit, blue);
                     padHit = null;
                 }
         }
@@ -157,7 +159,7 @@ public class PadTeleport : MonoBehaviour
 
             if (padHit != null)
             {
-                disableHighlight(padHit);
+                disableHighlight(padHit, blue);
                 padHit = null;
             }
 
@@ -168,7 +170,7 @@ public class PadTeleport : MonoBehaviour
     }
 
 
-    public void disableHighlight(Transform highlighted)
+    public void disableHighlight(Transform highlighted, bool myBlue)
     {
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
@@ -180,12 +182,16 @@ public class PadTeleport : MonoBehaviour
                 
     }
 
-    public void enableHighlight(Transform highlighted)
+    public void enableHighlight(Transform highlighted, bool myBlue)
     {
         print("ENABLING");
+
+        var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
+        mainModule.startColor = highlightColor;
+
         if (highlighted!= null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
-            if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform")))
+            if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (myBlue && highlighted.parent.gameObject.tag == "BluePlatform") || (!myBlue && highlighted.parent.gameObject.tag == "RedPlatform")))
             {
                 if (highlighted.parent.childCount > 1)
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
