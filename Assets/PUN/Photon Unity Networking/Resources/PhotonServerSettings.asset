@@ -77,4 +77,5 @@ MonoBehaviour:
   - tossObject
   - PUhit
   - set_BubbleShield
+  - PlaySoundToOthers
   DisableAutoOpenWizard: 1

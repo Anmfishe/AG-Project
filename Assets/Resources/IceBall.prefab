@@ -264,7 +264,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0d8042707f5a26c4281e46584a36ef52, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b944915a1639fd748bc07ec7df955405, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -438,6 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IceBall_2: {fileID: 1824638980495640, guid: 0eae2bb30e909a04f9c10f1cf86c5176, type: 2}
+  blue: 0
+  spellcast: {fileID: 0}
 --- !u!135 &135849509132663130
 SphereCollider:
   m_ObjectHideFlags: 1

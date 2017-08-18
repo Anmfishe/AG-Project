@@ -3298,7 +3298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec225b7d6188818489c53ec91384873f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaterial: {fileID: 0}
+  headBaseMaterial: {fileID: 0}
+  torsoBaseMaterial: {fileID: 0}
   selectedMaterial: {fileID: 0}
   head: {fileID: 1316983645817718}
   torso: {fileID: 1704670948745794}
@@ -3346,7 +3347,7 @@ MonoBehaviour:
   synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
+  ownershipTransfer: 1
   ObservedComponents:
   - {fileID: 114344753946840322}
   ObservedComponentsFoldoutOpen: 1
@@ -3517,7 +3518,7 @@ MonoBehaviour:
   synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
+  ownershipTransfer: 1
   ObservedComponents:
   - {fileID: 114590541061986310}
   ObservedComponentsFoldoutOpen: 1

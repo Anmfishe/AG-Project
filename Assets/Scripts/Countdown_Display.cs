@@ -14,7 +14,7 @@ public class Countdown_Display : MonoBehaviour {
     private TextMesh countdown_red_text;
     private TextMesh countdown_blue_text;
     private bool countdown_flag = false;
-
+    private bool countdownDone = false;
     // Use this for initialization
     void Start () {
 		
@@ -33,6 +33,8 @@ public class Countdown_Display : MonoBehaviour {
         this.transform.position = location;
         countdown_flag = true;
         countdown_timer = 0;
+
+        GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("countdown");
     }
 
     private void Tick()
@@ -45,6 +47,12 @@ public class Countdown_Display : MonoBehaviour {
         }
         else if (countdown_timer > countdown_timer_max)
         {
+            if (!countdownDone)
+            {
+                countdownDone = true;
+                if (GameObject.Find("Announcer").GetComponent<AudioSource>().isPlaying == false)
+                    GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("roundStart");
+            }
             y_vel += y_acceleration * Time.deltaTime;
             this.transform.position += new Vector3(0, y_vel, 0);
         }

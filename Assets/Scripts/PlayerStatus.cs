@@ -226,6 +226,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
+            GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("vanquished");
             if (playerClass == PlayerClass.none || myScoreboard.roundOver)
             {
 
@@ -259,6 +260,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 cameraRig.GetComponent<PadTeleport>().enabled = false;
             }
         }
+        else
+        {
+            GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("knockOut");
+        }
+
 
         deathTime = Time.time;
         dead = true;
