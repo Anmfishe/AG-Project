@@ -23,7 +23,7 @@ public class Username : MonoBehaviour {
         // have usernames always be facing the local player
         if (this.GetComponent<PhotonView>().isMine)
         {
-            this.transform.position = head.transform.position + 0.75f * Vector3.up + 0.25f * Camera.main.transform.forward;
+            this.transform.position = head.transform.position + 0.75f * Vector3.up + 0.6f * Camera.main.transform.forward;
         }
         else
         {

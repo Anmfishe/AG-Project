@@ -38,6 +38,7 @@ TagManager:
   - PowerUpManager
   - Neutral
   - PlatformTrigger
+  - Username
   layers:
   - Default
   - TransparentFX

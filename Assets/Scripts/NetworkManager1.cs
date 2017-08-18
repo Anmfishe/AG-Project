@@ -50,6 +50,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public GameObject roundMan;
     public GameObject powerupManager;
     private PunTeams pt;
+	public string[] usernames;
 
 	void Awake()
 	{
@@ -80,8 +81,8 @@ public class NetworkManager1 : Photon.PunBehaviour
         hats[2] = hat_support_blue;
     }
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
     {
    
         //if (roundMan.==null)
@@ -188,9 +189,7 @@ public class NetworkManager1 : Photon.PunBehaviour
         Vector3 spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
 
-        PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
-        pv.RPC("SetUsername", PhotonTargets.AllBuffered, "Player " + PhotonNetwork.playerList.Length);
-        pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
+        
 
         if (PhotonNetwork.isMasterClient)
 		{
@@ -260,6 +259,39 @@ public class NetworkManager1 : Photon.PunBehaviour
         //temp++;
         //localPlayer.GetComponentInParent<TeamManager>().SetRed();
         //localPlayer.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
+
+        StartCoroutine("SetUsername");
+    }
+
+    // OnJoinedRoom doesn't create avatars for other players, so we need to add a delay before looking for other usernames
+    IEnumerator SetUsername()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
+        
+        // check all other usernames and make sure we don't have duplicates for our randomly chosen username
+        string name = "";
+        int random;
+        while (name == "")
+        {
+            random = Mathf.FloorToInt(Random.Range(0, usernames.Length));
+            name = usernames[random];
+//            Debug.Log("Randomly chosen " + name);
+            
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Username"))
+            { 
+                if (go.GetComponent<TextMesh>().text == usernames[random])
+                {
+//                    Debug.Log("Uh oh, it's a match. Should re-randomize");
+                    name = "";
+                    break;
+                }
+            }
+        }
+
+        pv.RPC("SetUsername", PhotonTargets.AllBuffered, name);
+        pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
     }
 
 	/// <summary>

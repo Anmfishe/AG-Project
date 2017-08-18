@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 114737257153124418}
   m_Layer: 0
   m_Name: Username
-  m_TagString: Untagged
+  m_TagString: Neutral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2476,7 +2476,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586066367647844}
-  m_Text: Player
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
