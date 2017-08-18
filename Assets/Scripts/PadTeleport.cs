@@ -66,6 +66,8 @@ public class PadTeleport : MonoBehaviour
         Vector3 fwd = origin.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
+        Physics.queriesHitTriggers = true;
+
         if (active == true)
         {
             lineRend.enabled = true;
@@ -74,62 +76,52 @@ public class PadTeleport : MonoBehaviour
             beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
             //lineRend.SetPositions(points);
 
-            if (padHit != null)
-                disableHighlight(padHit);
+            //if (padHit != null)
+            //    disableHighlight(padHit);
 
-            if (blue)
-            {
                 if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, blueLayersToIgnore))
                 {
-                    padHit = hit.transform;
-                    warpSpot = hit.point;
-                    beamTrail.destination = warpSpot;
-
-                    if (padHit.gameObject.tag == "Neutral")
+                    //neutral = true;
+                    
+                    if (hit.transform != padHit)
                     {
-                        neutral = true;
-                        
-                    }
-
-                    else
-                    {
-                        enableHighlight(padHit);
-                        neutral = false;
-                    }
-                }
-
-                else
-                    if (padHit != null)
                         disableHighlight(padHit);
+                        padHit = hit.transform;
+                        warpSpot = hit.point;
+                        beamTrail.destination = warpSpot;
 
-            }
-            else
-            {
-                if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, redLayersToIgnore))
+                        if (padHit.gameObject.tag == "Neutral")
+                        {
+                            neutral = true;
+
+                        }
+
+                        else
+                        {
+                            enableHighlight(padHit);
+                            neutral = false;
+                        }
+                    }
+
+                // For ground teleportation
+                else if (padHit.tag == "Neutral")// && hit.point != warpSpot)
                 {
-                    padHit = hit.transform;
                     warpSpot = hit.point;
                     beamTrail.destination = warpSpot;
-                    if (padHit.gameObject.tag == "Neutral")
-                    {
-                        neutral = true;
-                    }
-
-                    else
-                    {
-                        enableHighlight(padHit);
-                        neutral = false;
-                    }
+                    neutral = true;
+                    padHit = hit.transform;
                 }
 
-                else
-                    if (padHit != null)
-                        disableHighlight(padHit);
-
             }
+
+            else if (padHit != null)
+                {
+                    disableHighlight(padHit);
+                    padHit = null;
+                }
         }
 
-        else
+        else if (lineRend.enabled == true)
         {
             lineRend.enabled = false;
         }
@@ -140,28 +132,27 @@ public class PadTeleport : MonoBehaviour
         }
         if (Input.GetKeyUp("joystick button 9"))
         {
-            if (padHit != null)
-                disableHighlight(padHit);
-
             active = false;
+
+                if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
+                {
+                print("not NEUTRAL");
+                basicTeleport.Teleport(padHit.transform, padHit.transform.position);
+                }
+
+                else if (neutral == true)
+                {
+                print("NEUTRAL");
+                    basicTeleport.Teleport(padHit, warpSpot);
+                }
+
             if (padHit != null)
             {
-                print("Pad hit! " +padHit);
-
-                if (neutral == false)
-                {
-                    basicTeleport.Teleport(padHit.transform, padHit.transform.position);
-                }
-
-                else
-                {
-                    basicTeleport.Teleport(padHit.transform, warpSpot);
-                }
-
-
+                disableHighlight(padHit);
+                padHit = null;
             }
 
-            lineRend.enabled = false;
+        lineRend.enabled = false;
 
         }
 
@@ -170,11 +161,11 @@ public class PadTeleport : MonoBehaviour
 
     void disableHighlight(Transform highlighted)
     {
-        if (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform")
+        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
 
-            if (highlighted.childCount > 0)
-                highlighted.GetChild(0).gameObject.SetActive(false);
+            if (highlighted.parent.childCount > 1)
+                highlighted.parent.GetChild(1).gameObject.SetActive(false);
         }
     
                 
@@ -182,10 +173,11 @@ public class PadTeleport : MonoBehaviour
 
     void enableHighlight(Transform highlighted)
     {
-        if (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform")
+        if (highlighted!= null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
-            if (highlighted.childCount > 0)
-                highlighted.GetChild(0).gameObject.SetActive(true);
+            if(highlighted.parent.gameObject.tag == "GrayPlatform" || (blue && highlighted.parent.gameObject.tag == "BluePlatform") || (!blue && highlighted.parent.gameObject.tag == "RedPlatform" ) )
+                if (highlighted.parent.childCount > 1)
+                    highlighted.parent.GetChild(1).gameObject.SetActive(true);
         }
 
 
