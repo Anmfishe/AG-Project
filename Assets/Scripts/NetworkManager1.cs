@@ -297,14 +297,16 @@ public class NetworkManager1 : Photon.PunBehaviour
 
         pv.RPC("SetUsername", PhotonTargets.AllBuffered, name);
         pv.RPC("SetMaterial", PhotonTargets.AllBuffered, -1);
+
+        GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("intro");
     }
 
-	/// <summary>
-	/// Called when a Photon Player got connected. We need to then load a bigger scene.
-	/// </summary>
-	/// <param name="other">Other.</param>
+    /// <summary>
+    /// Called when a Photon Player got connected. We need to then load a bigger scene.
+    /// </summary>
+    /// <param name="other">Other.</param>
 
-	public override void OnPhotonPlayerConnected(PhotonPlayer other)
+    public override void OnPhotonPlayerConnected(PhotonPlayer other)
 	{
 
        

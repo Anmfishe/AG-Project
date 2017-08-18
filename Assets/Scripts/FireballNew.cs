@@ -71,6 +71,9 @@ public class FireballNew : MonoBehaviour
             }
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+            //Delete this game object.
+            DestroyFireball();
         }
         else if(other.CompareTag("put"))
         {
@@ -80,6 +83,9 @@ public class FireballNew : MonoBehaviour
             if (statusScript != null) statusScript.TakeDamage(damage);
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+            //Delete this game object.
+            DestroyFireball();
         }
         else if (other.CompareTag("Shield"))
         {
@@ -89,6 +95,9 @@ public class FireballNew : MonoBehaviour
             if (damageScript != null) damageScript.TakeDamage(damage);
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+            //Delete this game object.
+            DestroyFireball();
         }
         else if (other.CompareTag("Spell"))
         {
@@ -99,11 +108,9 @@ public class FireballNew : MonoBehaviour
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
-            
-
+            //Delete this game object.
+            DestroyFireball();
         }
-        //Delete this game object.
-        DestroyFireball();
     }
 
     //private void OnTriggerEnter(Collider collider)

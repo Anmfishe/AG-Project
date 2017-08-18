@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TargetablePlayer : MonoBehaviour
 {
-
-    public Material baseMaterial;
+    public Material headBaseMaterial;
+    public Material torsoBaseMaterial;
     public Material selectedMaterial;
     Renderer materialRenderer;
     Texture texture;
@@ -17,7 +17,8 @@ public class TargetablePlayer : MonoBehaviour
     void Start()
     {
         materialRenderer = GetComponent<Renderer>();
-        baseMaterial = materialRenderer.material;
+        torsoBaseMaterial = materialRenderer.material;
+        headBaseMaterial = head.GetComponent<Renderer>().material;
     }
 
     public void SetIndicator(bool on)
@@ -36,14 +37,14 @@ public class TargetablePlayer : MonoBehaviour
         }
         else
         {
-            head.GetComponent<Renderer>().material = baseMaterial;
-            torso.GetComponent<Renderer>().material = baseMaterial;
+            head.GetComponent<Renderer>().material = headBaseMaterial;
+            torso.GetComponent<Renderer>().material = torsoBaseMaterial;
             
         }
     }
 
     public void UpdateMaterials(Material mat)
     {
-        baseMaterial = mat;
+        torsoBaseMaterial = mat;
     }
 }
