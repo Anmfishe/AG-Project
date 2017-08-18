@@ -102,7 +102,7 @@ public class TeleporterManager : MonoBehaviour {
         nm.Clear();
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
         {
-            go.GetComponent<PlayerStatus>().onTeleporter = false;
+            go.GetComponent<PhotonView>().RPC("ResetOnTeleporter", PhotonTargets.AllBuffered, null);
         }
 
         if (! PhotonNetwork.isMasterClient)

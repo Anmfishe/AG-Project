@@ -40,7 +40,6 @@ public class TeleporterPlatform : MonoBehaviour {
             {
                 numPlayersOnPlatform++;
                 players.Add(other.gameObject);
-                other.GetComponent<PlayerStatus>().onTeleporter = true;
             }
 
             // Notify player to get a hat if the player is on the teleporter without a hat
@@ -48,6 +47,8 @@ public class TeleporterPlatform : MonoBehaviour {
             {
                 nm.SetNotification("Grab a hat!", 101);
             }
+
+            other.GetComponent<PlayerStatus>().onTeleporter = true;
         }
     }
 
@@ -63,11 +64,12 @@ public class TeleporterPlatform : MonoBehaviour {
             {
                 numPlayersOnPlatform--;
                 players.Remove(other.gameObject);
-                other.GetComponent<PlayerStatus>().onTeleporter = false;
             }
 
             // Clear notifications
             nm.Clear();
+
+            other.GetComponent<PlayerStatus>().onTeleporter = false;
         }
     }
 

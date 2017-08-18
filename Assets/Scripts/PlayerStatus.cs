@@ -541,4 +541,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             hat = null;
         }
     }
+
+    [PunRPC]
+    public void ResetOnTeleporter()
+    {
+        this.onTeleporter = false;
+    }
 }
