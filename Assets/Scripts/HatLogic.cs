@@ -37,8 +37,8 @@ public class HatLogic : MonoBehaviour {
 
 	private Renderer rend;
 
-	// Use this for initialization
-	public void Start()
+    // Use this for initialization
+    public void Start()
 	{
 		timer = 0;
 
@@ -63,7 +63,7 @@ public class HatLogic : MonoBehaviour {
 
             if (hand != null)
             {
-                transform.position = hand.position;
+                transform.position = hand.position + 0.3f * hand.transform.forward;
                 transform.rotation = hand.rotation;
             }
         }
