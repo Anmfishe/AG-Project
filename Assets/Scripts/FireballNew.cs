@@ -66,7 +66,7 @@ public class FireballNew : MonoBehaviour
             print("hit the body");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
-            if (statusScript != null) statusScript.takeDamage(damage);
+            if (statusScript != null) statusScript.TakeDamage(damage);
             else
             {
                 print("statusscript is null");
@@ -79,7 +79,7 @@ public class FireballNew : MonoBehaviour
             print("hit on head");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PlayerStatus statusScript = other.transform.parent.GetComponentInChildren<PlayerStatus>();
-            if (statusScript != null) statusScript.takeDamage(damage);
+            if (statusScript != null) statusScript.TakeDamage(damage);
             //Instantiate new explosion.
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
         }

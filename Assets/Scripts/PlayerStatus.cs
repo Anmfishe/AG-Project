@@ -35,6 +35,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float deathTime = 0f;
     public float respawnLength = 2f;
 
+    [HideInInspector]
+    public bool bubbled = false;
+
 	ScoreboardUpdater myScoreboard;
 
     PhotonView self_photonview;
@@ -131,42 +134,42 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     }
 
     //Reduces the health by the damage received.
-    public bool takeDamage(float damage)
-    {
-        // Ensure that this is the active player
-        if (!photonView.isMine)
-        {
- //           print("photonview isnt mine");
-            return false;
-        }
-        else
-        {
-//            print("OMG, took damage!");
-        }
+//    public bool takeDamage(float damage)
+//    {
+//        // Ensure that this is the active player
+//        if (!photonView.isMine)
+//        {
+// //           print("photonview isnt mine");
+//            return false;
+//        }
+//        else
+//        {
+////            print("OMG, took damage!");
+//        }
 
-        if (dead == false && pregame == false)
-        {
-            current_health -= damage;
-            psm.PlayerHurt();
-        }
+//        if (dead == false && pregame == false)
+//        {
+//            current_health -= damage;
+//            psm.PlayerHurt();
+//        }
 
-        if (current_health <= 0)
-        {
-            if (playerClass != PlayerClass.none)
-            {
-                Die();
-                return true;
-            }
-        }
+//        if (current_health <= 0)
+//        {
+//            if (playerClass != PlayerClass.none)
+//            {
+//                Die();
+//                return true;
+//            }
+//        }
 
-        return false;
-    }
+//        return false;
+//    }
 
     [PunRPC]
     //Reduces the health by the damage received.
     public void TakeDamage(float damage)
     {
-        if (current_health <= 0 || Time.time - startTime < invulnerableFrames)
+        if (current_health <= 0 || Time.time - startTime < invulnerableFrames||bubbled)
         {
             return;
         }
@@ -186,6 +189,13 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 
             }
         }
+    }
+
+    public IEnumerator setBubble_shield(float TtimeCD)
+    {
+        bubbled = true;
+        yield return new WaitForSeconds(TtimeCD);
+        bubbled = false;
     }
 
     //Immobilizes the player.

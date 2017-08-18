@@ -21,12 +21,11 @@ public class Bubble_shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
+       
             if (this.GetComponent<PhotonView>().isMine)
             {
-                if (other.transform.parent.GetComponent<TeamManager>().blue = blue)
-                {
+                //if (other.transform.parent.GetComponent<TeamManager>().blue = blue)
+                //{
                     if (torso == null)
                     {
                         return;
@@ -36,8 +35,7 @@ public class Bubble_shield : MonoBehaviour
                     this.transform.rotation = torso.rotation;
             if (Bubble_shieldTimer <= 0)
             PhotonNetwork.Destroy(gameObject);
-                }
-            }
+               // }
         }
         Bubble_shieldTimer -= Time.deltaTime;
         
@@ -46,6 +44,7 @@ public class Bubble_shield : MonoBehaviour
     public void SetTorso(Transform torso_)
     {
         torso = torso_;
+        StartCoroutine(torso.GetComponent<PlayerStatus>().setBubble_shield(Bubble_shieldDuration));
         //Bubble_shieldSpot = torso.Find("Bubble_ShieldPt");
     }
 

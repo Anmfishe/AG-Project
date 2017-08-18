@@ -38,7 +38,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4229795724733164}
-  - component: {fileID: 135226275932231244}
   - component: {fileID: 114546899127283890}
   - component: {fileID: 114217550757120410}
   - component: {fileID: 23985764427339520}
@@ -46,7 +45,6 @@ GameObject:
   - component: {fileID: 114076288899021916}
   - component: {fileID: 33136295929972426}
   - component: {fileID: 82649502659006958}
-  - component: {fileID: 136536920668858382}
   m_Layer: 0
   m_Name: Bubble_shield
   m_TagString: Shield
@@ -80,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185784538995728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.346226, y: 4.81, z: 5.12}
+  m_LocalPosition: {x: -38.63699, y: 2.1057832, z: -2.7382934}
   m_LocalScale: {x: 1.5702606, y: 1.5702608, z: 1.5702608}
   m_Children:
   - {fileID: 4610888308499040}
@@ -465,18 +463,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135226275932231244
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185784538995728}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135570898578211680
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -488,17 +474,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136536920668858382
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185784538995728}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1.1
-  m_Height: 5.1
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
