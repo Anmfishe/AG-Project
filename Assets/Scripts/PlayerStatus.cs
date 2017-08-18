@@ -443,8 +443,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 			}
 		} else 
 		{
-            if (photonView.isMine)
-            {
                 //Switch wands off.
                 string wandStickPath = "Right Hand/MagicWand/stick/";
                 this.transform.parent.Find(wandStickPath + "basic").gameObject.SetActive(false);
@@ -479,7 +477,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
                 bookLogic.UpdateUI();
                 bookLogic.UpdateHotbar();
-            }
         }
 	}
 

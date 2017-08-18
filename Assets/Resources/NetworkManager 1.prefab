@@ -81,9 +81,9 @@ MonoBehaviour:
   maxPlayersPerRoom: 6
   hat_attack_blue: {fileID: 1894875449414954, guid: 1bf4a62c0fd332844bcd383f3090eb00,
     type: 2}
-  hat_support_blue: {fileID: 1894875449414954, guid: 9379d18af5060ab46b0192a4268a3416,
+  hat_support_blue: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
     type: 2}
-  hat_heal_blue: {fileID: 1894875449414954, guid: 1146dffe1d0bd67419d3d9b9e64a9160,
+  hat_heal_blue: {fileID: 1894875449414954, guid: 9379d18af5060ab46b0192a4268a3416,
     type: 2}
   hat_attack_red: {fileID: 1894875449414954, guid: 02c65caae2551f44bb609e8f46c182ca,
     type: 2}
@@ -103,7 +103,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spawns: {fileID: 0}
-  roomName: dylzie
+  roomName: dyl
   roundMan: {fileID: 1845042722662058, guid: e86de04e0289a8b4e86b2239c5680aaf, type: 2}
   powerupManager: {fileID: 1223233074598154, guid: 89fe05d964bad0f4082158c56fd91e07,
     type: 2}
