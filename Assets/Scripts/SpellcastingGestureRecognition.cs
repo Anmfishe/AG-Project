@@ -670,17 +670,18 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case "Bubble_shield":
                
-                if (target.result == null)
-                {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
-                    spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
-                    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                }
-                else
+                
+                if(target.result != null && target.result.tag =="Player")
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position, target.result.transform.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(target.result.transform);
                     spellInstance.GetComponent<Bubble_shield>().SetBlue(target.result.GetComponentInParent<TeamManager>().blue);
+                }
+                else
+                {
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
+                    spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
+                    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 }
                 Bubble_shieldCD = cooldowns.Bubble_shieldCD;
                 break;
