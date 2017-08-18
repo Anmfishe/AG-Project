@@ -63,7 +63,7 @@ public class HatLogic : MonoBehaviour {
 
             if (hand != null)
             {
-                transform.position = hand.position;
+                transform.position = hand.position + 0.4f * hand.forward;
                 transform.rotation = hand.rotation;
             }
         }
