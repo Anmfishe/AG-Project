@@ -50,9 +50,10 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public GameObject roundMan;
     public GameObject powerupManager;
     private PunTeams pt;
-	public string[] usernames;
+	public string[] usernames_pre;
+    public string[] usernames_post;
 
-	void Awake()
+    void Awake()
 	{
 		// #Critical
 		// we don't join the lobby. There is no need to join a lobby to get the list of rooms.
@@ -269,21 +270,23 @@ public class NetworkManager1 : Photon.PunBehaviour
         yield return new WaitForSeconds(0.5f);
 
         PhotonView pv = avatar.transform.Find("Username").GetComponent<PhotonView>();
-        
+
         // check all other usernames and make sure we don't have duplicates for our randomly chosen username
         string name = "";
-        int random;
+        int random_pre;
+        int random_post;
         while (name == "")
         {
-            random = Mathf.FloorToInt(Random.Range(0, usernames.Length));
-            name = usernames[random];
+            random_pre = Mathf.FloorToInt(Random.Range(0, usernames_pre.Length));
+            random_post = Mathf.FloorToInt(Random.Range(0, usernames_post.Length));
+            name = usernames_pre[random_pre] + " " + usernames_post[random_post];
             Debug.Log("Randomly chosen " + name);
-            
+
             // loop through all usernames
             foreach (GameObject go in GameObject.FindGameObjectsWithTag("Username"))
-            { 
+            {
                 // if duplicate name, set name to empty string to loop again
-                if (go.GetComponent<TextMesh>().text == usernames[random])
+                if (name == go.GetComponent<TextMesh>().text)
                 {
                     Debug.Log("Uh oh, it's a match. Should re-randomize");
                     name = "";
