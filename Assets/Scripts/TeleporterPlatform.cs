@@ -31,7 +31,7 @@ public class TeleporterPlatform : MonoBehaviour {
         SetNotificationManager();
 
         //        Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : Collided with " + other.name + " with tag " + other.tag);
-        if (other.tag == "Player" && other.GetComponent<PhotonView>().isMine)
+        if (other.tag == "Player")
         {
             PlayerStatus ps = other.GetComponent<PlayerStatus>();
 
@@ -56,7 +56,7 @@ public class TeleporterPlatform : MonoBehaviour {
         SetNotificationManager();
 
         //        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
-        if (other.tag == "Player" && other.GetComponent<PhotonView>().isMine)
+        if (other.tag == "Player")
         {
             Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
