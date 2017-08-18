@@ -669,10 +669,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellTimer = shieldCooldown;
                 break;
             case "Bubble_shield":
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
-                spellInstance.GetComponent<Bubble_shield>().SetBook(book);
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
+                spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
                 spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                //Bubble_shieldCD = cooldowns.Bubble_shieldCD;
+                Bubble_shieldCD = cooldowns.Bubble_shieldCD;
                 break;
             case "heal":
                 // Heal others

@@ -5,16 +5,17 @@ using UnityEngine;
 public class Bubble_shield : MonoBehaviour
 {
    
-    public float shieldDuration = 5f;
-    private float shieldTimer;
+    public float Bubble_shieldDuration = 10f;
+    private float Bubble_shieldTimer;
     Transform torso;
     Collider other;
     bool blue;
+    //Transform Bubble_shieldSpot;
 
     // Use this for initialization
     void Start()
     {
-        shieldTimer = shieldDuration;
+        Bubble_shieldTimer = Bubble_shieldDuration;
     }
 
     // Update is called once per frame
@@ -33,20 +34,19 @@ public class Bubble_shield : MonoBehaviour
 
                     this.transform.position = torso.position;
                     this.transform.rotation = torso.rotation;
+            if (Bubble_shieldTimer <= 0)
+            PhotonNetwork.Destroy(gameObject);
                 }
-
-
-                shieldTimer -= Time.deltaTime;
-                if (shieldTimer <= 0)
-                    Destroy(gameObject);
             }
         }
+        Bubble_shieldTimer -= Time.deltaTime;
+        
     }
-    
 
-    public void SetBook(Transform torso_)
+    public void SetTorso(Transform torso_)
     {
         torso = torso_;
+        //Bubble_shieldSpot = torso.Find("Bubble_ShieldPt");
     }
 
     public void SetBlue(bool blue_)
