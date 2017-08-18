@@ -16,16 +16,17 @@ public class GlyphGuide : MonoBehaviour {
         rend = this.GetComponent<Renderer>();
 
         //Set the offset equivalence.
-        glyphs.Add("sb_fire", new Vector2(0, 0));
-        glyphs.Add("sb_heal", new Vector2(0.1f, 0));
-        glyphs.Add("sb_vines", new Vector2(0.2f, 0));
-        glyphs.Add("sb_meteor", new Vector2(0.3f, 0));
-        glyphs.Add("sb_pong", new Vector2(0.4f, 0));
-        glyphs.Add("sb_blessing", new Vector2(0.5f, 0));
-        glyphs.Add("sb_iceball", new Vector2(0.6f, 0));
-        glyphs.Add("sb_blade", new Vector2(0.7f, 0));
-        glyphs.Add("sb_shield", new Vector2(0.8f, 0));
-        glyphs.Add("sb_flip", new Vector2(0.9f, 0));
+        glyphs.Add("sb_fire", new Vector2(0, 0.5f));
+        glyphs.Add("sb_heal", new Vector2(0.1f, 0.5f));
+        glyphs.Add("sb_vines", new Vector2(0.2f, 0.5f));
+        glyphs.Add("sb_meteor", new Vector2(0.3f, 0.5f));
+        glyphs.Add("sb_pong", new Vector2(0.4f, 0.5f));
+        glyphs.Add("sb_blessing", new Vector2(0.5f, 0.5f));
+        glyphs.Add("sb_iceball", new Vector2(0.6f, 0.5f));
+        glyphs.Add("sb_blade", new Vector2(0.7f, 0.5f));
+        glyphs.Add("sb_shield", new Vector2(0.8f, 0.5f));
+        glyphs.Add("sb_flip", new Vector2(0.9f, 0.5f));
+        glyphs.Add("sb_bubble", new Vector2(0f, 0));
 
         rend.enabled = false;
 

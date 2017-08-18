@@ -806,7 +806,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396155991360138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.551529, y: 2.1057832, z: 4.782723}
+  m_LocalPosition: {x: -44.155582, y: 2.9696665, z: -4.7450504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649926138339886}
@@ -2574,6 +2574,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2c7ef3ac9b33e425e923d5431085ca97, type: 2}
   - {fileID: 2100000, guid: b07b00981ee4bc54081a49c54a3aeea3, type: 2}
   - {fileID: 2100000, guid: 2a5c1b0795f4f4741af92741822da75e, type: 2}
+  - {fileID: 2100000, guid: 433c4ff0868e8ea469a0bc5ceead0f67, type: 2}
   pagesHealer:
   - {fileID: 2100000, guid: 84521c5dfbcb56f40be09e6334746474, type: 2}
   - {fileID: 2100000, guid: e044cd73cc9ae3b42a8f4cd0ff9aa0b2, type: 2}
@@ -2598,6 +2599,7 @@ MonoBehaviour:
   - {fileID: 1062405111196606, guid: 1db516c800f05b841829ebb07bdb0c00, type: 2}
   - {fileID: 1062405111196606, guid: dd06bce11fef07b4092eafde49ace045, type: 2}
   - {fileID: 1062405111196606, guid: acb8b323223945f47828a8ada5811667, type: 2}
+  - {fileID: 1237215480198902, guid: 65767ac43ffa1bc4ab0077f13fc86b2d, type: 2}
   glyphsHealer:
   - {fileID: 1062405111196606, guid: d75275603a9e54543bffbfc1e4b69376, type: 2}
   - {fileID: 1062405111196606, guid: 74a081ed0af9d974aa34bb1b35b160df, type: 2}

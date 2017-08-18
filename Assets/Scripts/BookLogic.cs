@@ -161,7 +161,6 @@ public class BookLogic : MonoBehaviour
 
     void FlipRight()
     {
-        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
 
         if (playerClass == PlayerClass.attack) 
 		{
@@ -213,11 +212,12 @@ public class BookLogic : MonoBehaviour
         if (animator)
             animator.SetTrigger("FlipRight");
         //  UpdateUI();
+
+        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
     }
 
     void FlipLeft()
-    {
-        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
+    { 
 
         if (playerClass == PlayerClass.attack) 
 		{
@@ -270,6 +270,8 @@ public class BookLogic : MonoBehaviour
         if(animator)
             animator.SetTrigger("FlipLeft");
         // UpdateUI();
+
+        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
     }
 
     public void UpdateUI()
@@ -308,8 +310,9 @@ public class BookLogic : MonoBehaviour
             }
             else if (playerClass == PlayerClass.support)
             {
-                if (index >= pagesAttack.Length)
+                if (index >= pagesSupport.Length)
                     index = 0;
+
                 rend.material = pagesSupport[index];
                 currentGlyph = pagesSupport[index].name;
                 //print(currentGlyph);
@@ -318,6 +321,7 @@ public class BookLogic : MonoBehaviour
             {
                 if (index >= pagesHealer.Length)
                     index = 0;
+
                 rend.material = pagesHealer[index];
                 currentGlyph = pagesHealer[index].name;
                 //print(currentGlyph);
