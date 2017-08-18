@@ -36,7 +36,6 @@ namespace VRTK
         public GameObject customTracer;
         [Tooltip("A custom game object to use as the appearance for the pointer cursor. If this is empty then a Sphere primitive will be created and used.")]
         public GameObject customCursor;
-
         protected GameObject actualContainer;
         protected GameObject actualTracer;
         protected GameObject actualCursor;
@@ -47,6 +46,12 @@ namespace VRTK
         /// <summary>
         /// The UpdateRenderer method is used to run an Update routine on the pointer.
         /// </summary>
+        /// 
+
+        void Awake()
+        {
+        }
+
         public override void UpdateRenderer()
         {
             if ((controllingPointer && controllingPointer.IsPointerActive()) || IsVisible())

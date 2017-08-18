@@ -103,7 +103,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spawns: {fileID: 0}
-  roomName: rayjo25
+  roomName: dylzie
   roundMan: {fileID: 1845042722662058, guid: e86de04e0289a8b4e86b2239c5680aaf, type: 2}
   powerupManager: {fileID: 1223233074598154, guid: 89fe05d964bad0f4082158c56fd91e07,
     type: 2}
+  usernames:
+  - Anton
+  - Dylan
+  - Erin
+  - Lingyi
+  - Max
+  - MJ
+  - Rayjo
+  - Rogelio
