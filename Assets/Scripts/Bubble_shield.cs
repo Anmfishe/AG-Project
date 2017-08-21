@@ -57,5 +57,12 @@ public class Bubble_shield : MonoBehaviour
     {
         return blue;
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ShieldBreaker"))
+        {
+            Bubble_shieldTimer = 0;
+        }
+    }
 
 }

@@ -15,12 +15,16 @@ public class GlassHammer : MonoBehaviour
     private float durationTimer = 0;
     private float startTime;
     public float damage = 50;
+    private Rigidbody rb;
+    public float steeringForce = 1f;
 
 
     // Use this for initialization
     void Start()
     {
         startTime = Time.time;
+        rb = this.GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -32,16 +36,30 @@ public class GlassHammer : MonoBehaviour
             {
                 return;
             }
-            Vector3 direction = wand.position + wand.forward * 5;
-            direction -= this.transform.position;
-            this.transform.position += direction.normalized * Time.deltaTime;
-            this.transform.rotation = wand.rotation;
-
             if ((Time.time - startTime) > destroyTime)
                 PhotonNetwork.Destroy(GetComponent<PhotonView>());
         }
     }
+    private void FixedUpdate()
+    {
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            if (wand == null)
+            {
+                return;
+            }
 
+
+            Vector3 direction = wand.position + wand.forward;
+            direction -= this.transform.position;
+
+            //rb.AddForce(direction.normalized * Time.smoothDeltaTime * steeringForce);
+
+            //this.transform.position += direction.normalized * Time.deltaTime;
+            this.transform.position = wand.position;
+            this.transform.rotation = wand.rotation;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -61,9 +79,11 @@ public class GlassHammer : MonoBehaviour
         }
     }
 
-    public void SetWand(Transform wand_)
+    public void SetWand(Transform wand_) 
     {
         wand = wand_;
+        this.transform.position = wand.position;
+        this.transform.rotation = wand.rotation;
     }
 
     public void SetBlue(bool blue_)

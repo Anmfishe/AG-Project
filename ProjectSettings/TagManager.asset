@@ -39,6 +39,7 @@ TagManager:
   - Neutral
   - PlatformTrigger
   - Username
+  - ShieldBreaker
   layers:
   - Default
   - TransparentFX
