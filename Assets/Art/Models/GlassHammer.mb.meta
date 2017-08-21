@@ -6,10 +6,19 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: GlassHammerMesh
+    100004: GlassHammerMesh2
     400000: //RootNode
+    400002: GlassHammerMesh
+    400004: GlassHammerMesh2
     2300000: //RootNode
+    2300002: GlassHammerMesh
+    2300004: GlassHammerMesh2
     3300000: //RootNode
+    3300002: GlassHammerMesh
+    3300004: GlassHammerMesh2
     4300000: GlassHammerMesh
+    4300002: GlassHammerMesh2
     9500000: //RootNode
   materials:
     importMaterials: 1

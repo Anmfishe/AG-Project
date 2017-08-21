@@ -6,10 +6,19 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Head
+    100004: Helmet
     400000: //RootNode
+    400002: Head
+    400004: Helmet
     2300000: //RootNode
+    2300002: Head
+    2300004: Helmet
     3300000: //RootNode
+    3300002: Head
+    3300004: Helmet
     4300000: Head
+    4300002: Helmet
     9500000: //RootNode
   materials:
     importMaterials: 1

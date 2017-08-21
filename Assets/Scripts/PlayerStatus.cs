@@ -448,41 +448,50 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 bookLogic.index = bookLogic.pages.Length - 1;
                 bookLogic.UpdateUI ();
 			}
-		} else 
+		}
+        else 
 		{
-                //Switch wands off.
-                string wandStickPath = "Right Hand/MagicWand/stick/";
-                this.transform.parent.Find(wandStickPath + "basic").gameObject.SetActive(false);
-                this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(false);
-                this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(false);
-                this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(false);
+            //Switch wands off.
+            string wandStickPath = "Right Hand/MagicWand/stick/";
+            this.transform.parent.Find(wandStickPath + "basic").gameObject.SetActive(false);
+            this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(false);
+            this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(false);
+            this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(false);
+            this.transform.parent.Find("Head/HeadDress/helmet").gameObject.SetActive(false);
+            this.transform.Find("armor").gameObject.SetActive(false);
+            this.transform.Find("cape").gameObject.SetActive(false);
+            this.transform.Find("scarf").gameObject.SetActive(false);
 
-                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
-                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
-                cameraRig.GetComponent<PlatformController>().enabled = true;
-                if (playerClass == PlayerClass.attack)
-                {
-                    bookLogic.index = bookLogic.attackBottom;
+            cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
+            cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
+            cameraRig.GetComponent<PlatformController>().enabled = true;
+            if (playerClass == PlayerClass.attack)
+            {
+                bookLogic.index = bookLogic.attackBottom;
 
-                    //Switch corresponding wand on.
-                    this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(true);
-                }
-                if (playerClass == PlayerClass.support)
-                {
-                    bookLogic.index = bookLogic.supportBottom;
+                //Switch corresponding wand on.
+                this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(true);
+                this.transform.Find("cape").gameObject.SetActive(true);
+            }
+            if (playerClass == PlayerClass.support)
+            {
+                bookLogic.index = bookLogic.supportBottom;
 
-                    //Switch corresponding wand on.
-                    this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(true);
-                }
-                if (playerClass == PlayerClass.heal)
-                {
-                    bookLogic.index = bookLogic.healBottom;
+                //Switch corresponding wand on.
+                this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(true);
+                this.transform.Find("armor").gameObject.SetActive(true);
+                this.transform.parent.Find("Head/HeadDress/helmet").gameObject.SetActive(true);
+            }
+            if (playerClass == PlayerClass.heal)
+            {
+                bookLogic.index = bookLogic.healBottom;
 
-                    //Switch corresponding wand on.
-                    this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(true);
-                }
+                //Switch corresponding wand on.
+                this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(true);
+                this.transform.Find("scarf").gameObject.SetActive(true);
+            }
 
-                bookLogic.UpdateUI();
+            bookLogic.UpdateUI();
                 bookLogic.UpdateHotbar();
         }
 	}
