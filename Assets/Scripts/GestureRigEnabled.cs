@@ -30,7 +30,7 @@ public class GestureRigEnabled : MonoBehaviour {
 	}
     private void OnEnable()
     {
-        print("enabled");
+        //print("enabled");
         camRig = transform.parent.gameObject;
        camRig.GetComponent<Edwon.VR.VRGestureRig>().Init();
     }

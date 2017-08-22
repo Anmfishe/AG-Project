@@ -128,6 +128,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     float length;
 	NotificationManager nm;
 
+    public LayerMask platformLayers;
+
+    RaycastHit hit;
+
+    float dt = 0.0f;
+
     private void Awake()
     {
         padTeleport = GetComponent<PadTeleport>();
@@ -147,6 +153,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
         //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
+        lineRend.colorGradient = inaccurateTarget;
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
         cooldowns = GetComponent<SpellCooldowns>();
@@ -176,6 +183,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -282,40 +290,45 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         // Check if targeting platform
         if (currentSpellName == "vines" || currentSpellName == "platformSteal")
         {
-            if (target.result != null)
-            {
-                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || 
-                    target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || 
-                    target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
-                {
-                    if (target.result.transform != padHit)
-                    {
-                        if (padHit != null)
-                        {
-                            if (padHit.childCount > 0)
-                            {
-                                disableHighlight(padHit.GetChild(0), !blue);
-                            }
-                            padHit = null;
-                        }
+            if (beamTrail.gameObject.active == false)
+                beamTrail.gameObject.SetActive(true);
 
-                        padHit = target.result.transform;
+            //Physics.queriesHitTriggers = false;
+            if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, platformLayers))
+            {
+                beamTrail.destination = (hit.point);
+                reticle.SetActive(true);
+                reticle.transform.position = hit.point;
+                if (padHit == null || padHit != hit.transform)
+                {
+                    if (padHit != null && padHit.childCount > 0)
+                    {
+                        disableHighlight(padHit, !blue);
                     }
 
-                    AccurateTarget();
-                }
-                else
-                {
-                    InaccurateTarget();
+                    padHit = hit.transform;
+                    
+                    if (padHit.gameObject.tag == "GrayPlatform" || blue && padHit.gameObject.tag == "RedPlatform" || !blue && padHit.gameObject.tag == "BluePlatform")
+                    {
+                        AccurateTarget();
+                        beamTrail.destination = hit.point;
+                        enableHighlight(padHit, blue);
+                    }
+                    else
+                    {
+                        InaccurateTarget();
+                    }
                 }
             }
             else
             {
+                hit.point = (target.pointer.position + target.pointer.forward * 25);
                 InaccurateTarget();
             }
         }
         else if (currentSpellName == "disenchant")
         {
+            //Physics.queriesHitTriggers = false;
             if (target.result2 != null)
             {
                 if (target.result2.tag == "Curse")
@@ -758,7 +771,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 else
                 {
                     //print("self heal");
-                    print(avatar);
+                    //print(avatar);
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
                 healCD = cooldowns.healCD;
@@ -780,7 +793,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     {
                         if (padHit.childCount > 0)
                         {
-                            disableHighlight(padHit.GetChild(0), !blue);
+                            disableHighlight(padHit, !blue);
                         }
                         padHit = null;
                     }
@@ -822,7 +835,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     {
                         if (padHit.childCount > 0)
                         {
-                            disableHighlight(padHit.GetChild(0), !blue);
+                            disableHighlight(padHit, !blue);
                         }
                         padHit = null;
                     }
@@ -896,32 +909,24 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Successfully target a platform
     void AccurateTarget()
     {
-        Physics.queriesHitTriggers = false;
+            if (lineRend.colorGradient == accurateTarget)
+                return;
+
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
-        //RaycastHit hit;
-        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
-        beamTrail.destination = target.hit.point;
-        if (target.hit.transform.gameObject.tag == "GrayPlatform" || (target.hit.transform.gameObject.tag == "BluePlatform") || (target.hit.transform.gameObject.tag == "RedPlatform"))
-        {
-            lineRend.colorGradient = accurateTarget;
-            reticle.transform.position = target.hit.point;
-            
-padHit = target.hit.transform;
-
-            if (padHit.childCount > 0)
-            {
-                enableHighlight(padHit.GetChild(0), blue);
-            }
-        }
+        lineRend.colorGradient = accurateTarget;
     }
     void AccurateTargetBlessing()
     {
+        if (beamTrail.gameObject.activeSelf == true)
+            if (lineRend.colorGradient == accurateTarget)
+                return;
+
         Physics.queriesHitTriggers = true;
+
+        if (beamTrail)
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
-        //RaycastHit hit;
-        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
         beamTrail.destination = target.hit_blessing.point;
         lineRend.colorGradient = accurateTarget;
         reticle.transform.position = target.hit_blessing.point;
@@ -930,35 +935,29 @@ padHit = target.hit.transform;
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
+            if (lineRend.colorGradient == inaccurateTarget)
+                return;
+
         if (padHit != null)
         {
             if (padHit.childCount > 0)
-                disableHighlight(padHit.GetChild(0), !blue);
+                disableHighlight(padHit, !blue);
 
             padHit = null;
         }
 
-        Physics.queriesHitTriggers = false;
-        beamTrail.gameObject.SetActive(true);
-        RaycastHit hit;
-        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000/*, target.layers*/))
-        {
             beamTrail.destination = (hit.point);
-            lineRend.colorGradient = inaccurateTarget;
             reticle.SetActive(true);
             reticle.transform.position = hit.point;
-        }
-        else
-        {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 25);
-            reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 25);
-        }
 
         lineRend.colorGradient = inaccurateTarget;
     }
     void InaccurateTargetBlessing()
     {
+        if (beamTrail.gameObject.activeSelf == true)
+            if (lineRend.colorGradient == inaccurateTarget)
+                return;
+
         Physics.queriesHitTriggers = true;
         beamTrail.gameObject.SetActive(true);
         RaycastHit hit;
@@ -1012,44 +1011,43 @@ padHit = target.hit.transform;
 
     public void disableHighlight(Transform highlighted, bool myBlue)
     {
-        print("disabling!!!");
+        //print("disabling!!!");
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        if (highlighted.childCount > 1)
         {
-
-            if (highlighted.parent.childCount > 1)
-                highlighted.parent.GetChild(1).gameObject.SetActive(false);
+            if (highlighted.GetChild(1).gameObject.activeSelf == false)
+                return;
         }
 
-
+        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        {
+            if (highlighted.childCount > 1)
+                highlighted.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
-        print("ENABLING in spellcast");
-        var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
-        mainModule.startColor = greenHighlight;
+        //print("ENABLING in spellcast");
 
-        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        if (highlighted.childCount > 1)
         {
-            if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (highlighted.parent.gameObject.tag == "BluePlatform") || (highlighted.parent.gameObject.tag == "RedPlatform")))
+            if (highlighted.GetChild(1).gameObject.activeSelf == true)
             {
-                if (highlighted.parent.childCount > 1)
-                {
-                    highlighted.parent.GetChild(1).gameObject.SetActive(true);
-                }
-            }
-            else
-            {
-                print("parent! " + highlighted.parent.gameObject.tag);
+                return;
             }
         }
 
-        else
+        if ((highlighted.gameObject.tag == "GrayPlatform" || (!blue && highlighted.gameObject.tag == "BluePlatform") || (blue && highlighted.gameObject.tag == "RedPlatform")))
         {
-            print("child!" + highlighted.gameObject.tag);
+            if (highlighted.childCount > 1)
+            {
+                //highlighted.GetChild(1).gameObject.SetActive(false);
+                var mainModule = highlighted.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
+                mainModule.startColor = greenHighlight;
+                highlighted.GetChild(1).gameObject.SetActive(true);
+            }
         }
-
-
     }
 }
 

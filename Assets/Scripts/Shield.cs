@@ -27,12 +27,12 @@ public class Shield : MonoBehaviour {
 
             this.transform.position = (shieldSpot.position);
             this.transform.rotation = shieldSpot.rotation;
+
+            shieldTimer -= Time.deltaTime;
+
+            if (shieldTimer <= 0)
+                PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
         }
-
-        shieldTimer -= Time.deltaTime;
-        if (shieldTimer <= 0)
-            Destroy(gameObject);
-
 	}
 
     public void SetBook(Transform book_)
@@ -49,5 +49,13 @@ public class Shield : MonoBehaviour {
     public bool GetBlue()
     {
         return blue;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ShieldBreaker"))
+        {
+            shieldTimer = 0;
+        }
     }
 }

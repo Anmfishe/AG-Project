@@ -59,7 +59,7 @@ public class TeleporterPlatform : MonoBehaviour {
         //        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            //Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
             {
                 numPlayersOnPlatform--;
@@ -79,7 +79,7 @@ public class TeleporterPlatform : MonoBehaviour {
         {
             if (Camera.main == null)
             {
-                Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+                //Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
             }
             else if (Camera.main.GetComponent<NotificationManager>() == null)
             {

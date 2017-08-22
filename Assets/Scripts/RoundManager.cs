@@ -42,7 +42,15 @@ public class RoundManager : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag("Pregame"))
         {
             practiceRoom = GameObject.FindGameObjectWithTag("Pregame");
-            practiceRoom.SetActive(true);
+            if (GameObject.FindGameObjectWithTag("Arena") != null)
+            {
+                practiceRoom.SetActive(false);
+            }
+            else
+            {
+                practiceRoom.SetActive(true);
+            }
+            
         }
         
         
@@ -138,7 +146,7 @@ public class RoundManager : MonoBehaviour {
             arena2 = PhotonNetwork.InstantiateSceneObject(arena.name, Vector3.zero, Quaternion.identity, 0, null);
         }
         scoreboard.SetVisible(true);
-        print("starting round");
+        print("Starting Round");
         Display_Countdown();
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
         {//TODO
@@ -157,14 +165,14 @@ public class RoundManager : MonoBehaviour {
 
     void SetUnusedHatsVisible(bool isVisible)
     {
-        Debug.Log("SetHatsVisible is " + isVisible);
+        //Debug.Log("SetHatsVisible is " + isVisible);
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Grabbable"))
         {
             HatLogic hat = go.GetComponent<HatLogic>();
             if (hat != null && hat.onHead == false)
             {
                 hat.SetVisible(isVisible);
-                Debug.Log("Setting hat visible " + isVisible);
+                //Debug.Log("Setting hat visible " + isVisible);
             }
         }
     }
@@ -250,7 +258,7 @@ public class RoundManager : MonoBehaviour {
     }
     public void Subscribe(GameObject avatar, GameObject rig)
     {
-        Debug.Log(avatar.name + " subscribed");
+        //Debug.Log(avatar.name + " subscribed");
         players.Add(avatar);
         playerRigs.Add(rig);
         //send 
@@ -277,7 +285,7 @@ public class RoundManager : MonoBehaviour {
     {
         players.Remove(avatar);
         players.Remove(rig);
-        Debug.Log(avatar.name + " unsubscribed");
+        //Debug.Log(avatar.name + " unsubscribed");
         if (avatar.GetComponent<TeamManager>().blue)
             blueMemb--;
         else

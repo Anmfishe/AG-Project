@@ -39,6 +39,8 @@ TagManager:
   - Neutral
   - PlatformTrigger
   - Username
+  - ShieldBreaker
+  - HatTable
   layers:
   - Default
   - TransparentFX
@@ -57,7 +59,7 @@ TagManager:
   - Neutral
   - GrayPlatform
   - PlatformTrigger
-  - 
+  - HatTable
   - 
   - 
   - 

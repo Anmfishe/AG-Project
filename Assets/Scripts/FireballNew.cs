@@ -42,7 +42,7 @@ public class FireballNew : MonoBehaviour
         else if (!fbCollider.enabled)
         {
             fbCollider.enabled = true;
-            print("fbcollider enabled");
+            //print("fbcollider enabled");
         }
 
         //this.GetComponent<Rigidbody>().AddForce(this.transform.forward * speed * Time.deltaTime, ForceMode);
@@ -57,7 +57,7 @@ public class FireballNew : MonoBehaviour
      private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
-        print("Collided by " + other.name);
+        //print("Collided by " + other.name);
 
         if (! this.GetComponent<PhotonView>().isMine)
         {
@@ -66,7 +66,7 @@ public class FireballNew : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            print("hit the body");
+            //print("hit the body");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             //            PlayerStatus statusScript = other.GetComponent<PlayerStatus>();
             PhotonView pv = other.GetComponent<PhotonView>();
@@ -86,7 +86,7 @@ public class FireballNew : MonoBehaviour
         }
         else if(other.CompareTag("put"))
         {
-            print("hit on head");
+            //print("hit on head");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
             PhotonView pv = other.GetComponent<PhotonView>();
             if (pv != null)
@@ -105,7 +105,7 @@ public class FireballNew : MonoBehaviour
         }
         else if (other.CompareTag("Shield"))
         {
-            print("hit on shield");
+            //print("hit on shield");
             //Apply damage to the shield.
             Damageable damageScript = other.GetComponent<Damageable>();
             if (damageScript != null) damageScript.TakeDamage(damage);
@@ -117,7 +117,7 @@ public class FireballNew : MonoBehaviour
         }
         else if (other.CompareTag("Spell"))
         {
-            print("hit on spell");
+            //print("hit on spell");
             //Get the point between the two fireballs.
             //Vector3 midpoint = this.transform.position + ((other.transform.position - this.transform.position) * 0.5f);
 

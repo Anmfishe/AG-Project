@@ -42,7 +42,7 @@ public class Powerup : MonoBehaviour {
         isBlue = isBlue_;
         platformIndex = platformIndex_;
 
-        Debug.Log("Powerup.cs : SetPowerupProperties : isBlue=" + isBlue_ + " platformIndex=" + platformIndex_);
+        //Debug.Log("Powerup.cs : SetPowerupProperties : isBlue=" + isBlue_ + " platformIndex=" + platformIndex_);
     }
 
     void OnTriggerEnter(Collider other)
