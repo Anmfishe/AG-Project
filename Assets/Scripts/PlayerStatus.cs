@@ -47,6 +47,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
     public GameObject hat;
     public bool onTeleporter = false;
+	PenaltyManager pm;
 
     public float max_health = 100;
   //  [HideInInspector]
@@ -234,9 +235,27 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             else
             {
                 //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
-                if (!VRDevice.model.ToLower().Contains("oculus"))
-                    cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
-                cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
+				if (!VRDevice.model.ToLower ().Contains ("oculus"))
+				{
+					cameraRig.transform.rotation = Quaternion.Euler (0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+				}
+
+				if (GameObject.Find ("Penalty") == null)
+				{
+					Debug.Log ("PlayerStatus.cs : Die() : Could not find \"Penalty\" GameObject in the scene");
+					return;
+				}
+
+				pm = GameObject.Find ("Penalty").GetComponent<PenaltyManager> ();
+				if (pm == null)
+				{
+					Debug.Log ("PlayerStatus.cs : Die() : Could not find \"PenaltyManager\" script on \"Penalty\" GameObject");
+					return;
+				}
+
+				bool isBlue = this.transform.parent.GetComponent<TeamManager> ().blue;
+				Transform penalty = pm.GetPenaltyTransform (isBlue);
+				cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
                 deadText.gameObject.SetActive(true);
 
                 // Increment scoreboard
@@ -264,7 +283,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("knockOut");
         }
-
 
         deathTime = Time.time;
         dead = true;

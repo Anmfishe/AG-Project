@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23440697197879172}
   - component: {fileID: 95452579838668118}
   m_Layer: 0
-  m_Name: GlassHammerMesh
+  m_Name: GlassHammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
