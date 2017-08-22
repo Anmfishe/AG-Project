@@ -2358,6 +2358,9 @@ MonoBehaviour:
   flipCD: 0
   leftControllerIndex: 0
   rightControllerIndex: 0
+  platformLayers:
+    serializedVersion: 2
+    m_Bits: 54016
 --- !u!114 &207178191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6420,22 +6423,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4221423857602016, guid: ab3eeddf243a6f24a998cba00394cd7c,
     type: 2}
   m_PrefabInternal: {fileID: 642825603}
---- !u!1 &653136539 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1522832780281020, guid: feda6a15c527d55469f9ecd21ab25d73,
-    type: 2}
-  m_PrefabInternal: {fileID: 101870303}
---- !u!114 &653136547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 653136539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff9c3ae6a83f614cb3ffb7cdfb9292c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &662093492
 Prefab:
   m_ObjectHideFlags: 0

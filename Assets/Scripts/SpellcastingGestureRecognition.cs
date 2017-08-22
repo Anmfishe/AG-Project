@@ -127,6 +127,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     ushort vibrateIntensity;
     float length;
 
+    public LayerMask platformLayers;
+
+    RaycastHit hit;
+
+    float dt = 0.0f;
+
     private void Awake()
     {
         padTeleport = GetComponent<PadTeleport>();
@@ -146,6 +152,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
         //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
+        lineRend.colorGradient = inaccurateTarget;
 		beamTrail.gameObject.SetActive (false);
         reticle.SetActive(false);
         cooldowns = GetComponent<SpellCooldowns>();
@@ -170,6 +177,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+
         //Check if we're cooling down.
         if (isCoolingDown)
         {
@@ -276,38 +284,45 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         // Check if targeting platform
         if (currentSpellName == "vines" || currentSpellName == "platformSteal")
         {
-            if (target.result != null)
+            if (beamTrail.gameObject.active == false)
+                beamTrail.gameObject.SetActive(true);
+
+            //Physics.queriesHitTriggers = false;
+            if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000, platformLayers))
             {
-                if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || 
-                    target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || 
-                    target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
+                beamTrail.destination = (hit.point);
+                reticle.SetActive(true);
+                reticle.transform.position = hit.point;
+                if (padHit == null || padHit != hit.transform)
                 {
-                        if (padHit != null)
-                        {
-                            if (padHit.childCount > 0)
-                            {
-                                disableHighlight(padHit, !blue);
-                            }
-                            padHit = null;
-                        }
+                    if (padHit != null && padHit.childCount > 0)
+                    {
+                        disableHighlight(padHit, !blue);
+                    }
 
-                        padHit = target.result.transform;
-
-                    AccurateTarget();
-                    enableHighlight(padHit, blue);
-                }
-                else
-                {
-                    InaccurateTarget();
+                    padHit = hit.transform;
+                    
+                    if (padHit.gameObject.tag == "GrayPlatform" || blue && padHit.gameObject.tag == "RedPlatform" || !blue && padHit.gameObject.tag == "BluePlatform")
+                    {
+                        AccurateTarget();
+                        beamTrail.destination = hit.point;
+                        enableHighlight(padHit, blue);
+                    }
+                    else
+                    {
+                        InaccurateTarget();
+                    }
                 }
             }
             else
             {
+                hit.point = (target.pointer.position + target.pointer.forward * 25);
                 InaccurateTarget();
             }
         }
         else if (currentSpellName == "disenchant")
         {
+            //Physics.queriesHitTriggers = false;
             if (target.result2 != null)
             {
                 if (target.result2.tag == "Curse")
@@ -855,22 +870,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Successfully target a platform
     void AccurateTarget()
     {
-        if (beamTrail.gameObject.activeSelf == true)
             if (lineRend.colorGradient == accurateTarget)
                 return;
 
-        Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
-        //RaycastHit hit;
-        //Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, target.range, target.layers);
-        beamTrail.destination = target.hit.point;
-        if (target.hit.transform.gameObject.tag == "GrayPlatform" || (target.hit.transform.gameObject.tag == "BluePlatform") || (target.hit.transform.gameObject.tag == "RedPlatform"))
-        {
-            lineRend.colorGradient = accurateTarget;
-            reticle.transform.position = target.hit.point;
-            padHit = target.hit.transform;
-        }
+        lineRend.colorGradient = accurateTarget;
     }
     void AccurateTargetBlessing()
     {
@@ -891,6 +896,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
+            if (lineRend.colorGradient == inaccurateTarget)
+                return;
+
         if (padHit != null)
         {
             if (padHit.childCount > 0)
@@ -899,26 +907,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             padHit = null;
         }
 
-        if (beamTrail.gameObject.activeSelf == true)
-            if (lineRend.colorGradient == inaccurateTarget)
-                return;
-
-        Physics.queriesHitTriggers = false;
-        beamTrail.gameObject.SetActive(true);
-        RaycastHit hit;
-        if (Physics.Raycast(target.pointer.position, target.pointer.forward, out hit, 1000/*, target.layers*/))
-        {
             beamTrail.destination = (hit.point);
-            lineRend.colorGradient = inaccurateTarget;
             reticle.SetActive(true);
             reticle.transform.position = hit.point;
-        }
-        else
-        {
-            beamTrail.destination = (target.pointer.position + target.pointer.forward * 25);
-            reticle.SetActive(true);
-            reticle.transform.position = (target.pointer.position + target.pointer.forward * 25);
-        }
 
         lineRend.colorGradient = inaccurateTarget;
     }
