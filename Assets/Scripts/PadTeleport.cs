@@ -73,58 +73,39 @@ public class PadTeleport : MonoBehaviour
         if (active == true)
         {
             lineRend.enabled = true;
-          //  points[0] = transform.position;
-           // points[1] = origin.transform.position + origin.transform.forward * .15f;
             beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
-            //lineRend.SetPositions(points);
-
-            //if (padHit != null)
-            //    disableHighlight(padHit);
 
                 if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, blueLayersToIgnore))
                 {
-                    //neutral = true;
-                    
-                    if (hit.transform != padHit)
-                    {
-                        disableHighlight(padHit, blue);
-                        padHit = hit.transform;
-                        warpSpot = hit.point;
-                        beamTrail.destination = warpSpot;
-
-                        if (padHit.gameObject.tag == "Neutral")
-                        {
-                            neutral = true;
-
-                        }
-
-                        else
-                        {
-                            if (padHit.GetComponentInParent<PlatformNeighbors>().hasPlayer == true)
-                            {
-                                padHit = null;
-                                neutral = false;
-                            }
-
-                            else
-                            {
-                                enableHighlight(padHit, blue);
-                                neutral = false;
-                            }
-                        }
-                    }
-
-                // For ground teleportation
-                else if (padHit.tag == "Neutral")// && hit.point != warpSpot)
-                {
+                    disableHighlight(padHit, blue);
+                    padHit = hit.transform;
                     warpSpot = hit.point;
                     beamTrail.destination = warpSpot;
-                    neutral = true;
-                    padHit = hit.transform;
-                }
 
+                    if (padHit.gameObject.tag == "Neutral")
+                    {
+                        neutral = true;
+                    }
+
+                    // If it's the teleport pad
+                    else
+                    {
+                        if (padHit.GetComponentInParent<PlatformNeighbors>().hasPlayer == true)
+                        {
+                            padHit = null;
+                            neutral = false;
+                        }
+
+                        // If it doesn't have a player
+                        else
+                        {
+                            enableHighlight(padHit, blue);
+                            neutral = false;
+                        }
+                    }
             }
 
+            // If the raycast isn't successful
             else if (padHit != null)
                 {
                     disableHighlight(padHit, blue);
@@ -141,22 +122,32 @@ public class PadTeleport : MonoBehaviour
         {
             active = true;
         }
+
+        // If we release the button
         if (Input.GetKeyUp("joystick button 9"))
         {
             active = false;
 
                 if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
                 {
+<<<<<<< HEAD
                // print("not NEUTRAL");
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
+=======
+                    basicTeleport.Teleport(padHit.transform, padHit.transform.position);
+>>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
                 }
 
                 else if (neutral == true)
                 {
+<<<<<<< HEAD
                // print("NEUTRAL");
+=======
+>>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
                     basicTeleport.Teleport(padHit, warpSpot);
                 }
 
+            // Disable highlight
             if (padHit != null)
             {
                 disableHighlight(padHit, blue);
@@ -177,24 +168,32 @@ public class PadTeleport : MonoBehaviour
 
             if (highlighted.parent.childCount > 1)
                 highlighted.parent.GetChild(1).gameObject.SetActive(false);
-        }
-    
-                
+        }          
     }
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
+<<<<<<< HEAD
         //print("ENABLING");
+=======
+        if (highlighted.parent.childCount > 1)
+        {
+            if (highlighted.parent.GetChild(1).gameObject.activeSelf == true)
+                   return;
+        }
+>>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
 
         var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
         mainModule.startColor = highlightColor;
 
-        if (highlighted!= null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
+        if (highlighted.gameObject.tag == "PlatformTrigger")
         {
             if ((highlighted.parent.gameObject.tag == "GrayPlatform" || (myBlue && highlighted.parent.gameObject.tag == "BluePlatform") || (!myBlue && highlighted.parent.gameObject.tag == "RedPlatform")))
             {
                 if (highlighted.parent.childCount > 1)
+                {
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
+<<<<<<< HEAD
             }
             else
             {
@@ -208,5 +207,10 @@ public class PadTeleport : MonoBehaviour
         }
 
 
+=======
+                }
+            }
+        }
+>>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
     }
 }
