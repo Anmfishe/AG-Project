@@ -7,13 +7,20 @@ public class PadTeleport : MonoBehaviour
     public VRTK.VRTK_BasicTeleport basicTeleport;
     BeamTrail beamTrail;
     public LineRenderer lineRend;
+    public Material reticleMat;
 
     public Gradient highlightColor;
+
+    private GameObject reticle;
+
+    private float reticleSize = 0.02f;
+    private float reticleSizeUpdate = 0.05f;
 
     private Vector3[] points = new Vector3[2];
 
     public LayerMask blueLayersToIgnore;
     public LayerMask redLayersToIgnore;
+    public LayerMask groundLayer;
     SpellcastingGestureRecognition spellcast;
 
     //[HideInInspector]
@@ -33,7 +40,13 @@ public class PadTeleport : MonoBehaviour
     {
         spellcast = GetComponent<SpellcastingGestureRecognition>();
         beamTrail = lineRend.GetComponent<BeamTrail>();
-	}
+        
+        // Set up the reticle
+        reticle = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        reticle.transform.localScale = new Vector3(reticleSize, reticleSize, reticleSize);
+        reticle.GetComponent<Renderer>().material = reticleMat;
+        reticle.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -74,43 +87,65 @@ public class PadTeleport : MonoBehaviour
         {
             lineRend.enabled = true;
             beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
+            reticle.transform.position = origin.transform.position + origin.transform.forward * 10f;
+            reticleSizeUpdate = reticleSize * Vector3.Distance(this.transform.position, reticle.transform.position);
 
-                if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, blueLayersToIgnore))
-                {
+            if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, blueLayersToIgnore))
+            {
                     disableHighlight(padHit, blue);
                     padHit = hit.transform;
                     warpSpot = hit.point;
                     beamTrail.destination = warpSpot;
+                    reticle.transform.position = hit.point;
 
-                    if (padHit.gameObject.tag == "Neutral")
+                    reticleSizeUpdate = reticleSize * Vector3.Distance(this.transform.position, reticle.transform.position);
+
+                if (padHit.gameObject.tag == "Neutral")
+                {
+                    neutral = true;
+                }
+
+                else if (padHit.gameObject.tag == "HatTable")
+                {
+                    Vector3 down = Vector3.down;
+                    RaycastHit downHit;
+                    neutral = true;
+
+                    if (Physics.Raycast(warpSpot, down, out downHit, 1000, groundLayer))
                     {
-                        neutral = true;
+                        warpSpot = downHit.point;
+                        warpSpot += ((Vector3.Normalize(transform.position - downHit.point)) * .25f);
+                        reticle.transform.position = downHit.point;
+                        reticle.transform.position = warpSpot; 
+                    }
+                }
+
+                // If it's the teleport pad
+                else
+                {
+                    if (padHit.GetComponentInParent<PlatformNeighbors>().hasPlayer == true)
+                    {
+                        padHit = null;
+                        neutral = false;
                     }
 
-                    // If it's the teleport pad
+                    // If it doesn't have a player
                     else
                     {
-                        if (padHit.GetComponentInParent<PlatformNeighbors>().hasPlayer == true)
-                        {
-                            padHit = null;
-                            neutral = false;
-                        }
-
-                        // If it doesn't have a player
-                        else
-                        {
-                            enableHighlight(padHit, blue);
-                            neutral = false;
-                        }
+                        enableHighlight(padHit, blue);
+                        neutral = false;
                     }
+                }
             }
 
             // If the raycast isn't successful
             else if (padHit != null)
-                {
-                    disableHighlight(padHit, blue);
-                    padHit = null;
-                }
+            {
+                disableHighlight(padHit, blue);
+                padHit = null;
+            }
+
+            reticle.transform.localScale = new Vector3(reticleSizeUpdate, reticleSizeUpdate, reticleSizeUpdate);
         }
 
         else if (lineRend.enabled == true)
@@ -121,6 +156,9 @@ public class PadTeleport : MonoBehaviour
         if (Input.GetKeyDown("joystick button 9"))
         {
             active = true;
+
+            // Enable reticle
+            reticle.SetActive(true);
         }
 
         // If we release the button
@@ -128,7 +166,10 @@ public class PadTeleport : MonoBehaviour
         {
             active = false;
 
-                if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
+            // disable reticle
+            reticle.SetActive(false);
+
+            if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
                 {
                // print("not NEUTRAL");
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
