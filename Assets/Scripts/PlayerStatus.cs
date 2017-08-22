@@ -73,11 +73,13 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
         myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-        if(GameObject.FindGameObjectWithTag("Arena") != null)
+        if(GameObject.FindGameObjectWithTag("Arena") != null && photonView.isMine)
         {
+            waitingForNextRound = true;
             cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
             cameraRig.GetComponent<PlatformController>().enabled = false;
             cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+            cameraRig.GetComponent<PadTeleport>().enabled = false;
             if (!VRDevice.model.ToLower().Contains("oculus"))
                 cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
             cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);

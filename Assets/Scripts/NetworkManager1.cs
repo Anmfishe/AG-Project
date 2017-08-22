@@ -37,6 +37,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public Transform[] hatSpawns_blue;
     public Transform[] hatSpawns_red;
     public GameObject spawns;
+    public GameObject ptSpawns;
     
 	public string roomName;
 

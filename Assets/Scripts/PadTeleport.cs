@@ -184,7 +184,7 @@ public class PadTeleport : MonoBehaviour
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
-        print("ENABLING");
+        //print("ENABLING");
 
         var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
         mainModule.startColor = highlightColor;
@@ -198,13 +198,13 @@ public class PadTeleport : MonoBehaviour
             }
             else
             {
-                print("parent! " + highlighted.parent.gameObject.tag);
+                //print("parent! " + highlighted.parent.gameObject.tag);
             }
         }
 
         else
         {
-            print("child!" + highlighted.gameObject.tag);
+            //print("child!" + highlighted.gameObject.tag);
         }
 
 

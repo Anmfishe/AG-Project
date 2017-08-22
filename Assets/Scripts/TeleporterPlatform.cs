@@ -59,7 +59,7 @@ public class TeleporterPlatform : MonoBehaviour {
         //        Debug.Log("TeleporterPlatform.cs : OnTriggerExit() : Collided with " + other.tag + " with tag " + other.tag);
         if (other.tag == "Player")
         {
-            Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
+            //Debug.Log("TeleporterPlatform.cs : OnTriggerEnter() : numPlayersOnPlatform : " + numPlayersOnPlatform);
             if (players.Contains(other.gameObject))
             {
                 numPlayersOnPlatform--;

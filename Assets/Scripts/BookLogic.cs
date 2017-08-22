@@ -367,7 +367,7 @@ public class BookLogic : MonoBehaviour
 
     public void UpdateHotbar()
     {
-        print("updating hotbar");
+        //print("updating hotbar");
         GameObject emptyObj;
 
         GameObject[] emptyObjs;

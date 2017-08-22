@@ -90,6 +90,7 @@ public class TeleporterManager : MonoBehaviour {
         // Notify player how many people are not ready if the player is on the teleporter
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
         {
+            //Debug.Log(go);
             if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter && go.GetComponent<PlayerStatus>().playerClass != PlayerClass.none)
             {
                 int numPlayersNotReady = totalNumPlayers - blue.numPlayersOnPlatform - red.numPlayersOnPlatform;
@@ -117,7 +118,7 @@ public class TeleporterManager : MonoBehaviour {
         PlayerStatus ps;
         int i = 0;
         rm = GameObject.Find("Round Manager(Clone)");
-        rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.All, null);
+        rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.AllBuffered, null);
         //Debug.Log("blue : total = " + blue.players.Count);
         foreach (GameObject player in blue.players)
         {
@@ -140,7 +141,7 @@ public class TeleporterManager : MonoBehaviour {
             ps = player.GetComponent<PlayerStatus>();
             if (ps != null)
             {
-                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.All, false, Vector3.zero);
+                ps.GetComponent<PhotonView>().RPC("Teleport", PhotonTargets.AllBuffered, false, Vector3.zero);
                 i++;
             }
             else
