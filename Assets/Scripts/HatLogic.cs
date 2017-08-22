@@ -106,7 +106,7 @@ public class HatLogic : MonoBehaviour {
     {
 		if (other.gameObject.tag == "put" && this.GetComponent<PhotonView>().isMine && other.gameObject.GetComponent<PhotonView>().isMine)
 		{
-            Debug.Log("HATLOGIC photon view is mine");
+            //Debug.Log("HATLOGIC photon view is mine");
 			if (held == true) 
 			{
 				//print ("touching head");
@@ -130,7 +130,7 @@ public class HatLogic : MonoBehaviour {
         if (hatSpot.transform.parent.GetComponent<PhotonView>().isMine)
         {
             GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("putOnHat");
-            Debug.Log("should be speaking");
+            //Debug.Log("should be speaking");
 
             photonView.RPC("onHandTrue", PhotonTargets.AllBuffered, false);
             photonView.RPC("onHeadTrue", PhotonTargets.AllBuffered, true);
