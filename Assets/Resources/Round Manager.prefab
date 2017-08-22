@@ -2145,7 +2145,7 @@ MonoBehaviour:
   - {fileID: 1543755569740806, guid: 56816b5b77f7f5947b7cda599f48ae03, type: 2}
   - {fileID: 1002769239053778, guid: 5c91dcd1c6832ac48b5b78a72bd12511, type: 2}
   - {fileID: 1506793238162440, guid: 999b95dc52d654245b2000b217800461, type: 2}
-  arenaNum: 0
+  arenaNum: 3
   restart_display: {fileID: 1259874329974292}
   countdown_display: {fileID: 1792934341244372}
 --- !u!114 &114805768392010500

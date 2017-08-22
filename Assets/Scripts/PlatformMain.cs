@@ -31,6 +31,12 @@ public class PlatformMain : MonoBehaviour {
         ChangeColor(isBlue? "red" : "blue");
     }
 
+    [PunRPC]
+    public void ChangeColorTo(bool blue)
+    {
+        ChangeColor(blue ? "red" : "blue");
+    }
+
     public void ChangeColor(string color)
     {
 

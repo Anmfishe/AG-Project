@@ -79,4 +79,5 @@ MonoBehaviour:
   - set_BubbleShield
   - PlaySoundToOthers
   - ResetOnTeleporter
+  - ChangeColorTo
   DisableAutoOpenWizard: 1

@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 65606768078920226}
   m_Layer: 15
   m_Name: Blue_platform
-  m_TagString: BluePlatform
+  m_TagString: GrayPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 65247643127877548}
   m_Layer: 15
   m_Name: RedPlatform (1)
-  m_TagString: RedPlatform
+  m_TagString: GrayPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4214,7 +4214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1543755569740806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.875635, y: 16.552954, z: -38.479324}
+  m_LocalPosition: {x: -34.691963, y: 17.910852, z: 0.34828138}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4010248082001262}
@@ -11517,8 +11517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a83e167697b3147b4c66604e67d72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlue: 0
-  currentColor: red
+  isBlue: 1
+  currentColor: blue
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
