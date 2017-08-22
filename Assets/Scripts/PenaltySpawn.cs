@@ -23,15 +23,16 @@ public class PenaltySpawn : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player")
+		if (other.tag == "put")
 		{
+            Debug.Log("RAYJO test");
 			vacant = false;
 		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other.tag == "Player")
+		if (other.tag == "put")
 		{
 			vacant = true;
 		}
