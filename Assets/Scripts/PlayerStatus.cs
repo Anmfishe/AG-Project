@@ -538,6 +538,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             this.transform.parent.GetComponent<TeamManager>().Respawn();
             Camera.main.transform.parent.GetComponent<PadTeleport>().enabled = true;
             Camera.main.transform.parent.GetComponent<PadTeleport>().blue = isBlue;
+            Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().blue = isBlue;
             //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
     }
