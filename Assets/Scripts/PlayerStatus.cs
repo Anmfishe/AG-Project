@@ -80,9 +80,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             cameraRig.GetComponent<PlatformController>().enabled = false;
             cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
             cameraRig.GetComponent<PadTeleport>().enabled = false;
-            if (!VRDevice.model.ToLower().Contains("oculus"))
-                cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
-            cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
+            //if (!VRDevice.model.ToLower().Contains("oculus"))
+                //cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+            //cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
         }
     }
 
@@ -406,6 +406,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
             cameraRig.GetComponent<PlatformController>().enabled = false;
+            cameraRig.GetComponent<PadTeleport>().enabled = true;
             cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
         }
 

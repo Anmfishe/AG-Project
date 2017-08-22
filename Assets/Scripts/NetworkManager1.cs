@@ -51,6 +51,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 	public GameObject roundMan;
     public GameObject powerupManager;
     private PunTeams pt;
+    Vector3 spawnLocation;
 	public string[] usernames_pre;
     public string[] usernames_post;
 
@@ -81,8 +82,25 @@ public class NetworkManager1 : Photon.PunBehaviour
         hats[0] = hat_heal_blue;
         hats[1] = hat_attack_blue;
         hats[2] = hat_support_blue;
-    }
 
+        
+        
+    }
+    void placePlayer(GameObject cr)
+    {
+        if (GameObject.FindWithTag("Arena"))
+        {
+            print("Found Arena");
+            cr.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+            cr.transform.position = ptSpawns.transform.position;
+        }
+        else
+        {
+            print("No Arena");
+            spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;
+            cr.transform.position = spawnLocation;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -188,7 +206,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 		Debug.Log("DemoAnimator/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         // hopefully PhotonNetwork.playerList.Length returns the PROPER number of PLAYERS IN ROOM
-        Vector3 spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
+        spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;// + new Vector3(0, 0.5f, 0);
 		avatar = PhotonNetwork.Instantiate(this.avatar.name, spawnLocation, Quaternion.identity, 0);
 
         
@@ -201,13 +219,13 @@ public class NetworkManager1 : Photon.PunBehaviour
 
         //	cameraRig = Camera.main.transform.parent.gameObject;
         cameraRig = GameObject.FindWithTag("CameraRig");
-        cameraRig.transform.position = spawnLocation;
+        //cameraRig.transform.position = spawnLocation;
 		cameraRig.GetComponent<SpellcastingGestureRecognition>().SetAvatar(avatar.transform);
         cameraRig.GetComponent<PlatformController>().SetAvatar(avatar);
         BookLogic book = avatar.GetComponentInChildren<BookLogic>();
         book.guide = guide;
         guide.book = book;
-
+        StartCoroutine(placePlayerRoutine());
         if(VRDevice.model.ToLower().Contains("oculus"))
         {
             cameraRig.transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -313,7 +331,11 @@ public class NetworkManager1 : Photon.PunBehaviour
        
         Debug.Log("OnPhotonPlayerConnected() " + other.NickName); // not seen if you're the player connecting
 	}
-
+    IEnumerator placePlayerRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        placePlayer(cameraRig);
+    }
 	/// <summary>
 	/// Called when a Photon Player got disconnected. We need to load a smaller scene.
 	/// </summary>
