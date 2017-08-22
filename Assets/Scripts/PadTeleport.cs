@@ -130,20 +130,12 @@ public class PadTeleport : MonoBehaviour
 
                 if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
                 {
-<<<<<<< HEAD
                // print("not NEUTRAL");
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
-=======
-                    basicTeleport.Teleport(padHit.transform, padHit.transform.position);
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
                 }
 
                 else if (neutral == true)
                 {
-<<<<<<< HEAD
-               // print("NEUTRAL");
-=======
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
                     basicTeleport.Teleport(padHit, warpSpot);
                 }
 
@@ -173,15 +165,11 @@ public class PadTeleport : MonoBehaviour
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
-<<<<<<< HEAD
-        //print("ENABLING");
-=======
         if (highlighted.parent.childCount > 1)
         {
             if (highlighted.parent.GetChild(1).gameObject.activeSelf == true)
                    return;
         }
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
 
         var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
         mainModule.startColor = highlightColor;
@@ -193,24 +181,8 @@ public class PadTeleport : MonoBehaviour
                 if (highlighted.parent.childCount > 1)
                 {
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
-<<<<<<< HEAD
-            }
-            else
-            {
-                //print("parent! " + highlighted.parent.gameObject.tag);
-            }
-        }
-
-        else
-        {
-            //print("child!" + highlighted.gameObject.tag);
-        }
-
-
-=======
                 }
             }
         }
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
     }
 }

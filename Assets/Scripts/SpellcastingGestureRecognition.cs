@@ -874,6 +874,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     }
     void AccurateTargetBlessing()
     {
+        if (beamTrail.gameObject.activeSelf == true)
+            if (lineRend.colorGradient == accurateTarget)
+                return;
+
         Physics.queriesHitTriggers = true;
 
         if (beamTrail)
@@ -894,6 +898,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
             padHit = null;
         }
+
+        if (beamTrail.gameObject.activeSelf == true)
+            if (lineRend.colorGradient == inaccurateTarget)
+                return;
 
         Physics.queriesHitTriggers = false;
         beamTrail.gameObject.SetActive(true);
@@ -916,6 +924,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     }
     void InaccurateTargetBlessing()
     {
+        if (beamTrail.gameObject.activeSelf == true)
+            if (lineRend.colorGradient == inaccurateTarget)
+                return;
+
         Physics.queriesHitTriggers = true;
         beamTrail.gameObject.SetActive(true);
         RaycastHit hit;
@@ -969,12 +981,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public void disableHighlight(Transform highlighted, bool myBlue)
     {
-<<<<<<< HEAD
         //print("disabling!!!");
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
-=======
         if (highlighted.childCount > 1)
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
         {
             if (highlighted.GetChild(1).gameObject.activeSelf == false)
                 return;
@@ -989,15 +998,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
-<<<<<<< HEAD
         //print("ENABLING in spellcast");
-        var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
-        mainModule.startColor = greenHighlight;
 
-        if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
-=======
         if (highlighted.childCount > 1)
->>>>>>> refs/remotes/origin/platformTeleport_Bugfixing
         {
             if (highlighted.GetChild(1).gameObject.activeSelf == true)
             {
@@ -1005,14 +1008,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             }
         }
 
-        var mainModule = highlighted.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
-        mainModule.startColor = greenHighlight;
-
         if ((highlighted.gameObject.tag == "GrayPlatform" || (!blue && highlighted.gameObject.tag == "BluePlatform") || (blue && highlighted.gameObject.tag == "RedPlatform")))
         {
             if (highlighted.childCount > 1)
             {
                 //highlighted.GetChild(1).gameObject.SetActive(false);
+                var mainModule = highlighted.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
+                mainModule.startColor = greenHighlight;
                 highlighted.GetChild(1).gameObject.SetActive(true);
             }
         }
