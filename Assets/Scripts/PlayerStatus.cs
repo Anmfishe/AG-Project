@@ -212,7 +212,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // On death, we warp the camera rig of the corresponding player
     void Die()
     {
-
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
@@ -223,30 +222,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
             else
             {
-                //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
-				if (!VRDevice.model.ToLower ().Contains ("oculus"))
-				{
-					cameraRig.transform.rotation = Quaternion.Euler (0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
-				}
-
-				if (GameObject.Find ("Penalty") == null)
-				{
-					Debug.Log ("PlayerStatus.cs : Die() : Could not find \"Penalty\" GameObject in the scene");
-					return;
-				}
-
-				pm = GameObject.Find ("Penalty").GetComponent<PenaltyManager> ();
-				if (pm == null)
-				{
-					Debug.Log ("PlayerStatus.cs : Die() : Could not find \"PenaltyManager\" script on \"Penalty\" GameObject");
-					return;
-				}
-
-				bool isBlue = this.transform.parent.GetComponent<TeamManager> ().blue;
-				Transform penalty = pm.GetPenaltyTransform (isBlue);
-				cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
-                deadText.gameObject.SetActive(true);
-
                 // Increment scoreboard
                 bool blueScored = !this.transform.parent.GetComponent<TeamManager>().blue;
                 self_photonview = GetComponent<PhotonView>();
@@ -266,6 +241,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 //cameraRig.GetComponent<PlatformController>().lerp = false;
                 //vrtk_spr.enabled = false;
                 cameraRig.GetComponent<PadTeleport>().enabled = false;
+
+                StartCoroutine("DelayToPenaltyBox");
             }
         }
         else
@@ -277,6 +254,38 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         dead = true;
         current_health = max_health;
         //  Respawn();
+    }
+
+    IEnumerator DelayToPenaltyBox()
+    {
+        // very bad if this is true
+        if (GameObject.Find("Penalty") == null)
+        {
+            Debug.Log("PlayerStatus.cs : Die() : Could not find \"Penalty\" GameObject in the scene");
+            yield break;
+        }
+
+        // also very bad
+        pm = GameObject.Find("Penalty").GetComponent<PenaltyManager>();
+        if (pm == null)
+        {
+            Debug.Log("PlayerStatus.cs : Die() : Could not find \"PenaltyManager\" script on \"Penalty\" GameObject");
+            yield break;
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        // determines where the player is placed on the penalty box
+        bool isBlue = this.transform.parent.GetComponent<TeamManager>().blue;
+        Transform penalty = pm.GetPenaltyTransform(isBlue);
+        cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
+        deadText.gameObject.SetActive(true);
+
+        //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
+        if (!VRDevice.model.ToLower().Contains("oculus"))
+        {
+            cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+        }
     }
 
     [PunRPC]
