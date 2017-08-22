@@ -21,7 +21,8 @@ public class RoundManager : MonoBehaviour {
     private int redMemb;
 
     public GameObject practiceRoom;
-    public GameObject arena;
+    public GameObject[] arenas;
+    public int arenaNum;
     //
 //    public GameObject countdown_display;
     public GameObject restart_display;
@@ -143,7 +144,7 @@ public class RoundManager : MonoBehaviour {
         {
             practiceRoom.SetActive(false);
             if(PhotonNetwork.isMasterClient)
-            arena2 = PhotonNetwork.InstantiateSceneObject(arena.name, Vector3.zero, Quaternion.identity, 0, null);
+            arena2 = PhotonNetwork.InstantiateSceneObject(arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
         }
         scoreboard.SetVisible(true);
         print("Starting Round");
