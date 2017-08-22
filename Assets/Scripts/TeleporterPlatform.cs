@@ -79,7 +79,7 @@ public class TeleporterPlatform : MonoBehaviour {
         {
             if (Camera.main == null)
             {
-                Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+                //Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
             }
             else if (Camera.main.GetComponent<NotificationManager>() == null)
             {

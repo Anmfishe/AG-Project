@@ -34,7 +34,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public bool pregame = true;
     private float deathTime = 0f;
     public float respawnLength = 2f;
-
+    private bool waitingForNextRound = false;
     [HideInInspector]
     public bool bubbled = false;
 
@@ -73,13 +73,22 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
         myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        if(GameObject.FindGameObjectWithTag("Arena") != null)
+        {
+            cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+            cameraRig.GetComponent<PlatformController>().enabled = false;
+            cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+            if (!VRDevice.model.ToLower().Contains("oculus"))
+                cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+            cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         //Respawn Player when time out's done.
-        if (dead == true)
+        if (dead == true && !waitingForNextRound)
         {
             if ((Time.time - deathTime) >  respawnLength)
             {
@@ -103,6 +112,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     }
                 }
             }
+        }
+        else if(waitingForNextRound)
+        {
+
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -133,38 +146,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             current_health = max_health;
         }
     }
+    void SendToPtForRound()
+    {
 
-    //Reduces the health by the damage received.
-//    public bool takeDamage(float damage)
-//    {
-//        // Ensure that this is the active player
-//        if (!photonView.isMine)
-//        {
-// //           print("photonview isnt mine");
-//            return false;
-//        }
-//        else
-//        {
-////            print("OMG, took damage!");
-//        }
+    }
 
-//        if (dead == false && pregame == false)
-//        {
-//            current_health -= damage;
-//            psm.PlayerHurt();
-//        }
 
-//        if (current_health <= 0)
-//        {
-//            if (playerClass != PlayerClass.none)
-//            {
-//                Die();
-//                return true;
-//            }
-//        }
-
-//        return false;
-//    }
 
     [PunRPC]
     //Reduces the health by the damage received.
@@ -404,7 +391,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         }
 */
         players = GameObject.FindGameObjectsWithTag("Player");
-
+        waitingForNextRound = false;
         foreach (GameObject player in players)
         {
             PlayerStatus ps = player.transform.parent.GetComponentInChildren<PlayerStatus>();

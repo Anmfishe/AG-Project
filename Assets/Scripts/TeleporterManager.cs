@@ -13,11 +13,13 @@ public class TeleporterManager : MonoBehaviour {
     GameObject rm;
     NotificationManager nm;
 
+    int totalNumPlayers;
+
 	// Use this for initialization
 	void Start () {
         if (Camera.main == null)
         {
-            Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+            //Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
             return;
         }
         if (Camera.main.GetComponent<NotificationManager>() == null)
@@ -31,6 +33,7 @@ public class TeleporterManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        totalNumPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
 		if (IsReady())
         {
             TeleportPlayersToArena();
@@ -43,7 +46,7 @@ public class TeleporterManager : MonoBehaviour {
         {
             if (Camera.main == null)
             {
-                Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
+                //Debug.Log("TeleporterManager.cs : Start() : Could not find \"Camera.main\" GameObject");
             }
             else if (Camera.main.GetComponent<NotificationManager>() == null)
             {
@@ -56,7 +59,7 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
-        if (PhotonNetwork.playerList.Length > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == PhotonNetwork.playerList.Length)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
+        if (totalNumPlayers > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == totalNumPlayers)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
             bool ready = true;
 
@@ -89,7 +92,7 @@ public class TeleporterManager : MonoBehaviour {
         {
             if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter && go.GetComponent<PlayerStatus>().playerClass != PlayerClass.none)
             {
-                int numPlayersNotReady = PhotonNetwork.playerList.Length - blue.numPlayersOnPlatform - red.numPlayersOnPlatform;
+                int numPlayersNotReady = totalNumPlayers - blue.numPlayersOnPlatform - red.numPlayersOnPlatform;
                 nm.SetNotification("Waiting on " + numPlayersNotReady + " player(s)..");
                 break;
             }
@@ -115,7 +118,7 @@ public class TeleporterManager : MonoBehaviour {
         int i = 0;
         rm = GameObject.Find("Round Manager(Clone)");
         rm.GetComponent<PhotonView>().RPC("StartRound", PhotonTargets.All, null);
-        Debug.Log("blue : total = " + blue.players.Count);
+        //Debug.Log("blue : total = " + blue.players.Count);
         foreach (GameObject player in blue.players)
         {
             ps = player.GetComponent<PlayerStatus>();
@@ -131,7 +134,7 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         i = 0;
-        Debug.Log("blue : total = " + red.players.Count);
+        //Debug.Log("blue : total = " + red.players.Count);
         foreach (GameObject player in red.players)
         {
             ps = player.GetComponent<PlayerStatus>();

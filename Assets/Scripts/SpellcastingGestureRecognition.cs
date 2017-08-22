@@ -973,7 +973,7 @@ padHit = target.hit.transform;
 
     public void disableHighlight(Transform highlighted, bool myBlue)
     {
-        print("disabling!!!");
+        //print("disabling!!!");
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
 
@@ -986,7 +986,7 @@ padHit = target.hit.transform;
 
     public void enableHighlight(Transform highlighted, bool myBlue)
     {
-        print("ENABLING in spellcast");
+        //print("ENABLING in spellcast");
         var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
         mainModule.startColor = greenHighlight;
 

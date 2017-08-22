@@ -147,13 +147,13 @@ public class PadTeleport : MonoBehaviour
 
                 if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
                 {
-                print("not NEUTRAL");
+               // print("not NEUTRAL");
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
                 }
 
                 else if (neutral == true)
                 {
-                print("NEUTRAL");
+               // print("NEUTRAL");
                     basicTeleport.Teleport(padHit, warpSpot);
                 }
 

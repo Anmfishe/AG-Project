@@ -42,7 +42,15 @@ public class RoundManager : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag("Pregame"))
         {
             practiceRoom = GameObject.FindGameObjectWithTag("Pregame");
-            practiceRoom.SetActive(true);
+            if (GameObject.FindGameObjectWithTag("Arena") != null)
+            {
+                practiceRoom.SetActive(false);
+            }
+            else
+            {
+                practiceRoom.SetActive(true);
+            }
+            
         }
         
         
@@ -250,7 +258,7 @@ public class RoundManager : MonoBehaviour {
     }
     public void Subscribe(GameObject avatar, GameObject rig)
     {
-        Debug.Log(avatar.name + " subscribed");
+        //Debug.Log(avatar.name + " subscribed");
         players.Add(avatar);
         playerRigs.Add(rig);
         //send 
