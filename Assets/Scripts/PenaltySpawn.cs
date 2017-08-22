@@ -23,9 +23,9 @@ public class PenaltySpawn : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+//        Debug.Log("PenaltySpawn.cs : OnTriggerEnter() : other.tag = " + other.tag);
 		if (other.tag == "put")
 		{
-            Debug.Log("RAYJO test");
 			vacant = false;
 		}
 	}

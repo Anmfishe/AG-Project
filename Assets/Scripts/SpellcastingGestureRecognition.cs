@@ -666,7 +666,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 		}
 
 		//
-		nm.SetNotification(spell + " is in cooldown");
+		nm.SetNotification(spell + " is not ready");
 	}
 
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
