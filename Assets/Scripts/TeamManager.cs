@@ -125,7 +125,7 @@ public class TeamManager : MonoBehaviour {
         if (blue)
         {
             Transform randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
-            while(randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            while(randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer || randPlatform.GetComponent<PlatformNeighbors>().hasVines || randPlatform.GetComponent<PlatformNeighbors>().hasPowerup)
             {
                 blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
                 randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
@@ -146,7 +146,7 @@ public class TeamManager : MonoBehaviour {
         else
         {
             Transform randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;
-            while (randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer)
+            while (randPlatform == null || randPlatform.GetComponent<PlatformNeighbors>().hasPlayer || randPlatform.GetComponent<PlatformNeighbors>().hasVines || randPlatform.GetComponent<PlatformNeighbors>().hasPowerup)
             {
                 redSquares = GameObject.FindGameObjectsWithTag("RedPlatform");
                 randPlatform = redSquares[Random.Range(0, redSquares.Length - 1)].transform;

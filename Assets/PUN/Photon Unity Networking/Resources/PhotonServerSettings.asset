@@ -80,4 +80,6 @@ MonoBehaviour:
   - PlaySoundToOthers
   - ResetOnTeleporter
   - ChangeColorTo
+  - HasPowerup2
+  - HasVines2
   DisableAutoOpenWizard: 1

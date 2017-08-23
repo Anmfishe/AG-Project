@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 82321788481519190}
   - component: {fileID: 114990702936684920}
   m_Layer: 0
-  m_Name: IceBall
+  m_Name: PoisonBall
   m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

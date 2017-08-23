@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114590009642002676}
   - component: {fileID: 82611409683325696}
   m_Layer: 0
-  m_Name: IceBall_2
+  m_Name: PoisonBall_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
