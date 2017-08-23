@@ -66,7 +66,8 @@ public class GlassHammer : MonoBehaviour
         {
             if (GetComponent<PhotonView>().isMine)
             {
-                if (other.transform.parent.GetComponent<TeamManager>().blue != blue)
+
+                if (other.GetComponent<Shield>().GetBlue() != blue)
                 {
                     other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
