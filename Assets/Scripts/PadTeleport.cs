@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class PadTeleport : MonoBehaviour
 {
@@ -23,14 +24,17 @@ public class PadTeleport : MonoBehaviour
     public LayerMask groundLayer;
     SpellcastingGestureRecognition spellcast;
 
-    //[HideInInspector]
+    [HideInInspector]
     public bool blue;
+	bool isOculus;
 
     bool active;
     public Transform origin;
     Transform padHit;
     bool neutral;
     Vector3 warpSpot;
+
+	string teleportButton = "joystick button 9";
 
     VRTK.VRTK_StraightPointerRenderer vrtk_spr;
     bool set = false;
@@ -46,6 +50,12 @@ public class PadTeleport : MonoBehaviour
         reticle.transform.localScale = new Vector3(reticleSize, reticleSize, reticleSize);
         reticle.GetComponent<Renderer>().material = reticleMat;
         reticle.SetActive(false);
+
+		if (VRDevice.model.ToLower ().Contains ("oculus"))
+		{
+			isOculus = true;
+			teleportButton = "joystick button 0";
+		}
     }
 
     private void OnEnable()
@@ -78,6 +88,11 @@ public class PadTeleport : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+//		if (Input.anyKeyDown)
+//		{
+//			print(Input.inputString);
+//		}
+
         Vector3 fwd = origin.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
@@ -153,7 +168,7 @@ public class PadTeleport : MonoBehaviour
             lineRend.enabled = false;
         }
 
-        if (Input.GetKeyDown("joystick button 9"))
+        if (Input.GetKeyDown(teleportButton))
         {
             active = true;
 
@@ -162,7 +177,7 @@ public class PadTeleport : MonoBehaviour
         }
 
         // If we release the button
-        if (Input.GetKeyUp("joystick button 9"))
+        if (Input.GetKeyUp(teleportButton))
         {
             active = false;
 

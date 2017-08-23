@@ -17,6 +17,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     public bool kill_spells = true;
 	private GameObject[] hats;
 	private GameObject[] players;
+	GameObject wand;
 
 	private BookLogic bookLogic;
 
@@ -69,6 +70,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		if (VRDevice.model.ToLower ().Contains ("oculus"))
 		{
 			isOculus = true;
+//			wand = this.transform.parent.Find ("Right Hand/MagicWand/stick").gameObject;
+//			wand.transform.localEulerAngles += new Vector3 (45, 0, 0);
+//			rightHand.transform.localEulerAngles += new Vector3 (45, 0, 0);
 		}
 
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
@@ -105,10 +109,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		if (isOculus)
 		{
 			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
-			oculusGrip = Input.GetAxis ("OculusRightGrip");
+			//oculusGrip = Input.GetAxis ("OculusRightGrip");
 			//print (rightAnalogueHoriz);
 			// Rotate for oculus players
-			if (oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+			if (rightAnalogueHoriz > .5f) // oculusGrip > 0.5f &&
 			{
 				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
 				{
@@ -117,7 +121,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 					rotated = true;
 				}
 			}
-			else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+			else if (rightAnalogueHoriz < -.5f)
 			{
 				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
 				{
