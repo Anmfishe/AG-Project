@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour
+public class Shield : MonoBehaviour, ITeamOwned
 {
 
     public float shieldDuration = 10f;
 
     private float shieldTimer;
     Transform book;
-    bool blue;
     Transform shieldSpot;
+    public bool blue { get; set; }
 
     // Use this for initialization
     void Start()
@@ -54,19 +54,10 @@ public class Shield : MonoBehaviour
         return blue;
     }
 
-    public void OnTriggerEnter(Collider other)
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void DestroyShield()
     {
-        if (other.gameObject.CompareTag("ShieldBreaker"))
-        {
-            shieldTimer = 0;
-        }
+        shieldTimer = 0;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ShieldBreaker"))
-        {
-            shieldTimer = 0;
-        }
-    }
-} 
+}

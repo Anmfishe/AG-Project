@@ -90,13 +90,31 @@ public class NetworkManager1 : Photon.PunBehaviour
     {
         if (GameObject.FindWithTag("Arena"))
         {
-            print("Found Arena");
+            //print("Found Arena");
             cr.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
-            cr.transform.position = ptSpawns.transform.position;
+            //            cr.transform.position = ptSpawns.transform.position;
+
+            // figure out number of players on each team
+            int red = 0;
+            int blue = 0;
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("PCP"))
+            {
+                if (go.GetComponent<TeamManager>().blue)
+                {
+                    blue++;
+                }
+                else
+                {
+                    red++;
+                }
+            }
+
+            PenaltyManager pm = GameObject.FindGameObjectWithTag("Penalty").GetComponent<PenaltyManager>();
+            cr.transform.position = pm.GetPenaltyTransform(blue <= red).position;
         }
         else
         {
-            print("No Arena");
+            //print("No Arena");
             spawnLocation = spawns.transform.GetChild(PhotonNetwork.playerList.Length - 1).transform.position;
             cr.transform.position = spawnLocation;
         }

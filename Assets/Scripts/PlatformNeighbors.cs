@@ -8,6 +8,8 @@ public class PlatformNeighbors : MonoBehaviour {
     public Transform left;
     public Transform right;
     public bool hasPlayer = false;
+    public bool hasPowerup = false;
+    public bool hasVines = false;
     //public BoxCollider bc;
     private PhotonView pv;
     [HideInInspector]
@@ -39,7 +41,17 @@ public class PlatformNeighbors : MonoBehaviour {
         {
             hasPlayer = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
-            pv.RPC("HasPlayer2", PhotonTargets.All, true);
+            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
+        }
+        else if (other.tag == "Curse")
+        {
+            hasVines = true;
+            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
+        }
+        else if (other.tag == "Powerup")
+        {
+            hasPowerup = true;
+            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
         }
     }
 
@@ -47,9 +59,19 @@ public class PlatformNeighbors : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            //hasPlayer = false;
-            //gameObject.layer = layerSave;
-            pv.RPC("HasPlayer2", PhotonTargets.All, false);
+            hasPlayer = false;
+            gameObject.layer = layerSave;
+            pv.RPC("HasPlayer2", PhotonTargets.Others, false);
+        }
+        else if (other.tag == "Curse")
+        {
+            hasVines = false;
+            pv.RPC("HasVines2", PhotonTargets.Others, false);
+        }
+        else if (other.tag == "Powerup")
+        {
+            hasPowerup = false;
+            pv.RPC("HasPowerup2", PhotonTargets.Others, false);
         }
     }
     public void SetLayer(LayerMask l)
@@ -70,5 +92,17 @@ public class PlatformNeighbors : MonoBehaviour {
             gameObject.layer = LayerMask.NameToLayer("Default");
         else
             gameObject.layer = layerSave;
+    }
+
+    [PunRPC]
+    void HasVines2(bool b)
+    {
+        hasVines = b;
+    }
+
+    [PunRPC]
+    void HasPowerup2(bool b)
+    {
+        hasPowerup = b;
     }
 }

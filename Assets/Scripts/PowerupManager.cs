@@ -146,7 +146,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 
     public void DecrementPowerUp(bool isBlue, int platformIndex)
     {
-        print("PlayerStatus.cs : DecrememntPowerUp() : " + isBlue + " " + platformIndex);
+        //print("PlayerStatus.cs : DecrememntPowerUp() : " + isBlue + " " + platformIndex);
 
         numPowerups--;
 
