@@ -66,8 +66,7 @@ public class GlassHammer : MonoBehaviour
         {
             if (GetComponent<PhotonView>().isMine)
             {
-
-                if (other.GetComponent<Shield>().GetBlue() != blue)
+                if (other.GetComponent<ITeamOwned>().GetBlue() != blue)
                 {
                     other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
@@ -75,10 +74,10 @@ public class GlassHammer : MonoBehaviour
 
                 }
             }
-
-            print("my blue: " + blue + " | their blue: " + other.transform.parent.GetComponent<TeamManager>().blue);
         }
     }
+
+    
 
     public void SetWand(Transform wand_) 
     {

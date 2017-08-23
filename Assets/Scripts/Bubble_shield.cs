@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble_shield : MonoBehaviour
+public class Bubble_shield : MonoBehaviour, ITeamOwned
 {
    
     public float Bubble_shieldDuration = 10f;
     private float Bubble_shieldTimer;
     Transform torso;
     Collider other;
-    bool blue;
+    public bool blue { get; set; }
+    
     //Transform Bubble_shieldSpot;
 
     // Use this for initialization

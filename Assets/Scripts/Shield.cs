@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour
+public class Shield : MonoBehaviour, ITeamOwned
 {
 
     public float shieldDuration = 10f;
 
     private float shieldTimer;
     Transform book;
-    bool blue;
     Transform shieldSpot;
+    public bool blue { get; set; }
 
     // Use this for initialization
     void Start()
