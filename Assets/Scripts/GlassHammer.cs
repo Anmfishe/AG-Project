@@ -62,13 +62,13 @@ public class GlassHammer : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Shield"))
         {
             if (GetComponent<PhotonView>().isMine)
             {
                 if (other.transform.parent.GetComponent<TeamManager>().blue != blue)
                 {
-                    other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                    other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
                     PhotonNetwork.Destroy(GetComponent<PhotonView>());
 

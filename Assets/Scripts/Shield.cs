@@ -54,19 +54,10 @@ public class Shield : MonoBehaviour
         return blue;
     }
 
-    public void OnTriggerEnter(Collider other)
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void DestroyShield()
     {
-        if (other.gameObject.CompareTag("ShieldBreaker"))
-        {
-            shieldTimer = 0;
-        }
+        shieldTimer = 0;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ShieldBreaker"))
-        {
-            shieldTimer = 0;
-        }
-    }
-} 
+}
