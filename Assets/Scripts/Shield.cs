@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour {
+public class Shield : MonoBehaviour
+{
 
     public float shieldDuration = 10f;
 
@@ -10,14 +11,16 @@ public class Shield : MonoBehaviour {
     Transform book;
     bool blue;
     Transform shieldSpot;
-	
+
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
         shieldTimer = shieldDuration;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (this.GetComponent<PhotonView>().isMine)
         {
             if (book == null)
@@ -33,7 +36,7 @@ public class Shield : MonoBehaviour {
             if (shieldTimer <= 0)
                 PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
         }
-	}
+    }
 
     public void SetBook(Transform book_)
     {
@@ -58,4 +61,12 @@ public class Shield : MonoBehaviour {
             shieldTimer = 0;
         }
     }
-}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("ShieldBreaker"))
+        {
+            shieldTimer = 0;
+        }
+    }
+} 
