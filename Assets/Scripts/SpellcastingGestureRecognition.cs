@@ -581,20 +581,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     audioSource.PlayOneShot(cast_failure);
                 }
                 break;
-            case "OpenFrame":
-                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
-                {
-                    SetSpell(pongShield, "pongShield", pongShieldGradient);
-                    gestureStartColor = Color.green;
-                    gestureEndColor = Color.green;
-                }
-                else if (pongCD > 0)
-                {
-                    gestureStartColor = Color.blue;
-                    gestureEndColor = Color.blue;
-                    audioSource.PlayOneShot(cast_failure);
-                }
-                break;
+            //case "OpenFrame":
+            //    if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
+            //    {
+            //        SetSpell(pongShield, "pongShield", pongShieldGradient);
+            //        gestureStartColor = Color.green;
+            //        gestureEndColor = Color.green;
+            //    }
+            //    else if (pongCD > 0)
+            //    {
+            //        gestureStartColor = Color.blue;
+            //        gestureEndColor = Color.blue;
+            //        audioSource.PlayOneShot(cast_failure);
+            //    }
+            //    break;
             case "Star":
                 if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
                 {
@@ -623,20 +623,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     audioSource.PlayOneShot(cast_failure);
                 }
                 break;
-            case "Hourglass":
-                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-                {
-                    SetSpell(disenchant, "disenchant", disenchantGradient);
-                    gestureStartColor = Color.green;
-                    gestureEndColor = Color.green;
-                }
-                else if (swordCD > 0)
-                {
-                    gestureStartColor = Color.blue;
-                    gestureEndColor = Color.blue;
-                    audioSource.PlayOneShot(cast_failure);
-                }
-                break;
+            //case "Hourglass":
+            //    if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+            //    {
+            //        SetSpell(disenchant, "disenchant", disenchantGradient);
+            //        gestureStartColor = Color.green;
+            //        gestureEndColor = Color.green;
+            //    }
+            //    else if (swordCD > 0)
+            //    {
+            //        gestureStartColor = Color.blue;
+            //        gestureEndColor = Color.blue;
+            //        audioSource.PlayOneShot(cast_failure);
+            //    }
+            //    break;
         }
 
         //Set gesture as successful.
@@ -764,13 +764,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
                 break;
-            case "pongShield":
-                spellRotation = new Quaternion();
-                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
-                spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                pongCD = cooldowns.pongCD;
-                //spellTimer = pongShieldCooldown;
-                break;
+            //case "pongShield":
+            //    spellRotation = new Quaternion();
+            //    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+            //    spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+            //    pongCD = cooldowns.pongCD;
+            //    //spellTimer = pongShieldCooldown;
+            //    break;
 		    case "meteor":
 			spellRotation = wandTip.rotation;
 			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
@@ -822,20 +822,20 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 swordCD = cooldowns.swordCD;
                 //spellTimer = lightBladeCooldown;
                 break;
-            case "disenchant":
-                if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
-                {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
-                    blessingCD = cooldowns.blessingCD;
-                    //spellTimer = disenchantCooldown;
-                    //target.result.GetComponent<VineTrap>().DestroyVines();
-                    target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
-                }
-                else
-                {
-                    //spellTimer = disenchantCooldown;
-                }
-                break;
+            //case "disenchant":
+            //    if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
+            //    {
+            //        spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
+            //        blessingCD = cooldowns.blessingCD;
+            //        //spellTimer = disenchantCooldown;
+            //        //target.result.GetComponent<VineTrap>().DestroyVines();
+            //        target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+            //    }
+            //    else
+            //    {
+            //        //spellTimer = disenchantCooldown;
+            //    }
+            //    break;
             default:
                 //spellTimer = spellCooldown;
                 break;
