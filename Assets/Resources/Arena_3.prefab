@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 114500500221156742}
   m_Layer: 0
   m_Name: Penalty (1)
-  m_TagString: Untagged
+  m_TagString: Penalty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10784,6 +10784,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -10864,6 +10866,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11281,6 +11285,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11460,6 +11466,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11544,6 +11552,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11563,6 +11573,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11582,6 +11594,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -11938,6 +11952,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12015,6 +12031,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12209,6 +12227,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12308,6 +12328,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12570,6 +12592,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12608,6 +12632,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12847,6 +12873,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -12866,6 +12894,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -13466,6 +13496,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -13904,6 +13936,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -13923,6 +13957,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -13942,6 +13978,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -14075,6 +14113,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
@@ -14298,6 +14338,8 @@ MonoBehaviour:
   left: {fileID: 0}
   right: {fileID: 0}
   hasPlayer: 0
+  hasPowerup: 0
+  hasVines: 0
   layerSave:
     serializedVersion: 2
     m_Bits: 0
