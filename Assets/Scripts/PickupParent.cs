@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.VR;
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 
@@ -38,12 +39,13 @@ public class PickupParent : MonoBehaviour
 	AudioSource foley;
 
 	AudioClip[] sounds;
-
+	bool isOculus = false;
 
 	public Transform ball;
 	private bool endingPlayed;
 	private bool releaseHat;
 	private float releaseTime;
+	float triggerR;
 
 	public bool inHand = false;
 
@@ -53,10 +55,29 @@ public class PickupParent : MonoBehaviour
 
 	}
 
+	void Start()
+	{
+		if (VRDevice.model.ToLower ().Contains ("oculus"))
+		{
+			isOculus = true;
+		}
+	}
+
 
 	void Update()
 	{
 		device = SteamVR_Controller.Input ((int)trackedObj.index);
+
+		if(isOculus)
+		{
+			triggerR = Input.GetAxis ("OculusRightTrigger");
+
+			if (triggerR < 0.35f && grabbed != null)
+			{
+				tossObject (grabbed.GetComponent<Rigidbody>());
+			}
+		}
+
 
 		// Drop object
 		if (Input.GetKeyUp("joystick button 15"))
@@ -73,7 +94,7 @@ public class PickupParent : MonoBehaviour
 	void OnTriggerStay(Collider col)
 	{
 
-		if (Input.GetKeyDown("joystick button 15"))
+		if ((Input.GetKeyDown("joystick button 15") && !isOculus) || (isOculus && triggerR > 0.35f))
 		{
 			if (grabbed == null)
 			{

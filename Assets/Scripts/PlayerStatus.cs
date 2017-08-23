@@ -35,6 +35,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float deathTime = 0f;
     public float respawnLength = 2f;
     private bool waitingForNextRound = false;
+	bool rotated = false;
+	bool isOculus = false;
     [HideInInspector]
     public bool bubbled = false;
 
@@ -52,12 +54,21 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
   //  [HideInInspector]
     public float current_health = 100;
     //   public int hp = 100;
+
+	float rightAnalogueHoriz;
+	float oculusGrip;
+
     // Use this for initialization
     void Start()
     {
 		cameraRig = Camera.main.transform.parent.gameObject;
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 		hats = GameObject.FindGameObjectsWithTag("Grabbable");
+
+		if (VRDevice.model.ToLower ().Contains ("oculus"))
+		{
+			isOculus = true;
+		}
 
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 
@@ -89,6 +100,38 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+
+		if (isOculus)
+		{
+			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
+			oculusGrip = Input.GetAxis ("OculusRightGrip");
+			//print (rightAnalogueHoriz);
+			// Rotate for oculus players
+			if (oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+			{
+				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
+				{
+					//cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+					cameraRig.transform.eulerAngles += new Vector3 (0, 45, 0);
+					rotated = true;
+				}
+			}
+			else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+			{
+				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
+				{
+					//cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+					cameraRig.transform.eulerAngles += new Vector3 (0, -45, 0);
+					rotated = true;
+				}
+			} 
+
+			else
+			{
+				rotated = false;
+			}
+		}
+
         //Respawn Player when time out's done.
         if (dead == true && !waitingForNextRound)
         {

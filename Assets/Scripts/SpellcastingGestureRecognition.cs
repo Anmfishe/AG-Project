@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Edwon.VR;
 using Edwon.VR.Gesture;
+using UnityEngine.VR;
 
 public class SpellcastingGestureRecognition : MonoBehaviour {
 
@@ -103,6 +104,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private float spellTimer = 0;
     [HideInInspector]
     public bool isCoolingDown = false;
+	bool isOculus = false;
 
 	// Variables for targeting platforms
 	private BeamTrail beamTrail;
@@ -118,6 +120,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private bool iceball_cast;
 
+	// Vibration variables
     [HideInInspector]
     public int leftControllerIndex;
    [HideInInspector]
@@ -126,6 +129,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     float vibrateStart;
     ushort vibrateIntensity;
     float length;
+
+	//Oculus
 
     public LayerMask platformLayers;
 
@@ -140,6 +145,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Start()
     {
+		if (VRDevice.model.ToLower ().Contains ("oculus"))
+		{
+			isOculus = true;
+		}
+
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
@@ -177,6 +187,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+		if(isOculus)
+		{
+			triggerR = Input.GetAxis ("OculusRightTrigger");
+		}
 
         //Check if we're cooling down.
         if (isCoolingDown)
@@ -256,7 +270,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
             }
         }
-        if (Input.GetKeyDown("joystick button 15"))
+		if ((Input.GetKeyDown("joystick button 15") && !isOculus) || (triggerR > 0.35f && isOculus))
         {
             if (hasSpell)
                 CastSpell();
