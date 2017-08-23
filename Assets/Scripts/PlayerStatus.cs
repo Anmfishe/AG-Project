@@ -58,6 +58,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	float rightAnalogueHoriz;
 	float oculusGrip;
 
+    float deltaTime;
+    float fps;
+
     // Use this for initialization
     void Start()
     {
@@ -100,8 +103,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        fps = 1.0f / deltaTime;
+        print("FPS: " + fps);
 
-		if (isOculus)
+        if (isOculus)
 		{
 			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
 			oculusGrip = Input.GetAxis ("OculusRightGrip");
