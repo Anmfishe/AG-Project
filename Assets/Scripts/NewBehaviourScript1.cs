@@ -8,3 +8,4 @@ interface ITeamOwned
     void SetBlue(bool blue_);
     bool GetBlue();
 }
+

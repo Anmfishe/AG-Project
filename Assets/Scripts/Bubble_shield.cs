@@ -58,12 +58,11 @@ public class Bubble_shield : MonoBehaviour, ITeamOwned
     {
         return blue;
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("ShieldBreaker"))
-        {
-            Bubble_shieldTimer = 0;
-        }
-    }
 
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void DestroyShield()
+    {
+        Bubble_shieldTimer = 0;
+    }
 }

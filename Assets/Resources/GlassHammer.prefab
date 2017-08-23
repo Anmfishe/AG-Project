@@ -113,8 +113,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.5, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 1.925}
+  m_Size: {x: 0.5, y: 0.75, z: 0.75}
+  m_Center: {x: 0, y: 0, z: 1.9}
 --- !u!82 &82388862281429160
 AudioSource:
   m_ObjectHideFlags: 1
@@ -317,8 +317,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114132861486305692}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 34
+  instantiationId: 34
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!120 &120838216261072522

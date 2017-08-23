@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 33500698591180272}
   - component: {fileID: 95562950463487732}
   - component: {fileID: 114273794245223708}
+  - component: {fileID: 23614374267399168}
   m_Layer: 0
   m_Name: scarf
   m_TagString: Untagged
@@ -953,6 +954,7 @@ GameObject:
   - component: {fileID: 33107097284768454}
   - component: {fileID: 95544909461854814}
   - component: {fileID: 114343505638741824}
+  - component: {fileID: 23219238464696100}
   m_Layer: 0
   m_Name: cape
   m_TagString: Untagged
@@ -1970,6 +1972,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23219238464696100
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873741745029912}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 9b986924a523047449da1bb32440ec4f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23305622358986052
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2208,6 +2242,38 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 448f1e21dfc845a4baec38c20a8ee52e, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!23 &23614374267399168
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159713509475380}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 675910c809500e249afdbdbe586a9bb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3369,8 +3435,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 37
+  instantiationId: 37
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114108857198974370
@@ -3524,8 +3590,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 39
+  instantiationId: 39
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114254980332135082
@@ -3550,8 +3616,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 38
+  instantiationId: 38
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114273794245223708
@@ -3576,8 +3642,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 40
+  instantiationId: 40
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114296775303848278
@@ -3642,8 +3708,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114737257153124418}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 44
+  instantiationId: 44
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114316427438194120
@@ -3716,8 +3782,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 42
+  instantiationId: 42
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114344058198633108
@@ -3820,8 +3886,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 36
+  instantiationId: 36
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114473738197043446
@@ -3846,8 +3912,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114485207094041094}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 48
+  instantiationId: 48
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114485207094041094
@@ -3953,8 +4019,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999018229916790}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 45
+  instantiationId: 45
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114579494545927690
@@ -3979,8 +4045,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114344753946840322}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 47
+  instantiationId: 47
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114583489857709276
@@ -4045,8 +4111,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 34
+  instantiationId: 34
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114609537186453274
@@ -4151,8 +4217,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114590541061986310}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 43
+  instantiationId: 43
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114712731056247226
@@ -4378,8 +4444,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 41
+  instantiationId: 41
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114801755652279646
@@ -4438,8 +4504,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 35
+  instantiationId: 35
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114859167150028426
@@ -4538,8 +4604,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114712731056247226}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 46
+  instantiationId: 46
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114983368042875874
