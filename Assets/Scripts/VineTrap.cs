@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VineTrap : MonoBehaviour {
-
+    public float platform_stay = 20f;
     public float duration;
     public float durationTimer;
     public bool isSet;
@@ -55,11 +55,12 @@ public class VineTrap : MonoBehaviour {
     {
         isSet = true;
         seed.gameObject.SetActive(true);
-        
+        StartCoroutine(DestroyAfterSeconds(platform_stay));
     }
 
     void Activate()
     {
+        StopCoroutine(DestroyAfterSeconds(platform_stay));
         //Flag as activated.
         isActivated = true;
         //Disable seed particle.
@@ -78,7 +79,7 @@ public class VineTrap : MonoBehaviour {
 
         //Set duration timer.
         durationTimer = duration;
-        StartCoroutine(DestroyAfterSeconds());
+        StartCoroutine(DestroyAfterSeconds(duration));
     }
 
 [PunRPC]
@@ -100,15 +101,15 @@ public class VineTrap : MonoBehaviour {
         if (playerStatus.dead)
         {
                 //Enable movement before destroy itself.
-                StopCoroutine(DestroyAfterSeconds());
+                StopCoroutine(DestroyAfterSeconds(duration));
             isActivated = false;
             body.gameObject.SetActive(false);
             playerStatus.EnableMovement(true);
             if(GetComponent<PhotonView>().isMine)
                 PhotonNetwork.Destroy(GetComponent<PhotonView>());
 
-                DestroyVines();
-                GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+                //DestroyVines();
+                GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.All, null);
             }
     }
 
@@ -128,11 +129,11 @@ public class VineTrap : MonoBehaviour {
             Activate();
         }
     }
-    IEnumerator DestroyAfterSeconds()
+    IEnumerator DestroyAfterSeconds(float t)
     {
-        yield return new WaitForSeconds(duration);
-        DestroyVines();
-        GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+        yield return new WaitForSeconds(t);
+        //DestroyVines();
+        GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.All, null);
     }
     
 }

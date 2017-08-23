@@ -247,6 +247,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (photonView.isMine)
         {
             // cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
+            if(!waitingForNextRound)
             cameraRig.GetComponent<PadTeleport>().enabled = isEnabled;
             // vrtk_spr.enabled = isEnabled;
         }
