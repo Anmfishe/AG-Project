@@ -108,7 +108,9 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                         
                         randomPlatform = Random.Range(0, redPlatforms.Length);
                     }
-                    PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(false, randomPlatform);
+                    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
+                    pup.SetPowerupProperties(false, randomPlatform);
+                    //
                     redPowerups[randomPlatform] = true;
                     numPowerups++;
                 }
@@ -121,7 +123,8 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                         
                         randomPlatform = Random.Range(0, bluePlatforms.Length);
                     }
-                    PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>().SetPowerupProperties(true, randomPlatform);
+                    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
+                    pup.SetPowerupProperties(true, randomPlatform);
                     bluePowerups[randomPlatform] = true;
                     numPowerups++;
                 }

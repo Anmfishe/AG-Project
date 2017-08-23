@@ -501,8 +501,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Fireball");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Shield":
             if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && shieldCD <= 0)
@@ -516,8 +516,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
 				audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Shield");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Elle":
             if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && Bubble_shieldCD <= 0)
@@ -531,8 +531,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
 				audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Bubble Shield");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Heal":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && healCD <= 0)
@@ -546,8 +546,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Heal");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Spring":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && vinesCD <= 0)
@@ -561,8 +561,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Vines");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Bolt":
             if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && iceCD <= 0)
@@ -576,8 +576,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Ice Blast");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Wave":
             if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
@@ -591,8 +591,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Meteor");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "OpenFrame":
             if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
@@ -606,8 +606,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Pong Shield");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Star":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
@@ -621,8 +621,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Time Steal");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Zed":
             if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
@@ -636,8 +636,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Flame Sword");
-            }
+                    Notify_Cooldown();
+                }
             break;
         case "Hourglass":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
@@ -651,7 +651,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
                 audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ("Blessing");
+				Notify_Cooldown ();
             }
             break;
         }
@@ -660,7 +660,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (gestureRig.rightCapture.myTrail != null) gestureRig.rightCapture.myTrail.UpdateRenderer(gestureStartColor, gestureEndColor, gestureRig.gestureMaterial);
     }
 
-	void Notify_Cooldown(string spell) {
+	void Notify_Cooldown() {
 		// look for notification manager if it isn't already set
 		if (nm == null)
 		{
@@ -679,7 +679,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 		}
 
 		//
-		nm.SetNotification(spell + " is not ready");
+		nm.SetNotification("Spell is not ready");
 	}
 
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
