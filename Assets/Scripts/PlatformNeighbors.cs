@@ -43,16 +43,6 @@ public class PlatformNeighbors : MonoBehaviour {
             gameObject.layer = LayerMask.NameToLayer("Default");
             pv.RPC("HasPlayer2", PhotonTargets.Others, true);
         }
-        else if (other.tag == "Curse")
-        {
-            hasVines = true;
-            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
-        }
-        else if (other.tag == "Powerup")
-        {
-            hasPowerup = true;
-            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
-        }
     }
 
     void OnTriggerExit(Collider other)
@@ -62,16 +52,6 @@ public class PlatformNeighbors : MonoBehaviour {
             hasPlayer = false;
             gameObject.layer = layerSave;
             pv.RPC("HasPlayer2", PhotonTargets.Others, false);
-        }
-        else if (other.tag == "Curse")
-        {
-            hasVines = false;
-            pv.RPC("HasVines2", PhotonTargets.Others, false);
-        }
-        else if (other.tag == "Powerup")
-        {
-            hasPowerup = false;
-            pv.RPC("HasPowerup2", PhotonTargets.Others, false);
         }
     }
     public void SetLayer(LayerMask l)

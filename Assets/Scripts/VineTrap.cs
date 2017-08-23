@@ -19,6 +19,8 @@ public class VineTrap : MonoBehaviour {
     public Transform explosion;
     public Transform body;
 
+    PlatformNeighbors platform;
+
     private PhotonView player_photonView;
     private bool first = true;
 	// Use this for initialization
@@ -109,6 +111,8 @@ public class VineTrap : MonoBehaviour {
 
                 DestroyVines();
                 GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+                platform.hasVines = false;
+                platform.GetComponent<PhotonView>().RPC("HasVines2", PhotonTargets.Others, false);
             }
     }
 
@@ -134,5 +138,11 @@ public class VineTrap : MonoBehaviour {
         DestroyVines();
         GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
     }
-    
+
+    public void SetPlatform(PlatformNeighbors pn)
+    {
+        platform = pn;
+        platform.hasVines = true;
+        platform.GetComponent<PhotonView>().RPC("HasVines2", PhotonTargets.Others, true);
+    }
 }

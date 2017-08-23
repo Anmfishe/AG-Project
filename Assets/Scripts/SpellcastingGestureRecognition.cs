@@ -787,6 +787,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
+                    spellInstance.GetComponent<VineTrap>().SetPlatform(target.result.GetComponent<PlatformNeighbors>());
                     vinesCD = cooldowns.vinesCD;
 
                     if (padHit != null)
