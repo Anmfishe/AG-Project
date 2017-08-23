@@ -109,7 +109,7 @@ public class NetworkManager1 : Photon.PunBehaviour
                 }
             }
 
-            PenaltyManager pm = GameObject.Find("Penalty").GetComponent<PenaltyManager>();
+            PenaltyManager pm = GameObject.FindGameObjectWithTag("Penalty").GetComponent<PenaltyManager>();
             cr.transform.position = pm.GetPenaltyTransform(blue <= red).position;
         }
         else

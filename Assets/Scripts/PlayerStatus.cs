@@ -259,14 +259,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     IEnumerator DelayToPenaltyBox()
     {
         // very bad if this is true
-        if (GameObject.Find("Penalty") == null)
+        if (GameObject.FindGameObjectWithTag("Penalty") == null)
         {
             Debug.Log("PlayerStatus.cs : Die() : Could not find \"Penalty\" GameObject in the scene");
             yield break;
         }
 
         // also very bad
-        pm = GameObject.Find("Penalty").GetComponent<PenaltyManager>();
+        pm = GameObject.FindGameObjectWithTag("Penalty").GetComponent<PenaltyManager>();
         if (pm == null)
         {
             Debug.Log("PlayerStatus.cs : Die() : Could not find \"PenaltyManager\" script on \"Penalty\" GameObject");
