@@ -1,72 +1,15 @@
 fileFormatVersion: 2
-guid: d60d93ac7f7cf2040b78913678af8fd2
-timeCreated: 1502948471
+guid: 03c7bf062663d894490eddb3fac59373
+timeCreated: 1503442261
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pPipe1
-    100004: pSphere1
-    100006: pPipe2
-    100008: pSphere2
-    100010: BaseMesh
-    100012: CrystalMesh
-    100014: pPipe3
-    100016: pSphere3
-    100018: pCylinder1
-    100020: pCylinder2
-    100022: pPipe4
-    100024: pCylinder3
     400000: //RootNode
-    400002: pPipe1
-    400004: pSphere1
-    400006: pPipe2
-    400008: pSphere2
-    400010: BaseMesh
-    400012: CrystalMesh
-    400014: pPipe3
-    400016: pSphere3
-    400018: pCylinder1
-    400020: pCylinder2
-    400022: pPipe4
-    400024: pCylinder3
-    2300000: pPipe1
-    2300002: pSphere1
-    2300004: pPipe2
-    2300006: pSphere2
-    2300008: BaseMesh
-    2300010: CrystalMesh
-    2300012: pPipe3
-    2300014: pSphere3
-    2300016: pCylinder1
-    2300018: pCylinder2
-    2300020: pPipe4
-    2300022: pCylinder3
-    3300000: pPipe1
-    3300002: pSphere1
-    3300004: pPipe2
-    3300006: pSphere2
-    3300008: BaseMesh
-    3300010: CrystalMesh
-    3300012: pPipe3
-    3300014: pSphere3
-    3300016: pCylinder1
-    3300018: pCylinder2
-    3300020: pPipe4
-    3300022: pCylinder3
-    4300000: pPipe1
-    4300002: pSphere1
-    4300004: pSphere2
-    4300006: pPipe2
-    4300008: BaseMesh
-    4300010: CrystalMesh
-    4300012: pPipe3
-    4300014: pSphere3
-    4300016: pPipe4
-    4300018: pCylinder1
-    4300020: pCylinder2
-    4300022: pCylinder3
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCylinder2
     9500000: //RootNode
   materials:
     importMaterials: 1

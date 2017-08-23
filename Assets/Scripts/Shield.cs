@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour {
+public class Shield : MonoBehaviour, ITeamOwned
+{
 
     public float shieldDuration = 10f;
 
     private float shieldTimer;
     Transform book;
-    bool blue;
     Transform shieldSpot;
-	
+    public bool blue { get; set; }
+
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
         shieldTimer = shieldDuration;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (this.GetComponent<PhotonView>().isMine)
         {
             if (book == null)
@@ -33,7 +36,7 @@ public class Shield : MonoBehaviour {
             if (shieldTimer <= 0)
                 PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
         }
-	}
+    }
 
     public void SetBook(Transform book_)
     {
@@ -51,11 +54,10 @@ public class Shield : MonoBehaviour {
         return blue;
     }
 
-    public void OnTriggerEnter(Collider other)
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void DestroyShield()
     {
-        if (other.gameObject.CompareTag("ShieldBreaker"))
-        {
-            shieldTimer = 0;
-        }
+        shieldTimer = 0;
     }
 }
