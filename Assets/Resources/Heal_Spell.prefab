@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89af8605a48372049b392b0ffdceeae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAdded: 1000
+  healthAdded: 50
   healParticle: {fileID: 100002, guid: 8aef3e7babc5c2c468033cbb5d7e37fb, type: 2}
 --- !u!135 &135972861114593672
 SphereCollider:
