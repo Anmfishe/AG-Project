@@ -162,8 +162,10 @@ public class PadTeleport : MonoBehaviour
         if (Input.GetKeyDown("joystick button 9"))
         {
             active = true;
+            beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
             lineRend.enabled = true;
             // Enable reticle
+            reticle.transform.position = origin.transform.position + origin.transform.forward * 10f;
             reticle.SetActive(true);
         }
 

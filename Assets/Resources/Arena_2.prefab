@@ -4257,7 +4257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1543755569740806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.077457, y: 29.21493, z: 43.43392}
+  m_LocalPosition: {x: -43.871906, y: 21.28183, z: -5.0417347}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4010248082001262}
@@ -11357,7 +11357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 1
-  currentColor: blue
+  currentColor: gray
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11488,7 +11488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 1
-  currentColor: blue
+  currentColor: gray
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
