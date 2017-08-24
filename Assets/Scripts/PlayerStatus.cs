@@ -509,9 +509,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	{
 		playerClass = pc;
 
-		if (playerClass == PlayerClass.none) {
+		if (playerClass == PlayerClass.none)
+        {
 
-			if (photonView.isMine) {
+			if (photonView.isMine)
+            {
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
                 bookLogic.index = bookLogic.pages.Length - 1;
@@ -531,9 +533,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             this.transform.Find("cape").gameObject.SetActive(false);
             this.transform.Find("scarf").gameObject.SetActive(false);
 
-            cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
-            cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
-            cameraRig.GetComponent<PlatformController>().enabled = true;
             if (playerClass == PlayerClass.attack)
             {
                 bookLogic.index = bookLogic.attackBottom;
@@ -563,6 +562,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
             if (photonView.isMine)
             {
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
+                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
+                cameraRig.GetComponent<PlatformController>().enabled = true;
                 bookLogic.UpdateUI();
                 bookLogic.UpdateHotbar();
             }

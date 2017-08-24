@@ -208,7 +208,6 @@ public class PadTeleport : MonoBehaviour
             if (highlighted.parent.childCount > 1 && highlighted.parent.GetChild(1).gameObject.GetActive() != false)
             {
                 highlighted.parent.GetChild(1).gameObject.SetActive(false);
-                print("DISABLED!");
             }
         }          
     }
@@ -217,13 +216,12 @@ public class PadTeleport : MonoBehaviour
     {
         if (highlighted.parent.childCount > 1)
         {
-            print("Getting active: " + highlighted.parent.GetChild(1).gameObject.GetActive());
             if (highlighted.parent.GetChild(1).gameObject.GetActive() == true)
                    return;
         }
 
-        //var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
-        //mainModule.startColor = highlightColor;
+        var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;
+        mainModule.startColor = highlightColor;
 
         if (highlighted.gameObject.tag == "PlatformTrigger")
         {
@@ -232,8 +230,6 @@ public class PadTeleport : MonoBehaviour
                 if (highlighted.parent.childCount > 1)
                 {
                     highlighted.parent.GetChild(1).gameObject.SetActive(true);
-                    print("Getting true: " + highlighted.parent.GetChild(1).gameObject.GetActive());
-                    print("ENABLED!");
                 }
             }
         }
