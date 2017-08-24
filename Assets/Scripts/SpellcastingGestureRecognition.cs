@@ -459,28 +459,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour
     }
     public void SetRandomSuperSpell()
     {
-        int random = Random.Range(0, 3);
-
-        switch (random)
-        {
-            case 0:
-                currentSpell = meteor;
-                currentSpellName = "meteor";
-                currentSpellGradient = meteorGradient;
-                break;
-            case 1:
-                currentSpell = lightBlade;
-                currentSpellName = "lightBlade";
-                currentSpellGradient = lightBladeGradient;
-                break;
-            case 2:
-                currentSpell = iceball;
-                currentSpellName = "iceball";
-                currentSpellGradient = iceballGradient;
-                break;
-            default:
-                break;
-        }
+        
+        currentSpell = lightBlade;
+        currentSpellName = "lightBlade";
+        currentSpellGradient = lightBladeGradient;
+                
 
         hasSpell = true;
 

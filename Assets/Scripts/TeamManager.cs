@@ -48,23 +48,23 @@ public class TeamManager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if(rightHand != null && !set && photonView.isMine)
-        {
-            set = true;
-            vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            if(blue && vrtk_spr != null)
-            {
-                vrtk_spr.blue = true;
-            }
-            else if(!blue && vrtk_spr != null)
-            {
-                vrtk_spr.blue = false;
-            }
-        }
-        else if(!set)
-        {
-            rightHand = GameObject.Find("RightController");
-        }
+        //if(rightHand != null && !set && photonView.isMine)
+        //{
+        //    set = true;
+        //    vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
+        //    if(blue && vrtk_spr != null)
+        //    {
+        //        vrtk_spr.blue = true;
+        //    }
+        //    else if(!blue && vrtk_spr != null)
+        //    {
+        //        vrtk_spr.blue = false;
+        //    }
+        //}
+        //else if(!set)
+        //{
+        //    rightHand = GameObject.Find("RightController");
+        //}
     }
     
     [PunRPC]
@@ -132,11 +132,13 @@ public class TeamManager : MonoBehaviour {
             }
             if (!VRDevice.model.ToLower().Contains("oculus"))
             {
+                //print("Vive Rotation");
                 cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                     Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (180 - Camera.main.transform.eulerAngles.y), 0));
             }
             else
             {
+                //print("Oculus Rotation");
                 cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                     Quaternion.Euler(0, 180, 0));
             }
@@ -153,11 +155,13 @@ public class TeamManager : MonoBehaviour {
             }
             if (!VRDevice.model.ToLower().Contains("oculus"))
             {
+                //print("Vive Rotation");
                 cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                 Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (0 - Camera.main.transform.eulerAngles.y), 0));
             }
             else
             {
+                //print("Oculus Rotation");
                 cameraRig.GetComponent<PlatformController>().SetPlatform(randPlatform,
                 Quaternion.Euler(0, 0, 0));
             }

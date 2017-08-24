@@ -80,17 +80,17 @@ public class RoundManager : MonoBehaviour {
         restart.SetScore(red_score, blue_score);
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
 
-        Debug.Log("victory or defeat speech");
+        //Debug.Log("victory or defeat speech");
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("PCP"))
         {
             if (go.GetComponent<TeamManager>().blue == blueWon)
             {
-                Debug.Log("VICTORY SPEECH");
+                //Debug.Log("VICTORY SPEECH");
                 GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("victory");
             }
             else
             {
-                Debug.Log("DEFEAT SPEECH");
+                //Debug.Log("DEFEAT SPEECH");
                 GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("defeat");
             }
         }
@@ -198,7 +198,7 @@ public class RoundManager : MonoBehaviour {
 
     void SendPlayerToHatRoom(GameObject player)
     {
-        Debug.Log("SENDPLAYERTOHATROOM CALLED");
+        //Debug.Log("SENDPLAYERTOHATROOM CALLED");
         if (hatRoom)
         {
             Vector3 newPos = hatRoom.GetChild(Random.Range(0, hatRoom.childCount-1)).transform.position;

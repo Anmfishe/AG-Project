@@ -500,7 +500,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
 		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
-		print ("Scoreboard " +  myScoreboard.roundOver);
+		//print ("Scoreboard " +  myScoreboard.roundOver);
         current_health = max_health;
     }
 
