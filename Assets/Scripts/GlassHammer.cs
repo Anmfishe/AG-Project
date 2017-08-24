@@ -58,7 +58,9 @@ public class GlassHammer : MonoBehaviour
         {
             if (GetComponent<PhotonView>().isMine)
             {
+                //Assign team owned object.
                 teamOwnedShield = other.GetComponent<ITeamOwned>();
+
                 if (teamOwnedShield.GetBlue() != blue)
                 {
                     print(teamOwnedShield.GetBlue() + " | " + blue);
@@ -77,7 +79,9 @@ public class GlassHammer : MonoBehaviour
                         PhotonNetwork.Destroy(GetComponent<PhotonView>());
                     }
                     else
+                    {
                         return;
+                    }
                 }
             }
         }
