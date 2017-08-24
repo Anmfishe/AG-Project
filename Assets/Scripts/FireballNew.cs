@@ -14,18 +14,23 @@ public class FireballNew : MonoBehaviour
     public float minAngularVelocity = 20f;
     public AudioSource audioSource;
     public AudioClip deflectAudio;
+    bool blue;
+    bool deflected;
     [HideInInspector]
     public bool isMaster;
     [HideInInspector]
     public bool isSlave;
+    private float reflectForce = 100;
+    public Rigidbody rb;
 
-//    [SerializeField]
+    //    [SerializeField]
     private float activeTimer = 0;
 //    [SerializeField]
     private SphereCollider fbCollider;
     // Use this for initialization
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         //Destroy(this.gameObject, duration);
         if (startup > 0) activeTimer = startup;
         if(fbCollider == null) fbCollider = this.GetComponent<SphereCollider>();
@@ -72,7 +77,8 @@ public class FireballNew : MonoBehaviour
             PhotonView pv = other.GetComponent<PhotonView>();
             if (pv != null)
             {
-                pv.RPC("TakeDamage", PhotonTargets.All, damage);
+                if (other.GetComponentInParent<TeamManager>().blue != blue)
+                    pv.RPC("TakeDamage", PhotonTargets.All, damage);
             }
             else
             {
@@ -91,7 +97,8 @@ public class FireballNew : MonoBehaviour
             PhotonView pv = other.GetComponent<PhotonView>();
             if (pv != null)
             {
-                pv.RPC("TakeDamage", PhotonTargets.All, damage);
+                if (other.GetComponentInParent<TeamManager>().blue != blue)
+                    pv.RPC("TakeDamage", PhotonTargets.All, damage);
             }
             else
             {
@@ -107,13 +114,35 @@ public class FireballNew : MonoBehaviour
         {
             //print("hit on shield");
             //Apply damage to the shield.
-            Damageable damageScript = other.GetComponent<Damageable>();
-            if (damageScript != null) damageScript.TakeDamage(damage);
-            //Instantiate new explosion.
-            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
-            //Delete this game object.
-            DestroyFireball();
+            if (other.transform.GetComponent<Shield>())
+            {
+                if (other.transform.GetComponent<Shield>().GetBlue() != blue)
+                {
+                    Damageable damageScript = other.GetComponent<Damageable>();
+                    if (damageScript != null)
+                        damageScript.TakeDamage(damage);
+
+                    if (GetComponent<PhotonView>().isMine)
+                    {
+                        Reflect();
+                    }
+                }
+
+                else
+                {
+                    Physics.IgnoreCollision(GetComponent<SphereCollider>(), other.transform.GetComponent<BoxCollider>(), true);
+                }
+            }
+
+            else
+            {
+                //Instantiate new explosion.
+                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+                //Delete this game object.
+                DestroyFireball();
+            }
         }
         else if (other.CompareTag("Spell"))
         {
@@ -181,6 +210,26 @@ public class FireballNew : MonoBehaviour
         //Destroy game object.
         PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
 //        Destroy(this);
+    }
+
+    public void SetBlue(bool blue_)
+    {
+        blue = blue_;
+    }
+
+    public bool GetBlue()
+    {
+        return blue;
+    }
+
+    void Reflect()
+    {
+        deflected = true;
+        rb.velocity = Vector3.zero;
+        transform.LookAt(Camera.main.transform);
+        blue = !blue;
+       // rb.AddForce((Camera.main.transform.position - transform.position) * reflectForce);
+        if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);
     }
 
 }

@@ -599,6 +599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IceBall_2: {fileID: 1824638980495640, guid: 0eae2bb30e909a04f9c10f1cf86c5176, type: 2}
   blue: 0
+  rb: {fileID: 0}
+  deflectAudio: {fileID: 8300000, guid: 106c7955ff9e5de4d96f942a90c85c2b, type: 3}
+  audioSource: {fileID: 0}
   spellcast: {fileID: 0}
 --- !u!135 &135849509132663130
 SphereCollider:

@@ -14,7 +14,8 @@ public class SpellCooldowns : MonoBehaviour
     public float healCD = 10f;
     public float blessingCD = 10f;
     public float flipCD = 10f;
-    public float Bubble_shieldCD = 10f;
+    public float bubbleCD = 10f;
+    public float hammerCD = 10f;
 
     // Use this for initialization
     void Start () {

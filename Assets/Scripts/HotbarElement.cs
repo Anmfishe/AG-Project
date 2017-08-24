@@ -83,9 +83,20 @@ public class HotbarElement : MonoBehaviour
 
         if (glyph == Spell.bubble)
         {
-            if (spellcast.Bubble_shieldCD > 0)
+            if (spellcast.bubbleCD > 0)
             {
-                size = (cooldown.Bubble_shieldCD - spellcast.Bubble_shieldCD) / cooldown.Bubble_shieldCD;
+                size = (cooldown.bubbleCD - spellcast.bubbleCD) / cooldown.bubbleCD;
+                transform.GetChild(0).localScale = new Vector3(1, 1 - size, 1);
+            }
+            else
+                size = 1;
+        }
+
+        if (glyph == Spell.hammer)
+        {
+            if (spellcast.hammerCD > 0)
+            {
+                size = (cooldown.hammerCD - spellcast.hammerCD) / cooldown.hammerCD;
                 transform.GetChild(0).localScale = new Vector3(1, 1 - size, 1);
             }
             else

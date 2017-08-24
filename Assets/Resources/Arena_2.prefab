@@ -4257,7 +4257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1543755569740806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.871906, y: 21.28183, z: -5.0417347}
+  m_LocalPosition: {x: -51.172077, y: 14.273545, z: -2.1791055}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4010248082001262}
@@ -11199,12 +11199,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114063437747155878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11218,12 +11222,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114066736839979298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11358,12 +11366,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114123353645420030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11432,12 +11444,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114156791615075020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11451,12 +11467,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114158982380861100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11470,12 +11490,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114174430252277856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11489,12 +11513,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114180587695027286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11640,12 +11668,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114296928439134952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11706,12 +11738,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114343167913745834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11725,12 +11761,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114363657254723424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11796,12 +11836,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114412457922043690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11826,12 +11870,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114458437334761260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11866,12 +11914,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114468180440234580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11885,12 +11937,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114475520053605972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12054,12 +12110,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114582961283329592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12281,12 +12341,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114649769466590324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12300,12 +12364,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114678377581147218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12371,12 +12439,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114719843907774596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12525,12 +12597,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114835981561293360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12544,12 +12620,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114854803752833650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12677,12 +12757,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114945297906494698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12717,12 +12801,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
+  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
   redMaterial: {fileID: 2100000, guid: 9490cf8fec122004d8b4b3c75445ca03, type: 2}
   redTag: RedPlatform
   redLayer: RedPlatform
+  grayMaterial: {fileID: 2100000, guid: 1a92177f3797f574b8d21de46ad3004b, type: 2}
+  grayTag: GrayPlatform
+  grayLayer: GrayPlatform
 --- !u!114 &114988665962027988
 MonoBehaviour:
   m_ObjectHideFlags: 1

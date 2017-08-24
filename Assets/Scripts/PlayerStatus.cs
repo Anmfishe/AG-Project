@@ -106,7 +106,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         fps = 1.0f / deltaTime;
-        print("FPS: " + fps);
+       // print("FPS: " + fps);
 
         if (isOculus)
 		{

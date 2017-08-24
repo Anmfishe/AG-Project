@@ -67,6 +67,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour
     public Gradient lightBladeGradient;
     public float lightBladeCooldown = 2f;
 
+    public GameObject hammer;
+    public string hammerGesture;
+    public Gradient hammerGradient;
+
     public GameObject disenchant;
     public string disenchantGesture;
     public Gradient disenchantGradient;
@@ -117,7 +121,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
     [HideInInspector]
     SpellCooldowns cooldowns;
     [HideInInspector]
-    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, Bubble_shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD;
+    public float fireCD, iceCD, swordCD, meteorCD, shieldCD, pongCD, vinesCD, healCD, blessingCD, flipCD, hammerCD, bubbleCD;
 
     private bool iceball_cast;
 
@@ -229,9 +233,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 shieldCD -= Time.deltaTime;
             }
 
-            if (Bubble_shieldCD > 0)
+            if (bubbleCD > 0)
             {
-                Bubble_shieldCD -= Time.deltaTime;
+                bubbleCD -= Time.deltaTime;
             }
 
             if (pongCD > 0)
@@ -259,7 +263,12 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 flipCD -= Time.deltaTime;
             }
 
-            if (fireCD <= 0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && Bubble_shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
+            if (hammerCD > 0)
+            {
+                hammerCD -= Time.deltaTime;
+            }
+
+            if (fireCD <= 0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0 && hammerCD <= 0 && bubbleCD <= 0)
             {
                 isCoolingDown = false;
                 //GetComponent<VRGestureRig>().enabled = true;
@@ -531,13 +540,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 }
             break;
         case "Elle":
-            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && Bubble_shieldCD <= 0)
+            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && bubbleCD <= 0)
             {
                 SetSpell(Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
                 gestureStartColor = Color.green;
                 gestureEndColor = Color.green;
             }
-            else if (Bubble_shieldCD > 0)
+            else if (bubbleCD > 0)
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
@@ -605,22 +614,22 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     Notify_Cooldown();
                 }
             break;
-        //case "OpenFrame":
-        //    if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
-        //    {
-        //        SetSpell(pongShield, "pongShield", pongShieldGradient);
-        //        gestureStartColor = Color.green;
-        //        gestureEndColor = Color.green;
-        //    }
-        //    else if (pongCD > 0)
-        //    {
-        //        gestureStartColor = Color.blue;
-        //        gestureEndColor = Color.blue;
-        //        audioSource.PlayOneShot(cast_failure);
-        //            Notify_Cooldown();
-        //        }
-        //    break;
-        case "Star":
+            case "OpenFrame":
+                if ((playerStatus.playerClass == PlayerClass.support|| playerStatus.playerClass == PlayerClass.all || noHats == true) && hammerCD <= 0)
+                {
+                    SetSpell(hammer, "hammer", hammerGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (hammerCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_failure);
+                    Notify_Cooldown();
+                }
+                break;
+            case "Star":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
             {
                 SetSpell(platformSteal, "platformSteal", platformStealGradient);
@@ -635,21 +644,21 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     Notify_Cooldown();
                 }
             break;
-        case "Zed":
-            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-            {
-                SetSpell(lightBlade, "lightBlade", lightBladeGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (swordCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
-                    Notify_Cooldown();
-                }
-            break;
+        //case "Zed":
+        //    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+        //    {
+        //        SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+        //        gestureStartColor = Color.green;
+        //        gestureEndColor = Color.green;
+        //    }
+        //    else if (swordCD > 0)
+        //    {
+        //        gestureStartColor = Color.blue;
+        //        gestureEndColor = Color.blue;
+        //        audioSource.PlayOneShot(cast_failure);
+        //            Notify_Cooldown();
+        //        }
+        //    break;
     //    case "Hourglass":
     //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
     //        {
@@ -726,6 +735,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             case "fire":
                 spellRotation = target.result != null && target.result.CompareTag("Player") ? Quaternion.LookRotation(target.result.position - wandTip.transform.position) : wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+                spellInstance.GetComponent<FireballNew>().SetBlue(blue);
                 fireCD = cooldowns.fireCD;
                 //spellTimer = fireballCooldown;
                 //if (baseSpellClass = spellInstance.GetComponent<BaseSpellClass>())
@@ -769,7 +779,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
                     spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 }
-                Bubble_shieldCD = cooldowns.Bubble_shieldCD;
+               bubbleCD = cooldowns.bubbleCD;
                 break;
             case "heal":
                 // Heal others
@@ -875,20 +885,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 swordCD = cooldowns.swordCD;
                 //spellTimer = lightBladeCooldown;
                 break;
-            //case "disenchant":
-            //    if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
-            //    {
-            //        spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
-            //        blessingCD = cooldowns.blessingCD;
-            //        //spellTimer = disenchantCooldown;
-            //        //target.result.GetComponent<VineTrap>().DestroyVines();
-            //        target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
-            //    }
-            //    else
-            //    {
-            //        //spellTimer = disenchantCooldown;
-            //    }
-            //    break;
+
+            case "hammer":
+                spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
+                //spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                //spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
+                spellInstance.GetComponent<GlassHammer>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                spellInstance.GetComponent<GlassHammer>().SetWand(wandTip);
+                hammerCD = cooldowns.hammerCD;
+                break;
             default:
                 //spellTimer = spellCooldown;
                 break;

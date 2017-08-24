@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743bdb743b0e5734bb596575ea7015ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glyph: 5
+  glyph: 11
 --- !u!212 &212498393433080370
 SpriteRenderer:
   m_ObjectHideFlags: 1

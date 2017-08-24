@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 114248342134202918}
   - component: {fileID: 82321788481519190}
   - component: {fileID: 54801123328779404}
+  - component: {fileID: 114444335998593540}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Spell
@@ -338,6 +339,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114444335998593540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973137855731400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092906590d5617e4892149394620733d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!114 &114775295234517056
 MonoBehaviour:
   m_ObjectHideFlags: 1
