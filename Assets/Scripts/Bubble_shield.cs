@@ -10,7 +10,8 @@ public class Bubble_shield : MonoBehaviour, ITeamOwned
     Transform torso;
     Collider other;
     public bool blue { get; set; }
-    
+    public Transform owner { get; set; }
+
     //Transform Bubble_shieldSpot;
 
     // Use this for initialization

@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1538043032965314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.149}
+  m_LocalPosition: {x: 0, y: 0, z: 0.105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4579480352875586}
@@ -430,8 +430,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114691027494268082}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 13
+  instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!136 &136822664681790692
@@ -444,9 +444,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1
-  m_Height: 7
+  m_Height: 12
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 5}
+  m_Center: {x: 0, y: 0, z: 7.5}
 --- !u!198 &198057429069885432
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -504,7 +504,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1151054815
+  randomSeed: 2013935367
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3576,7 +3576,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 30936099
+  randomSeed: -1183206696
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4000,7 +4000,7 @@ ParticleSystem:
     length: 5
     boxX: 1
     boxY: 0.1
-    boxZ: 1
+    boxZ: 1.75
     radius:
       value: 0.55
       mode: 0

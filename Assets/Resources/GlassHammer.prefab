@@ -113,8 +113,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.75, z: 0.75}
-  m_Center: {x: 0, y: 0, z: 1.9}
+  m_Size: {x: 0.5, y: 0.75, z: 2}
+  m_Center: {x: 0, y: 0, z: 1.25}
 --- !u!82 &82388862281429160
 AudioSource:
   m_ObjectHideFlags: 1
@@ -290,11 +290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSpark: {fileID: 1749339063556508, guid: 9948c8d24c19e034f8ad9eac8548829e, type: 2}
   wand: {fileID: 0}
-  duration: 1
-  destroyTime: 15
-  hitBonusTime: 0.25
+  destroyTime: 10
   damage: 50
-  steeringForce: 500
 --- !u!114 &114879534668100210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,8 +314,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114132861486305692}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 36
+  instantiationId: 36
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!120 &120838216261072522

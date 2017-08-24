@@ -11,6 +11,8 @@ public class Shield : MonoBehaviour, ITeamOwned
     Transform book;
     Transform shieldSpot;
     public bool blue { get; set; }
+    public Transform owner { get; set; }
+
 
     // Use this for initialization
     void Start()

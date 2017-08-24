@@ -583,7 +583,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 }
             break;
         case "Wave":
-            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
+            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
             {
                 SetSpell(meteor, "meteor", meteorGradient);
                 gestureStartColor = Color.green;
@@ -627,6 +627,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     Notify_Cooldown();
                 }
             break;
+<<<<<<< HEAD
         //case "Zed":
         //    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
         //    {
@@ -642,6 +643,24 @@ public class SpellcastingGestureRecognition : MonoBehaviour
         //            Notify_Cooldown();
         //        }
         //    break;
+=======
+        /*case "Zed":
+            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+            {
+                SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                gestureStartColor = Color.green;
+                gestureEndColor = Color.green;
+            }
+            else if (swordCD > 0)
+            {
+                gestureStartColor = Color.blue;
+                gestureEndColor = Color.blue;
+                audioSource.PlayOneShot(cast_failure);
+                    Notify_Cooldown();
+                }
+            break;
+          */
+>>>>>>> refs/remotes/origin/rogelioRevision
     //    case "Hourglass":
     //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
     //        {
@@ -742,6 +761,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 //spellInstance.transform.SetParent(wandTip);
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
                 spellInstance.GetComponent<Shield>().SetBook(book);
+                spellInstance.GetComponent<Shield>().owner = avatar;
                 spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 shieldCD = cooldowns.shieldCD;
                 //                spellInstance.transform.SetParent(book);
@@ -755,12 +775,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position, target.result.transform.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(target.result.transform);
                     spellInstance.GetComponent<Bubble_shield>().SetBlue(target.result.GetComponentInParent<TeamManager>().blue);
+                    spellInstance.GetComponent<Bubble_shield>().owner = target.result.transform.parent;
                 }
                 else
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
                     spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                    spellInstance.GetComponent<Bubble_shield>().owner = avatar;
                 }
                bubbleCD = cooldowns.bubbleCD;
                 break;
