@@ -6,7 +6,8 @@ public class HealthBar : MonoBehaviour {
     
     public   float yOffset = 1.8f;
     public GameObject owner;
-    public GameObject bar;
+    public GameObject health_bar;
+    public GameObject deathmark;
     private Transform camera;
 
     public bool bookHealth = false;
@@ -49,15 +50,28 @@ public class HealthBar : MonoBehaviour {
         {
             //print("lesser than than 0 health");
             setHealthbarScale(0f);
+            OnDeath();
         }
 
+    }
+
+    public void OnDeath(float duration = 2)
+    {
+        deathmark.SetActive(true);
+        StartCoroutine(DelayedDeathmarkRemoval(duration));
+    }
+
+    IEnumerator DelayedDeathmarkRemoval(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        deathmark.SetActive(false);
     }
 
     void setHealthbarScale(float maHealth)
     {
         //print("updatedHealth");
         // bar.transform.localScale = new Vector3(maHealth, bar.transform.localScale.y, bar.transform.localScale.z);
-        bar.transform.localScale = new Vector3(Mathf.Lerp(bar.transform.localScale.x, maHealth, Time.deltaTime*5), bar.transform.localScale.y, bar.transform.localScale.z);
+        health_bar.transform.localScale = new Vector3(Mathf.Lerp(health_bar.transform.localScale.x, maHealth, Time.deltaTime*5), health_bar.transform.localScale.y, health_bar.transform.localScale.z);
         
     }
 }

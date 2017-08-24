@@ -302,7 +302,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         deathTime = Time.time;
         dead = true;
-        current_health = max_health;
         //  Respawn();
     }
 
