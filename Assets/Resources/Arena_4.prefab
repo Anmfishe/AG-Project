@@ -3458,7 +3458,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930558494781350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1646328, y: 6.41, z: 7.643877}
+  m_LocalPosition: {x: -2.1646328, y: 6.41, z: 6.210005}
   m_LocalScale: {x: 5.6542716, y: 1.3, z: 1.615667}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -3497,7 +3497,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818431850035974}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.52, y: 7.794197, z: 14.563873}
+  m_LocalPosition: {x: 0.52, y: 7.794197, z: 13.130001}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.6725893}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -3538,7 +3538,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850529650848098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4999986, y: -13.409995, z: 69.09}
+  m_LocalPosition: {x: 6.4999986, y: -13.409995, z: 66.70021}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_Children:
   - {fileID: 4469486337824954}
@@ -3655,7 +3655,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354680937046064}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.164633, y: 9.559999, z: 41.32}
+  m_LocalPosition: {x: -6.164633, y: 9.559999, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 0.8789676, z: 4.3468847}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -3785,7 +3785,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764143401909346}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.59536743, y: 7.794197, z: 41.32}
+  m_LocalPosition: {x: 0.59536743, y: 7.794197, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.676864}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -3902,7 +3902,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746985192067028}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.35425183, y: 3.2388303, z: 2.59}
+  m_LocalPosition: {x: 0.35425183, y: 3.2388303, z: 0.2002132}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4376526150836792}
@@ -4084,7 +4084,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506793238162440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.157682, y: 9.390515, z: 13.908117}
+  m_LocalPosition: {x: 39.010784, y: 49.974438, z: 13.61738}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4265588498382414}
@@ -4133,7 +4133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1141659754593702}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.334633, y: 7.794197, z: 41.32}
+  m_LocalPosition: {x: -4.334633, y: 7.794197, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.75069535}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -4387,7 +4387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009645227315316}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.164633, y: 9.559999, z: 14.563873}
+  m_LocalPosition: {x: -6.164633, y: 9.559999, z: 13.130001}
   m_LocalScale: {x: 5.6542735, y: 0.8789676, z: 4.3468847}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -4478,7 +4478,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040479630562546}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7.924633, y: 7.794197, z: 14.563873}
+  m_LocalPosition: {x: -7.924633, y: 7.794197, z: 13.130001}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.67897314}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -4506,7 +4506,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1615817705204118}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.3753662, y: 9.56, z: 41.32}
+  m_LocalPosition: {x: 2.3753662, y: 9.56, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 0.8789676, z: 4.3468847}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -4881,7 +4881,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785882764661572}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.334633, y: 7.794197, z: 14.563873}
+  m_LocalPosition: {x: -4.334633, y: 7.794197, z: 13.13}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.6590211}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5190,7 +5190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990547207536614}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7.924633, y: 7.794197, z: 41.32}
+  m_LocalPosition: {x: -7.924633, y: 7.794197, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.7290216}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5268,7 +5268,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874643329726568}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 7.687587, y: 3.2388365, z: 2.5900013}
+  m_LocalPosition: {x: 7.687587, y: 3.2388365, z: 0.20021462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4543018108193584}
@@ -5425,7 +5425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641378119557238}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.3646336, y: 6.299999, z: 27.653873}
+  m_LocalPosition: {x: -4.3646336, y: 6.299999, z: 26.220001}
   m_LocalScale: {x: 5.6542735, y: 1.3, z: 1.6156679}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5438,7 +5438,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937069280353486}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.1853676, y: 7.794197, z: 14.563873}
+  m_LocalPosition: {x: 4.1853676, y: 7.794197, z: 13.130001}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.72301316}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5490,7 +5490,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1121460364504774}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.1853676, y: 7.794197, z: 41.32}
+  m_LocalPosition: {x: 4.1853676, y: 7.794197, z: 39.886127}
   m_LocalScale: {x: 5.6542735, y: 4.3893595, z: 0.70664287}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5503,7 +5503,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439093839010144}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -2.45, y: -13.409995, z: 8.36}
+  m_LocalPosition: {x: -2.45, y: -13.409995, z: 5.970213}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_Children:
   - {fileID: 4544468850923510}
@@ -5542,7 +5542,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744190446456114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9146328, y: 6.41, z: 47.76}
+  m_LocalPosition: {x: -1.9146328, y: 6.41, z: 46.326126}
   m_LocalScale: {x: 5.6542716, y: 1.3, z: 1.615667}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5569,7 +5569,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310128548273304}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -6.7957425, y: 3.2388303, z: 2.5900013}
+  m_LocalPosition: {x: -6.7957425, y: 3.2388303, z: 0.20021462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4319546901876918}
@@ -5813,7 +5813,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932396244443658}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.10536766, y: 6.299999, z: 27.653873}
+  m_LocalPosition: {x: 0.10536766, y: 6.299999, z: 26.220001}
   m_LocalScale: {x: 5.6542735, y: 1.3, z: 1.6156679}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -5956,7 +5956,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241169885203930}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.3753662, y: 9.559999, z: 14.563873}
+  m_LocalPosition: {x: 2.3753662, y: 9.559999, z: 13.130001}
   m_LocalScale: {x: 5.6542735, y: 0.8789676, z: 4.3468847}
   m_Children: []
   m_Father: {fileID: 4751045859466716}
@@ -12432,8 +12432,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 63
-  instantiationId: 63
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114030442532747370
@@ -12458,8 +12458,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 62
-  instantiationId: 62
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114041593173357788
@@ -12484,8 +12484,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 52
-  instantiationId: 52
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114043931799651008
@@ -12510,8 +12510,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 51
-  instantiationId: 51
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114045726951127052
@@ -12569,7 +12569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12601,8 +12600,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 50
-  instantiationId: 50
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114055611466402724
@@ -12618,7 +12617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12662,7 +12660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12694,8 +12691,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 49
-  instantiationId: 49
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114070500960088124
@@ -12720,8 +12717,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 48
-  instantiationId: 48
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114070975934931678
@@ -12737,7 +12734,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12760,7 +12756,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12792,8 +12787,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 47
-  instantiationId: 47
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114095191458629656
@@ -12809,7 +12804,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12841,8 +12835,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 46
-  instantiationId: 46
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114102078211439384
@@ -12890,7 +12884,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12913,7 +12906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -12966,8 +12958,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 45
-  instantiationId: 45
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114156370618753122
@@ -13004,7 +12996,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13027,7 +13018,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13059,8 +13049,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 39
-  instantiationId: 39
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114187648707332644
@@ -13097,7 +13087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13171,8 +13160,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 28
-  instantiationId: 28
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114238897254139274
@@ -13218,8 +13207,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 27
-  instantiationId: 27
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114255048677089312
@@ -13340,7 +13329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13363,7 +13351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13386,7 +13373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13418,8 +13404,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 26
-  instantiationId: 26
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114358369905942436
@@ -13435,7 +13421,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13458,7 +13443,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13490,8 +13474,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 23
-  instantiationId: 23
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114380603498386496
@@ -13507,7 +13491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13539,8 +13522,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 21
-  instantiationId: 21
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114392579942860622
@@ -13565,8 +13548,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 20
-  instantiationId: 20
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114399094182635016
@@ -13591,8 +13574,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 17
-  instantiationId: 17
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114405389600040256
@@ -13670,8 +13653,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 15
-  instantiationId: 15
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114481348618620436
@@ -13708,7 +13691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13780,8 +13762,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 12
-  instantiationId: 12
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114588032988396428
@@ -13848,8 +13830,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 11
-  instantiationId: 11
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114613803880404672
@@ -13874,8 +13856,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 10
-  instantiationId: 10
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114621296686672758
@@ -13891,7 +13873,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13914,7 +13895,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13937,7 +13917,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -13969,8 +13948,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 9
-  instantiationId: 9
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114672365817358024
@@ -14039,7 +14018,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14071,8 +14049,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 8
-  instantiationId: 8
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114746267731934730
@@ -14162,7 +14140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14236,8 +14213,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114881347837866858
@@ -14253,7 +14230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14276,7 +14252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14308,8 +14283,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114904140285656204
@@ -14345,8 +14320,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114929410787083698
@@ -14371,8 +14346,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 4
-  instantiationId: 4
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114937303661000532
@@ -14409,7 +14384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14441,8 +14415,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114957179550891344
@@ -14469,7 +14443,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14492,7 +14465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -14524,8 +14496,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114982948348284308
@@ -14541,7 +14513,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform

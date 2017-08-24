@@ -3038,7 +3038,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446267078881898}
   m_LocalRotation: {x: -0, y: -0.3342258, z: -0, w: 0.9424931}
-  m_LocalPosition: {x: -0.20080565, y: 4.0737214, z: -18.75025}
+  m_LocalPosition: {x: -0.20080565, y: 4.0737214, z: -22.4}
   m_LocalScale: {x: 1.6666666, y: 1.6666665, z: 1.6666666}
   m_Children:
   - {fileID: 4335165638434046}
@@ -3199,7 +3199,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1680153349486182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.533175, y: -13.410001, z: 54.32635}
+  m_LocalPosition: {x: 2.533175, y: -13.410001, z: 50.6766}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_Children:
   - {fileID: 4426865139808416}
@@ -3618,7 +3618,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002769239053778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.205261, y: 8.886414, z: 13.77441}
+  m_LocalPosition: {x: 1.5953012, y: 24.291668, z: 12.585535}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4058293104315144}
@@ -3757,7 +3757,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368066262520300}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.4246023, y: -13.410001, z: -17.94031}
+  m_LocalPosition: {x: -2.4246023, y: -13.410001, z: -21.59006}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_Children:
   - {fileID: 4203008724933922}
@@ -3796,7 +3796,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695376728878132}
   m_LocalRotation: {x: -0.0015839948, y: 0.9323461, z: 0.0042626597, w: 0.36153847}
-  m_LocalPosition: {x: 0.16586302, y: 4.081929, z: 23.893017}
+  m_LocalPosition: {x: 0.16586302, y: 4.081929, z: 20.243269}
   m_LocalScale: {x: 1.6666667, y: 1.6666665, z: 1.6666663}
   m_Children:
   - {fileID: 4887140612068684}
@@ -10495,7 +10495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10565,7 +10564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10694,7 +10692,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10743,7 +10740,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10766,7 +10762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10836,7 +10831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -10906,7 +10900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11163,7 +11156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11207,7 +11199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11298,7 +11289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11321,7 +11311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11344,7 +11333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11367,7 +11355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11390,7 +11377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11575,7 +11561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11598,7 +11583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11621,7 +11605,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11685,7 +11668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: gray
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11771,7 +11753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 1
   currentColor: blue
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
@@ -11794,7 +11775,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlue: 0
   currentColor: red
-  resetDuration: 30
   blueMaterial: {fileID: 2100000, guid: 0a6350991e968fe419b602f165ccda7c, type: 2}
   blueTag: BluePlatform
   blueLayer: BluePlatform
