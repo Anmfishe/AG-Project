@@ -51,16 +51,33 @@ public class GlassHammer : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        PhotonView otherOwner;
+        ITeamOwned teamOwnedShield;
+
         if (other.gameObject.CompareTag("Shield"))
         {
             if (GetComponent<PhotonView>().isMine)
             {
-                if (other.GetComponent<ITeamOwned>().GetBlue() != blue)
+                teamOwnedShield = other.GetComponent<ITeamOwned>();
+                if (teamOwnedShield.GetBlue() != blue)
                 {
-                    other.GetComponent<ITeamOwned>().owner.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-                    other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
-                    PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
-                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                    print(teamOwnedShield.GetBlue() + " | " + blue);
+
+                    //Find if it has an owner with a photon view.
+                    if (teamOwnedShield.owner.GetComponent<PhotonView>() != null)
+                    {
+                        //Assign it to otherOwner.
+                        otherOwner = teamOwnedShield.owner.GetComponent<PhotonView>();
+                        print("Shield Owner is: " + otherOwner);
+
+                        //RPC call to take damage and destroy shield.
+                        otherOwner.RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                        other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
+                        PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
+                        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                    }
+                    else
+                        return;
                 }
             }
         }
@@ -69,7 +86,7 @@ public class GlassHammer : MonoBehaviour
         //    if (GetComponent<PhotonView>().isMine)
         //    {
         //        other.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-        //       // other.GetComponent<PlayerStatus>().TakeDamage(damage);
+        //        // other.GetComponent<PlayerStatus>().TakeDamage(damage);
         //        PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
         //        PhotonNetwork.Destroy(GetComponent<PhotonView>());
         //    }
