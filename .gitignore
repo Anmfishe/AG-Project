@@ -43,9 +43,9 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
-Assets/Scripts/SkythianCat.meta
-Assets/Photon Unity Networking/Resources.meta
-Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts.meta
+/Assets/Scripts/SkythianCat.meta
+/Assets/Photon Unity Networking/Resources.meta
+/Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts.meta
 Assets/Art/BadgeTexture.psd
 Assets/Art/Textures/HatTexture.psd
 Assets/Art/Textures/HatUVEditable.psd
@@ -78,3 +78,4 @@ Assets/Art/MageCapeUV.psd.meta
 Assets/Art/StonePlatformUV.psd
 Assets/Art/StonePlatformUV.psd.meta
 Assets/Scripts/SkythianCat/Hand_Painted_Nature_Kit_LITE/Materials.meta
+Assets/Photon Unity Networking/Resources.meta
