@@ -840,13 +840,15 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
                     if (target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
-                        target.result.GetComponent<PhotonView>().RPC("ChangeColorTo", PhotonTargets.AllBuffered, blue);
-
+                    {
+                        target.result.GetComponent<PhotonView>().RPC("ChangeColorTo", PhotonTargets.AllBuffered, !blue);
+                    }
                     else
+                    {
                         target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
+                    }
 
                     spellInstance = PhotonNetwork.Instantiate(platformSteal.name, target.result.position, new Quaternion(), 0);
-                    target.result.GetComponent<PhotonView>().RPC("ChangeColor", PhotonTargets.AllBuffered, null);
                     flipCD = cooldowns.flipCD;
 
                     if (padHit != null)
