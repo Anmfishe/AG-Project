@@ -17,6 +17,7 @@ public class Powerup : MonoBehaviour {
     GameObject pm;
     private ParticleSystem ps;
     private GameObject _other;
+    PlatformNeighbors pn;
 
 	// Use this for initialization
 	void Start () {
@@ -37,10 +38,14 @@ public class Powerup : MonoBehaviour {
         }
 	}
 
-    public void SetPowerupProperties(bool isBlue_, int platformIndex_)
+    public void SetPowerupProperties(bool isBlue_, int platformIndex_, PlatformNeighbors pn_)
     {
         isBlue = isBlue_;
         platformIndex = platformIndex_;
+        pn = pn_;
+
+        pn.hasPowerup = true;
+        pn.GetComponent<PhotonView>().RPC("HasPowerups2", PhotonTargets.Others, true);
 
         //Debug.Log("Powerup.cs : SetPowerupProperties : isBlue=" + isBlue_ + " platformIndex=" + platformIndex_);
     }
@@ -53,6 +58,8 @@ public class Powerup : MonoBehaviour {
             {
                 _other = other.gameObject;
                 GetComponent<PhotonView>().RPC("PUhit", PhotonTargets.All, null);
+                pn.hasPowerup = false;
+                pn.GetComponent<PhotonView>().RPC("HasPowerups2", PhotonTargets.Others, false);
             }
         }
     }

@@ -28,6 +28,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     bool[] redPowerups;
     bool[] bluePowerups;
     public int numPowerups;
+    public int max_powerups;
 
     // Use this for initialization
     void Start () {
@@ -96,7 +97,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         {
             
             timer -= Time.deltaTime;
-            if (timer <= 0 && numPowerups < 1)
+            if (timer <= 0 && numPowerups < max_powerups)
             {
                 //Debug.Log(numPowerups);
                 int randomPlatform;
@@ -105,12 +106,10 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                     randomPlatform = Random.Range(0, redPlatforms.Length);
                     while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
                     {
-                        
                         randomPlatform = Random.Range(0, redPlatforms.Length);
                     }
                     Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
-                    pup.SetPowerupProperties(false, randomPlatform);
-                    //
+                    pup.SetPowerupProperties(false, randomPlatform, redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
                     redPowerups[randomPlatform] = true;
                     numPowerups++;
                 }
@@ -120,11 +119,10 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
                     randomPlatform = Random.Range(0, bluePlatforms.Length);
                     while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
                     {
-                        
                         randomPlatform = Random.Range(0, bluePlatforms.Length);
                     }
                     Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
-                    pup.SetPowerupProperties(true, randomPlatform);
+                    pup.SetPowerupProperties(true, randomPlatform, bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
                     bluePowerups[randomPlatform] = true;
                     numPowerups++;
                 }
