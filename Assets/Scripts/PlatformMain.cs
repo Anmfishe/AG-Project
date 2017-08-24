@@ -10,10 +10,12 @@ public class PlatformMain : MonoBehaviour
     private string originalColor;
 
     private bool isFlipped = false; //Flag to tell if tile has been flipped, and used to activate timer.
-    private float resetDuration = 5f; //How long will the tile stay flipped.
+    private float resetDuration = 30f; //How long will the tile stay flipped.
     private float resetTimer = 0; //
 
+    GameObject camera;
     GameObject countText;
+    TextMesh countTextMesh;
 
     public Material blueMaterial;
     public string blueTag = "BluePlatform";
@@ -31,14 +33,21 @@ public class PlatformMain : MonoBehaviour
     void Start()
     {
         originalColor = currentColor;
-        //countText = new GameObject();
-        //countText.AddComponent<TextMesh>();
+        countText = new GameObject();
+        countText.AddComponent<TextMesh>();
+        countTextMesh = countText.GetComponent<TextMesh>();
+        countText.GetComponent<Renderer>().material = Resources.Load("3D_OneSided_White") as Material;
+        countTextMesh.font = Resources.Load("Luminari-Regular") as Font;
         //countText.transform.SetParent(this.transform);
+        countText.transform.position = transform.position;
+        countText.transform.position += new Vector3(0,0.15f,0);// transform.position;
         //countText.transform.localPosition = new Vector3(0, 0, 0);
-        //countText.GetComponent<TextMesh>().fontSize = 30;
-        //countText.GetComponent<TextMesh>().text = "swag";
-        //countText.transform.localScale = new Vector3(0.5f, 0.5f, 0.05f);
-      // countText.SetActive(false);
+        countTextMesh.fontSize = 100;
+        countTextMesh.text = "swag";
+        countTextMesh.alignment = TextAlignment.Center;
+        countTextMesh.anchor = TextAnchor.MiddleCenter;
+        countText.transform.localScale = new Vector3(0.1f, 0.1f, 0.01f);
+        countText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,6 +61,12 @@ public class PlatformMain : MonoBehaviour
             {
                 //Decrease timer by passed time.
                 resetTimer -= Time.deltaTime;
+                countTextMesh.text = ""+ Mathf.Floor(resetTimer);
+                countText.transform.LookAt(camera.transform);
+                countText.transform.eulerAngles = new Vector3(90, countText.transform.eulerAngles.y, countText.transform.eulerAngles.z);
+
+                if (Vector3.Distance(countText.transform.position, camera.transform.position) > 1)
+                    countText.transform.eulerAngles += new Vector3(0,180,0);
             }
             else
             {
@@ -85,7 +100,7 @@ public class PlatformMain : MonoBehaviour
         {
             //Reset to unflipped.
             isFlipped = false;
-            //countText.SetActive(false);
+            countText.SetActive(false);
             //Cancel timer.
             resetTimer = 0;
         }
@@ -95,7 +110,8 @@ public class PlatformMain : MonoBehaviour
 
             //Start timer to reset to the original color.
             resetTimer = resetDuration;
-            //countText.SetActive(true);
+            countText.SetActive(true);
+            camera = Camera.main.gameObject;
         }
 
         currentColor = color;
