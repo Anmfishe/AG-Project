@@ -9,11 +9,11 @@ public class LightBlade : MonoBehaviour {
 	private bool blue;
     private bool isDecaying = false;
     public float duration = 1;
-	public float destroyTime = 15;
-    public float hitBonusTime = 0.25f;
+	public float destroyTime = 5;
+    public float hitBonusTime = 0.1f;
     private float durationTimer = 0;
 	private float startTime;
-	public float damage = 50;
+	public float damage = 100;
 
 
 	// Use this for initialization
@@ -34,16 +34,17 @@ public class LightBlade : MonoBehaviour {
 			this.transform.position = wand.position;
 			this.transform.rotation = wand.rotation;
 
-			if ((Time.time - startTime) > destroyTime)
+            //Check if sword has lasted 
+			if ((Time.time - startTime) > destroyTime && !isDecaying)
 				PhotonNetwork.Destroy(GetComponent<PhotonView>());
-		}
 
-        if (isDecaying)
-        {
-            if (durationTimer > 0)
-                durationTimer -= Time.deltaTime;
-            else
-				PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            if (isDecaying)
+            {
+                if (durationTimer > 0)
+                    durationTimer -= Time.deltaTime;
+                else
+                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            }
         }
     }
 

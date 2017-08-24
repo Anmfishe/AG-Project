@@ -8,15 +8,10 @@ public class GlassHammer : MonoBehaviour
     public GameObject hitSpark;
     public Transform wand;
     private bool blue;
-    private bool isDecaying = false;
-    public float duration = 1;
     public float destroyTime = 15;
-    public float hitBonusTime = 0.25f;
-    private float durationTimer = 0;
     private float startTime;
-    public float damage = 50;
+    public float damage = 20;
     private Rigidbody rb;
-    public float steeringForce = 1f;
 
 
     // Use this for initialization
@@ -50,12 +45,6 @@ public class GlassHammer : MonoBehaviour
             }
 
 
-            Vector3 direction = wand.position + wand.forward;
-            direction -= this.transform.position;
-
-            //rb.AddForce(direction.normalized * Time.smoothDeltaTime * steeringForce);
-
-            //this.transform.position += direction.normalized * Time.deltaTime;
             this.transform.position = wand.position;
             this.transform.rotation = wand.rotation;
         }
@@ -69,14 +58,22 @@ public class GlassHammer : MonoBehaviour
                 if (other.GetComponent<ITeamOwned>().GetBlue() != blue)
                 {
                     other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
+                    other.GetComponent<ITeamOwned>().owner.GetComponentInChildren<PlayerStatus>().TakeDamage(damage);
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
                     PhotonNetwork.Destroy(GetComponent<PhotonView>());
-
                 }
             }
         }
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            if (GetComponent<PhotonView>().isMine)
+            {
+                other.GetComponent<PlayerStatus>().TakeDamage(damage);
+                PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            }
+        }
     }
-
     
 
     public void SetWand(Transform wand_) 

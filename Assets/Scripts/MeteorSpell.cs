@@ -21,7 +21,7 @@ public class MeteorSpell : MonoBehaviour
 
     public LayerMask targettable;
 	public GameObject wand;
-	private float damage = 40;
+	private float damage = 20;
 	private float castDist = 10;
 	private float magCap = 10;
 	private float skyCap = 15;

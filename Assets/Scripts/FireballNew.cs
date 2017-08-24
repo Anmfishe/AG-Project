@@ -18,6 +18,7 @@ public class FireballNew : MonoBehaviour
     public bool isMaster;
     [HideInInspector]
     public bool isSlave;
+    public Vector3 originalPosition;
 
 //    [SerializeField]
     private float activeTimer = 0;
@@ -30,6 +31,7 @@ public class FireballNew : MonoBehaviour
         if (startup > 0) activeTimer = startup;
         if(fbCollider == null) fbCollider = this.GetComponent<SphereCollider>();
         if (audioSource == null) audioSource = this.GetComponent<AudioSource>();
+        originalPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -113,7 +115,9 @@ public class FireballNew : MonoBehaviour
             GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
 
             //Delete this game object.
-            DestroyFireball();
+            //DestroyFireball();
+            this.transform.LookAt(originalPosition);
+            this.transform.position += this.transform.forward * 1;
         }
         else if (other.CompareTag("Spell"))
         {
