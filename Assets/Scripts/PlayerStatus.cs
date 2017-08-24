@@ -108,6 +108,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         fps = 1.0f / deltaTime;
        // print("FPS: " + fps);
 
+
+        // Debug rotation for oculus
         if (isOculus)
 		{
 			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
@@ -138,6 +140,38 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 				rotated = false;
 			}
 		}
+
+        // Debug rotation for vive
+        if (!isOculus)
+        {
+            rightAnalogueHoriz = Input.GetAxis("TrackpadHoriz2");
+            oculusGrip = Input.GetAxis("ViveRightGrip");
+            //print (rightAnalogueHoriz);
+            // Rotate for oculus players
+            if (Input.GetKeyDown("joystick button 9") && oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+            {
+                if (rotated == false)
+                {
+                    //cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+                    cameraRig.transform.eulerAngles += new Vector3(0, 45, 0);
+                    rotated = true;
+                }
+            }
+            else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+            {
+                if (rotated == false)
+                {
+                    //cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+                    cameraRig.transform.eulerAngles += new Vector3(0, -45, 0);
+                    rotated = true;
+                }
+            }
+
+            else
+            {
+                rotated = false;
+            }
+        }
 
         //Respawn Player when time out's done.
         if (dead == true && !waitingForNextRound)
