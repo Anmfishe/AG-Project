@@ -1809,7 +1809,7 @@ MonoBehaviour:
   shieldCD: 5
   pongCD: 10
   vinesCD: 10
-  healCD: 5
+  healCD: 3
   blessingCD: 10
   flipCD: 10
   Bubble_shieldCD: 10
