@@ -40,7 +40,7 @@ public class PlatformMain : MonoBehaviour
         countTextMesh.font = Resources.Load("Luminari-Regular") as Font;
         //countText.transform.SetParent(this.transform);
         countText.transform.position = transform.position;
-        countText.transform.position += new Vector3(0,0.15f,0);// transform.position;
+        countText.transform.position += new Vector3(0,0f,0);// transform.position;
         //countText.transform.localPosition = new Vector3(0, 0, 0);
         countTextMesh.fontSize = 100;
         countTextMesh.text = "swag";
@@ -48,6 +48,7 @@ public class PlatformMain : MonoBehaviour
         countTextMesh.anchor = TextAnchor.MiddleCenter;
         countText.transform.localScale = new Vector3(0.1f, 0.1f, 0.01f);
         countText.SetActive(false);
+        countText.name = "PlatformTimerText";
     }
 
     // Update is called once per frame
@@ -62,11 +63,33 @@ public class PlatformMain : MonoBehaviour
                 //Decrease timer by passed time.
                 resetTimer -= Time.deltaTime;
                 countTextMesh.text = ""+ Mathf.Floor(resetTimer);
-                countText.transform.LookAt(camera.transform);
-                countText.transform.eulerAngles = new Vector3(90, countText.transform.eulerAngles.y, countText.transform.eulerAngles.z);
 
-                if (Vector3.Distance(countText.transform.position, camera.transform.position) > 1)
-                    countText.transform.eulerAngles += new Vector3(0,180,0);
+                if (Vector3.Distance(countText.transform.position, camera.transform.position) > 2)
+                {
+                    if (countText.transform.localScale.x != 0.1f)
+                        countText.transform.localScale = new Vector3(0.1f, 0.1f, 0.01f);
+
+                    countText.transform.LookAt(camera.transform);
+                    countText.transform.eulerAngles += new Vector3(0, 180, 0);
+                }
+
+                else
+                {
+                    if (countText.transform.localScale.x != 0.05f)
+                        countText.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+
+                    if(isBlue)
+                    {
+                        countText.transform.eulerAngles = new Vector3(countText.transform.eulerAngles.x, 180, countText.transform.eulerAngles.z);
+                    }
+
+                    else
+                    {
+                        countText.transform.eulerAngles = new Vector3(countText.transform.eulerAngles.x, 0, countText.transform.eulerAngles.z);
+                    }
+                }
+
+                countText.transform.eulerAngles = new Vector3(90, countText.transform.eulerAngles.y, countText.transform.eulerAngles.z);
             }
             else
             {

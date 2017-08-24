@@ -627,7 +627,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     Notify_Cooldown();
                 }
             break;
-<<<<<<< HEAD
         //case "Zed":
         //    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
         //    {
@@ -643,7 +642,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour
         //            Notify_Cooldown();
         //        }
         //    break;
-=======
         /*case "Zed":
             if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
             {
@@ -660,7 +658,6 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 }
             break;
           */
->>>>>>> refs/remotes/origin/rogelioRevision
     //    case "Hourglass":
     //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
     //        {

@@ -20,12 +20,9 @@ public class FireballNew : MonoBehaviour
     public bool isMaster;
     [HideInInspector]
     public bool isSlave;
-<<<<<<< HEAD
     private float reflectForce = 100;
     public Rigidbody rb;
-=======
     public Vector3 originalPosition;
->>>>>>> refs/remotes/origin/rogelioRevision
 
     //    [SerializeField]
     private float activeTimer = 0;
@@ -119,8 +116,7 @@ public class FireballNew : MonoBehaviour
         {
             //print("hit on shield");
             //Apply damage to the shield.
-
-<<<<<<< HEAD
+            
             if (other.transform.GetComponent<Shield>())
             {
                 if (other.transform.GetComponent<Shield>().GetBlue() != blue)
@@ -149,12 +145,10 @@ public class FireballNew : MonoBehaviour
                 //Delete this game object.
                 DestroyFireball();
             }
-=======
             //Delete this game object.
             //DestroyFireball();
             this.transform.LookAt(originalPosition);
             this.transform.position += this.transform.forward * 1;
->>>>>>> refs/remotes/origin/rogelioRevision
         }
         else if (other.CompareTag("Spell"))
         {
