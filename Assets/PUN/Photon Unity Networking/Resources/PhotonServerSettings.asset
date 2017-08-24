@@ -82,4 +82,5 @@ MonoBehaviour:
   - ChangeColorTo
   - HasPowerup2
   - HasVines2
+  - DestroyShield
   DisableAutoOpenWizard: 1

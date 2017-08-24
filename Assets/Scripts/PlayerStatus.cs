@@ -59,6 +59,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	float rightAnalogueHoriz;
 	float oculusGrip;
 
+    float deltaTime;
+    float fps;
+
     // Use this for initialization
     void Start()
     {
@@ -101,8 +104,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        fps = 1.0f / deltaTime;
+        print("FPS: " + fps);
 
-		if (isOculus)
+        if (isOculus)
 		{
 			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
 			oculusGrip = Input.GetAxis ("OculusRightGrip");
@@ -247,6 +253,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (photonView.isMine)
         {
             // cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
+            if(!waitingForNextRound)
             cameraRig.GetComponent<PadTeleport>().enabled = isEnabled;
             // vrtk_spr.enabled = isEnabled;
         }
@@ -502,9 +509,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	{
 		playerClass = pc;
 
-		if (playerClass == PlayerClass.none) {
+		if (playerClass == PlayerClass.none)
+        {
 
-			if (photonView.isMine) {
+			if (photonView.isMine)
+            {
 				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
 				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
                 bookLogic.index = bookLogic.pages.Length - 1;
@@ -524,9 +533,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             this.transform.Find("cape").gameObject.SetActive(false);
             this.transform.Find("scarf").gameObject.SetActive(false);
 
-            cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
-            cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
-            cameraRig.GetComponent<PlatformController>().enabled = true;
             if (playerClass == PlayerClass.attack)
             {
                 bookLogic.index = bookLogic.attackBottom;
@@ -553,8 +559,15 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 this.transform.Find("scarf").gameObject.SetActive(true);
             }
 
-            bookLogic.UpdateUI();
+
+            if (photonView.isMine)
+            {
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
+                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
+                cameraRig.GetComponent<PlatformController>().enabled = true;
+                bookLogic.UpdateUI();
                 bookLogic.UpdateHotbar();
+            }
         }
 	}
 

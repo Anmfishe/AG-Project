@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Edwon.VR;
 using Edwon.VR.Gesture;
+using UnityEngine.VR;
 
-public class SpellcastingGestureRecognition : MonoBehaviour {
+public class SpellcastingGestureRecognition : MonoBehaviour
+{
 
     public VRGestureRig gestureRig;
 
@@ -49,7 +51,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public string meteorGesture;
     public Gradient meteorGradient;
     public float meteorCooldown = 2f;
-    
+
     public GameObject pongShield;
     public string pongShieldGesture;
     public Gradient pongShieldGradient;
@@ -59,7 +61,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public string platformStealGesture;
     public Gradient platformStealGradient;
     public float platformStealCooldown = 2f;
-    
+
     public GameObject lightBlade;
     public string lightBladeGesture;
     public Gradient lightBladeGradient;
@@ -82,7 +84,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     public Transform torso;
     public Transform padHit;
 
-	public PlayerStatus playerStatus;
+    public PlayerStatus playerStatus;
 
     public bool blue = false;
 
@@ -103,9 +105,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     private float spellTimer = 0;
     [HideInInspector]
     public bool isCoolingDown = false;
+    bool isOculus = false;
 
-	// Variables for targeting platforms
-	private BeamTrail beamTrail;
+    // Variables for targeting platforms
+    private BeamTrail beamTrail;
     public GameObject reticle;
     private LineRenderer lineRend;
     public Gradient accurateTarget;
@@ -118,15 +121,19 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private bool iceball_cast;
 
+    // Vibration variables
     [HideInInspector]
     public int leftControllerIndex;
-   [HideInInspector]
+    [HideInInspector]
     public int rightControllerIndex;
     bool vibrateLoop;
     float vibrateStart;
     ushort vibrateIntensity;
     float length;
-	NotificationManager nm;
+
+    NotificationManager nm;
+
+    //Oculus
 
     public LayerMask platformLayers;
 
@@ -141,6 +148,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Start()
     {
+        if (VRDevice.model.ToLower().Contains("oculus"))
+        {
+            isOculus = true;
+        }
+
         mainCam = Camera.main;
         audioSource = GetComponent<AudioSource>();
         target = GetComponent<Targeting>();
@@ -150,18 +162,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         if (target.pointer.Find("BeamTrail").gameObject.GetActive() == false)
             target.pointer.Find("BeamTrail").gameObject.SetActive(true);
 
-        beamTrail = target.pointer.GetComponentInChildren<BeamTrail> ();
+        beamTrail = target.pointer.GetComponentInChildren<BeamTrail>();
         //print(beamTrail);
         lineRend = beamTrail.GetComponent<LineRenderer>();
         lineRend.colorGradient = inaccurateTarget;
-		beamTrail.gameObject.SetActive (false);
+        beamTrail.gameObject.SetActive(false);
         reticle.SetActive(false);
         cooldowns = GetComponent<SpellCooldowns>();
-
-		if (Camera.main != null && Camera.main.GetComponent<NotificationManager> () != null)
-		{
-			nm = Camera.main.GetComponent<NotificationManager> ();
-		}
     }
 
     void OnEnable()
@@ -183,6 +190,10 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
     private void Update()
     {
+        if (isOculus)
+        {
+            triggerR = Input.GetAxis("OculusRightTrigger");
+        }
 
         //Check if we're cooling down.
         if (isCoolingDown)
@@ -193,7 +204,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             //    spellTimer -= Time.deltaTime;
             //}
 
-            if(fireCD > 0)
+            if (fireCD > 0)
             {
                 fireCD -= Time.deltaTime;
             }
@@ -248,7 +259,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 flipCD -= Time.deltaTime;
             }
 
-            if(fireCD <=0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && Bubble_shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
+            if (fireCD <= 0 && iceCD <= 0 && swordCD <= 0 && meteorCD <= 0 && shieldCD <= 0 && Bubble_shieldCD <= 0 && pongCD <= 0 && vinesCD <= 0 && healCD <= 0 && blessingCD <= 0 && flipCD <= 0)
             {
                 isCoolingDown = false;
                 //GetComponent<VRGestureRig>().enabled = true;
@@ -262,14 +273,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
 
             }
         }
-        if (Input.GetKeyDown("joystick button 15"))
+        if ((Input.GetKeyDown("joystick button 15") && !isOculus) || (triggerR > 0.35f && isOculus))
         {
             if (hasSpell)
                 CastSpell();
             else if (!isCoolingDown && !iceball_cast)
                 drawEffect.Play();
         }
-        if(Input.GetKeyUp("joystick button 15"))
+        if (Input.GetKeyUp("joystick button 15"))
         {
             if (iceball_cast)
             {
@@ -307,7 +318,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     }
 
                     padHit = hit.transform;
-                    
+
                     if (padHit.gameObject.tag == "GrayPlatform" || blue && padHit.gameObject.tag == "RedPlatform" || !blue && padHit.gameObject.tag == "BluePlatform")
                     {
                         AccurateTarget();
@@ -344,7 +355,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             {
                 InaccurateTargetBlessing();
             }
-        
+
         }
         else
         {
@@ -412,7 +423,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 break;
             case 7:
                 currentSpell = platformSteal;
-               
+
                 currentSpellName = "platformSteal";
                 currentSpellGradient = platformStealGradient;
                 break;
@@ -594,21 +605,21 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Notify_Cooldown();
                 }
             break;
-        case "OpenFrame":
-            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
-            {
-                SetSpell(pongShield, "pongShield", pongShieldGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (pongCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
-                    Notify_Cooldown();
-                }
-            break;
+        //case "OpenFrame":
+        //    if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && pongCD <= 0)
+        //    {
+        //        SetSpell(pongShield, "pongShield", pongShieldGradient);
+        //        gestureStartColor = Color.green;
+        //        gestureEndColor = Color.green;
+        //    }
+        //    else if (pongCD > 0)
+        //    {
+        //        gestureStartColor = Color.blue;
+        //        gestureEndColor = Color.blue;
+        //        audioSource.PlayOneShot(cast_failure);
+        //            Notify_Cooldown();
+        //        }
+        //    break;
         case "Star":
             if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
             {
@@ -639,21 +650,21 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     Notify_Cooldown();
                 }
             break;
-        case "Hourglass":
-            if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-            {
-                SetSpell(disenchant, "disenchant", disenchantGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (swordCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
-				Notify_Cooldown ();
-            }
-            break;
+    //    case "Hourglass":
+    //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+    //        {
+    //            SetSpell(disenchant, "disenchant", disenchantGradient);
+    //            gestureStartColor = Color.green;
+    //            gestureEndColor = Color.green;
+    //        }
+    //        else if (swordCD > 0)
+    //        {
+    //            gestureStartColor = Color.blue;
+    //            gestureEndColor = Color.blue;
+    //            audioSource.PlayOneShot(cast_failure);
+				//Notify_Cooldown ();
+    //        }
+    //        break;
         }
 
         //Set gesture as successful.
@@ -698,7 +709,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         wand = avatar.Find("Right Hand").Find("MagicWand");
         book = avatar.Find("Left Hand").Find("SpellBook");
         book.GetComponent<BookLogic>().spellcast = this;
-		playerStatus = torso.GetComponent<PlayerStatus>();
+        playerStatus = torso.GetComponent<PlayerStatus>();
     }
 
     //Casts selected spell.
@@ -744,9 +755,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellTimer = shieldCooldown;
                 break;
             case "Bubble_shield":
-               
-                
-                if(target.result != null && target.result.tag =="Player")
+
+
+                if (target.result != null && target.result.tag == "Player")
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position, target.result.transform.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(target.result.transform);
@@ -764,7 +775,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 // Heal others
                 if (target.result != null)
                 {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position + new Vector3(-1,0,0), currentSpell.transform.rotation, 0);
+                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position + new Vector3(-1, 0, 0), currentSpell.transform.rotation, 0);
                 }
 
                 // Self heal
@@ -804,17 +815,17 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                     return;
                 }
                 break;
-            case "pongShield":
-                spellRotation = new Quaternion();
+            //case "pongShield":
+            //    spellRotation = new Quaternion();
+            //    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
+            //    spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+            //    pongCD = cooldowns.pongCD;
+            //    //spellTimer = pongShieldCooldown;
+            //    break;
+            case "meteor":
+                spellRotation = wandTip.rotation;
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, spellRotation, 0);
-                spellInstance.GetComponent<Pong_Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                pongCD = cooldowns.pongCD;
-                //spellTimer = pongShieldCooldown;
-                break;
-		    case "meteor":
-			spellRotation = wandTip.rotation;
-			spellInstance = PhotonNetwork.Instantiate (currentSpell.name, wandTip.position, spellRotation, 0);
-			spellInstance.GetComponent<MeteorSpell> ().blue = avatar.GetComponent<TeamManager>().blue;
+                spellInstance.GetComponent<MeteorSpell>().blue = avatar.GetComponent<TeamManager>().blue;
                 spellInstance.GetComponent<MeteorSpell>().spellcast = this;
                 meteorCD = cooldowns.meteorCD;
                 // spellTimer = meteorCooldown;
@@ -828,7 +839,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 }
                 if (target.result.gameObject.layer == LayerMask.NameToLayer("BluePlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("RedPlatform") || target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                 {
-                    if(target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
+                    if (target.result.gameObject.layer == LayerMask.NameToLayer("GrayPlatform"))
                         target.result.GetComponent<PhotonView>().RPC("ChangeColorTo", PhotonTargets.AllBuffered, blue);
 
                     else
@@ -858,29 +869,29 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
                 //spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 //spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
                 spellInstance.GetComponent<GlassHammer>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-				spellInstance.GetComponent<GlassHammer>().SetWand(wandTip);
+                spellInstance.GetComponent<GlassHammer>().SetWand(wandTip);
                 swordCD = cooldowns.swordCD;
                 //spellTimer = lightBladeCooldown;
                 break;
-            case "disenchant":
-                if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
-                {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
-                    blessingCD = cooldowns.blessingCD;
-                    //spellTimer = disenchantCooldown;
-                    //target.result.GetComponent<VineTrap>().DestroyVines();
-                    target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
-                }
-                else
-                {
-                    //spellTimer = disenchantCooldown;
-                }
-                break;
+            //case "disenchant":
+            //    if (target != null && target.result2 != null && target.result2.CompareTag("Curse"))
+            //    {
+            //        spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result2.position, new Quaternion(), 0);
+            //        blessingCD = cooldowns.blessingCD;
+            //        //spellTimer = disenchantCooldown;
+            //        //target.result.GetComponent<VineTrap>().DestroyVines();
+            //        target.result2.GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
+            //    }
+            //    else
+            //    {
+            //        //spellTimer = disenchantCooldown;
+            //    }
+            //    break;
             default:
                 //spellTimer = spellCooldown;
                 break;
         }
-        
+
         if (wand != null)
         {
             wand.Find("tip").Find("flames").gameObject.GetComponent<ParticleSystem>().Stop();
@@ -901,7 +912,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     }
     void SetSpellOwner(BaseSpellClass bsp)
     {
-        if(playerStatus.photonView.isMine)
+        if (playerStatus.photonView.isMine)
         {
             bsp.SetOwner(avatar.gameObject);
         }
@@ -916,8 +927,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Successfully target a platform
     void AccurateTarget()
     {
-            if (lineRend.colorGradient == accurateTarget)
-                return;
+        if (lineRend.colorGradient == accurateTarget)
+            return;
 
         beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
@@ -932,7 +943,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         Physics.queriesHitTriggers = true;
 
         if (beamTrail)
-        beamTrail.gameObject.SetActive(true);
+            beamTrail.gameObject.SetActive(true);
         reticle.SetActive(true);
         beamTrail.destination = target.hit_blessing.point;
         lineRend.colorGradient = accurateTarget;
@@ -942,8 +953,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     // Draw dotted line when not hitting platform
     void InaccurateTarget()
     {
-            if (lineRend.colorGradient == inaccurateTarget)
-                return;
+        if (lineRend.colorGradient == inaccurateTarget)
+            return;
 
         if (padHit != null)
         {
@@ -953,9 +964,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
             padHit = null;
         }
 
-            beamTrail.destination = (hit.point);
-            reticle.SetActive(true);
-            reticle.transform.position = hit.point;
+        beamTrail.destination = (hit.point);
+        reticle.SetActive(true);
+        reticle.transform.position = hit.point;
 
         lineRend.colorGradient = inaccurateTarget;
     }
@@ -1020,11 +1031,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
     {
         //print("disabling!!!");
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
-        if (highlighted.childCount > 1)
-        {
-            if (highlighted.GetChild(1).gameObject.activeSelf == false)
-                return;
-        }
+            if (highlighted.childCount > 1)
+            {
+                if (highlighted.GetChild(1).gameObject.activeSelf == false)
+                    return;
+            }
 
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
@@ -1057,5 +1068,3 @@ public class SpellcastingGestureRecognition : MonoBehaviour {
         }
     }
 }
-
-

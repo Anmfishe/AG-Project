@@ -65,7 +65,7 @@ public class RoundManager : MonoBehaviour {
     [PunRPC]
     public void Display_Countdown()
     {
-        Debug.Log("RoundManager.cs : Display_Countdown() : Inside");
+        //Debug.Log("RoundManager.cs : Display_Countdown() : Inside");
         countdown_display.SetActive(true);
     }
 

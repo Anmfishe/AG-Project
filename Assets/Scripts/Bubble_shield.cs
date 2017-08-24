@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble_shield : MonoBehaviour
+public class Bubble_shield : MonoBehaviour, ITeamOwned
 {
    
     public float Bubble_shieldDuration = 10f;
     private float Bubble_shieldTimer;
     Transform torso;
     Collider other;
-    bool blue;
+    public bool blue { get; set; }
+    
     //Transform Bubble_shieldSpot;
 
     // Use this for initialization
@@ -57,12 +58,11 @@ public class Bubble_shield : MonoBehaviour
     {
         return blue;
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("ShieldBreaker"))
-        {
-            Bubble_shieldTimer = 0;
-        }
-    }
 
+    [PunRPC]
+    //Reduces the health by the damage received.
+    public void DestroyShield()
+    {
+        Bubble_shieldTimer = 0;
+    }
 }

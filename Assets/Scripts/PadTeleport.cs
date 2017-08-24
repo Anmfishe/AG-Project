@@ -85,28 +85,34 @@ public class PadTeleport : MonoBehaviour
 
         if (active == true)
         {
-            lineRend.enabled = true;
             beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
             reticle.transform.position = origin.transform.position + origin.transform.forward * 10f;
             reticleSizeUpdate = reticleSize * Vector3.Distance(this.transform.position, reticle.transform.position);
 
-            if (Physics.Raycast(origin.transform.position, fwd, out hit, 1000, blueLayersToIgnore))
+            if (Physics.Raycast(origin.transform.position, fwd, out hit, 100, blueLayersToIgnore))
             {
+                if(hit.transform != padHit)
+                {
                     disableHighlight(padHit, blue);
                     padHit = hit.transform;
-                    warpSpot = hit.point;
-                    beamTrail.destination = warpSpot;
-                    reticle.transform.position = hit.point;
-
-                    reticleSizeUpdate = reticleSize * Vector3.Distance(this.transform.position, reticle.transform.position);
+                    
+                }
+                warpSpot = hit.point;
+                beamTrail.destination = warpSpot;
+                reticle.transform.position = hit.point;
+                reticleSizeUpdate = reticleSize * Vector3.Distance(this.transform.position, reticle.transform.position);
 
                 if (padHit.gameObject.tag == "Neutral")
                 {
                     neutral = true;
+
+                    disableHighlight(padHit, blue);
                 }
 
                 else if (padHit.gameObject.tag == "HatTable")
                 {
+
+                    disableHighlight(padHit, blue);
                     Vector3 down = Vector3.down;
                     RaycastHit downHit;
                     neutral = true;
@@ -156,7 +162,7 @@ public class PadTeleport : MonoBehaviour
         if (Input.GetKeyDown("joystick button 9"))
         {
             active = true;
-
+            lineRend.enabled = true;
             // Enable reticle
             reticle.SetActive(true);
         }
@@ -165,7 +171,7 @@ public class PadTeleport : MonoBehaviour
         if (Input.GetKeyUp("joystick button 9"))
         {
             active = false;
-
+            lineRend.enabled = false;
             // disable reticle
             reticle.SetActive(false);
 
@@ -199,8 +205,10 @@ public class PadTeleport : MonoBehaviour
         if (highlighted != null && (highlighted.gameObject.tag == "GrayPlatform" || highlighted.gameObject.tag == "BluePlatform" || highlighted.gameObject.tag == "RedPlatform" || highlighted.gameObject.tag == "PlatformTrigger"))
         {
 
-            if (highlighted.parent.childCount > 1)
+            if (highlighted.parent.childCount > 1 && highlighted.parent.GetChild(1).gameObject.GetActive() != false)
+            {
                 highlighted.parent.GetChild(1).gameObject.SetActive(false);
+            }
         }          
     }
 
@@ -208,7 +216,7 @@ public class PadTeleport : MonoBehaviour
     {
         if (highlighted.parent.childCount > 1)
         {
-            if (highlighted.parent.GetChild(1).gameObject.activeSelf == true)
+            if (highlighted.parent.GetChild(1).gameObject.GetActive() == true)
                    return;
         }
 
