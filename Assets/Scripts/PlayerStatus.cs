@@ -560,8 +560,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 this.transform.Find("scarf").gameObject.SetActive(true);
             }
 
-            bookLogic.UpdateUI();
+
+            if (photonView.isMine)
+            {
+                bookLogic.UpdateUI();
                 bookLogic.UpdateHotbar();
+            }
         }
 	}
 
