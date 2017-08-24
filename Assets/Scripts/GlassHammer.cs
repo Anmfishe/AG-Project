@@ -59,17 +59,24 @@ public class GlassHammer : MonoBehaviour
             if (GetComponent<PhotonView>().isMine)
             {
                 //Assign team owned object.
-                teamOwnedShield = other.GetComponent<ITeamOwned>();
+                teamOwnedShield = other.gameObject.GetComponent<ITeamOwned>();
+                print("SHIELD? : " + teamOwnedShield);
 
+                //Check if it's from a different our team color.
                 if (teamOwnedShield.GetBlue() != blue)
                 {
                     print(teamOwnedShield.GetBlue() + " | " + blue);
+                    other.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
+                    PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
+                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
 
+                    /*
                     //Find if it has an owner with a photon view.
-                    if (teamOwnedShield.owner.GetComponent<PhotonView>() != null)
+                    print("SHIELD OWNER: " + teamOwnedShield.owner.gameObject);
+                    if (teamOwnedShield.owner.gameObject.GetPhotonView() != null)
                     {
                         //Assign it to otherOwner.
-                        otherOwner = teamOwnedShield.owner.GetComponent<PhotonView>();
+                        otherOwner = teamOwnedShield.owner.gameObject.GetPhotonView();
                         print("Shield Owner is: " + otherOwner);
 
                         //RPC call to take damage and destroy shield.
@@ -82,6 +89,7 @@ public class GlassHammer : MonoBehaviour
                     {
                         return;
                     }
+                    */
                 }
             }
         }
