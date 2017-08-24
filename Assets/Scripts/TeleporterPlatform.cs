@@ -43,7 +43,7 @@ public class TeleporterPlatform : MonoBehaviour {
             }
 
             // Notify player to get a hat if the player is on the teleporter without a hat
-            if (ps.playerClass == PlayerClass.none)
+            if (other.GetComponent<PhotonView>().isMine && ps.playerClass == PlayerClass.none)
             {
                 nm.SetNotification("Grab a hat!", 101);
             }

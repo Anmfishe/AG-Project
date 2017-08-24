@@ -100,7 +100,17 @@ public class TeleporterManager : MonoBehaviour {
             if (go.GetComponent<PhotonView>().isMine && go.GetComponent<PlayerStatus>().onTeleporter && go.GetComponent<PlayerStatus>().playerClass != PlayerClass.none)
             {
                 int numPlayersNotReady = totalNumPlayers - blue.numPlayersOnPlatform - red.numPlayersOnPlatform;
-                nm.SetNotification("Waiting on " + numPlayersNotReady + " player(s)..");
+
+                // notify player to wait for more players when the player is alone in the game
+                if (! onePlayerAllowed && numPlayersNotReady == 0)
+                {
+                    nm.SetNotification("Waiting on more players..");
+                }
+                else
+                {
+                    nm.SetNotification("Waiting on " + numPlayersNotReady + " player(s)..");
+                }
+                
                 break;
             }
         }
