@@ -10,8 +10,10 @@ public class PlatformMain : MonoBehaviour
     private string originalColor;
 
     private bool isFlipped = false; //Flag to tell if tile has been flipped, and used to activate timer.
-    public float resetDuration = 30f; //How long will the tile stay flipped.
+    private float resetDuration = 5f; //How long will the tile stay flipped.
     private float resetTimer = 0; //
+
+    GameObject countText;
 
     public Material blueMaterial;
     public string blueTag = "BluePlatform";
@@ -29,6 +31,14 @@ public class PlatformMain : MonoBehaviour
     void Start()
     {
         originalColor = currentColor;
+        //countText = new GameObject();
+        //countText.AddComponent<TextMesh>();
+        //countText.transform.SetParent(this.transform);
+        //countText.transform.localPosition = new Vector3(0, 0, 0);
+        //countText.GetComponent<TextMesh>().fontSize = 30;
+        //countText.GetComponent<TextMesh>().text = "swag";
+        //countText.transform.localScale = new Vector3(0.5f, 0.5f, 0.05f);
+      // countText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,7 +85,7 @@ public class PlatformMain : MonoBehaviour
         {
             //Reset to unflipped.
             isFlipped = false;
-
+            //countText.SetActive(false);
             //Cancel timer.
             resetTimer = 0;
         }
@@ -85,6 +95,7 @@ public class PlatformMain : MonoBehaviour
 
             //Start timer to reset to the original color.
             resetTimer = resetDuration;
+            //countText.SetActive(true);
         }
 
         currentColor = color;
