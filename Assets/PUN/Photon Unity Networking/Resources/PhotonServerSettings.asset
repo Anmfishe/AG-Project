@@ -80,4 +80,5 @@ MonoBehaviour:
   - PlaySoundToOthers
   - ResetOnTeleporter
   - ChangeColorTo
+  - DestroyShield
   DisableAutoOpenWizard: 1
