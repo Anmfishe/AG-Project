@@ -27,6 +27,7 @@ public class GlyphGuide : MonoBehaviour {
         glyphs.Add("sb_shield", new Vector2(0.8f, 0.5f));
         glyphs.Add("sb_flip", new Vector2(0.9f, 0.5f));
         glyphs.Add("sb_bubble", new Vector2(0f, 0));
+        glyphs.Add("sb_hammer", new Vector2(0f, 0));
 
         rend.enabled = false;
 
