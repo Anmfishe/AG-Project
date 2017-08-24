@@ -93,19 +93,20 @@ public class GlassHammer : MonoBehaviour
                 }
             }
         }
-        //else if (other.gameObject.CompareTag("Player"))
-        //{
-        //    if (GetComponent<PhotonView>().isMine)
-        //    {
-        //        other.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-        //        // other.GetComponent<PlayerStatus>().TakeDamage(damage);
-        //        PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
-        //        PhotonNetwork.Destroy(GetComponent<PhotonView>());
-        //    }
-        //}
+        /*
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            if (GetComponent<PhotonView>().isMine)
+            {
+                other.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                // other.GetComponent<PlayerStatus>().TakeDamage(damage);
+                PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            }
+        }*/
 
     }
-    
+
 
     public void SetWand(Transform wand_) 
     {
