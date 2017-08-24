@@ -11631,6 +11631,11 @@ Prefab:
       propertyPath: instantiationId
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
+        type: 2}
+      propertyPath: onePlayerAllowed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9931ab73ed66c5a47b4a2dd89208a7bb, type: 2}
   m_IsPrefabParent: 0

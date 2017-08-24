@@ -9,7 +9,10 @@ public class TeleporterManager : MonoBehaviour {
 
     public GameObject[] bluePlatforms;
     public GameObject[] redPlatforms;
-    
+
+    int minPlayers = 1;
+    public bool onePlayerAllowed = false;
+
     GameObject rm;
     NotificationManager nm;
 
@@ -59,7 +62,10 @@ public class TeleporterManager : MonoBehaviour {
         }
 
         //        Debug.Log("blue : " + blue.numPlayersOnPlatform + " red : " + red.numPlayersOnPlatform + " == " + PhotonNetwork.playerList.Length);
-        if (totalNumPlayers > 0 && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == totalNumPlayers)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
+        if (onePlayerAllowed == true)
+            minPlayers = 0;
+
+        if (totalNumPlayers > minPlayers && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == totalNumPlayers)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
             bool ready = true;
 
