@@ -880,12 +880,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 break;
             case "lightBlade":
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
-                //spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                //spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
-                spellInstance.GetComponent<GlassHammer>().SetBlue(avatar.GetComponent<TeamManager>().blue);
-                spellInstance.GetComponent<GlassHammer>().SetWand(wandTip);
+                spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
+
                 swordCD = cooldowns.swordCD;
-                //spellTimer = lightBladeCooldown;
+                spellTimer = lightBladeCooldown;
                 break;
 
             case "hammer":
