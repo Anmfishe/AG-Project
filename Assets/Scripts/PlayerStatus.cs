@@ -330,14 +330,15 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         // determines where the player is placed on the penalty box
         bool isBlue = this.transform.parent.GetComponent<TeamManager>().blue;
         Transform penalty = pm.GetPenaltyTransform(isBlue);
-        cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
-        
-
-        //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
         if (!VRDevice.model.ToLower().Contains("oculus"))
         {
             cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
         }
+        cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
+        
+
+        //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
+        
     }
 
     [PunRPC]

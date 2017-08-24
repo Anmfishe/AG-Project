@@ -48,9 +48,7 @@ public class PadTeleport : MonoBehaviour
         reticle.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-    }
+    
 
 
     private void FixedUpdate()

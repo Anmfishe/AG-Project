@@ -93,7 +93,7 @@ public class NetworkManager1 : Photon.PunBehaviour
             //print("Found Arena");
             cr.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
             //            cr.transform.position = ptSpawns.transform.position;
-
+            cr.GetComponent<PadTeleport>().enabled = false;
             // figure out number of players on each team
             int red = 0;
             int blue = 0;
@@ -110,7 +110,8 @@ public class NetworkManager1 : Photon.PunBehaviour
             }
 
             PenaltyManager pm = GameObject.FindGameObjectWithTag("Penalty").GetComponent<PenaltyManager>();
-            cr.transform.position = pm.GetPenaltyTransform(blue <= red).position;
+            cr.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(pm.GetPenaltyTransform(blue <= red), pm.GetPenaltyTransform(blue <= red).position);
+            Camera.main.GetComponent<NotificationManager>().SetNotification("Waiting for Next Round", 4f);
         }
         else
         {
