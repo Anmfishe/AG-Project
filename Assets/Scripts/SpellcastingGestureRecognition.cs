@@ -80,6 +80,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
     public GameObject swipeRight;
     public AudioClip cast_success;
     public AudioClip cast_failure;
+    public AudioClip cast_cooldown;
     public Transform wand;
     public Transform book;
     //[HideInInspector]

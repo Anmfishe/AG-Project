@@ -7849,7 +7849,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8403,6 +8403,7 @@ MonoBehaviour:
   swipeRight: {fileID: 100010, guid: e25b31b57abc15b4cb2e116c28a0b828, type: 2}
   cast_success: {fileID: 8300000, guid: 63d323c7aafcf6a478c174089a3935d6, type: 3}
   cast_failure: {fileID: 8300000, guid: bc9b7be247b93944d87ebe985c5e7873, type: 3}
+  cast_cooldown: {fileID: 8300000, guid: b030d7cddbfceec40b392b48cf77f51d, type: 3}
   wand: {fileID: 0}
   book: {fileID: 0}
   target: {fileID: 0}
