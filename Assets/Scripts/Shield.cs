@@ -47,11 +47,12 @@ public class Shield : MonoBehaviour, IShield
         shieldSpot = book.Find("ShieldPt");
     }
 
+    [PunRPC]
     public void SetBlue(bool blue_)
     {
         blue = blue_;
     }
-
+    
     public bool GetBlue()
     {
         return blue;

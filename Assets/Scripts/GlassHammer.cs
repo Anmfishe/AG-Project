@@ -145,6 +145,7 @@ public class GlassHammer : MonoBehaviour
         this.transform.rotation = wand.rotation;
     }
 
+    [PunRPC]
     public void SetBlue(bool blue_)
     {
         blue = blue_;

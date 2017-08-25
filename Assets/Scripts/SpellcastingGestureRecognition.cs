@@ -760,7 +760,9 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, book.position + book.forward, book.rotation, 0);
                 spellInstance.GetComponent<Shield>().SetBook(book);
                 spellInstance.GetComponent<Shield>().owner = torso;
-                spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                //spellInstance.GetComponent<Shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
+
                 shieldCD = cooldowns.shieldCD;
                 //                spellInstance.transform.SetParent(book);
                 //spellTimer = shieldCooldown;
@@ -772,14 +774,14 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, target.result.transform.position, target.result.transform.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(target.result.transform);
-                    spellInstance.GetComponent<Bubble_shield>().SetBlue(target.result.GetComponentInParent<TeamManager>().blue);
+                    spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, target.result.GetComponentInParent<TeamManager>().blue);
                     spellInstance.GetComponent<Bubble_shield>().owner = target.result.transform;
                 }
                 else
                 {
                     spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
                     spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
-                    spellInstance.GetComponent<Bubble_shield>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                    spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
                     spellInstance.GetComponent<Bubble_shield>().owner = torso;
                 }
                bubbleCD = cooldowns.bubbleCD;
@@ -812,7 +814,8 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                     spellInstance.GetComponent<VineTrap>().SetPlatform(target.result.GetComponent<PlatformNeighbors>());
-                    spellInstance.GetComponent<VineTrap>().blue = avatar.GetComponent<TeamManager>().blue;
+                    //spellInstance.GetComponent<VineTrap>().blue = avatar.GetComponent<TeamManager>().blue;
+                    spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
                     vinesCD = cooldowns.vinesCD;
 
                     if (padHit != null)
@@ -893,7 +896,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 spellInstance = PhotonNetwork.Instantiate(currentSpell.name, wandTip.position, wandTip.rotation, 0);
                 //spellInstance.GetComponent<LightBlade>().SetBlue(avatar.GetComponent<TeamManager>().blue);
                 //spellInstance.GetComponent<LightBlade>().SetWand(wandTip);
-                spellInstance.GetComponent<GlassHammer>().SetBlue(avatar.GetComponent<TeamManager>().blue);
+                spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
                 spellInstance.GetComponent<GlassHammer>().SetWand(wandTip);
                 hammerCD = cooldowns.hammerCD;
                 break;

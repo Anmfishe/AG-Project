@@ -48,6 +48,7 @@ public class Bubble_shield : MonoBehaviour, IShield
         //Bubble_shieldSpot = torso.Find("Bubble_ShieldPt");
     }
 
+    [PunRPC]
     public void SetBlue(bool blue_)
     {
         blue = blue_;

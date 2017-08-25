@@ -26,14 +26,14 @@ public class VineTrap : MonoBehaviour {
 
     public bool blue;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         SetUp();
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (isActivated)
         {
             /*
@@ -43,7 +43,7 @@ public class VineTrap : MonoBehaviour {
             else
                 PhotonNetwork.Destroy(this.gameObject);
             */
-            if(playerStatus.dead)
+            if (playerStatus.dead)
             {
                 playerStatus.EnableMovement(true);
                 PhotonNetwork.Destroy(GetComponent<PhotonView>());
@@ -55,7 +55,7 @@ public class VineTrap : MonoBehaviour {
             else
                 DealDamage();
         }
-	}
+    }
     void SetUp()
     {
         isSet = true;
@@ -79,7 +79,7 @@ public class VineTrap : MonoBehaviour {
         playerStatus.EnableMovement(false);
 
         //Start dealing damage.
-       // 
+        // 
         DealDamage();
 
         //Set duration timer.
@@ -88,30 +88,30 @@ public class VineTrap : MonoBehaviour {
     }
 
     [PunRPC]
-     public void DestroyVines()
-     {
-         if (playerStatus != null)
-             playerStatus.EnableMovement(true);
-         if (GetComponent<PhotonView>().isMine)
+    public void DestroyVines()
+    {
+        if (playerStatus != null)
+            playerStatus.EnableMovement(true);
+        if (GetComponent<PhotonView>().isMine)
             PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
-     }
+    }
 
-//[PunRPC]
+    //[PunRPC]
     void DealDamage()
     {
-        
+
         damageTimer = damageCycle;
         //Destroy if player dies.
         if (playerStatus != null)
-        if (playerStatus.dead)
-        {
+            if (playerStatus.dead)
+            {
                 //Enable movement before destroy itself.
                 StopCoroutine(DestroyAfterSeconds(duration));
-            isActivated = false;
-            body.gameObject.SetActive(false);
-            playerStatus.EnableMovement(true);
-            if(GetComponent<PhotonView>().isMine)
-                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                isActivated = false;
+                body.gameObject.SetActive(false);
+                playerStatus.EnableMovement(true);
+                if (GetComponent<PhotonView>().isMine)
+                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
                 DestroyVines();
                 GetComponent<PhotonView>().RPC("DestroyVines", PhotonTargets.AllBuffered, null);
                 platform.hasVines = false;
@@ -147,5 +147,11 @@ public class VineTrap : MonoBehaviour {
         platform = pn;
         platform.hasVines = true;
         platform.GetComponent<PhotonView>().RPC("HasVines2", PhotonTargets.Others, true);
+    }
+
+    [PunRPC]
+    public void SetBlue(bool _blue)
+    {
+        this.blue = _blue;
     }
 }
