@@ -595,7 +595,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
             if (playerClass == PlayerClass.attack)
             {
-                bookLogic.index = bookLogic.attackBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(true);
@@ -603,7 +603,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
             if (playerClass == PlayerClass.support)
             {
-                bookLogic.index = bookLogic.supportBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(true);
@@ -612,7 +612,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
             if (playerClass == PlayerClass.heal)
             {
-                bookLogic.index = bookLogic.healBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(true);

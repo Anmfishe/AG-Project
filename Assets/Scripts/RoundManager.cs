@@ -163,18 +163,29 @@ public class RoundManager : MonoBehaviour {
             PhotonNetwork.Destroy(curse.GetPhotonView());
         }
 
-        if (GameObject.FindGameObjectWithTag("Scoreboard") == null)
-        {
-            Debug.Log("COULD NOT FIND SCOREBOARD");
-        }
-
-        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-        scoreboard.roundOver = false;
+          
 
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
 
         SetUnusedHatsVisible(false);
+
+        StartCoroutine(DelayScoreboardAssignment());
+    }
+
+    IEnumerator DelayScoreboardAssignment()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (GameObject.FindGameObjectWithTag("Scoreboard") == null)
+        {
+            Debug.Log("COULD NOT FIND SCOREBOARD");
+        }
+        else
+        {
+            scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+            scoreboard.roundOver = false;
+        }
     }
 
     void SetUnusedHatsVisible(bool isVisible)
