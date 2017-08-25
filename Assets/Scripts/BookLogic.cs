@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class BookLogic : MonoBehaviour
 {
@@ -43,9 +44,12 @@ public class BookLogic : MonoBehaviour
 	public int healBottom = 6;
 	public int healTop = 9;
 
+	bool flipped;
+	bool isOculus;
+
     float trackpadPos;
     float startPressPos;
-    float swipeThresh = 0.03f;
+    float swipeThresh = 0.3f;
     public int index = 0;
     public string currentGlyph = "";
     public GlyphGuide guide;
@@ -58,6 +62,11 @@ public class BookLogic : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		if (VRDevice.model.ToLower().Contains("oculus"))
+		{
+			isOculus = true;
+		}
+
 		playerStatus = transform.parent.parent.GetComponentInChildren<PlayerStatus> ();
 		//print ("PLAYER" + playerStatus);
 
@@ -80,7 +89,32 @@ public class BookLogic : MonoBehaviour
     void Update()
     {
         trackpadPos = Input.GetAxis("TrackpadHoriz");
-        if (Input.GetKeyDown("joystick button 16"))
+
+		if (isOculus)
+		{
+			if (trackpadPos > 0.5f)
+			{
+				if (flipped == false)
+				{
+					FlipRight ();
+					flipped = true;
+				}
+			} 
+			else if (trackpadPos < -0.5f)
+			{
+				if (flipped == false)
+				{
+					FlipLeft ();
+					flipped = true;
+				}
+			} 
+			else
+			{
+				flipped = false;
+			}
+		}
+
+		if (Input.GetKeyDown("joystick button 16") && !isOculus)
         {
             startPressPos = trackpadPos;
             //if (trackpadPos < -0.05f)
@@ -93,7 +127,7 @@ public class BookLogic : MonoBehaviour
             //}
         }
 
-        if (Input.GetKeyUp("joystick button 16"))
+		if (Input.GetKeyUp("joystick button 16") && !isOculus)
         {
             if (trackpadPos > startPressPos + swipeThresh )
             {
