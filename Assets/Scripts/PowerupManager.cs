@@ -20,13 +20,14 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
 
     public GameObject[] redPlatforms;
     public GameObject[] bluePlatforms;
-    
+    private GameObject[] grayPlatforms;
     public float frequency;
     public GameObject powerupPrefab;
     public bool spawn_powerups = false;
     public float timer;
     bool[] redPowerups;
     bool[] bluePowerups;
+    bool[] grayPowerups;
     public int numPowerups;
     public int max_powerups;
 
@@ -78,9 +79,11 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
         {
             redPlatforms = GameObject.FindGameObjectsWithTag("RedPlatform");
             bluePlatforms = GameObject.FindGameObjectsWithTag("BluePlatform");
+            grayPlatforms = GameObject.FindGameObjectsWithTag("GrayPlatform");
             redPowerups = new bool[redPlatforms.Length];
             bluePowerups = new bool[bluePlatforms.Length];
-            if(redPlatforms.Length == 0)
+            grayPowerups = new bool[grayPlatforms.Length];
+            if (redPlatforms.Length == 0)
             {
                 foreach(GameObject pu in GameObject.FindGameObjectsWithTag("Powerup"))
                 {
@@ -95,43 +98,67 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     void Update () {
         if (PhotonNetwork.isMasterClient && spawn_powerups)
         {
-            
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                graySpawn();
+            }
+            if(timer > 0)
             timer -= Time.deltaTime;
             if (timer <= 0 && numPowerups < max_powerups)
             {
                 //Debug.Log(numPowerups);
-                int randomPlatform;
-                if (HasSpace(redPlatforms, redPowerups))
-                {
-                    randomPlatform = Random.Range(0, redPlatforms.Length);
-                    while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
-                    {
-                        randomPlatform = Random.Range(0, redPlatforms.Length);
-                    }
-                    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
-                    pup.SetPowerupProperties(false, randomPlatform, redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
-                    redPowerups[randomPlatform] = true;
-                    numPowerups++;
-                }
+                //int randomPlatform;
+                //if (HasSpace(redPlatforms, redPowerups))
+                //{
+                //    randomPlatform = Random.Range(0, redPlatforms.Length);
+                //    while (redPowerups[randomPlatform] || redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                //    {
+                //        randomPlatform = Random.Range(0, redPlatforms.Length);
+                //    }
+                //    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, redPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
+                //    pup.SetPowerupProperties(false, randomPlatform, redPlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
+                //    redPowerups[randomPlatform] = true;
+                //    numPowerups++;
+                //}
 
-                if (HasSpace(bluePlatforms, bluePowerups))
+                //if (HasSpace(bluePlatforms, bluePowerups))
+                //{
+                //    randomPlatform = Random.Range(0, bluePlatforms.Length);
+                //    while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+                //    {
+                //        randomPlatform = Random.Range(0, bluePlatforms.Length);
+                //    }
+                //    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
+                //    pup.SetPowerupProperties(true, randomPlatform, bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
+                //    bluePowerups[randomPlatform] = true;
+                //    numPowerups++;
+                //}
+                if (HasSpace(grayPlatforms, grayPowerups))
                 {
-                    randomPlatform = Random.Range(0, bluePlatforms.Length);
-                    while (bluePowerups[randomPlatform] || bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
-                    {
-                        randomPlatform = Random.Range(0, bluePlatforms.Length);
-                    }
-                    Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, bluePlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
-                    pup.SetPowerupProperties(true, randomPlatform, bluePlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
-                    bluePowerups[randomPlatform] = true;
-                    numPowerups++;
+                    graySpawn();
                 }
-
                 timer = frequency;
             }
         }
 	}
-
+    private void graySpawn()
+    {
+        int randomPlatform;
+        randomPlatform = Random.Range(0, grayPlatforms.Length);
+        while (grayPowerups[randomPlatform] || grayPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+        {
+            randomPlatform = Random.Range(0, grayPlatforms.Length);
+        }
+        Powerup pup = PhotonNetwork.Instantiate(powerupPrefab.name, grayPlatforms[randomPlatform].transform.position + new Vector3(0, 1, 0), new Quaternion(45, 0, 45, 0), 0).GetComponent<Powerup>();
+        pup.SetPowerupProperties(true, randomPlatform, grayPlatforms[randomPlatform].GetComponent<PlatformNeighbors>());
+        grayPowerups[randomPlatform] = true;
+        numPowerups++;
+        
+    }
+    public void FindGrays()
+    {
+        grayPlatforms = GameObject.FindGameObjectsWithTag("GrayPlatform");
+    }
     bool HasSpace(GameObject[] platforms, bool[] powerups)
     {
         for (int i = 0; i < platforms.Length; i++)
