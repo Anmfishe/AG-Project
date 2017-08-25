@@ -45,6 +45,7 @@ public class VineTrap : MonoBehaviour {
             */
             if (playerStatus.dead)
             {
+                print(playerStatus.dead + " " + playerStatus.gameObject);
                 playerStatus.EnableMovement(true);
                 PhotonNetwork.Destroy(GetComponent<PhotonView>());
             }
