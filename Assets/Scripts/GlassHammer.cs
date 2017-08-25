@@ -53,7 +53,7 @@ public class GlassHammer : MonoBehaviour
     {
         PhotonView otherOwner;
         ITeamOwned teamOwnedShield;
-
+        /*
         if (other.gameObject.CompareTag("Shield"))
         {
             if (GetComponent<PhotonView>().isMine)
@@ -70,7 +70,7 @@ public class GlassHammer : MonoBehaviour
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
                     PhotonNetwork.Destroy(GetComponent<PhotonView>());
 
-                    /*
+                    
                     //Find if it has an owner with a photon view.
                     print("SHIELD OWNER: " + teamOwnedShield.owner.gameObject);
                     if (teamOwnedShield.owner.gameObject.GetPhotonView() != null)
@@ -89,21 +89,39 @@ public class GlassHammer : MonoBehaviour
                     {
                         return;
                     }
-                    */
+                    
                 }
             }
-        }
-        /*
-        else if (other.gameObject.CompareTag("Player"))
+        }*/
+        
+        if (other.gameObject.CompareTag("Player"))
         {
             if (GetComponent<PhotonView>().isMine)
             {
-                other.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-                // other.GetComponent<PlayerStatus>().TakeDamage(damage);
-                PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
-                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                if (other.transform.parent.GetComponent<TeamManager>().blue != blue)
+                {
+                    Collider[] hits;
+                    hits = Physics.OverlapSphere(transform.position, 5);
+                    foreach (Collider hit in hits)
+                    {
+                        if (hit.transform.tag == "Shield")
+                        {
+                            if (hit.transform.GetComponent<ITeamOwned>().blue != blue)
+                            {
+                                hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
+                            }
+                            else
+                            {
+                            }
+                        }
+                    }
+
+                    other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
+                    PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
+                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                }
             }
-        }*/
+        }
 
     }
 

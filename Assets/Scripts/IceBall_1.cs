@@ -5,10 +5,10 @@ using UnityEngine;
 public class IceBall_1 : MonoBehaviour {
     public GameObject IceBall_2;
     public bool blue;
-    float speed = 7.5f;
-    int damage = 10;
-    bool mine;
-    bool deflected;
+    private float speed = 7.5f;
+    private int damage = 10;
+    private bool mine;
+    private bool deflected;
     private float reflectForce = 100;
     public Rigidbody rb;
     public AudioClip deflectAudio;
@@ -38,7 +38,7 @@ public class IceBall_1 : MonoBehaviour {
             SteamVR_Controller.Input(spellcast.rightControllerIndex).TriggerHapticPulse(300);
 
 
-        if (Input.GetKeyDown("joystick button 15") && photonView.isMine) 
+        if (Input.GetKeyDown("joystick button 15") && photonView.isMine && !deflected) 
         {
             GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
             ib2.GetComponent<IceBall_2>().blue = blue;
