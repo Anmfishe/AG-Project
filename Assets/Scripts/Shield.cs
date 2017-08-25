@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour, ITeamOwned
+public class Shield : MonoBehaviour, IShield
 {
 
     public float shieldDuration = 10f;

@@ -9,3 +9,7 @@ interface ITeamOwned
     bool GetBlue();
 }
 
+interface IShield : ITeamOwned
+{
+    void DestroyShield();
+}

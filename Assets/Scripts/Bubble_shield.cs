@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubble_shield : MonoBehaviour, ITeamOwned
+public class Bubble_shield : MonoBehaviour, IShield
 {
    
     public float Bubble_shieldDuration = 10f;
