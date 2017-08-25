@@ -163,6 +163,11 @@ public class RoundManager : MonoBehaviour {
             PhotonNetwork.Destroy(curse.GetPhotonView());
         }
 
+        if (GameObject.FindGameObjectWithTag("Scoreboard") == null)
+        {
+            Debug.Log("COULD NOT FIND SCOREBOARD");
+        }
+
         scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         scoreboard.roundOver = false;
 
