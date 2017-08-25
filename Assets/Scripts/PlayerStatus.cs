@@ -75,8 +75,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             isOculus = true;
         }
 
-        bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
-
         //Get camera rig if this object belogns to the client.
         if (photonView.isMine)
         {
@@ -592,6 +590,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             this.transform.Find("armor").gameObject.SetActive(false);
             this.transform.Find("cape").gameObject.SetActive(false);
             this.transform.Find("scarf").gameObject.SetActive(false);
+
+            bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
 
             if (playerClass == PlayerClass.attack)
             {
