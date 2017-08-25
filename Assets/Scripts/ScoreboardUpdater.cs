@@ -133,7 +133,7 @@ public class ScoreboardUpdater : MonoBehaviour, IPunObservable {
             blueHeartsR[i] = heartObj;
 
         }
-        SetVisible(false);
+//        SetVisible(false);
     }
 		
 	

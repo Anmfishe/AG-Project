@@ -17,7 +17,7 @@ public class NetworkManager1 : Photon.PunBehaviour
     public GameObject hat_heal_red;
     GameObject[] hats;
 	public GameObject avatar;
-	public GameObject scoreboard;
+//	public GameObject scoreboard;
     public GlyphGuide guide;
     private GameObject cameraRig;
     public GameObject CameraRig
@@ -232,7 +232,7 @@ public class NetworkManager1 : Photon.PunBehaviour
 
         if (PhotonNetwork.isMasterClient)
 		{
-			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
+//			scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null);
 			HatSpawn ();
 		}
 
@@ -261,8 +261,8 @@ public class NetworkManager1 : Photon.PunBehaviour
             roundMan.GetComponent<RoundManager>().Subscribe(avatar, cameraRig);
         }
 
-        scoreboard.GetComponent<ScoreboardUpdater>().maximumScore = roundMan.GetComponent<RoundManager>().maxScore;
-        scoreboard.GetComponent<ScoreboardUpdater>().SetVisible(false);
+//        scoreboard.GetComponent<ScoreboardUpdater>().maximumScore = roundMan.GetComponent<RoundManager>().maxScore;
+//        scoreboard.GetComponent<ScoreboardUpdater>().SetVisible(false);
         /*
                 if (PunTeams.PlayersPerTeam[PunTeams.Team.blue].Count >= PunTeams.PlayersPerTeam[PunTeams.Team.red].Count)
                 {

@@ -28,16 +28,17 @@ public class RoundManager : MonoBehaviour {
     public GameObject restart_display;
     public GameObject countdown_display;
     private GameObject arena2;
+    public GameObject scoreboard_prefab;
     
     //TODO score ssystem, if you want it to end the round
     // Use this for initialization
     void Start() {
-        if (GameObject.FindGameObjectWithTag("Scoreboard")) {
+/*        if (GameObject.FindGameObjectWithTag("Scoreboard")) {
             scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         } else {
             print("COULD NOT FIND SCOREBOARD");
         }
-
+*/
         hatRoom = GameObject.FindGameObjectWithTag("HatRoom").GetComponent<Transform>();
 
         if (GameObject.FindGameObjectWithTag("Pregame"))
@@ -51,10 +52,7 @@ public class RoundManager : MonoBehaviour {
             {
                 practiceRoom.SetActive(true);
             }
-            
         }
-        
-        
     }
 
     // Update is called once per frame
@@ -119,8 +117,8 @@ public class RoundManager : MonoBehaviour {
         ChooseHats();
         //ShowFinalScoreboard();
         //       inBattlefield = false;
-        scoreboard.ResetScoreboard();
-        scoreboard.SetVisible(false);
+//        scoreboard.ResetScoreboard();
+//        scoreboard.SetVisible(false);
 
         timeElapsed = 0;
         
@@ -128,6 +126,7 @@ public class RoundManager : MonoBehaviour {
         if (PhotonNetwork.isMasterClient)
         {
             PhotonNetwork.Destroy(arena2.gameObject);
+            PhotonNetwork.Destroy(scoreboard.gameObject);
         }
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = false;
 
@@ -147,9 +146,12 @@ public class RoundManager : MonoBehaviour {
             {
                 arena2 = PhotonNetwork.InstantiateSceneObject(arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
                 arenaNum = Random.Range(0, arenas.Length);
+
+                scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard_prefab.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null).GetComponent<ScoreboardUpdater>();
+                scoreboard.maximumScore = maxScore;
             }
         }
-        scoreboard.SetVisible(true);
+//        scoreboard.SetVisible(true);
         print("Starting Round");
         Display_Countdown();
         foreach (GameObject playerRCP in GameObject.FindGameObjectsWithTag("Player"))
