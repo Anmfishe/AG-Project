@@ -13,6 +13,8 @@ using UnityEngine.VR;
 
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
+
+    public PadTeleport padTeleport;
     public GameObject DeathSprite;
     public PlayerClass playerClass;
     public bool kill_spells = true;
@@ -86,7 +88,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
-//        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        //        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         if (GameObject.FindGameObjectWithTag("Arena") != null && photonView.isMine)
         {
             waitingForNextRound = true;
@@ -324,6 +326,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 // Increment scoreboard
                 bool blueScored = !this.transform.parent.GetComponent<TeamManager>().blue;
                 self_photonview = GetComponent<PhotonView>();
+                padTeleport.ResetTeleport();
                 if (blueScored)
                 {
                     //               photonView.RPC("UpdateScoreboard", PhotonTargets.All, blueScored);

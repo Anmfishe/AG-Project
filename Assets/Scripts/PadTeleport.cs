@@ -10,11 +10,12 @@ public class PadTeleport : MonoBehaviour
     public LineRenderer lineRend;
     public Material reticleMat;
 
-	bool isOculus;
+    bool isOculus;
 
     public Gradient highlightColor;
 
     private GameObject reticle;
+    public GameObject currPad;
 
     private float reticleSize = 0.02f;
     private float reticleSizeUpdate = 0.05f;
@@ -31,7 +32,7 @@ public class PadTeleport : MonoBehaviour
 
     bool active;
     public Transform origin;
-    Transform padHit;
+    public Transform padHit;
     bool neutral;
     Vector3 warpSpot;
 
@@ -39,24 +40,24 @@ public class PadTeleport : MonoBehaviour
     bool set = false;
     GameObject rightHand;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         spellcast = GetComponent<SpellcastingGestureRecognition>();
         beamTrail = lineRend.GetComponent<BeamTrail>();
-        
+
         // Set up the reticle
         reticle = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         reticle.transform.localScale = new Vector3(reticleSize, reticleSize, reticleSize);
         reticle.GetComponent<Renderer>().material = reticleMat;
         reticle.SetActive(false);
 
-		if (VRDevice.model.ToLower().Contains("oculus"))
-		{
-			isOculus = true;
-		}
+        if (VRDevice.model.ToLower().Contains("oculus"))
+        {
+            isOculus = true;
+        }
     }
 
-    
+
 
 
     private void FixedUpdate()
@@ -82,7 +83,7 @@ public class PadTeleport : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         Vector3 fwd = origin.transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
@@ -97,11 +98,11 @@ public class PadTeleport : MonoBehaviour
 
             if (Physics.Raycast(origin.transform.position, fwd, out hit, 100, blueLayersToIgnore))
             {
-                if(hit.transform != padHit)
+                if (hit.transform != padHit)
                 {
                     disableHighlight(padHit, blue);
                     padHit = hit.transform;
-                    
+
                 }
                 warpSpot = hit.point;
                 beamTrail.destination = warpSpot;
@@ -128,7 +129,7 @@ public class PadTeleport : MonoBehaviour
                         warpSpot = downHit.point;
                         warpSpot += ((Vector3.Normalize(transform.position - downHit.point)) * .25f);
                         reticle.transform.position = downHit.point;
-                        reticle.transform.position = warpSpot; 
+                        reticle.transform.position = warpSpot;
                     }
                 }
 
@@ -165,7 +166,7 @@ public class PadTeleport : MonoBehaviour
             lineRend.enabled = false;
         }
 
-		if ((Input.GetKeyDown("joystick button 9") && !isOculus) || (Input.GetKeyDown("joystick button 0") && isOculus))
+        if ((Input.GetKeyDown("joystick button 9") && !isOculus) || (Input.GetKeyDown("joystick button 0") && isOculus))
         {
             active = true;
             beamTrail.destination = origin.transform.position + origin.transform.forward * 10f;
@@ -176,23 +177,38 @@ public class PadTeleport : MonoBehaviour
         }
 
         // If we release the button
-		if ((Input.GetKeyUp("joystick button 9") && !isOculus) || (Input.GetKeyUp("joystick button 0") && isOculus))
+        if ((Input.GetKeyUp("joystick button 9") && !isOculus) || (Input.GetKeyUp("joystick button 0") && isOculus))
         {
             active = false;
             lineRend.enabled = false;
             // disable reticle
             reticle.SetActive(false);
 
-            if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
+            if (neutral == false && padHit != null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
+            {
+                if (padHit != null)
                 {
-               // print("not NEUTRAL");
-                basicTeleport.Teleport(padHit.transform, padHit.transform.position);
-                }
+                    // print("not NEUTRAL");
+                    basicTeleport.Teleport(padHit.transform, padHit.transform.position);
 
-                else if (neutral == true)
-                {
-                    basicTeleport.Teleport(padHit, warpSpot);
+                    if (currPad != null)
+                    {
+                        currPad.transform.parent.GetComponent<PlatformNeighbors>().hasPlayer = false;
+                    }
+                    currPad = padHit.gameObject;
+                    currPad.transform.parent.GetComponent<PlatformNeighbors>().hasPlayer = true;
                 }
+            }
+
+            else if (neutral == true)
+            {
+                basicTeleport.Teleport(padHit, warpSpot);
+                if (currPad != null)
+                {
+                    currPad.transform.parent.GetComponent<PlatformNeighbors>().hasPlayer = false;
+                }
+                currPad = null;
+            }
 
             // Disable highlight
             if (padHit != null)
@@ -201,15 +217,21 @@ public class PadTeleport : MonoBehaviour
                 padHit = null;
             }
 
-        lineRend.enabled = false;
+            lineRend.enabled = false;
 
         }
 
     }
 
+    public void ResetTeleport()
+    {
+        if (currPad != null)
+            currPad.transform.parent.GetComponent<PlatformNeighbors>().hasPlayer = false;
+    }
+
     private void OnEnable()
     {
-       
+
     }
     private void OnDisable()
     {
@@ -225,7 +247,7 @@ public class PadTeleport : MonoBehaviour
             {
                 highlighted.parent.GetChild(1).gameObject.SetActive(false);
             }
-        }          
+        }
     }
 
     public void enableHighlight(Transform highlighted, bool myBlue)
@@ -233,7 +255,7 @@ public class PadTeleport : MonoBehaviour
         if (highlighted.parent.childCount > 1)
         {
             if (highlighted.parent.GetChild(1).gameObject.GetActive() == true)
-                   return;
+                return;
         }
 
         var mainModule = highlighted.parent.GetChild(1).gameObject.GetComponent<ParticleSystem>().main;

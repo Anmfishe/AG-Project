@@ -129,6 +129,9 @@ public class TeamManager : MonoBehaviour {
             {
                 blueSquares = GameObject.FindGameObjectsWithTag("BluePlatform");
                 randPlatform = blueSquares[Random.Range(0, blueSquares.Length - 1)].transform;
+                randPlatform.GetComponent<PlatformNeighbors>().hasPlayer = true;
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().playerStatus.padTeleport.currPad = randPlatform.transform.GetChild(0).gameObject;
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().playerStatus.padTeleport.padHit = randPlatform.transform.GetChild(0);
             }
             if (!VRDevice.model.ToLower().Contains("oculus"))
             {

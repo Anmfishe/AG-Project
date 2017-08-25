@@ -460,11 +460,11 @@ public class SpellcastingGestureRecognition : MonoBehaviour
     }
     public void SetRandomSuperSpell()
     {
-        
+
         currentSpell = lightBlade;
         currentSpellName = "lightBlade";
         currentSpellGradient = lightBladeGradient;
-                
+
 
         hasSpell = true;
 
@@ -493,113 +493,113 @@ public class SpellcastingGestureRecognition : MonoBehaviour
 
         switch (gestureName)
         {
-        case "Jay":
-            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && fireCD <= 0)
-            {
-                SetSpell(fireball, "fire", fireballGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (fireCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+            case "Jay":
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && fireCD <= 0)
+                {
+                    SetSpell(fireball, "fire", fireballGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (fireCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Shield":
-            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && shieldCD <= 0)
-            {
-                SetSpell(shield, "shield", shieldGradient);
-                gestureStartColor = Color.green;
-				gestureEndColor = Color.green;
-            }
-            else if (shieldCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-				audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Shield":
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && shieldCD <= 0)
+                {
+                    SetSpell(shield, "shield", shieldGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (shieldCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Elle":
-            if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && bubbleCD <= 0)
-            {
-                SetSpell(Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (bubbleCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-				audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Elle":
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && bubbleCD <= 0)
+                {
+                    SetSpell(Bubble_shield, "Bubble_shield", Bubble_shieldGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (bubbleCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Heal":
-            if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && healCD <= 0)
-            {
-                SetSpell(heal, "heal", healGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (healCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Heal":
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && healCD <= 0)
+                {
+                    SetSpell(heal, "heal", healGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (healCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Spring":
-            if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && vinesCD <= 0)
-            {
-                SetSpell(vines, "vines", vinesGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (vinesCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Spring":
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && vinesCD <= 0)
+                {
+                    SetSpell(vines, "vines", vinesGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (vinesCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Bolt":
-            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && iceCD <= 0)
-            {
-                SetSpell(iceball, "iceball", iceballGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (iceCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Bolt":
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && iceCD <= 0)
+                {
+                    SetSpell(iceball, "iceball", iceballGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (iceCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        case "Wave":
-            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
-            {
-                SetSpell(meteor, "meteor", meteorGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (meteorCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+                break;
+            case "Wave":
+                if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && meteorCD <= 0)
+                {
+                    SetSpell(meteor, "meteor", meteorGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (meteorCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
+                break;
             case "OpenFrame":
-                if ((playerStatus.playerClass == PlayerClass.support|| playerStatus.playerClass == PlayerClass.all || noHats == true) && hammerCD <= 0)
+                if ((playerStatus.playerClass == PlayerClass.support || playerStatus.playerClass == PlayerClass.all || noHats == true) && hammerCD <= 0)
                 {
                     SetSpell(hammer, "hammer", hammerGradient);
                     gestureStartColor = Color.green;
@@ -614,93 +614,94 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 }
                 break;
             case "Star":
-            if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
-            {
-                SetSpell(platformSteal, "platformSteal", platformStealGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (flipCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_cooldown);
+                if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && flipCD <= 0)
+                {
+                    SetSpell(platformSteal, "platformSteal", platformStealGradient);
+                    gestureStartColor = Color.green;
+                    gestureEndColor = Color.green;
+                }
+                else if (flipCD > 0)
+                {
+                    gestureStartColor = Color.blue;
+                    gestureEndColor = Color.blue;
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
-            break;
-        //case "Zed":
-        //    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-        //    {
-        //        SetSpell(lightBlade, "lightBlade", lightBladeGradient);
-        //        gestureStartColor = Color.green;
-        //        gestureEndColor = Color.green;
-        //    }
-        //    else if (swordCD > 0)
-        //    {
-        //        gestureStartColor = Color.blue;
-        //        gestureEndColor = Color.blue;
-        //        audioSource.PlayOneShot(cast_failure);
-        //            Notify_Cooldown();
-        //        }
-        //    break;
-        /*case "Zed":
-            if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-            {
-                SetSpell(lightBlade, "lightBlade", lightBladeGradient);
-                gestureStartColor = Color.green;
-                gestureEndColor = Color.green;
-            }
-            else if (swordCD > 0)
-            {
-                gestureStartColor = Color.blue;
-                gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
-                    Notify_Cooldown();
-                }
-            break;
-          */
-    //    case "Hourglass":
-    //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
-    //        {
-    //            SetSpell(disenchant, "disenchant", disenchantGradient);
-    //            gestureStartColor = Color.green;
-    //            gestureEndColor = Color.green;
-    //        }
-    //        else if (swordCD > 0)
-    //        {
-    //            gestureStartColor = Color.blue;
-    //            gestureEndColor = Color.blue;
-    //            audioSource.PlayOneShot(cast_failure);
-				//Notify_Cooldown ();
-    //        }
-    //        break;
+                break;
+                //case "Zed":
+                //    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+                //    {
+                //        SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                //        gestureStartColor = Color.green;
+                //        gestureEndColor = Color.green;
+                //    }
+                //    else if (swordCD > 0)
+                //    {
+                //        gestureStartColor = Color.blue;
+                //        gestureEndColor = Color.blue;
+                //        audioSource.PlayOneShot(cast_failure);
+                //            Notify_Cooldown();
+                //        }
+                //    break;
+                /*case "Zed":
+                    if ((playerStatus.playerClass == PlayerClass.attack || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+                    {
+                        SetSpell(lightBlade, "lightBlade", lightBladeGradient);
+                        gestureStartColor = Color.green;
+                        gestureEndColor = Color.green;
+                    }
+                    else if (swordCD > 0)
+                    {
+                        gestureStartColor = Color.blue;
+                        gestureEndColor = Color.blue;
+                        audioSource.PlayOneShot(cast_failure);
+                            Notify_Cooldown();
+                        }
+                    break;
+                  */
+                //    case "Hourglass":
+                //        if ((playerStatus.playerClass == PlayerClass.heal || playerStatus.playerClass == PlayerClass.all || noHats == true) && swordCD <= 0)
+                //        {
+                //            SetSpell(disenchant, "disenchant", disenchantGradient);
+                //            gestureStartColor = Color.green;
+                //            gestureEndColor = Color.green;
+                //        }
+                //        else if (swordCD > 0)
+                //        {
+                //            gestureStartColor = Color.blue;
+                //            gestureEndColor = Color.blue;
+                //            audioSource.PlayOneShot(cast_failure);
+                //Notify_Cooldown ();
+                //        }
+                //        break;
         }
 
         //Set gesture as successful.
         if (gestureRig.rightCapture.myTrail != null) gestureRig.rightCapture.myTrail.UpdateRenderer(gestureStartColor, gestureEndColor, gestureRig.gestureMaterial);
     }
 
-	void Notify_Cooldown() {
-		// look for notification manager if it isn't already set
-		if (nm == null)
-		{
-			if (Camera.main == null)
-			{
-				Debug.Log ("SpellcastingGestureRecognition.cs : Notify_Cooldown() : Could not find Camera.main");
-				return;
-			}
+    void Notify_Cooldown()
+    {
+        // look for notification manager if it isn't already set
+        if (nm == null)
+        {
+            if (Camera.main == null)
+            {
+                Debug.Log("SpellcastingGestureRecognition.cs : Notify_Cooldown() : Could not find Camera.main");
+                return;
+            }
 
-			nm = Camera.main.GetComponent<NotificationManager> ();
-			if (nm == null)
-			{
-				Debug.Log ("SpellcastingGestureRecognition.cs : Notify_Cooldown() : Could not find notification manager on Camera.main");
-				return;
-			}
-		}
+            nm = Camera.main.GetComponent<NotificationManager>();
+            if (nm == null)
+            {
+                Debug.Log("SpellcastingGestureRecognition.cs : Notify_Cooldown() : Could not find notification manager on Camera.main");
+                return;
+            }
+        }
 
-		//
-		nm.SetNotification("Spell is not ready");
-	}
+        //
+        nm.SetNotification("Spell is not ready");
+    }
 
     void OnGestureRejected(string error, string gestureName = null, double confidenceValue = 0)
     {
@@ -719,6 +720,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
         book = avatar.Find("Left Hand").Find("SpellBook");
         book.GetComponent<BookLogic>().spellcast = this;
         playerStatus = torso.GetComponent<PlayerStatus>();
+        playerStatus.padTeleport = GetComponent<PadTeleport>();
     }
 
     //Casts selected spell.
@@ -784,7 +786,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
                     spellInstance.GetComponent<Bubble_shield>().owner = torso;
                 }
-               bubbleCD = cooldowns.bubbleCD;
+                bubbleCD = cooldowns.bubbleCD;
                 break;
             case "heal":
                 // Heal others
