@@ -75,8 +75,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             isOculus = true;
         }
 
-        bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
-
         //Get camera rig if this object belogns to the client.
         if (photonView.isMine)
         {
@@ -88,7 +86,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
-        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+//        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         if (GameObject.FindGameObjectWithTag("Arena") != null && photonView.isMine)
         {
             waitingForNextRound = true;
@@ -311,6 +309,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
+            if (myScoreboard == null)
+            {
+                myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+            }
             if (playerClass == PlayerClass.none || myScoreboard.roundOver)
             {
 
@@ -448,8 +450,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             //dead = false;
             current_health = max_health;
             self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
+
             //print(2);
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+
             // cameraRig.transform.position = respawnPt.position;
             //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
             if (playerClass != PlayerClass.none)
@@ -594,9 +598,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             this.transform.Find("cape").gameObject.SetActive(false);
             this.transform.Find("scarf").gameObject.SetActive(false);
 
+            bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
+
             if (playerClass == PlayerClass.attack)
             {
-                bookLogic.index = bookLogic.attackBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "conjurer").gameObject.SetActive(true);
@@ -604,7 +610,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
             if (playerClass == PlayerClass.support)
             {
-                bookLogic.index = bookLogic.supportBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "guardian").gameObject.SetActive(true);
@@ -613,7 +619,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             }
             if (playerClass == PlayerClass.heal)
             {
-                bookLogic.index = bookLogic.healBottom;
+                bookLogic.index = 0;
 
                 //Switch corresponding wand on.
                 this.transform.parent.Find(wandStickPath + "shaman").gameObject.SetActive(true);
