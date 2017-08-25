@@ -92,7 +92,7 @@ public class FireballNew : MonoBehaviour
             //Delete this game object.
             DestroyFireball();
         }
-        else if(other.CompareTag("put"))
+        else if(other.CompareTag("put")) //it's the head.
         {
             //print("hit on head");
             //Apply damage to object if it has the Player tag and implements the PlayerStatus script.
@@ -149,6 +149,25 @@ public class FireballNew : MonoBehaviour
             //DestroyFireball();
             this.transform.LookAt(originalPosition);
             this.transform.position += this.transform.forward * 1;
+        }
+        else if(other.CompareTag("Curse"))
+        {
+            //Check if it has the VineTrap component.
+            if(other.transform.GetComponent<VineTrap>())
+            {
+                //Check if they're from different teams.
+                if(other.transform.GetComponent<VineTrap>().blue != this.blue)
+                {
+                    //RPC call to destroy vines.
+                    other.gameObject.GetPhotonView().RPC("DestroyVines", PhotonTargets.All);
+
+                    //Instantiate new explosion.
+                    GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+                    //Delete this game object.
+                    DestroyFireball();
+                }
+            }
         }
         else if (other.CompareTag("Spell"))
         {

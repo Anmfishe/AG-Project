@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble_shieldDuration: 10
-  hitSpark: {fileID: 4225959088866098, guid: 9948c8d24c19e034f8ad9eac8548829e, type: 2}
+  hitSpark: {fileID: 4051241014582760, guid: 7c04fb74f6ec83345b35b302f8f91b76, type: 2}
 --- !u!114 &114813682453856008
 MonoBehaviour:
   m_ObjectHideFlags: 1

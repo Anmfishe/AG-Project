@@ -113,17 +113,16 @@ public class GlassHammer : MonoBehaviour
                         if (hit.transform.tag == "Shield")
                         {
                             print("ShieldTeam: " + hit.transform.GetComponent<IShield>().GetBlue() + " | GlassHammerTeam: " + blue);
-                            hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
-                            /*
+                            //hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
+                            
                             if (hit.transform.GetComponent<IShield>().GetBlue() != blue)
                             {
-                                //
                                 hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                             }
                             else
                             {
 
-                            }*/
+                            }
                         }
                     }
 

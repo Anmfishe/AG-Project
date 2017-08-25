@@ -10,7 +10,7 @@ public class LightBlade : MonoBehaviour {
     private bool isDecaying = false;
     public float duration = 1;
 	public float destroyTime = 5;
-    public float hitBonusTime = 0.1f;
+    public float hitBonusTime = 0.01f;
     private float durationTimer = 0;
 	private float startTime;
 	public float damage = 100;
@@ -35,15 +35,19 @@ public class LightBlade : MonoBehaviour {
 			this.transform.rotation = wand.rotation;
 
             //Check if sword has lasted 
-			if ((Time.time - startTime) > destroyTime && !isDecaying)
-				PhotonNetwork.Destroy(GetComponent<PhotonView>());
-
             if (isDecaying)
             {
                 if (durationTimer > 0)
                     durationTimer -= Time.deltaTime;
                 else
                     PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            }
+            else
+            {
+                if((Time.time - startTime) > destroyTime)
+                {
+                    PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                }
             }
         }
     }
@@ -59,17 +63,17 @@ public class LightBlade : MonoBehaviour {
 					other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
 					PhotonNetwork.Instantiate (hitSpark.name, other.transform.position, new Quaternion (), 0);
 
-					if (isDecaying)
-						durationTimer += hitBonusTime;
-					else 
-					{
-						durationTimer = duration;
-						isDecaying = true;
-					}
+                    if (isDecaying)
+                    {
+                        durationTimer += hitBonusTime;
+                    }
+                    else
+                    {
+                        durationTimer = duration;
+                        isDecaying = true;
+                    }
 				}
 			}
-
-			print ("my blue: " + blue + " | their blue: " + other.transform.parent.GetComponent<TeamManager> ().blue); 
         }
     }
 
