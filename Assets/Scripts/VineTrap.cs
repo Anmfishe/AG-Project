@@ -23,6 +23,9 @@ public class VineTrap : MonoBehaviour {
 
     private PhotonView player_photonView;
     private bool first = true;
+
+    public bool blue;
+
 	// Use this for initialization
 	void Start () {
         SetUp();
@@ -84,7 +87,7 @@ public class VineTrap : MonoBehaviour {
         StartCoroutine(DestroyAfterSeconds(duration));
     }
 
-[PunRPC]
+    [PunRPC]
      public void DestroyVines()
      {
          if (playerStatus != null)

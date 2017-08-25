@@ -279,8 +279,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     public void unset_BubbleShield()
     {
-        StopCoroutine("setBubble_shield");
         bubbled = false;
+        StopCoroutine("setBubble_shield");
     }
 
     public IEnumerator setBubble_shield(float TtimeCD)

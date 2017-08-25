@@ -812,6 +812,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 {
                     spellInstance = PhotonNetwork.Instantiate(vines.name, target.result.position, new Quaternion(), 0);
                     spellInstance.GetComponent<VineTrap>().SetPlatform(target.result.GetComponent<PlatformNeighbors>());
+                    spellInstance.GetComponent<VineTrap>().blue = avatar.GetComponent<TeamManager>().blue;
                     vinesCD = cooldowns.vinesCD;
 
                     if (padHit != null)
