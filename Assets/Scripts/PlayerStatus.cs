@@ -329,6 +329,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 //cameraRig.GetComponent<PlatformController>().lerp = false;
                 //vrtk_spr.enabled = false;
                 cameraRig.GetComponent<PadTeleport>().enabled = false;
+                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
                 cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
 
                 StartCoroutine("DelayToPenaltyBox");
@@ -447,6 +448,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 //cameraRig.GetComponent<PlatformController>().canMove = true;
                 // vrtk_spr.enabled = true;
                 cameraRig.GetComponent<PadTeleport>().enabled = true;
+                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = true;
                 cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
             }
             else
