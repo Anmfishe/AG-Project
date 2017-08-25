@@ -8,7 +8,7 @@ public class LightBlade : MonoBehaviour {
 	public Transform wand;
 	private bool blue;
     private bool isDecaying = false;
-    public float duration = 1;
+    public float duration = 4;
 	public float destroyTime = 5;
     public float hitBonusTime = 0.05f;
     private float durationTimer = 0;
@@ -63,12 +63,8 @@ public class LightBlade : MonoBehaviour {
 					other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
 					PhotonNetwork.Instantiate (hitSpark.name, other.transform.position, new Quaternion (), 0);
 
-                    if (isDecaying)
-                    {
-                        durationTimer += hitBonusTime;
-                    }
-                    else
-                    {
+                    if (!isDecaying)
+                    { 
                         durationTimer = duration;
                         isDecaying = true;
                     }

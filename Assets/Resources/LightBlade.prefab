@@ -340,10 +340,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSpark: {fileID: 1874569769111874, guid: 1c31234525268414889cd4864f2ff044, type: 2}
   wand: {fileID: 0}
-  duration: 1
+  duration: 0.75
   destroyTime: 5
   hitBonusTime: 0.05
-  damage: 30
+  damage: 50
 --- !u!114 &114671000124799578
 MonoBehaviour:
   m_ObjectHideFlags: 1

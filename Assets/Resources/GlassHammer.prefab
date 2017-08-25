@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSpark: {fileID: 1749339063556508, guid: 9948c8d24c19e034f8ad9eac8548829e, type: 2}
   wand: {fileID: 0}
-  distanceFromHand: 0
+  distanceFromHand: 0.25
   destroyTime: 10
   damage: 50
   hammerRadius: 5
@@ -316,8 +316,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114132861486305692}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 13
-  instantiationId: 13
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!120 &120838216261072522
