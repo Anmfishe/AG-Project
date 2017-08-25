@@ -11,6 +11,7 @@ public class Bubble_shield : MonoBehaviour, ITeamOwned
     Collider other;
     public bool blue { get; set; }
     public Transform owner { get; set; }
+    public Transform hitSpark;
 
     //Transform Bubble_shieldSpot;
 
@@ -23,24 +24,21 @@ public class Bubble_shield : MonoBehaviour, ITeamOwned
     // Update is called once per frame
     void Update()
     {
-       
-            if (this.GetComponent<PhotonView>().isMine)
+        if (this.GetComponent<PhotonView>().isMine)
+        {
+            if (torso == null)
             {
-                //if (other.transform.parent.GetComponent<TeamManager>().blue = blue)
-                //{
-                    if (torso == null)
-                    {
-                        return;
-                    }
+                return;
+            }
 
-                    this.transform.position = torso.position;
-                    this.transform.rotation = torso.rotation;
+            this.transform.position = torso.position;
+            this.transform.rotation = torso.rotation;
+
             if (Bubble_shieldTimer <= 0)
-            PhotonNetwork.Destroy(gameObject);
-               // }
+                PhotonNetwork.Destroy(gameObject);
+            else
+            Bubble_shieldTimer -= Time.deltaTime;
         }
-        Bubble_shieldTimer -= Time.deltaTime;
-        
     }
 
     public void SetTorso(Transform torso_)
@@ -65,5 +63,9 @@ public class Bubble_shield : MonoBehaviour, ITeamOwned
     public void DestroyShield()
     {
         Bubble_shieldTimer = 0;
+        torso.GetComponent<PhotonView>().RPC("unset_BubbleShield", PhotonTargets.All);
+
+        if (hitSpark != null)
+            PhotonNetwork.Instantiate(hitSpark.name, transform.position, new Quaternion(), 0);
     }
 }

@@ -45,7 +45,7 @@ public class Powerup : MonoBehaviour {
         pn = pn_;
 
         pn.hasPowerup = true;
-        pn.GetComponent<PhotonView>().RPC("HasPowerups2", PhotonTargets.Others, true);
+        pn.GetComponent<PhotonView>().RPC("HasPowerup2", PhotonTargets.Others, true);
 
         //Debug.Log("Powerup.cs : SetPowerupProperties : isBlue=" + isBlue_ + " platformIndex=" + platformIndex_);
     }
@@ -59,7 +59,7 @@ public class Powerup : MonoBehaviour {
                 _other = other.gameObject;
                 GetComponent<PhotonView>().RPC("PUhit", PhotonTargets.All, null);
                 pn.hasPowerup = false;
-                pn.GetComponent<PhotonView>().RPC("HasPowerups2", PhotonTargets.Others, false);
+                pn.GetComponent<PhotonView>().RPC("HasPowerup2", PhotonTargets.Others, false);
             }
         }
     }

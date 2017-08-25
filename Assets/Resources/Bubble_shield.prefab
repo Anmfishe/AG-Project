@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4610888308499040}
   - component: {fileID: 33709112634627612}
-  - component: {fileID: 135087906570169796}
   - component: {fileID: 23687626872638758}
   - component: {fileID: 114813682453856008}
   m_Layer: 0
@@ -45,6 +44,7 @@ GameObject:
   - component: {fileID: 114076288899021916}
   - component: {fileID: 33136295929972426}
   - component: {fileID: 82649502659006958}
+  - component: {fileID: 135020355093525570}
   m_Layer: 0
   m_Name: Bubble_shield
   m_TagString: Shield
@@ -61,7 +61,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4254889507005312}
   - component: {fileID: 33506369220761592}
-  - component: {fileID: 135570898578211680}
   - component: {fileID: 23598113743730510}
   - component: {fileID: 114647807510881428}
   m_Layer: 0
@@ -77,9 +76,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185784538995728}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.63699, y: 2.1057832, z: -2.7382934}
-  m_LocalScale: {x: 1.5702606, y: 1.5702608, z: 1.5702608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4610888308499040}
   - {fileID: 4254889507005312}
@@ -438,6 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble_shieldDuration: 10
+  hitSpark: {fileID: 4225959088866098, guid: 9948c8d24c19e034f8ad9eac8548829e, type: 2}
 --- !u!114 &114813682453856008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -451,27 +451,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 65
   reverse: 0
---- !u!135 &135087906570169796
+--- !u!135 &135020355093525570
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1105638041387234}
+  m_GameObject: {fileID: 1185784538995728}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135570898578211680
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576915733384926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}

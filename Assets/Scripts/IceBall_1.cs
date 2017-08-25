@@ -21,7 +21,7 @@ public class IceBall_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         photonView = GetComponent<PhotonView>();
-        StartCoroutine(lifetime());
+        StartCoroutine("lifetime");
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
 
@@ -88,9 +88,9 @@ public class IceBall_1 : MonoBehaviour {
           //  PhotonNetwork.Destroy(photonView);
         
     }
-    IEnumerator lifetime()
+    IEnumerator lifetime(float duration = 4)
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(duration);
         GameObject ib2 = PhotonNetwork.Instantiate(IceBall_2.name, transform.position, Quaternion.identity, 0);
         ib2.GetComponent<IceBall_2>().blue = blue;
      //   print("BLUE:" + blue);
@@ -103,6 +103,8 @@ public class IceBall_1 : MonoBehaviour {
 
     void Reflect()
     {
+        StopCoroutine("lifetime");
+        StartCoroutine("lifetime", 2);
         deflected = true;
         rb.velocity = Vector3.zero;
         transform.LookAt(Camera.main.transform);

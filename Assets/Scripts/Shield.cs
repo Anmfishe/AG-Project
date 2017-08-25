@@ -12,6 +12,7 @@ public class Shield : MonoBehaviour, ITeamOwned
     Transform shieldSpot;
     public bool blue { get; set; }
     public Transform owner { get; set; }
+    public Transform hitSpark;
 
 
     // Use this for initialization
@@ -61,5 +62,8 @@ public class Shield : MonoBehaviour, ITeamOwned
     public void DestroyShield()
     {
         shieldTimer = 0;
+
+        if(hitSpark != null)
+            PhotonNetwork.Instantiate(hitSpark.name, transform.position, new Quaternion(), 0);
     }
 }

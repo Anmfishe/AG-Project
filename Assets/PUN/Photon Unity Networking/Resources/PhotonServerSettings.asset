@@ -86,4 +86,6 @@ MonoBehaviour:
   - Die
   - Respawn
   - deathSpriteActive
+  - SetSpellcastingEnabled
+  - unset_BubbleShield
   DisableAutoOpenWizard: 1

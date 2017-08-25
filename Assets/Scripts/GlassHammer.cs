@@ -100,6 +100,7 @@ public class GlassHammer : MonoBehaviour
             {
                 if (other.transform.parent.GetComponent<TeamManager>().blue != blue)
                 {
+                    //Find any nearby shields and destroy them.
                     Collider[] hits;
                     hits = Physics.OverlapSphere(transform.position, 5);
                     foreach (Collider hit in hits)
@@ -116,6 +117,7 @@ public class GlassHammer : MonoBehaviour
                         }
                     }
 
+                    //Damage player.
                     other.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
                     PhotonNetwork.Instantiate(hitSpark.name, other.transform.position, new Quaternion(), 0);
                     PhotonNetwork.Destroy(GetComponent<PhotonView>());
