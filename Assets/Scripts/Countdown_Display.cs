@@ -71,7 +71,14 @@ public class Countdown_Display : MonoBehaviour {
             {
                 countdownDone = true;
                 if (GameObject.Find("Announcer").GetComponent<AudioSource>().isPlaying == false)
+                {
                     GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("roundStart");
+                }
+
+                foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    go.GetComponent<PhotonView>().RPC("SetSpellcastingEnabled", PhotonTargets.AllBuffered, true);
+                }
             }
             y_vel += y_acceleration * Time.deltaTime;
             this.transform.position += new Vector3(0, y_vel, 0);

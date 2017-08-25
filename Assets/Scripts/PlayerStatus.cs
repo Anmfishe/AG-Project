@@ -14,20 +14,20 @@ using UnityEngine.VR;
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
     public GameObject DeathSprite;
-	public PlayerClass playerClass;
+    public PlayerClass playerClass;
     public bool kill_spells = true;
-	private GameObject[] hats;
-	private GameObject[] players;
+    private GameObject[] hats;
+    private GameObject[] players;
 
-	private BookLogic bookLogic;
+    private BookLogic bookLogic;
 
-	private Transform respawnPt;
+    private Transform respawnPt;
     private Transform timeOutPt;
     public PhotonView photonView;
     public PlayerSoundManager psm;
     public GameObject cameraRig;
     private TextMesh deadText;
-    
+
     // Invulnerability frames
     private float startTime;
     float invulnerableFrames = 0.5f;
@@ -36,12 +36,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     private float deathTime = 0f;
     public float respawnLength = 2f;
     private bool waitingForNextRound = false;
-	bool rotated = false;
-	bool isOculus = false;
+    bool rotated = false;
+    bool isOculus = false;
     [HideInInspector]
     public bool bubbled = false;
 
-	ScoreboardUpdater myScoreboard;
+    ScoreboardUpdater myScoreboard;
 
     PhotonView self_photonview;
     private GameObject rightHand;
@@ -50,15 +50,15 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
     public GameObject hat;
     public bool onTeleporter = false;
-	PenaltyManager pm;
+    PenaltyManager pm;
 
     public float max_health = 100;
-  //  [HideInInspector]
+    //  [HideInInspector]
     public float current_health = 100;
     //   public int hp = 100;
 
-	float rightAnalogueHoriz;
-	float oculusGrip;
+    float rightAnalogueHoriz;
+    float oculusGrip;
 
     float deltaTime;
     float fps;
@@ -66,16 +66,16 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     // Use this for initialization
     void Start()
     {
-		cameraRig = Camera.main.transform.parent.gameObject;
-		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
-		hats = GameObject.FindGameObjectsWithTag("Grabbable");
+        cameraRig = Camera.main.transform.parent.gameObject;
+        bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
+        hats = GameObject.FindGameObjectsWithTag("Grabbable");
         self_photonview = GetComponent<PhotonView>();
-		if (VRDevice.model.ToLower ().Contains ("oculus"))
-		{
-			isOculus = true;
-		}
+        if (VRDevice.model.ToLower().Contains("oculus"))
+        {
+            isOculus = true;
+        }
 
-		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
+        bookLogic = transform.parent.GetComponentInChildren<BookLogic>();
 
         //Get camera rig if this object belogns to the client.
         if (photonView.isMine)
@@ -84,12 +84,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             cameraRig = Camera.main.transform.parent.gameObject;
             deadText = Camera.main.transform.GetChild(0).GetComponent<TextMesh>();
         }
-        
+
         //Get's the location where the player will respawn.
         timeOutPt = GameObject.FindGameObjectWithTag("TimeOut").transform;
         respawnPt = GameObject.FindGameObjectWithTag("RespawnDefault").transform;
         myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-        if(GameObject.FindGameObjectWithTag("Arena") != null && photonView.isMine)
+        if (GameObject.FindGameObjectWithTag("Arena") != null && photonView.isMine)
         {
             waitingForNextRound = true;
             cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
@@ -97,7 +97,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
             cameraRig.GetComponent<PadTeleport>().enabled = false;
             //if (!VRDevice.model.ToLower().Contains("oculus"))
-                //cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
+            //cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
             //cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(timeOutPt, timeOutPt.position);
         }
     }
@@ -107,40 +107,40 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         fps = 1.0f / deltaTime;
-       // print("FPS: " + fps);
+        // print("FPS: " + fps);
 
 
         // Debug rotation for oculus
         if (isOculus)
-		{
-			rightAnalogueHoriz = Input.GetAxis ("TrackpadHoriz2");
-			oculusGrip = Input.GetAxis ("OculusRightGrip");
-			//print (rightAnalogueHoriz);
-			// Rotate for oculus players
-			if (oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
-			{
-				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
-				{
-					//cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
-					cameraRig.transform.eulerAngles += new Vector3 (0, 45, 0);
-					rotated = true;
-				}
-			}
-			else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
-			{
-				if (rotated == false && VRDevice.model.ToLower ().Contains ("oculus"))
-				{
-					//cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
-					cameraRig.transform.eulerAngles += new Vector3 (0, -45, 0);
-					rotated = true;
-				}
-			} 
+        {
+            rightAnalogueHoriz = Input.GetAxis("TrackpadHoriz2");
+            oculusGrip = Input.GetAxis("OculusRightGrip");
+            //print (rightAnalogueHoriz);
+            // Rotate for oculus players
+            if (oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+            {
+                if (rotated == false && VRDevice.model.ToLower().Contains("oculus"))
+                {
+                    //cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+                    cameraRig.transform.eulerAngles += new Vector3(0, 45, 0);
+                    rotated = true;
+                }
+            }
+            else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+            {
+                if (rotated == false && VRDevice.model.ToLower().Contains("oculus"))
+                {
+                    //cameraRig.transform.rotation = cameraRig.transform.rotation.eulerAngles + new Vector3 (0, 90, 0);
+                    cameraRig.transform.eulerAngles += new Vector3(0, -45, 0);
+                    rotated = true;
+                }
+            }
 
-			else
-			{
-				rotated = false;
-			}
-		}
+            else
+            {
+                rotated = false;
+            }
+        }
 
         // Debug rotation for vive
         if (!isOculus)
@@ -177,7 +177,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Respawn Player when time out's done.
         if (dead == true && !waitingForNextRound)
         {
-            if ((Time.time - deathTime) >  respawnLength)
+            if ((Time.time - deathTime) > respawnLength)
             {
                 Respawn();
             }
@@ -186,7 +186,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             {
                 if (photonView.isMine)
                 {
-					myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+                    myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
                     if (myScoreboard.roundOver == false)
                         deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
@@ -200,7 +200,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 }
             }
         }
-        else if(waitingForNextRound)
+        else if (waitingForNextRound)
         {
 
         }
@@ -213,7 +213,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             set = true;
             vrtk_spr = rightHand.GetComponent<VRTK.VRTK_StraightPointerRenderer>();
-            
+
         }
         else if (!set)
         {
@@ -244,7 +244,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //Reduces the health by the damage received.
     public void TakeDamage(float damage)
     {
-        if (current_health <= 0 || Time.time - startTime < invulnerableFrames||bubbled)
+        if (current_health <= 0 || Time.time - startTime < invulnerableFrames || bubbled)
         {
             return;
         }
@@ -261,19 +261,19 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             if (playerClass != PlayerClass.none)
             {
                 Die();
-                
+
 
             }
         }
     }
-    
+
     [PunRPC]
     public void set_BubbleShield(float t)
     {
-        
-            
-            StartCoroutine(setBubble_shield(t));
-        
+
+
+        StartCoroutine(setBubble_shield(t));
+
     }
 
     public IEnumerator setBubble_shield(float TtimeCD)
@@ -289,8 +289,8 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         if (photonView.isMine)
         {
             // cameraRig.GetComponent<PlatformController>().canMove = isEnabled;
-            if(!waitingForNextRound)
-            cameraRig.GetComponent<PadTeleport>().enabled = isEnabled;
+            if (!waitingForNextRound)
+                cameraRig.GetComponent<PadTeleport>().enabled = isEnabled;
             // vrtk_spr.enabled = isEnabled;
         }
     }
@@ -375,10 +375,10 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             cameraRig.transform.rotation = Quaternion.Euler(0, cameraRig.transform.eulerAngles.y + (270 - Camera.main.transform.eulerAngles.y), 0);
         }
         cameraRig.GetComponent<VRTK.VRTK_BasicTeleport>().Teleport(penalty, penalty.position);
-        
+
 
         //cameraRig.transform.position = new Vector3(timeOutPt.position.x - Camera.main.transform.localPosition.x, timeOutPt.position.y, timeOutPt.position.z - Camera.main.transform.localPosition.z);
-        
+
     }
 
     [PunRPC]
@@ -389,14 +389,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
             ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
-           // Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+            // Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
 
             if (scoreboard == null)
             {
                 Debug.Log("SCOREBOARD UPDATER IS NULL!");
             }
 
-           // Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
+            // Debug.Log("INSIDE RPC: BLUE SCORED " + blueScored);
 
             if (blueScored)
             {
@@ -407,40 +407,40 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 scoreboard.IncrementRedScore();
             }
         }
-        
+
     }
 
-//	[PunRPC]
-	void ResetScoreboard()
-	{
-		//Why are we assigning this on runtime? It could be assigned through the NetworkManager.
-		ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+    //	[PunRPC]
+    void ResetScoreboard()
+    {
+        //Why are we assigning this on runtime? It could be assigned through the NetworkManager.
+        ScoreboardUpdater scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
-		//Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
+        //Debug.Log(GameObject.FindGameObjectWithTag("Scoreboard").name);
 
-		if (scoreboard == null)
-		{
+        if (scoreboard == null)
+        {
 
-		}
+        }
 
-		scoreboard.ResetScoreboard();
-	}
+        scoreboard.ResetScoreboard();
+    }
 
     //Reset health and move Player to respawn area.
     [PunRPC]
     public void Respawn()
     {
-        
-        
+
+
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
-         {
+        {
             dead = false;
             current_health = max_health;
             self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-                // cameraRig.transform.position = respawnPt.position;
-                //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
+            // cameraRig.transform.position = respawnPt.position;
+            //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
             if (playerClass != PlayerClass.none)
             {
                 this.transform.parent.GetComponent<TeamManager>().Respawn();
@@ -491,7 +491,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     //    hat.GetComponent<HatLogic>().onHead = false;
     //    hat.GetComponent<HatLogic>().resettable = true;
     //    hat.GetComponent<HatLogic>().resetHat();
-        
+
     //}
 
     [PunRPC]
@@ -499,23 +499,23 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     {
         //        self_photonview.RPC("ResetScoreboard", PhotonTargets.All, null);
         //ResetScoreboard();
-/*
-        if (hats == null)
-        {
-            hats = GameObject.FindGameObjectsWithTag("Grabbable");
-        }
+        /*
+                if (hats == null)
+                {
+                    hats = GameObject.FindGameObjectsWithTag("Grabbable");
+                }
 
-        if (hats != null)
-        {
-            foreach (GameObject hat in hats)
-            {
-                hat.transform.SetParent(null);
-                hat.GetComponent<HatLogic>().resetHat();
-                hat.GetComponent<HatLogic>().onHead = false;
-                hat.GetComponent<HatLogic>().resettable = true;
-            }
-        }
-*/
+                if (hats != null)
+                {
+                    foreach (GameObject hat in hats)
+                    {
+                        hat.transform.SetParent(null);
+                        hat.GetComponent<HatLogic>().resetHat();
+                        hat.GetComponent<HatLogic>().onHead = false;
+                        hat.GetComponent<HatLogic>().resettable = true;
+                    }
+                }
+        */
         players = GameObject.FindGameObjectsWithTag("Player");
         waitingForNextRound = false;
         foreach (GameObject player in players)
@@ -525,7 +525,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             ps.RemoveHat();
         }
         playerClass = PlayerClass.none;
-		cameraRig = Camera.main.transform.parent.gameObject;
+        cameraRig = Camera.main.transform.parent.gameObject;
         if (kill_spells)
         {
             cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
@@ -543,9 +543,9 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             bookLogic.UpdateUI();
         }
         //cameraRig.transform.position = GameObject.FindGameObjectWithTag("HatRoom").transform.position;
-		myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+        myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         myScoreboard.roundOver = false;
-		//print ("Scoreboard " +  myScoreboard.roundOver);
+        //print ("Scoreboard " +  myScoreboard.roundOver);
         current_health = max_health;
     }
     [PunRPC]
@@ -554,23 +554,23 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         DeathSprite.SetActive(b);
     }
     [PunRPC]
-	public void SetClass(PlayerClass pc)
-	{
-		playerClass = pc;
+    public void SetClass(PlayerClass pc)
+    {
+        playerClass = pc;
 
-		if (playerClass == PlayerClass.none)
+        if (playerClass == PlayerClass.none)
         {
 
-			if (photonView.isMine)
+            if (photonView.isMine)
             {
-				cameraRig.GetComponent<SpellcastingGestureRecognition> ().enabled = false;
-				cameraRig.GetComponent<Edwon.VR.VRGestureRig> ().enabled = false;
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
+                cameraRig.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
                 bookLogic.index = bookLogic.pages.Length - 1;
-                bookLogic.UpdateUI ();
-			}
-		}
-        else 
-		{
+                bookLogic.UpdateUI();
+            }
+        }
+        else
+        {
             //Switch wands off.
             string wandStickPath = "Right Hand/MagicWand/stick/";
             this.transform.parent.Find(wandStickPath + "basic").gameObject.SetActive(false);
@@ -618,14 +618,14 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 bookLogic.UpdateHotbar();
             }
         }
-	}
+    }
 
     [PunRPC]
     void SetRandomSpell()
     {
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().SetRandomSuperSpell();
     }
-        
+
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -646,7 +646,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     public void Teleport(bool isBlue, Vector3 newLocation)
     {
-//        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);
+        //        Debug.Log("PlayerStatus.cs : Teleport() : newLocation = " + newLocation);
         if (this.GetComponent<PhotonView>().isMine)
         {
             if (isBlue)
@@ -663,8 +663,17 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             Camera.main.transform.parent.GetComponent<PadTeleport>().enabled = true;
             Camera.main.transform.parent.GetComponent<PadTeleport>().blue = isBlue;
             Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().blue = isBlue;
+            Camera.main.transform.parent.GetComponent<Edwon.VR.VRGestureRig>().enabled = false;
+            Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().enabled = false;
             //            GameObject.Find("Camera (eye)").transform.LookAt(new Vector3(0, 0, 0));
         }
+    }
+
+    [PunRPC]
+    public void SetSpellcastingEnabled(bool isEnabled)
+    {
+        Camera.main.transform.parent.GetComponent<Edwon.VR.VRGestureRig>().enabled = isEnabled;
+        Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().enabled = isEnabled;
     }
 
     public void RemoveHat()
