@@ -447,7 +447,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             print(1);
             dead = false;
             current_health = max_health;
-            //self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
+            self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
             print(2);
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
