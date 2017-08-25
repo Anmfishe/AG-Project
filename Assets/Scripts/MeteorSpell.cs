@@ -217,7 +217,7 @@ public class MeteorSpell : MonoBehaviour
 
 //	
 		Collider[] hits;
-		hits = Physics.OverlapSphere(transform.position, 6);
+		hits = Physics.OverlapSphere(transform.position, 6, int.MaxValue, QueryTriggerInteraction.Collide);
 		foreach (Collider hit in hits)
 		{
 			if (hit.transform.tag == "Player")
@@ -226,6 +226,12 @@ public class MeteorSpell : MonoBehaviour
                     hit.gameObject.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
                 
 			}
+            else if(hit.transform.tag == "Curse")
+            {
+                if (hit.transform.GetComponent<VineTrap>().blue != blue)
+                    hit.gameObject.GetPhotonView().RPC("DestroyVines", PhotonTargets.All);
+            }
+
 		}
 
         Destroy(reticleInstance);
