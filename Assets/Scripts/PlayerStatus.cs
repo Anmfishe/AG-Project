@@ -113,11 +113,12 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         // Debug rotation for oculus
         if (isOculus)
         {
+
             rightAnalogueHoriz = Input.GetAxis("TrackpadHoriz2");
             oculusGrip = Input.GetAxis("OculusRightGrip");
             //print (rightAnalogueHoriz);
             // Rotate for oculus players
-            if (oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+            if (rightAnalogueHoriz > .5f)
             {
                 if (rotated == false && VRDevice.model.ToLower().Contains("oculus"))
                 {
@@ -126,7 +127,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     rotated = true;
                 }
             }
-            else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+            else if (rightAnalogueHoriz < -.5f)
             {
                 if (rotated == false && VRDevice.model.ToLower().Contains("oculus"))
                 {
