@@ -191,7 +191,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
 
                     if (myScoreboard.roundOver == false)
-                        deadText.text = "You were killed!\nRespawn in " + (respawnLength - (Time.time - deathTime));
+                        deadText.text = "You were killed!\nRespawn in " + ((int)(respawnLength - (Time.time - deathTime)));
 
                     else
                     {

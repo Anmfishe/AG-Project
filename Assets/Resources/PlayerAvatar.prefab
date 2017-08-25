@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 114579494545927690}
   - component: {fileID: 114344753946840322}
   - component: {fileID: 33437344840401950}
-  - component: {fileID: 114993394041932526}
   - component: {fileID: 54852976925569630}
   m_Layer: 0
   m_Name: Head
@@ -1323,7 +1322,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463533629634854}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: -0, z: -0.83}
+  m_LocalPosition: {x: 0, y: 0.1, z: -0.83}
   m_LocalScale: {x: 0.13881657, y: 0.1298985, z: 0.101833165}
   m_Children: []
   m_Father: {fileID: 4058974855803312}
@@ -1336,7 +1335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969864770043464}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: -0, z: -3.6}
+  m_LocalPosition: {x: 0, y: 0.1, z: -3.6}
   m_LocalScale: {x: 0.13854833, y: 0.1299436, z: 0.1015671}
   m_Children: []
   m_Father: {fileID: 4058974855803312}
@@ -2273,7 +2272,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 448f1e21dfc845a4baec38c20a8ee52e, type: 3}
+  - {fileID: 2100000, guid: 9b4fcba1d5bff514cb50f4547054691d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2401,7 +2400,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 448f1e21dfc845a4baec38c20a8ee52e, type: 3}
+  - {fileID: 2100000, guid: 9b4fcba1d5bff514cb50f4547054691d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4754,19 +4753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc001952a941c2743a3739a35bf9c162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114993394041932526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1316983645817718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68d6e5c5479e5042a5ee40f4ac38a31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blue: {fileID: 2100000, guid: 0488cfb9e2a0f0441af0eea26c624a2b, type: 2}
-  red: {fileID: 2100000, guid: 4ee0ed64573a1a541af449f063165e46, type: 2}
 --- !u!114 &114999018229916790
 MonoBehaviour:
   m_ObjectHideFlags: 1
