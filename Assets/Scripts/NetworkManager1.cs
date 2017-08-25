@@ -378,7 +378,7 @@ public class NetworkManager1 : Photon.PunBehaviour
             }
         }
 
-        VerifyPlayersOnPlatform();
+//        VerifyPlayersOnPlatform();
     }
 
     void VerifyPlayersOnPlatform()
@@ -408,6 +408,7 @@ public class NetworkManager1 : Photon.PunBehaviour
                 // if the stored player does not exist in the game, remove the player and decrement counter in teleporter platform
                 if (! playerMatched)
                 {
+                    Debug.Log("NetworkManager1.cs : VerifyPlayersOnPlatform() : INSIDE!");
                     teleporter.GetComponent<TeleporterPlatform>().players.Remove(playerOnPlatform);
                     teleporter.GetComponent<TeleporterPlatform>().numPlayersOnPlatform -= 1;
                 }

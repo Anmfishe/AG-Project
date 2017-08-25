@@ -9188,7 +9188,7 @@ Prefab:
     - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
         type: 2}
       propertyPath: roomName
-      value: dylbert12
+      value: ray
       objectReference: {fileID: 0}
     - target: {fileID: 1999117868739958, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
       propertyPath: m_TagString
@@ -11644,7 +11644,7 @@ Prefab:
     - target: {fileID: 114873961672058226, guid: 9931ab73ed66c5a47b4a2dd89208a7bb,
         type: 2}
       propertyPath: onePlayerAllowed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1818033706982156, guid: 9931ab73ed66c5a47b4a2dd89208a7bb, type: 2}
       propertyPath: m_TagString
