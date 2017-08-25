@@ -7,6 +7,7 @@ public class GlassHammer : MonoBehaviour
 
     public GameObject hitSpark;
     public Transform wand;
+    public float distanceFromHand = 2;
     private bool blue;
     public float destroyTime = 15;
     private float startTime;
@@ -46,7 +47,7 @@ public class GlassHammer : MonoBehaviour
             }
 
 
-            this.transform.position = wand.position;
+            this.transform.position = wand.position + wand.forward * distanceFromHand;
             this.transform.rotation = wand.rotation;
         }
     }
@@ -138,7 +139,7 @@ public class GlassHammer : MonoBehaviour
     public void SetWand(Transform wand_) 
     {
         wand = wand_;
-        this.transform.position = wand.position;
+        this.transform.position = wand.position + wand.forward * distanceFromHand;
         this.transform.rotation = wand.rotation;
     }
 

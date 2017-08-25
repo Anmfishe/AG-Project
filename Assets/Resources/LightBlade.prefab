@@ -342,7 +342,7 @@ MonoBehaviour:
   wand: {fileID: 0}
   duration: 1
   destroyTime: 5
-  hitBonusTime: 0.25
+  hitBonusTime: 0.05
   damage: 30
 --- !u!114 &114671000124799578
 MonoBehaviour:
