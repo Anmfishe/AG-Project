@@ -25,7 +25,7 @@ public class PadTeleport : MonoBehaviour
     public LayerMask redLayersToIgnore;
     public LayerMask groundLayer;
     SpellcastingGestureRecognition spellcast;
-    GameObject currPlatform;
+
     //[HideInInspector]
     public bool blue;
 
@@ -186,20 +186,13 @@ public class PadTeleport : MonoBehaviour
             if (neutral == false && padHit!= null && (padHit.parent.gameObject.tag == "GrayPlatform" || (blue && padHit.parent.gameObject.tag == "BluePlatform") || (!blue && padHit.parent.gameObject.tag == "RedPlatform")))
                 {
                // print("not NEUTRAL");
-               if(currPlatform != null)
-                {
-                    GetComponent<PlatformNeighbors>().HasPlayer(false);
-                }
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
-                padHit.GetComponent<PlatformNeighbors>().HasPlayer(true);
-                currPlatform = padHit.gameObject;
                 }
 
                 else if (neutral == true)
                 {
                     basicTeleport.Teleport(padHit, warpSpot);
-                //padHit.GetComponent<PlatformNeighbors>().HasPlayer(true);
-            }
+                }
 
             // Disable highlight
             if (padHit != null)

@@ -35,26 +35,25 @@ public class PlatformNeighbors : MonoBehaviour {
         
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        hasPlayer = true;
-    //        gameObject.layer = LayerMask.NameToLayer("Default");
-    //        pv.RPC("HasPlayer2", PhotonTargets.Others, true);
-    //    }
-    //}
-    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            hasPlayer = true;
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            pv.RPC("HasPlayer2", PhotonTargets.Others, true);
+        }
+    }
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        hasPlayer = false;
-    //        gameObject.layer = layerSave;
-    //        pv.RPC("HasPlayer2", PhotonTargets.Others, false);
-    //    }
-    //}
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            hasPlayer = false;
+            gameObject.layer = layerSave;
+            pv.RPC("HasPlayer2", PhotonTargets.Others, false);
+        }
+    }
     public void SetLayer(LayerMask l)
     {
 
