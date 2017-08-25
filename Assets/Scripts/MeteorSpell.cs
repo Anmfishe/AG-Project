@@ -159,16 +159,17 @@ public class MeteorSpell : MonoBehaviour
 		return myVector;
 	}
 
-	private void OnCollisionEnter(Collision collision)
-	{
-       
-		if (GetComponent<PhotonView>().isMine) 
-		{
-            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-            DestroyNoDamage();
-            //// If it's a shield, deflect
-            //if (collision.transform.tag == "Shield")
-            //{
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (GetComponent<PhotonView>().isMine)
+        {
+            // If it's a shield, deflect
+            if (collision.transform.tag == "Shield")
+            {
+                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+                DestroyNoDamage();
+            }
             //    if (collision.transform.GetComponent<Shield>())
             //    {
             //        // If the shield we hit is the enemy's
@@ -194,15 +195,14 @@ public class MeteorSpell : MonoBehaviour
             //            Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
             //        }
             //    }
-
+            else
+            {
+                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+                DestroyFireball();
+            }
+            //}
         }
-        else
-        {
-            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-            DestroyFireball();
-        }
-		//}
-	}
+    }
 		
 
 
