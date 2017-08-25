@@ -10,7 +10,7 @@ public class LightBlade : MonoBehaviour {
     private bool isDecaying = false;
     public float duration = 1;
 	public float destroyTime = 5;
-    public float hitBonusTime = 0.01f;
+    public float hitBonusTime = 0.001f;
     private float durationTimer = 0;
 	private float startTime;
 	public float damage = 100;
