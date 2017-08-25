@@ -144,7 +144,10 @@ public class RoundManager : MonoBehaviour {
         {
             practiceRoom.SetActive(false);
             if(PhotonNetwork.isMasterClient)
-            arena2 = PhotonNetwork.InstantiateSceneObject(arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
+            {
+                arena2 = PhotonNetwork.InstantiateSceneObject(arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
+                arenaNum = Random.Range(0, arenas.Length);
+            }
         }
         scoreboard.SetVisible(true);
         print("Starting Round");
