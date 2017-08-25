@@ -188,10 +188,10 @@ public class PadTeleport : MonoBehaviour
                // print("not NEUTRAL");
                if(currPlatform != null)
                 {
-                    currPlatform.GetComponentInParent<PlatformNeighbors>().HasPlayer(false);
+                    GetComponent<PlatformNeighbors>().HasPlayer(false);
                 }
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
-                padHit.GetComponentInParent<PlatformNeighbors>().HasPlayer(true);
+                padHit.GetComponent<PlatformNeighbors>().HasPlayer(true);
                 currPlatform = padHit.gameObject;
                 }
 
