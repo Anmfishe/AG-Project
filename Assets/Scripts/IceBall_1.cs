@@ -21,7 +21,7 @@ public class IceBall_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         photonView = GetComponent<PhotonView>();
-        StartCoroutine("lifetime");
+        StartCoroutine(lifetime(5));
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
 
