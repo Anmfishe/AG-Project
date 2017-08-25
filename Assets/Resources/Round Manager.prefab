@@ -2148,6 +2148,8 @@ MonoBehaviour:
   arenaNum: 2
   restart_display: {fileID: 1259874329974292}
   countdown_display: {fileID: 1792934341244372}
+  scoreboard_prefab: {fileID: 1951878332566498, guid: f9018bea93465d042babf09b062218ae,
+    type: 2}
 --- !u!114 &114805768392010500
 MonoBehaviour:
   m_ObjectHideFlags: 1

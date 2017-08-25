@@ -144,7 +144,7 @@ public class RoundManager : MonoBehaviour {
             practiceRoom.SetActive(false);
             if(PhotonNetwork.isMasterClient)
             {
-                arena2 = PhotonNetwork.InstantiateSceneObject(arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
+                arena2 = PhotonNetwork.InstantiateSceneObject(this.arenas[arenaNum].name, Vector3.zero, Quaternion.identity, 0, null);
                 arenaNum = Random.Range(0, arenas.Length);
 
                 scoreboard = PhotonNetwork.InstantiateSceneObject(this.scoreboard_prefab.name, new Vector3(0, 0, 0), Quaternion.identity, 0, null).GetComponent<ScoreboardUpdater>();
@@ -162,7 +162,10 @@ public class RoundManager : MonoBehaviour {
         {
             PhotonNetwork.Destroy(curse.GetPhotonView());
         }
+
+        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
         scoreboard.roundOver = false;
+
         Camera.main.transform.parent.GetComponent<SpellcastingGestureRecognition>().kill_spells();
         GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerupManager>().spawn_powerups = true;
 
