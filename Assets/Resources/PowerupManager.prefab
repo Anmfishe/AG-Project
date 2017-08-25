@@ -66,6 +66,7 @@ MonoBehaviour:
   spawn_powerups: 0
   timer: 0
   numPowerups: 0
+  max_powerups: 2
 --- !u!114 &114706694292711442
 MonoBehaviour:
   m_ObjectHideFlags: 1
