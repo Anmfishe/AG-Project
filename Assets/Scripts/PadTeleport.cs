@@ -199,6 +199,14 @@ public class PadTeleport : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+       
+    }
+    private void OnDisable()
+    {
+        lineRend.enabled = false;
+    }
 
     public void disableHighlight(Transform highlighted, bool myBlue)
     {
