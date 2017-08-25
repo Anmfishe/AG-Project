@@ -719,6 +719,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
         book = avatar.Find("Left Hand").Find("SpellBook");
         book.GetComponent<BookLogic>().spellcast = this;
         playerStatus = torso.GetComponent<PlayerStatus>();
+        playerStatus.padTeleport = GetComponent<PadTeleport>();
     }
 
     //Casts selected spell.

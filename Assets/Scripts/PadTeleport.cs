@@ -15,6 +15,7 @@ public class PadTeleport : MonoBehaviour
     public Gradient highlightColor;
 
     private GameObject reticle;
+    GameObject currPad;
 
     private float reticleSize = 0.02f;
     private float reticleSizeUpdate = 0.05f;
@@ -187,11 +188,23 @@ public class PadTeleport : MonoBehaviour
                 {
                // print("not NEUTRAL");
                 basicTeleport.Teleport(padHit.transform, padHit.transform.position);
+
+                    if (currPad != null)
+                    {
+                        currPad.GetComponent<PlatformNeighbors>().hasPlayer = false;   
+                    }
+                    currPad = padHit.gameObject;
+                    currPad.GetComponent<PlatformNeighbors>().hasPlayer = true;  
                 }
 
                 else if (neutral == true)
                 {
                     basicTeleport.Teleport(padHit, warpSpot);
+                    if (currPad != null)
+                    {
+                        currPad.GetComponent<PlatformNeighbors>().hasPlayer = false;   
+                    }
+                    currPad = null;
                 }
 
             // Disable highlight
@@ -205,6 +218,12 @@ public class PadTeleport : MonoBehaviour
 
         }
 
+    }
+
+    public void ResetTeleport()
+    {
+        if(currPad != null)
+            currPad.GetComponent<PlatformNeighbors>().hasPlayer = false;
     }
 
     private void OnEnable()
