@@ -93,20 +93,26 @@ public class GlassHammer : MonoBehaviour
                 }
             }
         }*/
-        
+        //Check if it's a player.
         if (other.gameObject.CompareTag("Player"))
         {
+            print("It's a player!");
+
+            //Check if I own this hammer.
             if (GetComponent<PhotonView>().isMine)
             {
+                //Check if the hammer and the player are on different teams.
                 if (other.transform.parent.GetComponent<TeamManager>().blue != blue)
                 {
                     //Find any nearby shields and destroy them.
                     Collider[] hits;
-                    hits = Physics.OverlapSphere(transform.position, 5);
+                    hits = Physics.OverlapSphere(other.transform.position, 5);
                     foreach (Collider hit in hits)
                     {
+                        //If the hit is a Shield.
                         if (hit.transform.tag == "Shield")
                         {
+                            print("ShieldTeam: " + hit.transform.GetComponent<ITeamOwned>().blue + " | GlassHammerTeam: " + blue);
                             if (hit.transform.GetComponent<ITeamOwned>().blue != blue)
                             {
                                 hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
