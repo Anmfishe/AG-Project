@@ -42,6 +42,7 @@ TagManager:
   - ShieldBreaker
   - HatTable
   - Penalty
+  - Teleporter
   layers:
   - Default
   - TransparentFX

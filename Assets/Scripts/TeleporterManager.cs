@@ -67,22 +67,40 @@ public class TeleporterManager : MonoBehaviour {
 
         if (totalNumPlayers > minPlayers && (blue.numPlayersOnPlatform + red.numPlayersOnPlatform) == totalNumPlayers)          // have to divide by 2 because torso has 2 colliders which trigger twice per player
         {
+//            Debug.Log("TeleporterManager.cs : IsReady() : TOTALNUMPLAYERS=" + totalNumPlayers + ", minPlayers=" + minPlayers);
+
             bool ready = true;
 
-            Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
+//            Debug.Log("TeleporterManager.cs : IsReady() : All players are on platforms");
             foreach (GameObject player in blue.players)
             {
+                if (player == null)
+                {
+                    blue.players.Remove(player);
+                    blue.numPlayersOnPlatform--;
+//                    Debug.Log("TeleporterManager.cs : IsReady() : REMOVED PLAYER FROM BLUE");
+                    return false;
+                }
+
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {                    
-                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
+//                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     ready = false;
                 }
             }
             foreach (GameObject player in red.players)
             {
+                if (player == null)
+                {
+                    red.players.Remove(player);
+                    red.numPlayersOnPlatform--;
+//                    Debug.Log("TeleporterManager.cs : IsReady() : REMOVED PLAYER FROM RED");
+                    return false;
+                }
+
                 if (player.GetComponent<PlayerStatus>().playerClass == PlayerClass.none)
                 {
-                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
+//                    Debug.Log("TeleporterManager.cs : IsReady() : Player does not have a hat");
                     ready = false;
                 }
             }
