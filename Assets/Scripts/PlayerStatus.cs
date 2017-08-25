@@ -302,7 +302,6 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
-            
             if (playerClass == PlayerClass.none || myScoreboard.roundOver)
             {
 
@@ -330,6 +329,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                 //cameraRig.GetComponent<PlatformController>().lerp = false;
                 //vrtk_spr.enabled = false;
                 cameraRig.GetComponent<PadTeleport>().enabled = false;
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = false;
 
                 StartCoroutine("DelayToPenaltyBox");
             }
@@ -433,30 +433,29 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
-            {
+         {
             dead = false;
             current_health = max_health;
             self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
                 // cameraRig.transform.position = respawnPt.position;
                 //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
-                if (playerClass != PlayerClass.none)
-                {
-                    this.transform.parent.GetComponent<TeamManager>().Respawn();
-                    //cameraRig.GetComponent<PlatformController>().lerp = true;
-                    //cameraRig.GetComponent<PlatformController>().canMove = true;
-                    // vrtk_spr.enabled = true;
-                    cameraRig.GetComponent<PadTeleport>().enabled = true;
-                }
-                else
-                {
-                    //                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
-                }
-
-                deadText.gameObject.SetActive(false);
-
+            if (playerClass != PlayerClass.none)
+            {
+                this.transform.parent.GetComponent<TeamManager>().Respawn();
+                //cameraRig.GetComponent<PlatformController>().lerp = true;
+                //cameraRig.GetComponent<PlatformController>().canMove = true;
+                // vrtk_spr.enabled = true;
+                cameraRig.GetComponent<PadTeleport>().enabled = true;
+                cameraRig.GetComponent<SpellcastingGestureRecognition>().enabled = true;
             }
-        
+            else
+            {
+                //                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+            }
+
+            deadText.gameObject.SetActive(false);
+        }
     }
 
     //public void RemoveHat()
