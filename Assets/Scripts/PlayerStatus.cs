@@ -441,7 +441,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
 
         //Move Player to respawn area if it belongs to the client.
-        if (self_photonview.isMine)
+        if (photonView.isMine)
         {
             dead = false;
             current_health = max_health;
