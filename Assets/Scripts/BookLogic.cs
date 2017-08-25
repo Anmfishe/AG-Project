@@ -246,8 +246,8 @@ public class BookLogic : MonoBehaviour
         if (animator)
             animator.SetTrigger("FlipRight");
         //  UpdateUI();
-
-        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
+        if (spellcast!= null)
+            SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
     }
 
     void FlipLeft()
@@ -304,8 +304,8 @@ public class BookLogic : MonoBehaviour
         if(animator)
             animator.SetTrigger("FlipLeft");
         // UpdateUI();
-
-        SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
+        if(spellcast!=null)
+            SteamVR_Controller.Input(spellcast.leftControllerIndex).TriggerHapticPulse(500);
     }
 
     public void UpdateUI()

@@ -148,7 +148,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             oculusGrip = Input.GetAxis("ViveRightGrip");
             //print (rightAnalogueHoriz);
             // Rotate for oculus players
-            if (Input.GetKeyDown("joystick button 9") && oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
+            if (Input.GetKey("joystick button 17") && oculusGrip > 0.5f && rightAnalogueHoriz > .5f)
             {
                 if (rotated == false)
                 {
@@ -157,7 +157,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
                     rotated = true;
                 }
             }
-            else if (oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
+            else if (Input.GetKey("joystick button 17") && oculusGrip > 0.5f && rightAnalogueHoriz < -.5f)
             {
                 if (rotated == false)
                 {
