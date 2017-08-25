@@ -43,11 +43,11 @@ public class VineTrap : MonoBehaviour {
             else
                 PhotonNetwork.Destroy(this.gameObject);
             */
-            if (playerStatus.dead)
-            {
-                playerStatus.EnableMovement(true);
-                PhotonNetwork.Destroy(GetComponent<PhotonView>());
-            }
+            //if (playerStatus.dead)
+            //{
+            //    playerStatus.EnableMovement(true);
+            //    PhotonNetwork.Destroy(GetComponent<PhotonView>());
+            //}
 
             //Deals damage every time the timer reaches 0.
             if (damageTimer > 0)
