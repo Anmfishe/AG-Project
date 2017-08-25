@@ -102,7 +102,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
             {
                 graySpawn();
             }
-            if(timer > 0)
+            if(numPowerups < max_powerups)
             timer -= Time.deltaTime;
             if (timer <= 0 && numPowerups < max_powerups)
             {
@@ -145,7 +145,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     {
         int randomPlatform;
         randomPlatform = Random.Range(0, grayPlatforms.Length);
-        while (grayPowerups[randomPlatform] || grayPlatforms[randomPlatform].GetComponent<PlatformNeighbors>().hasPlayer)
+        while (grayPowerups[randomPlatform])
         {
             randomPlatform = Random.Range(0, grayPlatforms.Length);
         }
@@ -163,7 +163,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
     {
         for (int i = 0; i < platforms.Length; i++)
         {
-            if (platforms.Length != 0 && !platforms[i].GetComponent<PlatformNeighbors>().hasPlayer && ! powerups[i])
+            if (platforms.Length != 0 && ! powerups[i])
             {
                 return true;
             }
@@ -188,6 +188,7 @@ public class PowerupManager : MonoBehaviour, IPunObservable {
             
             redPowerups[platformIndex] = false;
         }
+        grayPowerups[platformIndex] = false;
     }
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
