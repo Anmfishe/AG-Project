@@ -504,7 +504,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -519,7 +519,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-				audioSource.PlayOneShot(cast_failure);
+				audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -534,7 +534,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-				audioSource.PlayOneShot(cast_failure);
+				audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -549,7 +549,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -564,7 +564,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -579,7 +579,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -594,7 +594,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
@@ -609,7 +609,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                 {
                     gestureStartColor = Color.blue;
                     gestureEndColor = Color.blue;
-                    audioSource.PlayOneShot(cast_failure);
+                    audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
                 break;
@@ -624,7 +624,7 @@ public class SpellcastingGestureRecognition : MonoBehaviour
             {
                 gestureStartColor = Color.blue;
                 gestureEndColor = Color.blue;
-                audioSource.PlayOneShot(cast_failure);
+                audioSource.PlayOneShot(cast_cooldown);
                     Notify_Cooldown();
                 }
             break;
