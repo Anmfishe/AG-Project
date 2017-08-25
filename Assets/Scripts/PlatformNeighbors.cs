@@ -35,9 +35,9 @@ public class PlatformNeighbors : MonoBehaviour {
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             hasPlayer = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
@@ -45,9 +45,9 @@ public class PlatformNeighbors : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             hasPlayer = false;
             gameObject.layer = layerSave;
