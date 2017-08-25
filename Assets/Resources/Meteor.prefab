@@ -267,7 +267,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d8042707f5a26c4281e46584a36ef52, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -415,6 +415,7 @@ MonoBehaviour:
   reticle: {fileID: 1759314124068756, guid: 508e3167dc6fd164f93a99cdc9fa6c77, type: 2}
   mine: 0
   explosion: {fileID: 100000, guid: cb91ec3b3a515f04182f711604fc111b, type: 2}
+  spellcast: {fileID: 0}
   targettable:
     serializedVersion: 2
     m_Bits: 20480
