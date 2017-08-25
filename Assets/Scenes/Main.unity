@@ -3070,7 +3070,7 @@ Prefab:
     - target: {fileID: 114154058065399358, guid: 2e3c866ced5ea1646a751663755fd15c,
         type: 2}
       propertyPath: roomName
-      value: dylbert12
+      value: dylbert13
       objectReference: {fileID: 0}
     - target: {fileID: 1999117868739958, guid: 2e3c866ced5ea1646a751663755fd15c, type: 2}
       propertyPath: m_TagString
@@ -5406,6 +5406,16 @@ Prefab:
     - target: {fileID: 1396155991360138, guid: 3de2fe02874a78943bbd530e0ae4ee13, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114787287936234124, guid: 3de2fe02874a78943bbd530e0ae4ee13,
+        type: 2}
+      propertyPath: viewIdField
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 114787287936234124, guid: 3de2fe02874a78943bbd530e0ae4ee13,
+        type: 2}
+      propertyPath: instantiationId
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3de2fe02874a78943bbd530e0ae4ee13, type: 2}

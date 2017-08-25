@@ -13,6 +13,7 @@ using UnityEngine.VR;
 
 public class PlayerStatus : MonoBehaviour, IPunObservable
 {
+    public GameObject DeathSprite;
 	public PlayerClass playerClass;
     public bool kill_spells = true;
 	private GameObject[] hats;
@@ -68,7 +69,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		cameraRig = Camera.main.transform.parent.gameObject;
 		bookLogic = transform.parent.GetComponentInChildren<BookLogic> ();
 		hats = GameObject.FindGameObjectsWithTag("Grabbable");
-
+        self_photonview = GetComponent<PhotonView>();
 		if (VRDevice.model.ToLower ().Contains ("oculus"))
 		{
 			isOculus = true;
@@ -227,6 +228,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             {
                 Die();
                 
+
             }
         }
     }
@@ -260,18 +262,21 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     }
 
     // On death, we warp the camera rig of the corresponding player
-    void Die()
+    [PunRPC]
+    public void Die()
     {
         //Move Player to the time out are if it belongs to the client.
         if (photonView.isMine)
         {
-            GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("vanquished");
+            
             if (playerClass == PlayerClass.none || myScoreboard.roundOver)
             {
 
             }
             else
             {
+                GameObject.Find("Announcer").GetComponent<AnnouncerEvents>().PlaySound("vanquished");
+                self_photonview.RPC("deathSpriteActive", PhotonTargets.All, true);
                 // Increment scoreboard
                 bool blueScored = !this.transform.parent.GetComponent<TeamManager>().blue;
                 self_photonview = GetComponent<PhotonView>();
@@ -302,7 +307,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 
         deathTime = Time.time;
         dead = true;
-        current_health = max_health;
+        //current_health = max_health;
         //  Respawn();
     }
 
@@ -387,33 +392,37 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 	}
 
     //Reset health and move Player to respawn area.
-    void Respawn()
+    [PunRPC]
+    public void Respawn()
     {
-        dead = false;
-        current_health = max_health;
-
+        
+        
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
-        {
-            myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
-            // cameraRig.transform.position = respawnPt.position;
-            //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
-            if (playerClass != PlayerClass.none)
             {
-                this.transform.parent.GetComponent<TeamManager> ().Respawn ();
-                //cameraRig.GetComponent<PlatformController>().lerp = true;
-                //cameraRig.GetComponent<PlatformController>().canMove = true;
-                // vrtk_spr.enabled = true;
-                cameraRig.GetComponent<PadTeleport>().enabled = true;
-            } else
+            dead = false;
+            current_health = max_health;
+            self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
+            myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
+                // cameraRig.transform.position = respawnPt.position;
+                //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
+                if (playerClass != PlayerClass.none)
                 {
-//                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
+                    this.transform.parent.GetComponent<TeamManager>().Respawn();
+                    //cameraRig.GetComponent<PlatformController>().lerp = true;
+                    //cameraRig.GetComponent<PlatformController>().canMove = true;
+                    // vrtk_spr.enabled = true;
+                    cameraRig.GetComponent<PadTeleport>().enabled = true;
+                }
+                else
+                {
+                    //                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
                 }
 
                 deadText.gameObject.SetActive(false);
 
-
-        }
+            }
+        
     }
 
     //public void RemoveHat()
@@ -504,7 +513,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
 		//print ("Scoreboard " +  myScoreboard.roundOver);
         current_health = max_health;
     }
-
+    [PunRPC]
+    public void deathSpriteActive(bool b)
+    {
+        DeathSprite.SetActive(b);
+    }
     [PunRPC]
 	public void SetClass(PlayerClass pc)
 	{

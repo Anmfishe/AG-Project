@@ -83,4 +83,7 @@ MonoBehaviour:
   - HasPowerup2
   - HasVines2
   - DestroyShield
+  - Die
+  - Respawn
+  - deathSpriteActive
   DisableAutoOpenWizard: 1
