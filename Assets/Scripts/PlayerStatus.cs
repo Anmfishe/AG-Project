@@ -444,11 +444,11 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         //Move Player to respawn area if it belongs to the client.
         if (photonView.isMine)
         {
-            print(1);
-            dead = false;
+            //print(1);
+            //dead = false;
             current_health = max_health;
             self_photonview.RPC("deathSpriteActive", PhotonTargets.All, false);
-            print(2);
+            //print(2);
             myScoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             // cameraRig.transform.position = respawnPt.position;
             //			if (myScoreboard.roundOver == false && playerClass != PlayerClass.none) {
@@ -466,7 +466,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
             {
                 //                             self_photonview.RPC("RestartRound", PhotonTargets.AllBuffered, null);
             }
-            print(3);
+            //print(3);
             deadText.gameObject.SetActive(false);
         }
     }
@@ -562,7 +562,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
     [PunRPC]
     public void deathSpriteActive(bool b)
     {
-        dead = false;
+        dead = b;
         DeathSprite.SetActive(b);
     }
     [PunRPC]
