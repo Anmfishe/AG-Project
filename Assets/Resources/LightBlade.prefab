@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114691027494268082}
   - component: {fileID: 114554695262499954}
   - component: {fileID: 82153051048517060}
+  - component: {fileID: 114671000124799578}
   m_Layer: 0
   m_Name: LightBlade
   m_TagString: Untagged
@@ -343,6 +344,18 @@ MonoBehaviour:
   destroyTime: 5
   hitBonusTime: 0.25
   damage: 30
+--- !u!114 &114671000124799578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072202521900020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092906590d5617e4892149394620733d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 15
 --- !u!114 &114691027494268082
 MonoBehaviour:
   m_ObjectHideFlags: 1
