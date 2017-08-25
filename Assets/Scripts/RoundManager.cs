@@ -170,10 +170,10 @@ public class RoundManager : MonoBehaviour {
 
         SetUnusedHatsVisible(false);
 
-        StartCoroutine(DelayScoreboardAssignment());
+        StartCoroutine(DelayAssignment());
     }
 
-    IEnumerator DelayScoreboardAssignment()
+    IEnumerator DelayAssignment()
     {
         yield return new WaitForSeconds(1f);
 
@@ -185,6 +185,7 @@ public class RoundManager : MonoBehaviour {
         {
             scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<ScoreboardUpdater>();
             scoreboard.roundOver = false;
+            arena2 = GameObject.FindGameObjectWithTag("Arena");
         }
     }
 
