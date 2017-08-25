@@ -180,7 +180,7 @@ public class PlayerStatus : MonoBehaviour, IPunObservable
         {
             if ((Time.time - deathTime) > respawnLength)
             {
-                Respawn();
+                self_photonview.RPC("Respawn", PhotonTargets.All, null);
             }
 
             else

@@ -105,6 +105,7 @@ public class VineTrap : MonoBehaviour {
         if (playerStatus != null)
             if (playerStatus.dead)
             {
+                print(playerStatus.dead + " " + playerStatus.gameObject);
                 //Enable movement before destroy itself.
                 StopCoroutine(DestroyAfterSeconds(duration));
                 isActivated = false;
