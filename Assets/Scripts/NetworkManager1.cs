@@ -377,6 +377,42 @@ public class NetworkManager1 : Photon.PunBehaviour
                 }
             }
         }
+
+        VerifyPlayersOnPlatform();
+    }
+
+    void VerifyPlayersOnPlatform()
+    {
+        if (! PhotonNetwork.isMasterClient)
+        {
+            return;
+        }
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] teleporters = GameObject.FindGameObjectsWithTag("Teleporter");
+        foreach (GameObject teleporter in teleporters)
+        {
+            // check stored players in teleporter platform vs. players in game
+            foreach (GameObject playerOnPlatform in teleporter.GetComponent<TeleporterPlatform>().players)
+            {
+                bool playerMatched = false;
+                foreach (GameObject playerInGame in players)
+                {
+                    if (playerOnPlatform == playerInGame)
+                    {
+                        playerMatched = true;
+                        break;
+                    }
+                }
+
+                // if the stored player does not exist in the game, remove the player and decrement counter in teleporter platform
+                if (! playerMatched)
+                {
+                    teleporter.GetComponent<TeleporterPlatform>().players.Remove(playerOnPlatform);
+                    teleporter.GetComponent<TeleporterPlatform>().numPlayersOnPlatform -= 1;
+                }
+            }
+        }
     }
 
 	/// <summary>
