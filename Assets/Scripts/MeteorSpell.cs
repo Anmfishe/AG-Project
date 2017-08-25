@@ -164,42 +164,44 @@ public class MeteorSpell : MonoBehaviour
        
 		if (GetComponent<PhotonView>().isMine) 
 		{
-            // If it's a shield, deflect
-            if (collision.transform.tag == "Shield")
-            {
-                if (collision.transform.GetComponent<Shield>())
-                {
-                    // If the shield we hit is the enemy's
-                    if (collision.transform.GetComponent<Shield>().GetBlue() != blue)
-                    {
-                        Reflect();
-                    }
-                    else
-                    {
-                        Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
-                    }
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+            DestroyNoDamage();
+            //// If it's a shield, deflect
+            //if (collision.transform.tag == "Shield")
+            //{
+            //    if (collision.transform.GetComponent<Shield>())
+            //    {
+            //        // If the shield we hit is the enemy's
+            //        if (collision.transform.GetComponent<Shield>().GetBlue() != blue)
+            //        {
+            //            Reflect();
+            //        }
+            //        else
+            //        {
+            //            Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
+            //        }
 
-                }
-                else if (collision.transform.GetComponent<Pong_Shield>())
-                {
-                    // If the shield we hit is the enemy's
-                    if (collision.transform.GetComponent<Pong_Shield>().GetBlue() != blue)
-                    {
-                        Reflect();
-                    }
-                    else
-                    {
-                        Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
-                    }
-                }
+            //    }
+            //    else if (collision.transform.GetComponent<Pong_Shield>())
+            //    {
+            //        // If the shield we hit is the enemy's
+            //        if (collision.transform.GetComponent<Pong_Shield>().GetBlue() != blue)
+            //        {
+            //            Reflect();
+            //        }
+            //        else
+            //        {
+            //            Physics.IgnoreCollision(GetComponent<SphereCollider>(), collision.transform.GetComponent<BoxCollider>(), true);
+            //        }
+            //    }
 
-            }
-            else
-            {
-                GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-                DestroyFireball();
-            }
-		}
+        }
+        else
+        {
+            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+            DestroyFireball();
+        }
+		//}
 	}
 		
 
@@ -231,6 +233,19 @@ public class MeteorSpell : MonoBehaviour
         spellcast.Vibrate(.1f, 3999);
         PhotonNetwork.Destroy (this.GetComponent<PhotonView> ());
 	}
+
+    void DestroyNoDamage()
+    {
+        //Destroy game object.
+        //        PhotonNetwork.Destroy(this.gameObject);
+
+        //
+
+        Destroy(reticleInstance);
+        //spellcastingGesture.enabled = true;
+        spellcast.Vibrate(.1f, 3999);
+        PhotonNetwork.Destroy(this.GetComponent<PhotonView>());
+    }
 
     void Reflect()
     {

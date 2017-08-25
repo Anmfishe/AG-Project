@@ -205,7 +205,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d8042707f5a26c4281e46584a36ef52, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -400,6 +400,8 @@ MonoBehaviour:
   deflectAudio: {fileID: 8300000, guid: 106c7955ff9e5de4d96f942a90c85c2b, type: 3}
   isMaster: 0
   isSlave: 0
+  rb: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!135 &135849509132663130
 SphereCollider:
   m_ObjectHideFlags: 1
