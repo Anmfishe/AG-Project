@@ -11,6 +11,7 @@ public class GlassHammer : MonoBehaviour
     public float destroyTime = 15;
     private float startTime;
     public float damage = 20;
+    public float hammerRadius = 5;
     private Rigidbody rb;
 
 
@@ -106,7 +107,7 @@ public class GlassHammer : MonoBehaviour
                 {
                     //Find any nearby shields and destroy them.
                     Collider[] hits;
-                    hits = Physics.OverlapSphere(other.transform.position, 5);
+                    hits = Physics.OverlapSphere(other.transform.position, hammerRadius);
                     foreach (Collider hit in hits)
                     {
                         //If the hit is a Shield.
@@ -115,7 +116,7 @@ public class GlassHammer : MonoBehaviour
                             print("ShieldTeam: " + hit.transform.GetComponent<IShield>().GetBlue() + " | GlassHammerTeam: " + blue);
                             //hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                             
-                            if (hit.transform.GetComponent<IShield>().GetBlue() != blue)
+                            if (hit.transform.GetComponent<IShield>().GetBlue() != this.blue)
                             {
                                 hit.gameObject.GetPhotonView().RPC("DestroyShield", PhotonTargets.AllBuffered);
                             }

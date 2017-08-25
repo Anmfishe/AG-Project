@@ -150,25 +150,6 @@ public class FireballNew : MonoBehaviour
             this.transform.LookAt(originalPosition);
             this.transform.position += this.transform.forward * 1;
         }
-        else if(other.CompareTag("Curse"))
-        {
-            //Check if it has the VineTrap component.
-            if(other.transform.GetComponent<VineTrap>())
-            {
-                //Check if they're from different teams.
-                if(other.transform.GetComponent<VineTrap>().blue != this.blue)
-                {
-                    //RPC call to destroy vines.
-                    other.gameObject.GetPhotonView().RPC("DestroyVines", PhotonTargets.All);
-
-                    //Instantiate new explosion.
-                    GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
-
-                    //Delete this game object.
-                    DestroyFireball();
-                }
-            }
-        }
         else if (other.CompareTag("Spell"))
         {
             //print("hit on spell");
@@ -215,14 +196,43 @@ public class FireballNew : MonoBehaviour
     //            print("on trigger enter, hit torso");
 
     //            other.GetPhotonView().RPC("TakeDamage", PhotonTargets.AllBuffered, damage);
-                
+
     //            //Instantiate new explosion. May not be properly destroyed on the network
     //            GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
     //            DestroyFireball();
     //        }
     //    }
     //}
+    private void OnTriggerEnter(Collider col)
+    {
+        GameObject other = col.gameObject;
+        //print("Collided by " + other.name);
 
+        if (!this.GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
+
+        if (other.CompareTag("Curse"))
+        {
+            //Check if it has the VineTrap component.
+            if (other.transform.GetComponent<VineTrap>())
+            {
+                //Check if they're from different teams.
+                if (other.transform.GetComponent<VineTrap>().blue != this.blue)
+                {
+                    //RPC call to destroy vines.
+                    other.gameObject.GetPhotonView().RPC("DestroyVines", PhotonTargets.All);
+
+                    //Instantiate new explosion.
+                    GameObject newExplosion = PhotonNetwork.Instantiate(explosion.name, this.transform.position, new Quaternion(), 0);
+
+                    //Delete this game object.
+                    DestroyFireball();
+                }
+            }
+        }
+    }
     private void StartRecovery()
     {
         activeTimer = startup;
