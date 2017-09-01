@@ -262,6 +262,7 @@ public class FireballNew : MonoBehaviour
         deflected = true;
         rb.velocity = Vector3.zero;
         transform.LookAt(Camera.main.transform);
+        speed *= 2; //Make reflected ball travel faster.
         blue = !blue;
        // rb.AddForce((Camera.main.transform.position - transform.position) * reflectForce);
         if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);

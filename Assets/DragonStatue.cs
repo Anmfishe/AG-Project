@@ -18,7 +18,7 @@ public class DragonStatue : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Spell"))
+        if(other.gameObject.CompareTag("Spell") || other.gameObject.CompareTag("ShieldBreaker"))
         {
             ToggleFlame(true);
         }

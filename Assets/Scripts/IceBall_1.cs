@@ -50,21 +50,21 @@ public class IceBall_1 : MonoBehaviour {
     {
         this.transform.Translate(this.transform.forward * speed * Time.deltaTime, Space.World);
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider col)
     {
         print("entering trigger");
-        if (collision.gameObject.CompareTag("Shield"))
+        if (col.gameObject.CompareTag("Shield"))
         {
             print("entering trigge2r");
-            if (collision.transform.GetComponent<Shield>())
+            if (col.transform.GetComponent<Shield>())
             {
                 print("entering trigger3");
-                if (collision.transform.GetComponent<Shield>().GetBlue() != blue)
+                if (col.transform.GetComponent<Shield>().GetBlue() != blue)
                 {
                     print("blue");
                     print("hit on shield");
                     //Apply damage to the shield.
-                    Damageable damageScript = collision.gameObject.GetComponent<Damageable>();
+                    Damageable damageScript = col.gameObject.GetComponent<Damageable>();
                     if (damageScript != null) damageScript.TakeDamage(damage);
 
                     if (GetComponent<PhotonView>().isMine)
@@ -108,6 +108,7 @@ public class IceBall_1 : MonoBehaviour {
         deflected = true;
         rb.velocity = Vector3.zero;
         transform.LookAt(Camera.main.transform);
+        speed *= 2; //Make reflected ball travel faster.
         blue = !blue;
         // rb.AddForce((Camera.main.transform.position - transform.position) * reflectForce);
         if (deflectAudio != null) audioSource.PlayOneShot(deflectAudio);

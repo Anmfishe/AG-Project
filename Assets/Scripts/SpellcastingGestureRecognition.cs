@@ -777,13 +777,13 @@ public class SpellcastingGestureRecognition : MonoBehaviour
                     spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, target.result.GetComponentInParent<TeamManager>().blue);
                     spellInstance.GetComponent<Bubble_shield>().owner = target.result.transform;
                 }
-                else
-                {
-                    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
-                    spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
-                    spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
-                    spellInstance.GetComponent<Bubble_shield>().owner = torso;
-                }
+                //else
+                //{
+                //    spellInstance = PhotonNetwork.Instantiate(currentSpell.name, torso.position, torso.rotation, 0);
+                //    spellInstance.GetComponent<Bubble_shield>().SetTorso(torso);
+                //    spellInstance.gameObject.GetPhotonView().RPC("SetBlue", PhotonTargets.All, avatar.GetComponent<TeamManager>().blue);
+                //    spellInstance.GetComponent<Bubble_shield>().owner = torso;
+                //}
                bubbleCD = cooldowns.bubbleCD;
                 break;
             case "heal":
